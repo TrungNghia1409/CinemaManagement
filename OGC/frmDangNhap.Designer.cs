@@ -29,150 +29,192 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            pnlTaiKhoan = new Panel();
-            pnlMatKhau = new Panel();
-            btnDangNhap = new Button();
-            ptbDangNhap = new PictureBox();
-            pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
             lblMember = new Label();
-            txbTaiKhoan = new TextBox();
+            panel2 = new Panel();
+            label1 = new Label();
+            ptbDangNhap = new PictureBox();
+            panel3 = new Panel();
+            pnlDangNhap_Phai = new Panel();
+            pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
+            btnDangNhap = new Button();
+            pnlMatKhau = new Panel();
             txbMatKhau = new TextBox();
+            pnlTaiKhoan = new Panel();
+            txbTaiKhoan = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            pnlTaiKhoan.SuspendLayout();
-            pnlMatKhau.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbDangNhap).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnlDangNhap_Phai.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnlMatKhau.SuspendLayout();
+            pnlTaiKhoan.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Controls.Add(lblMember);
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(248, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(584, 64);
+            panel1.Size = new Size(336, 64);
             panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(ptbDangNhap);
-            panel2.Controls.Add(panel3);
-            panel2.Location = new Point(0, 64);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(240, 200);
-            panel2.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            panel3.Location = new Point(240, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(344, 200);
-            panel3.TabIndex = 0;
-            // 
-            // pnlTaiKhoan
-            // 
-            pnlTaiKhoan.Controls.Add(txbTaiKhoan);
-            pnlTaiKhoan.Location = new Point(296, 88);
-            pnlTaiKhoan.Name = "pnlTaiKhoan";
-            pnlTaiKhoan.Size = new Size(272, 40);
-            pnlTaiKhoan.TabIndex = 1;
-            // 
-            // pnlMatKhau
-            // 
-            pnlMatKhau.Controls.Add(txbMatKhau);
-            pnlMatKhau.Location = new Point(296, 160);
-            pnlMatKhau.Name = "pnlMatKhau";
-            pnlMatKhau.Size = new Size(272, 40);
-            pnlMatKhau.TabIndex = 1;
-            // 
-            // btnDangNhap
-            // 
-            btnDangNhap.Location = new Point(392, 224);
-            btnDangNhap.Name = "btnDangNhap";
-            btnDangNhap.Size = new Size(75, 23);
-            btnDangNhap.TabIndex = 2;
-            btnDangNhap.Text = "Login";
-            btnDangNhap.UseVisualStyleBackColor = true;
-            // 
-            // ptbDangNhap
-            // 
-            ptbDangNhap.Location = new Point(32, 8);
-            ptbDangNhap.Name = "ptbDangNhap";
-            ptbDangNhap.Size = new Size(176, 136);
-            ptbDangNhap.TabIndex = 1;
-            ptbDangNhap.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(248, 88);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(40, 40);
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Location = new Point(248, 160);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(40, 40);
-            pictureBox2.TabIndex = 3;
-            pictureBox2.TabStop = false;
             // 
             // lblMember
             // 
             lblMember.AutoSize = true;
             lblMember.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMember.Location = new Point(352, 24);
+            lblMember.Location = new Point(104, 16);
             lblMember.Name = "lblMember";
             lblMember.Size = new Size(166, 30);
             lblMember.TabIndex = 0;
             lblMember.Text = "Members Login";
             // 
-            // txbTaiKhoan
+            // panel2
             // 
-            txbTaiKhoan.BorderStyle = BorderStyle.None;
-            txbTaiKhoan.Location = new Point(160, 8);
-            txbTaiKhoan.Multiline = true;
-            txbTaiKhoan.Name = "txbTaiKhoan";
-            txbTaiKhoan.Size = new Size(100, 23);
-            txbTaiKhoan.TabIndex = 0;
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(ptbDangNhap);
+            panel2.Controls.Add(panel3);
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(248, 264);
+            panel2.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(0, 224);
+            label1.Name = "label1";
+            label1.Size = new Size(239, 15);
+            label1.TabIndex = 2;
+            label1.Text = "⦿ 2025 OGC Cinema | Designe by Double2N";
+            // 
+            // ptbDangNhap
+            // 
+            ptbDangNhap.Image = Properties.Resources.staff_training;
+            ptbDangNhap.Location = new Point(16, 8);
+            ptbDangNhap.Name = "ptbDangNhap";
+            ptbDangNhap.Size = new Size(216, 200);
+            ptbDangNhap.SizeMode = PictureBoxSizeMode.StretchImage;
+            ptbDangNhap.TabIndex = 1;
+            ptbDangNhap.TabStop = false;
+            // 
+            // panel3
+            // 
+            panel3.Location = new Point(312, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(272, 200);
+            panel3.TabIndex = 0;
+            // 
+            // pnlDangNhap_Phai
+            // 
+            pnlDangNhap_Phai.Controls.Add(pictureBox2);
+            pnlDangNhap_Phai.Controls.Add(pictureBox1);
+            pnlDangNhap_Phai.Controls.Add(btnDangNhap);
+            pnlDangNhap_Phai.Controls.Add(pnlMatKhau);
+            pnlDangNhap_Phai.Controls.Add(pnlTaiKhoan);
+            pnlDangNhap_Phai.Location = new Point(248, 64);
+            pnlDangNhap_Phai.Name = "pnlDangNhap_Phai";
+            pnlDangNhap_Phai.Size = new Size(336, 200);
+            pnlDangNhap_Phai.TabIndex = 1;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.password;
+            pictureBox2.Location = new Point(4, 93);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(40, 40);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 7;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.username;
+            pictureBox1.Location = new Point(4, 21);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+            // 
+            // btnDangNhap
+            // 
+            btnDangNhap.FlatAppearance.BorderColor = SystemColors.ScrollBar;
+            btnDangNhap.FlatAppearance.BorderSize = 0;
+            btnDangNhap.FlatStyle = FlatStyle.Flat;
+            btnDangNhap.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDangNhap.Location = new Point(144, 144);
+            btnDangNhap.Name = "btnDangNhap";
+            btnDangNhap.Size = new Size(92, 35);
+            btnDangNhap.TabIndex = 6;
+            btnDangNhap.Text = "Login";
+            btnDangNhap.UseVisualStyleBackColor = true;
+            btnDangNhap.Click += btnDangNhap_Click;
+            btnDangNhap.Paint += btnDangNhap_Paint;
+            // 
+            // pnlMatKhau
+            // 
+            pnlMatKhau.Controls.Add(txbMatKhau);
+            pnlMatKhau.Location = new Point(52, 93);
+            pnlMatKhau.Name = "pnlMatKhau";
+            pnlMatKhau.Size = new Size(272, 40);
+            pnlMatKhau.TabIndex = 4;
+            pnlMatKhau.Paint += pnlMatKhau_Paint;
             // 
             // txbMatKhau
             // 
-            txbMatKhau.Location = new Point(160, 8);
+            txbMatKhau.BorderStyle = BorderStyle.None;
+            txbMatKhau.Dock = DockStyle.Fill;
+            txbMatKhau.Font = new Font("Segoe UI", 14.25F);
+            txbMatKhau.Location = new Point(0, 0);
             txbMatKhau.Multiline = true;
             txbMatKhau.Name = "txbMatKhau";
-            txbMatKhau.Size = new Size(100, 23);
+            txbMatKhau.Size = new Size(272, 40);
             txbMatKhau.TabIndex = 0;
+            // 
+            // pnlTaiKhoan
+            // 
+            pnlTaiKhoan.Controls.Add(txbTaiKhoan);
+            pnlTaiKhoan.Location = new Point(52, 21);
+            pnlTaiKhoan.Name = "pnlTaiKhoan";
+            pnlTaiKhoan.Size = new Size(272, 40);
+            pnlTaiKhoan.TabIndex = 5;
+            pnlTaiKhoan.Paint += pnlTaiKhoan_Paint;
+            // 
+            // txbTaiKhoan
+            // 
+            txbTaiKhoan.BorderStyle = BorderStyle.None;
+            txbTaiKhoan.Dock = DockStyle.Fill;
+            txbTaiKhoan.Font = new Font("Segoe UI", 14.25F);
+            txbTaiKhoan.Location = new Point(0, 0);
+            txbTaiKhoan.Multiline = true;
+            txbTaiKhoan.Name = "txbTaiKhoan";
+            txbTaiKhoan.Size = new Size(272, 40);
+            txbTaiKhoan.TabIndex = 0;
             // 
             // frmDangNhap
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(584, 261);
-            Controls.Add(pictureBox2);
-            Controls.Add(pictureBox1);
-            Controls.Add(btnDangNhap);
+            Controls.Add(pnlDangNhap_Phai);
             Controls.Add(panel2);
-            Controls.Add(pnlMatKhau);
-            Controls.Add(pnlTaiKhoan);
             Controls.Add(panel1);
             Name = "frmDangNhap";
             Text = "frmDangNhap";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            pnlTaiKhoan.ResumeLayout(false);
-            pnlTaiKhoan.PerformLayout();
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ptbDangNhap).EndInit();
+            pnlDangNhap_Phai.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlMatKhau.ResumeLayout(false);
             pnlMatKhau.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ptbDangNhap).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            pnlTaiKhoan.ResumeLayout(false);
+            pnlTaiKhoan.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -182,13 +224,15 @@
         private Panel panel3;
         private Panel panel2;
         private PictureBox ptbDangNhap;
-        private Panel pnlTaiKhoan;
-        private Panel pnlMatKhau;
-        private Button btnDangNhap;
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
         private Label lblMember;
-        private TextBox txbTaiKhoan;
+        private Label label1;
+        private Panel pnlDangNhap_Phai;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox1;
+        private Button btnDangNhap;
+        private Panel pnlMatKhau;
         private TextBox txbMatKhau;
+        private Panel pnlTaiKhoan;
+        private TextBox txbTaiKhoan;
     }
 }
