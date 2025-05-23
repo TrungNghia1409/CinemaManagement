@@ -1,6 +1,6 @@
-﻿namespace OGC
+﻿namespace OGC.frmThuocTinh
 {
-    partial class frmThuocTinh
+    partial class fThuocTinh
     {
         /// <summary>
         /// Required designer variable.
@@ -28,61 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlChucVu = new Panel();
-            btnChucVu = new Button();
             pnlLoaiPhong = new Panel();
             btnLoaiPhong = new Button();
-            pnlTKNhanVien = new Panel();
-            btnTKNhanVien = new Button();
+            pnlDinhDangPhim = new Panel();
+            btnDinhDangPhim = new Button();
             pnlLoaiMonAn = new Panel();
             btnLoaiMonAn = new Button();
             pnlTheLoaiPhim = new Panel();
             button1 = new Button();
             btnTheLoaiPhim = new Button();
-            pnlDinhDangPhim = new Panel();
-            btnDinhDangPhim = new Button();
-            pnlChucVu.SuspendLayout();
+            pnlTKNhanVien = new Panel();
+            btnTKNhanVien = new Button();
+            pnlChucVu = new Panel();
+            btnChucVu = new Button();
             pnlLoaiPhong.SuspendLayout();
-            pnlTKNhanVien.SuspendLayout();
+            pnlDinhDangPhim.SuspendLayout();
             pnlLoaiMonAn.SuspendLayout();
             pnlTheLoaiPhim.SuspendLayout();
-            pnlDinhDangPhim.SuspendLayout();
+            pnlTKNhanVien.SuspendLayout();
+            pnlChucVu.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnlChucVu
-            // 
-            pnlChucVu.Controls.Add(btnChucVu);
-            pnlChucVu.Location = new Point(16, 64);
-            pnlChucVu.Name = "pnlChucVu";
-            pnlChucVu.Size = new Size(312, 136);
-            pnlChucVu.TabIndex = 0;
-            pnlChucVu.Paint += pnlChucVu_Paint;
-            // 
-            // btnChucVu
-            // 
-            btnChucVu.Dock = DockStyle.Fill;
-            btnChucVu.FlatAppearance.BorderSize = 0;
-            btnChucVu.FlatStyle = FlatStyle.Flat;
-            btnChucVu.Font = new Font("Segoe UI", 14.25F);
-            btnChucVu.ForeColor = Color.Gray;
-            btnChucVu.Image = Properties.Resources.cv;
-            btnChucVu.ImageAlign = ContentAlignment.TopCenter;
-            btnChucVu.Location = new Point(0, 0);
-            btnChucVu.Name = "btnChucVu";
-            btnChucVu.Padding = new Padding(0, 20, 0, 0);
-            btnChucVu.Size = new Size(312, 136);
-            btnChucVu.TabIndex = 0;
-            btnChucVu.Text = "CHỨC VỤ";
-            btnChucVu.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnChucVu.UseVisualStyleBackColor = true;
             // 
             // pnlLoaiPhong
             // 
             pnlLoaiPhong.Controls.Add(btnLoaiPhong);
-            pnlLoaiPhong.Location = new Point(16, 248);
+            pnlLoaiPhong.Location = new Point(16, 247);
             pnlLoaiPhong.Name = "pnlLoaiPhong";
             pnlLoaiPhong.Size = new Size(312, 136);
-            pnlLoaiPhong.TabIndex = 0;
+            pnlLoaiPhong.TabIndex = 1;
             pnlLoaiPhong.Paint += pnlLoaiPhong_Paint;
             // 
             // btnLoaiPhong
@@ -102,41 +75,42 @@
             btnLoaiPhong.Text = "LOẠI PHÒNG";
             btnLoaiPhong.TextImageRelation = TextImageRelation.ImageAboveText;
             btnLoaiPhong.UseVisualStyleBackColor = true;
+            btnLoaiPhong.Click += btnLoaiPhong_Click;
             // 
-            // pnlTKNhanVien
+            // pnlDinhDangPhim
             // 
-            pnlTKNhanVien.Controls.Add(btnTKNhanVien);
-            pnlTKNhanVien.Location = new Point(376, 64);
-            pnlTKNhanVien.Name = "pnlTKNhanVien";
-            pnlTKNhanVien.Size = new Size(320, 136);
-            pnlTKNhanVien.TabIndex = 0;
-            pnlTKNhanVien.Paint += pnlTKNhanVien_Paint;
+            pnlDinhDangPhim.Controls.Add(btnDinhDangPhim);
+            pnlDinhDangPhim.Location = new Point(744, 247);
+            pnlDinhDangPhim.Name = "pnlDinhDangPhim";
+            pnlDinhDangPhim.Size = new Size(312, 136);
+            pnlDinhDangPhim.TabIndex = 2;
+            pnlDinhDangPhim.Paint += pnlDinhDangPhim_Paint;
             // 
-            // btnTKNhanVien
+            // btnDinhDangPhim
             // 
-            btnTKNhanVien.Dock = DockStyle.Fill;
-            btnTKNhanVien.FlatAppearance.BorderSize = 0;
-            btnTKNhanVien.FlatStyle = FlatStyle.Flat;
-            btnTKNhanVien.Font = new Font("Segoe UI", 14.25F);
-            btnTKNhanVien.ForeColor = Color.Gray;
-            btnTKNhanVien.Image = Properties.Resources.satff;
-            btnTKNhanVien.ImageAlign = ContentAlignment.TopCenter;
-            btnTKNhanVien.Location = new Point(0, 0);
-            btnTKNhanVien.Name = "btnTKNhanVien";
-            btnTKNhanVien.Padding = new Padding(0, 20, 0, 0);
-            btnTKNhanVien.Size = new Size(320, 136);
-            btnTKNhanVien.TabIndex = 0;
-            btnTKNhanVien.Text = "TÀI KHOẢN NHÂN VIÊN";
-            btnTKNhanVien.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnTKNhanVien.UseVisualStyleBackColor = true;
+            btnDinhDangPhim.Dock = DockStyle.Fill;
+            btnDinhDangPhim.FlatAppearance.BorderSize = 0;
+            btnDinhDangPhim.FlatStyle = FlatStyle.Flat;
+            btnDinhDangPhim.Font = new Font("Segoe UI", 14.25F);
+            btnDinhDangPhim.ForeColor = Color.Gray;
+            btnDinhDangPhim.Image = Properties.Resources.film;
+            btnDinhDangPhim.ImageAlign = ContentAlignment.TopCenter;
+            btnDinhDangPhim.Location = new Point(0, 0);
+            btnDinhDangPhim.Name = "btnDinhDangPhim";
+            btnDinhDangPhim.Padding = new Padding(0, 20, 0, 0);
+            btnDinhDangPhim.Size = new Size(312, 136);
+            btnDinhDangPhim.TabIndex = 0;
+            btnDinhDangPhim.Text = "ĐỊNH DẠNG PHIM";
+            btnDinhDangPhim.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnDinhDangPhim.UseVisualStyleBackColor = true;
             // 
             // pnlLoaiMonAn
             // 
             pnlLoaiMonAn.Controls.Add(btnLoaiMonAn);
-            pnlLoaiMonAn.Location = new Point(744, 64);
+            pnlLoaiMonAn.Location = new Point(744, 63);
             pnlLoaiMonAn.Name = "pnlLoaiMonAn";
             pnlLoaiMonAn.Size = new Size(312, 136);
-            pnlLoaiMonAn.TabIndex = 0;
+            pnlLoaiMonAn.TabIndex = 3;
             pnlLoaiMonAn.Paint += pnlLoaiMonAn_Paint;
             // 
             // btnLoaiMonAn
@@ -156,15 +130,16 @@
             btnLoaiMonAn.Text = "LOẠI MÓN ĂN";
             btnLoaiMonAn.TextImageRelation = TextImageRelation.ImageAboveText;
             btnLoaiMonAn.UseVisualStyleBackColor = true;
+            btnLoaiMonAn.Click += btnLoaiMonAn_Click;
             // 
             // pnlTheLoaiPhim
             // 
             pnlTheLoaiPhim.Controls.Add(button1);
             pnlTheLoaiPhim.Controls.Add(btnTheLoaiPhim);
-            pnlTheLoaiPhim.Location = new Point(376, 248);
+            pnlTheLoaiPhim.Location = new Point(376, 247);
             pnlTheLoaiPhim.Name = "pnlTheLoaiPhim";
             pnlTheLoaiPhim.Size = new Size(320, 136);
-            pnlTheLoaiPhim.TabIndex = 0;
+            pnlTheLoaiPhim.TabIndex = 4;
             pnlTheLoaiPhim.Paint += pnlTheLoaiPhim_Paint;
             // 
             // button1
@@ -194,34 +169,63 @@
             btnTheLoaiPhim.TextImageRelation = TextImageRelation.ImageAboveText;
             btnTheLoaiPhim.UseVisualStyleBackColor = true;
             // 
-            // pnlDinhDangPhim
+            // pnlTKNhanVien
             // 
-            pnlDinhDangPhim.Controls.Add(btnDinhDangPhim);
-            pnlDinhDangPhim.Location = new Point(744, 248);
-            pnlDinhDangPhim.Name = "pnlDinhDangPhim";
-            pnlDinhDangPhim.Size = new Size(312, 136);
-            pnlDinhDangPhim.TabIndex = 0;
-            pnlDinhDangPhim.Paint += pnlDinhDangPhim_Paint;
+            pnlTKNhanVien.Controls.Add(btnTKNhanVien);
+            pnlTKNhanVien.Location = new Point(376, 63);
+            pnlTKNhanVien.Name = "pnlTKNhanVien";
+            pnlTKNhanVien.Size = new Size(320, 136);
+            pnlTKNhanVien.TabIndex = 5;
+            pnlTKNhanVien.Paint += pnlTKNhanVien_Paint;
             // 
-            // btnDinhDangPhim
+            // btnTKNhanVien
             // 
-            btnDinhDangPhim.Dock = DockStyle.Fill;
-            btnDinhDangPhim.FlatAppearance.BorderSize = 0;
-            btnDinhDangPhim.FlatStyle = FlatStyle.Flat;
-            btnDinhDangPhim.Font = new Font("Segoe UI", 14.25F);
-            btnDinhDangPhim.ForeColor = Color.Gray;
-            btnDinhDangPhim.Image = Properties.Resources.film;
-            btnDinhDangPhim.ImageAlign = ContentAlignment.TopCenter;
-            btnDinhDangPhim.Location = new Point(0, 0);
-            btnDinhDangPhim.Name = "btnDinhDangPhim";
-            btnDinhDangPhim.Padding = new Padding(0, 20, 0, 0);
-            btnDinhDangPhim.Size = new Size(312, 136);
-            btnDinhDangPhim.TabIndex = 0;
-            btnDinhDangPhim.Text = "ĐỊNH DẠNG PHIM";
-            btnDinhDangPhim.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnDinhDangPhim.UseVisualStyleBackColor = true;
+            btnTKNhanVien.Dock = DockStyle.Fill;
+            btnTKNhanVien.FlatAppearance.BorderSize = 0;
+            btnTKNhanVien.FlatStyle = FlatStyle.Flat;
+            btnTKNhanVien.Font = new Font("Segoe UI", 14.25F);
+            btnTKNhanVien.ForeColor = Color.Gray;
+            btnTKNhanVien.Image = Properties.Resources.satff;
+            btnTKNhanVien.ImageAlign = ContentAlignment.TopCenter;
+            btnTKNhanVien.Location = new Point(0, 0);
+            btnTKNhanVien.Name = "btnTKNhanVien";
+            btnTKNhanVien.Padding = new Padding(0, 20, 0, 0);
+            btnTKNhanVien.Size = new Size(320, 136);
+            btnTKNhanVien.TabIndex = 0;
+            btnTKNhanVien.Text = "TÀI KHOẢN NHÂN VIÊN";
+            btnTKNhanVien.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnTKNhanVien.UseVisualStyleBackColor = true;
+            btnTKNhanVien.Click += btnTKNhanVien_Click;
             // 
-            // frmThuocTinh
+            // pnlChucVu
+            // 
+            pnlChucVu.Controls.Add(btnChucVu);
+            pnlChucVu.Location = new Point(16, 63);
+            pnlChucVu.Name = "pnlChucVu";
+            pnlChucVu.Size = new Size(312, 136);
+            pnlChucVu.TabIndex = 6;
+            pnlChucVu.Paint += pnlChucVu_Paint;
+            // 
+            // btnChucVu
+            // 
+            btnChucVu.Dock = DockStyle.Fill;
+            btnChucVu.FlatAppearance.BorderSize = 0;
+            btnChucVu.FlatStyle = FlatStyle.Flat;
+            btnChucVu.Font = new Font("Segoe UI", 14.25F);
+            btnChucVu.ForeColor = Color.Gray;
+            btnChucVu.Image = Properties.Resources.cv;
+            btnChucVu.ImageAlign = ContentAlignment.TopCenter;
+            btnChucVu.Location = new Point(0, 0);
+            btnChucVu.Name = "btnChucVu";
+            btnChucVu.Padding = new Padding(0, 20, 0, 0);
+            btnChucVu.Size = new Size(312, 136);
+            btnChucVu.TabIndex = 0;
+            btnChucVu.Text = "CHỨC VỤ";
+            btnChucVu.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnChucVu.UseVisualStyleBackColor = true;
+            btnChucVu.Click += btnChucVu_Click;
+            // 
+            // fThuocTinh
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -232,31 +236,31 @@
             Controls.Add(pnlTheLoaiPhim);
             Controls.Add(pnlTKNhanVien);
             Controls.Add(pnlChucVu);
-            Name = "frmThuocTinh";
-            StartPosition = FormStartPosition.CenterScreen;
-            pnlChucVu.ResumeLayout(false);
+            Name = "fThuocTinh";
+            Text = "frmThuocTinh";
             pnlLoaiPhong.ResumeLayout(false);
-            pnlTKNhanVien.ResumeLayout(false);
+            pnlDinhDangPhim.ResumeLayout(false);
             pnlLoaiMonAn.ResumeLayout(false);
             pnlTheLoaiPhim.ResumeLayout(false);
-            pnlDinhDangPhim.ResumeLayout(false);
+            pnlTKNhanVien.ResumeLayout(false);
+            pnlChucVu.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel pnlChucVu;
         private Panel pnlLoaiPhong;
-        private Panel pnlTKNhanVien;
-        private Panel pnlLoaiMonAn;
-        private Panel pnlTheLoaiPhim;
-        private Panel pnlDinhDangPhim;
-        private Button btnChucVu;
         private Button btnLoaiPhong;
-        private Button btnTKNhanVien;
-        private Button btnLoaiMonAn;
-        private Button btnTheLoaiPhim;
+        private Panel pnlDinhDangPhim;
         private Button btnDinhDangPhim;
+        private Panel pnlLoaiMonAn;
+        private Button btnLoaiMonAn;
+        private Panel pnlTheLoaiPhim;
         private Button button1;
+        private Button btnTheLoaiPhim;
+        private Panel pnlTKNhanVien;
+        private Button btnTKNhanVien;
+        private Panel pnlChucVu;
+        private Button btnChucVu;
     }
 }

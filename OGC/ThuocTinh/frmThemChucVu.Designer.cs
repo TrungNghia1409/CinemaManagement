@@ -31,6 +31,7 @@
             panel1 = new Panel();
             lblQuanlychucvu = new Label();
             panel2 = new Panel();
+            pnlTenChucVu = new Panel();
             txbTenChucVu = new TextBox();
             lblTenchucvu = new Label();
             panel3 = new Panel();
@@ -41,17 +42,16 @@
             pnlThem = new Panel();
             btnThem = new Button();
             grbChucVu = new GroupBox();
-            dataGridView1 = new DataGridView();
-            pnlTenChucVu = new Panel();
+            dgvChucVu = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            pnlTenChucVu.SuspendLayout();
             panel3.SuspendLayout();
             pnlSua.SuspendLayout();
             pnlXoa.SuspendLayout();
             pnlThem.SuspendLayout();
             grbChucVu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            pnlTenChucVu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvChucVu).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -83,13 +83,24 @@
             panel2.Size = new Size(484, 80);
             panel2.TabIndex = 0;
             // 
+            // pnlTenChucVu
+            // 
+            pnlTenChucVu.Controls.Add(txbTenChucVu);
+            pnlTenChucVu.Location = new Point(104, 32);
+            pnlTenChucVu.Name = "pnlTenChucVu";
+            pnlTenChucVu.Size = new Size(272, 40);
+            pnlTenChucVu.TabIndex = 2;
+            pnlTenChucVu.Paint += pnlTenChucVu_Paint;
+            // 
             // txbTenChucVu
             // 
-            txbTenChucVu.BorderStyle = BorderStyle.FixedSingle;
-            txbTenChucVu.Location = new Point(104, 0);
+            txbTenChucVu.BorderStyle = BorderStyle.None;
+            txbTenChucVu.Dock = DockStyle.Fill;
+            txbTenChucVu.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txbTenChucVu.Location = new Point(0, 0);
             txbTenChucVu.Multiline = true;
             txbTenChucVu.Name = "txbTenChucVu";
-            txbTenChucVu.Size = new Size(136, 32);
+            txbTenChucVu.Size = new Size(272, 40);
             txbTenChucVu.TabIndex = 1;
             // 
             // lblTenchucvu
@@ -123,13 +134,19 @@
             // 
             // btnSua
             // 
+            btnSua.BackColor = SystemColors.ActiveCaption;
+            btnSua.Dock = DockStyle.Fill;
+            btnSua.FlatAppearance.BorderSize = 0;
+            btnSua.FlatStyle = FlatStyle.Flat;
             btnSua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSua.ForeColor = Color.White;
             btnSua.Location = new Point(0, 0);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(75, 23);
+            btnSua.Size = new Size(96, 32);
             btnSua.TabIndex = 0;
             btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = true;
+            btnSua.UseVisualStyleBackColor = false;
+            btnSua.Click += btnSua_Click;
             // 
             // pnlXoa
             // 
@@ -142,13 +159,19 @@
             // 
             // btnXoa
             // 
+            btnXoa.BackColor = Color.IndianRed;
+            btnXoa.Dock = DockStyle.Fill;
+            btnXoa.FlatAppearance.BorderSize = 0;
+            btnXoa.FlatStyle = FlatStyle.Flat;
             btnXoa.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnXoa.Location = new Point(16, 0);
+            btnXoa.ForeColor = Color.White;
+            btnXoa.Location = new Point(0, 0);
             btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(75, 23);
+            btnXoa.Size = new Size(96, 32);
             btnXoa.TabIndex = 0;
             btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.UseVisualStyleBackColor = false;
+            btnXoa.Click += btnXoa_Click;
             // 
             // pnlThem
             // 
@@ -161,17 +184,23 @@
             // 
             // btnThem
             // 
+            btnThem.BackColor = Color.MediumAquamarine;
+            btnThem.Dock = DockStyle.Fill;
+            btnThem.FlatAppearance.BorderSize = 0;
+            btnThem.FlatStyle = FlatStyle.Flat;
             btnThem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnThem.Location = new Point(8, 0);
+            btnThem.ForeColor = Color.White;
+            btnThem.Location = new Point(0, 0);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(75, 23);
+            btnThem.Size = new Size(96, 32);
             btnThem.TabIndex = 0;
             btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = true;
+            btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnThem_Click;
             // 
             // grbChucVu
             // 
-            grbChucVu.Controls.Add(dataGridView1);
+            grbChucVu.Controls.Add(dgvChucVu);
             grbChucVu.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             grbChucVu.Location = new Point(0, 160);
             grbChucVu.Name = "grbChucVu";
@@ -179,22 +208,13 @@
             grbChucVu.TabIndex = 1;
             grbChucVu.TabStop = false;
             // 
-            // dataGridView1
+            // dgvChucVu
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(8, 32);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(472, 288);
-            dataGridView1.TabIndex = 0;
-            // 
-            // pnlTenChucVu
-            // 
-            pnlTenChucVu.Controls.Add(txbTenChucVu);
-            pnlTenChucVu.Location = new Point(104, 32);
-            pnlTenChucVu.Name = "pnlTenChucVu";
-            pnlTenChucVu.Size = new Size(272, 40);
-            pnlTenChucVu.TabIndex = 2;
-            pnlTenChucVu.Paint += pnlTenChucVu_Paint;
+            dgvChucVu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvChucVu.Location = new Point(8, 32);
+            dgvChucVu.Name = "dgvChucVu";
+            dgvChucVu.Size = new Size(472, 288);
+            dgvChucVu.TabIndex = 0;
             // 
             // frmThemChucVu
             // 
@@ -206,19 +226,20 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmThemChucVu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmThemChucVu";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            pnlTenChucVu.ResumeLayout(false);
+            pnlTenChucVu.PerformLayout();
             panel3.ResumeLayout(false);
             pnlSua.ResumeLayout(false);
             pnlXoa.ResumeLayout(false);
             pnlThem.ResumeLayout(false);
             grbChucVu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            pnlTenChucVu.ResumeLayout(false);
-            pnlTenChucVu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvChucVu).EndInit();
             ResumeLayout(false);
         }
 
@@ -231,7 +252,7 @@
         private Label lblQuanlychucvu;
         private Label lblTenchucvu;
         private TextBox txbTenChucVu;
-        private DataGridView dataGridView1;
+        private DataGridView dgvChucVu;
         private Panel pnlSua;
         private Panel pnlXoa;
         private Panel pnlThem;
