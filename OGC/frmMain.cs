@@ -1,4 +1,6 @@
 ﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System;
+using OGC.frmThuocTinh;
 
 namespace OGC
 {
@@ -9,8 +11,9 @@ namespace OGC
         public frmMain(string username)
         {
             InitializeComponent();
-
             currentUser = username; // Lưu tài khoản nhân viên đang đăng nhập
+
+            LoadlblUser(); //hiển thị tên tài khoản của nhân viên đăng nhập
         }
 
 
@@ -63,10 +66,17 @@ namespace OGC
             return currentUser;
         }
 
+        public void LoadlblUser()
+        {
+            lblUser.Text = "Xin chào " + currentUser;
+
+            lblUser.Visible = true;
+        }
+
         //mở các form con
         private void btnThuocTinh_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmThuocTinh());
+            OpenChildForm(new fThuocTinh(currentUser));
         }
 
 

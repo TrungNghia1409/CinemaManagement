@@ -31,6 +31,8 @@
             panel1 = new Panel();
             Logo = new PictureBox();
             panel2 = new Panel();
+            pnlUser = new Panel();
+            lblUser = new Label();
             label1 = new Label();
             panel3 = new Panel();
             panel9 = new Panel();
@@ -49,6 +51,7 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             panel2.SuspendLayout();
+            pnlUser.SuspendLayout();
             panel3.SuspendLayout();
             panel9.SuspendLayout();
             panel7.SuspendLayout();
@@ -84,12 +87,31 @@
             // 
             panel2.AutoSize = true;
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(pnlUser);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(96, 1);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(1198, 72);
             panel2.TabIndex = 0;
+            // 
+            // pnlUser
+            // 
+            pnlUser.Controls.Add(lblUser);
+            pnlUser.Location = new Point(992, 8);
+            pnlUser.Name = "pnlUser";
+            pnlUser.Size = new Size(200, 48);
+            pnlUser.TabIndex = 2;
+            // 
+            // lblUser
+            // 
+            lblUser.Dock = DockStyle.Fill;
+            lblUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUser.Location = new Point(0, 0);
+            lblUser.Name = "lblUser";
+            lblUser.Size = new Size(200, 48);
+            lblUser.TabIndex = 1;
+            lblUser.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -257,6 +279,7 @@
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            pnlUser.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel9.ResumeLayout(false);
             panel7.ResumeLayout(false);
@@ -288,5 +311,7 @@
         private Button button6;
         protected PictureBox Logo;
         private Panel panel_Body;
+        private Panel pnlUser;
+        private Label lblUser;
     }
 }
