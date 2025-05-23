@@ -202,6 +202,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmDangNhap";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmDangNhap";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

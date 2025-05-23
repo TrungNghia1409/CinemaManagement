@@ -88,10 +88,7 @@ namespace OGC
         #endregion
 
 
-
-        #endregion
-
-
+        //sự kiện click button đăng nhập
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
             string username = txbTaiKhoan.Text;
@@ -115,5 +112,10 @@ namespace OGC
                 MessageBox.Show("Sai tài khoản hoặc mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        #endregion
+
+
+
     }
 }

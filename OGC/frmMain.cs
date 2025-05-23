@@ -63,9 +63,15 @@ namespace OGC
             return currentUser;
         }
 
+        //mở các form con
+        private void btnThuocTinh_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmThuocTinh());
+        }
 
 
         #endregion
+
 
 
     }
