@@ -1,12 +1,21 @@
+﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
 namespace OGC
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        public string currentUser; // Biến lưu tài khoản nhân viên đăng nhập
+
+        public frmMain(string username)
         {
             InitializeComponent();
+
+            currentUser = username; // Lưu tài khoản nhân viên đang đăng nhập
         }
 
+
+
+        #region Trung Nghia
 
         private Form currentFromChild;
         private void OpenChildForm(Form childForm)
@@ -41,6 +50,22 @@ namespace OGC
             OpenChildForm(new ChonPhim());
             label1.Text = btnDatVe.Text;
         }
+
+        #endregion
+
+
+
+
+        #region Hoang Nghia
+        // Hàm lấy tài khoản nhân viên đang đăng nhập
+        public string GetUsername()
+        {
+            return currentUser;
+        }
+
+
+
+        #endregion
 
 
     }
