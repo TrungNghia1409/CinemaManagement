@@ -222,23 +222,29 @@ namespace OGC.ThuocTinh
             string taikhoan = txbTKNhanVien.Text.Trim();
             string matkhau = txbMKNhanVien.Text.Trim();
 
+            // Lấy dòng đang chọn
+            DataGridViewRow selectedRow = dgvTKNhanVien.SelectedRows[0];
+            string tenTaiKhoanCanSua = selectedRow.Cells["Username"].Value.ToString();
+
             try
             {
                 if ((txbTKNhanVien.Text == "") || ((txbMKNhanVien.Text == "")) || (dgvTKNhanVien.SelectedRows.Count == 0))
                 {
                     MessageBox.Show("Vui lòng nhập tên tài khoản mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
+                else if (taikhoan == currentUser)
+                {
+                    MessageBox.Show($"Bạn đang đăng nhập bằng tài khoản '{taikhoan}'!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (taikhoan == tenTaiKhoanCanSua)
+                {
+                    MessageBox.Show("Tên tài khoản cần cập nhật phải khác tên tài khoản cũ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
                 else if (DAO_TKNHANVIEN.Instance.IsUsernameExists(taikhoan))
                 {
                     MessageBox.Show($"Tên tài khoản '{taikhoan}' đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                else if (taikhoan == currentUser)
-                {
-                    MessageBox.Show($"Bạn đang đăng nhập bằng tài khoản '{taikhoan}'!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
                 else if ((DAO_TKNHANVIEN.Instance.SuaTKNhanVien(taikhoan, matkhau)))
                 {
                     MessageBox.Show("Sửa tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

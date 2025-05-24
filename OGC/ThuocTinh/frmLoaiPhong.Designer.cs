@@ -95,11 +95,12 @@
             // txbTenLoaiPhong
             // 
             txbTenLoaiPhong.BorderStyle = BorderStyle.None;
+            txbTenLoaiPhong.Dock = DockStyle.Fill;
             txbTenLoaiPhong.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txbTenLoaiPhong.Location = new Point(32, 0);
+            txbTenLoaiPhong.Location = new Point(0, 0);
             txbTenLoaiPhong.Multiline = true;
             txbTenLoaiPhong.Name = "txbTenLoaiPhong";
-            txbTenLoaiPhong.Size = new Size(240, 40);
+            txbTenLoaiPhong.Size = new Size(272, 40);
             txbTenLoaiPhong.TabIndex = 1;
             // 
             // lblTenloaiphong
@@ -134,16 +135,18 @@
             // btnSuaLoaiPhong
             // 
             btnSuaLoaiPhong.BackColor = SystemColors.ActiveCaption;
+            btnSuaLoaiPhong.Dock = DockStyle.Fill;
             btnSuaLoaiPhong.FlatAppearance.BorderSize = 0;
             btnSuaLoaiPhong.FlatStyle = FlatStyle.Flat;
             btnSuaLoaiPhong.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSuaLoaiPhong.ForeColor = Color.White;
-            btnSuaLoaiPhong.Location = new Point(32, 0);
+            btnSuaLoaiPhong.Location = new Point(0, 0);
             btnSuaLoaiPhong.Name = "btnSuaLoaiPhong";
-            btnSuaLoaiPhong.Size = new Size(64, 32);
+            btnSuaLoaiPhong.Size = new Size(96, 32);
             btnSuaLoaiPhong.TabIndex = 0;
             btnSuaLoaiPhong.Text = "Sửa";
             btnSuaLoaiPhong.UseVisualStyleBackColor = false;
+            btnSuaLoaiPhong.Click += btnSuaLoaiPhong_Click;
             // 
             // pnlXoaLoaiPhong
             // 
@@ -157,16 +160,18 @@
             // btnXoaLoaiPhong
             // 
             btnXoaLoaiPhong.BackColor = Color.IndianRed;
+            btnXoaLoaiPhong.Dock = DockStyle.Fill;
             btnXoaLoaiPhong.FlatAppearance.BorderSize = 0;
             btnXoaLoaiPhong.FlatStyle = FlatStyle.Flat;
             btnXoaLoaiPhong.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnXoaLoaiPhong.ForeColor = Color.White;
-            btnXoaLoaiPhong.Location = new Point(32, 0);
+            btnXoaLoaiPhong.Location = new Point(0, 0);
             btnXoaLoaiPhong.Name = "btnXoaLoaiPhong";
-            btnXoaLoaiPhong.Size = new Size(64, 32);
+            btnXoaLoaiPhong.Size = new Size(96, 32);
             btnXoaLoaiPhong.TabIndex = 0;
             btnXoaLoaiPhong.Text = "Xóa";
             btnXoaLoaiPhong.UseVisualStyleBackColor = false;
+            btnXoaLoaiPhong.Click += btnXoaLoaiPhong_Click;
             // 
             // pnlThemLoaiPhong
             // 
@@ -180,16 +185,18 @@
             // btnThemLoaiPhong
             // 
             btnThemLoaiPhong.BackColor = Color.MediumAquamarine;
+            btnThemLoaiPhong.Dock = DockStyle.Fill;
             btnThemLoaiPhong.FlatAppearance.BorderSize = 0;
             btnThemLoaiPhong.FlatStyle = FlatStyle.Flat;
             btnThemLoaiPhong.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnThemLoaiPhong.ForeColor = Color.White;
-            btnThemLoaiPhong.Location = new Point(32, 0);
+            btnThemLoaiPhong.Location = new Point(0, 0);
             btnThemLoaiPhong.Name = "btnThemLoaiPhong";
-            btnThemLoaiPhong.Size = new Size(64, 32);
+            btnThemLoaiPhong.Size = new Size(96, 32);
             btnThemLoaiPhong.TabIndex = 0;
             btnThemLoaiPhong.Text = "Thêm";
             btnThemLoaiPhong.UseVisualStyleBackColor = false;
+            btnThemLoaiPhong.Click += btnThemLoaiPhong_Click;
             // 
             // grbChucVu
             // 

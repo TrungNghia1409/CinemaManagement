@@ -120,8 +120,11 @@ namespace OGC.ThuocTinh
         private void btnSua_LoaiMonAn_Click(object sender, EventArgs e)
         {
             string tenLoaiMonAn = txbTenLoaiMonAn.Text.Trim();
+
             // Lấy dòng đang chọn
             DataGridViewRow selectedRow = dgvLoaiMonAn.SelectedRows[0];
+            string tenLoaiMonAnCanSua = selectedRow.Cells["TenLoai"].Value.ToString();
+
             // Lấy ID cũ từ cột Mã chức vụ 
             int iD = Convert.ToInt32(selectedRow.Cells["ID"].Value);
             try
@@ -129,6 +132,10 @@ namespace OGC.ThuocTinh
                 if ((tenLoaiMonAn == "") || (dgvLoaiMonAn.SelectedRows.Count == 0))
                 {
                     MessageBox.Show("Vui lòng nhập tên tên loại món ăn mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (tenLoaiMonAn == tenLoaiMonAnCanSua)
+                {
+                    MessageBox.Show("Loại món ăn cần cập nhật phải khác Loại món ăn cũ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 else if (DAO_LOAIMONAN.Instance.IsTenLoaiMonAnExists(tenLoaiMonAn))

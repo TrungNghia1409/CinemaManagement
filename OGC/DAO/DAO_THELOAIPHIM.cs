@@ -48,7 +48,7 @@ namespace OGC.DAO
         //PHƯƠNG THỨC KIỂM TRA TÊN CHỨC VỤ ĐÃ TỒN TÀI HAY CHƯA
         public bool IsTheLoaiPhimExists(string tenTheLoai)
         {
-            string query = "SELECT COUNT(*) FROM CHUCVU WHERE TenTheLoai = @TenTheLoai ";
+            string query = "SELECT COUNT(*) FROM THELOAIPHIM WHERE TenTheLoai = @TenTheLoai ";
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenTheLoai });
 
             return Convert.ToInt32(result) > 0; // Trả về true nếu thể loại đã tồn tại
