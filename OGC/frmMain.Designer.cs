@@ -38,7 +38,7 @@
             panel9 = new Panel();
             button6 = new Button();
             panel7 = new Panel();
-            button4 = new Button();
+            btnDichVu = new Button();
             panel5 = new Panel();
             btnThuocTinh = new Button();
             panel8 = new Panel();
@@ -158,22 +158,23 @@
             // 
             // panel7
             // 
-            panel7.Controls.Add(button4);
+            panel7.Controls.Add(btnDichVu);
             panel7.Location = new Point(3, 230);
             panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
             panel7.Size = new Size(196, 71);
             panel7.TabIndex = 0;
             // 
-            // button4
+            // btnDichVu
             // 
-            button4.Location = new Point(0, 2);
-            button4.Margin = new Padding(3, 2, 3, 2);
-            button4.Name = "button4";
-            button4.Size = new Size(193, 67);
-            button4.TabIndex = 0;
-            button4.Text = "button1";
-            button4.UseVisualStyleBackColor = true;
+            btnDichVu.Location = new Point(0, 2);
+            btnDichVu.Margin = new Padding(3, 2, 3, 2);
+            btnDichVu.Name = "btnDichVu";
+            btnDichVu.Size = new Size(193, 67);
+            btnDichVu.TabIndex = 0;
+            btnDichVu.Text = "Dịch Vụ";
+            btnDichVu.UseVisualStyleBackColor = true;
+            btnDichVu.Click += btnDichVu_Click;
             // 
             // panel5
             // 
@@ -255,7 +256,6 @@
             // 
             // panel_Body
             // 
-            panel_Body.BorderStyle = BorderStyle.FixedSingle;
             panel_Body.Location = new Point(206, 76);
             panel_Body.Margin = new Padding(3, 2, 3, 2);
             panel_Body.Name = "panel_Body";
@@ -303,7 +303,7 @@
         private Panel panel8;
         private Panel panel6;
         private Panel panel4;
-        private Button button4;
+        private Button btnDichVu;
         private Button btnThuocTinh;
         private Button button5;
         private Button btnDatVe;
