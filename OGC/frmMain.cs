@@ -1,6 +1,7 @@
 ﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System;
 using OGC.frmThuocTinh;
+using OGC.QuanLyDichVu;
 
 namespace OGC
 {
@@ -78,9 +79,14 @@ namespace OGC
         {
             OpenChildForm(new fThuocTinh(currentUser));
         }
+        private void btnDichVu_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmQuanLyDichVu());
+        }
 
 
         #endregion
+
 
 
 
