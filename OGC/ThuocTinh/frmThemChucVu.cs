@@ -43,7 +43,7 @@ namespace OGC.frmThuocTinh
         private void pnlSua_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            UIHelper.RoundPanelCorners(pnlXoa, 30);
+            UIHelper.RoundPanelCorners(pnlSua, 30);
         }
         private void pnlTenChucVu_Paint(object sender, PaintEventArgs e)
         {
@@ -60,14 +60,14 @@ namespace OGC.frmThuocTinh
             {
                 string tenChucVu = txbTenChucVu.Text.Trim();
 
-                //Kiểm tra nếu tài khoản rỗng
+                //Kiểm tra nếu chức vụ rỗng
                 if (tenChucVu == "")
                 {
                     MessageBox.Show($" {currentUser} ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     MessageBox.Show("Bạn chưa nhập tên chức vụ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                // Kiểm tra xem tài khoản nhân viên đã tồn tại chưa
+                // Kiểm tra xem chức vụ đã tồn tại chưa
                 if (DAO_CHUCVU.Instance.IsTenChucVuExists(tenChucVu))
                 {
                     MessageBox.Show($"Tên chức vụ '{tenChucVu}' đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -135,8 +135,11 @@ namespace OGC.frmThuocTinh
         private void btnSua_Click(object sender, EventArgs e)
         {
             string tenChucVu = txbTenChucVu.Text.Trim();
+
             // Lấy dòng đang chọn
             DataGridViewRow selectedRow = dgvChucVu.SelectedRows[0];
+            string tenChucVuCanSua = selectedRow.Cells["TenChucVu"].Value.ToString();
+
             // Lấy ID cũ từ cột Mã chức vụ 
             int iD = Convert.ToInt32(selectedRow.Cells["ID"].Value);
 
@@ -145,6 +148,10 @@ namespace OGC.frmThuocTinh
                 if ((txbTenChucVu.Text == "") || (dgvChucVu.SelectedRows.Count == 0))
                 {
                     MessageBox.Show("Vui lòng nhập tên chức vụ mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (tenChucVu == tenChucVuCanSua)
+                {
+                    MessageBox.Show("Tên chức vụ cần cập nhật phải khác tên chức vụ cũ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 else if (DAO_CHUCVU.Instance.IsTenChucVuExists(tenChucVu))

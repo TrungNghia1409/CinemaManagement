@@ -89,5 +89,17 @@ namespace OGC.frmThuocTinh
             frmQuanLyTKNhanVien f = new frmQuanLyTKNhanVien(currentUser);
             f.ShowDialog();
         }
+
+        private void btnTheLoaiPhim_Click(object sender, EventArgs e)
+        {
+            frmTheLoaiPhim f = new frmTheLoaiPhim();
+            f.ShowDialog();
+        }
+
+        private void btnDinhDangPhim_Click(object sender, EventArgs e)
+        {
+            frmDinhDangPhim f = new frmDinhDangPhim();
+            f.ShowDialog();
+        }
     }
 }

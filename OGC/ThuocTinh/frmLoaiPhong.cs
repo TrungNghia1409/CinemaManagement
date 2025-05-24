@@ -1,4 +1,5 @@
 ﻿using OGC.DAO;
+using OGC.frmThuocTinh;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,7 +71,127 @@ namespace OGC.ThuocTinh
 
         #region Events
 
+        private void btnThemLoaiPhong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string tenLoaiPhong = txbTenLoaiPhong.Text.Trim();
+
+                //Kiểm tra nếu loại phòng rỗng
+                if (tenLoaiPhong == "")
+                {
+                    MessageBox.Show("Bạn chưa nhập tên loại phòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                // Kiểm tra xem loại phòng đã tồn tại chưa
+                if (DAO_LOAIPHONG.Instance.IsTenLoaiPhongExists(tenLoaiPhong))
+                {
+                    MessageBox.Show($"Tên loại phòng '{tenLoaiPhong}' đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (((tenLoaiPhong == "Thường") || (tenLoaiPhong == "VIP") || (tenLoaiPhong == "Couple")) &&
+                    (DAO_LOAIPHONG.Instance.ThemLoaiPhong(tenLoaiPhong)))
+                {
+                    MessageBox.Show("Thêm loại phòng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //Load lại danh sách loại phòng
+                    frmLoaiPhong? f = Application.OpenForms["frmLoaiPhong"] as frmLoaiPhong;
+                    f?.LoadLoaiPhong();
+                }
+                else
+                {
+                    MessageBox.Show($"Tên loại phòng '{tenLoaiPhong}' không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnXoaLoaiPhong_Click(object sender, EventArgs e)
+        {
+            if (dgvLoaiPhong.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một loại phòng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Lấy dòng đang chọn
+            DataGridViewRow selectedRow = dgvLoaiPhong.SelectedRows[0];
+            string tenLoaiPhongCanXoa = selectedRow.Cells["TenLoaiPhong"].Value.ToString();
+
+            DialogResult result = MessageBox.Show($"Bạn có chắc muốn xóa loại phòng '{tenLoaiPhongCanXoa}' không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                bool xoaThanhCong = DAO_LOAIPHONG.Instance.XoaLoaiPhong(tenLoaiPhongCanXoa);
+                if (xoaThanhCong)
+                {
+                    MessageBox.Show("Xóa loại phòng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //Load lại danh sách loại phòng
+                    frmLoaiPhong? f = Application.OpenForms["frmLoaiPhong"] as frmLoaiPhong;
+                    f?.LoadLoaiPhong();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể xóa! Có thể loại phòng đang được sử dụng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void btnSuaLoaiPhong_Click(object sender, EventArgs e)
+        {
+            string tenLoaiPhong = txbTenLoaiPhong.Text.Trim();
+
+            // Lấy dòng đang chọn
+            DataGridViewRow selectedRow = dgvLoaiPhong.SelectedRows[0];
+            string tenLoaiPhongCanSua = selectedRow.Cells["TenLoaiPhong"].Value.ToString();
+
+            // Lấy ID cũ từ cột Mã loại phòng 
+            int iD = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+
+            try
+            {
+                if ((tenLoaiPhong == "") || (dgvLoaiPhong.SelectedRows.Count == 0))
+                {
+                    MessageBox.Show("Vui lòng nhập tên loại phòng mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (tenLoaiPhong == tenLoaiPhongCanSua)
+                {
+                    MessageBox.Show("Loại phòng cần cập nhật phải khác loại phòng cũ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                else if (DAO_LOAIPHONG.Instance.IsTenLoaiPhongExists(tenLoaiPhong))
+                {
+                    MessageBox.Show($"Tên loại phòng '{tenLoaiPhong}' đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                else if (((tenLoaiPhong == "Nhân viên bán vé") || (tenLoaiPhong == "Nhân viên dịch vụ") || (tenLoaiPhong == "Quản lý") || (tenLoaiPhong == "Chủ rạp")) &&
+                    (DAO_LOAIPHONG.Instance.SuaLoaiPhong(iD, tenLoaiPhong)))
+                {
+                    MessageBox.Show("Sửa loại phòng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //Load lại danh sách loại phòng
+                    frmThemChucVu? f = Application.OpenForms["frmThemChucVu"] as frmThemChucVu;
+                    f?.LoadChucVu();
+                }
+                else
+                {
+                    MessageBox.Show($"Tên loại phòng '{tenLoaiPhong}' không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         #endregion
+
+
+
+
     }
 }

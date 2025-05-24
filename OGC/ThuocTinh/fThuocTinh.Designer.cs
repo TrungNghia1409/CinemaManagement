@@ -103,6 +103,7 @@
             btnDinhDangPhim.Text = "ĐỊNH DẠNG PHIM";
             btnDinhDangPhim.TextImageRelation = TextImageRelation.ImageAboveText;
             btnDinhDangPhim.UseVisualStyleBackColor = true;
+            btnDinhDangPhim.Click += btnDinhDangPhim_Click;
             // 
             // pnlLoaiMonAn
             // 
@@ -168,6 +169,7 @@
             btnTheLoaiPhim.Text = "THỂ LOẠI PHIM";
             btnTheLoaiPhim.TextImageRelation = TextImageRelation.ImageAboveText;
             btnTheLoaiPhim.UseVisualStyleBackColor = true;
+            btnTheLoaiPhim.Click += btnTheLoaiPhim_Click;
             // 
             // pnlTKNhanVien
             // 
