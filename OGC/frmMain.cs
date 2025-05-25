@@ -2,6 +2,7 @@
 using System;
 using OGC.frmThuocTinh;
 using OGC.QuanLyDichVu;
+using OGC.NHANVIEN;
 
 namespace OGC
 {
@@ -83,9 +84,13 @@ namespace OGC
         {
             OpenChildForm(new frmQuanLyDichVu());
         }
-
+        private void btnNhanVien_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmNhanVien(currentUser));
+        }
 
         #endregion
+
 
 
 

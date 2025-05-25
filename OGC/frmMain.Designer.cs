@@ -42,7 +42,7 @@
             panel5 = new Panel();
             btnThuocTinh = new Button();
             panel8 = new Panel();
-            button5 = new Button();
+            btnLichChieu = new Button();
             panel6 = new Panel();
             btnDatVe = new Button();
             panel4 = new Panel();
@@ -198,22 +198,23 @@
             // 
             // panel8
             // 
-            panel8.Controls.Add(button5);
+            panel8.Controls.Add(btnLichChieu);
             panel8.Location = new Point(3, 305);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
             panel8.Size = new Size(196, 71);
             panel8.TabIndex = 0;
             // 
-            // button5
+            // btnLichChieu
             // 
-            button5.Location = new Point(0, 2);
-            button5.Margin = new Padding(3, 2, 3, 2);
-            button5.Name = "button5";
-            button5.Size = new Size(193, 67);
-            button5.TabIndex = 0;
-            button5.Text = "button1";
-            button5.UseVisualStyleBackColor = true;
+            btnLichChieu.Location = new Point(0, 2);
+            btnLichChieu.Margin = new Padding(3, 2, 3, 2);
+            btnLichChieu.Name = "btnLichChieu";
+            btnLichChieu.Size = new Size(193, 67);
+            btnLichChieu.TabIndex = 0;
+            btnLichChieu.Text = "Lịch Chiếu";
+            btnLichChieu.UseVisualStyleBackColor = true;
+            btnLichChieu.Click += btnNhanVien_Click;
             // 
             // panel6
             // 
@@ -305,7 +306,7 @@
         private Panel panel4;
         private Button btnDichVu;
         private Button btnThuocTinh;
-        private Button button5;
+        private Button btnLichChieu;
         private Button btnDatVe;
         private Button btnTrangChu;
         private Button button6;
