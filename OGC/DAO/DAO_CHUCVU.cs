@@ -26,6 +26,21 @@ namespace OGC.DAO
             string query = "EXEC usp_danhsachCHUCVU";
             return DataProvider.Instance.ExecuteQuery(query);
         }
+        public List<string> DanhSachChucVu_List()
+        {
+            List<string> ds = new List<string>();
+
+            string query = "SELECT TenChucVu FROM CHUCVU";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in data.Rows)
+            {
+                ds.Add(row["TenChucVu"].ToString());
+            }
+
+            return ds;
+        }
 
         //PHƯƠNG THỨC THÊM CHỨC VỤ
         public bool ThemChucVu(string tenChucVu)

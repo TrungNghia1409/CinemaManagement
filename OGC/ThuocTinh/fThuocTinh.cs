@@ -86,7 +86,7 @@ namespace OGC.frmThuocTinh
 
         private void btnTKNhanVien_Click(object sender, EventArgs e)
         {
-            frmQuanLyTKNhanVien f = new frmQuanLyTKNhanVien(currentUser);
+            frmLuaChon f = new frmLuaChon(currentUser);
             f.ShowDialog();
         }
 
