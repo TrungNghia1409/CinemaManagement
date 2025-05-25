@@ -30,25 +30,39 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            panel5 = new Panel();
-            panel6 = new Panel();
-            panel7 = new Panel();
-            lbTenPhim = new Label();
-            lbTheLoai = new Label();
-            lbThoiLuong = new Label();
-            lbDinhDang = new Label();
-            lbTuoi = new Label();
             panel8 = new Panel();
-            lbPhuDe = new Label();
+            label7 = new Label();
+            lbMoTa = new Label();
+            panel7 = new Panel();
+            label4 = new Label();
+            label5 = new Label();
+            lbDienVien = new Label();
+            panel10 = new Panel();
+            label10 = new Label();
+            lbDoTuoi = new Label();
+            panel9 = new Panel();
+            label8 = new Label();
+            lbTrangThai = new Label();
+            panel6 = new Panel();
+            label6 = new Label();
+            lbNgayKhoiChieu = new Label();
+            panel5 = new Panel();
+            label3 = new Label();
+            lbThoiLuong = new Label();
+            panel4 = new Panel();
+            label2 = new Label();
+            lbDaoDien = new Label();
+            panel3 = new Panel();
+            lbTenPhim = new Label();
             panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            panel4.SuspendLayout();
-            panel5.SuspendLayout();
-            panel6.SuspendLayout();
-            panel7.SuspendLayout();
             panel8.SuspendLayout();
+            panel7.SuspendLayout();
+            panel10.SuspendLayout();
+            panel9.SuspendLayout();
+            panel6.SuspendLayout();
+            panel5.SuspendLayout();
+            panel4.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -60,8 +74,11 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(panel7);
+            panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(panel8);
+            panel2.Controls.Add(panel7);
+            panel2.Controls.Add(panel10);
+            panel2.Controls.Add(panel9);
             panel2.Controls.Add(panel6);
             panel2.Controls.Add(panel5);
             panel2.Controls.Add(panel4);
@@ -71,130 +88,250 @@
             panel2.Size = new Size(609, 728);
             panel2.TabIndex = 1;
             // 
-            // panel3
+            // panel8
             // 
-            panel3.Controls.Add(lbTenPhim);
-            panel3.Location = new Point(3, 3);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(603, 114);
-            panel3.TabIndex = 0;
+            panel8.Controls.Add(label7);
+            panel8.Controls.Add(lbMoTa);
+            panel8.Location = new Point(3, 493);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(603, 57);
+            panel8.TabIndex = 0;
             // 
-            // panel4
+            // label7
             // 
-            panel4.Controls.Add(lbTheLoai);
-            panel4.Location = new Point(3, 123);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(603, 57);
-            panel4.TabIndex = 0;
+            label7.AutoSize = true;
+            label7.Location = new Point(3, 12);
+            label7.Name = "label7";
+            label7.Size = new Size(51, 20);
+            label7.TabIndex = 0;
+            label7.Text = "Mô Tả";
             // 
-            // panel5
+            // lbMoTa
             // 
-            panel5.Controls.Add(lbThoiLuong);
-            panel5.Location = new Point(3, 186);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(603, 57);
-            panel5.TabIndex = 0;
-            // 
-            // panel6
-            // 
-            panel6.Controls.Add(lbTuoi);
-            panel6.Location = new Point(3, 312);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(603, 57);
-            panel6.TabIndex = 0;
+            lbMoTa.AutoSize = true;
+            lbMoTa.Location = new Point(130, 17);
+            lbMoTa.Name = "lbMoTa";
+            lbMoTa.Size = new Size(51, 20);
+            lbMoTa.TabIndex = 0;
+            lbMoTa.Text = "Mô Tả";
             // 
             // panel7
             // 
-            panel7.Controls.Add(lbDinhDang);
-            panel7.Location = new Point(3, 249);
+            panel7.Controls.Add(label4);
+            panel7.Controls.Add(label5);
+            panel7.Controls.Add(lbDienVien);
+            panel7.Location = new Point(3, 231);
             panel7.Name = "panel7";
             panel7.Size = new Size(603, 57);
             panel7.TabIndex = 0;
             // 
-            // lbTenPhim
+            // label4
             // 
-            lbTenPhim.AutoSize = true;
-            lbTenPhim.Location = new Point(12, 12);
-            lbTenPhim.Name = "lbTenPhim";
-            lbTenPhim.Size = new Size(69, 20);
-            lbTenPhim.TabIndex = 0;
-            lbTenPhim.Text = "Tên Phim";
+            label4.AutoSize = true;
+            label4.Location = new Point(-3, -52);
+            label4.Name = "label4";
+            label4.Size = new Size(84, 20);
+            label4.TabIndex = 0;
+            label4.Text = "Thời Lượng";
             // 
-            // lbTheLoai
+            // label5
             // 
-            lbTheLoai.AutoSize = true;
-            lbTheLoai.Location = new Point(12, 10);
-            lbTheLoai.Name = "lbTheLoai";
-            lbTheLoai.Size = new Size(65, 20);
-            lbTheLoai.TabIndex = 0;
-            lbTheLoai.Text = "Thể Loại";
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 12);
+            label5.Name = "label5";
+            label5.Size = new Size(73, 20);
+            label5.TabIndex = 0;
+            label5.Text = "Diễn Viên";
+            // 
+            // lbDienVien
+            // 
+            lbDienVien.AutoSize = true;
+            lbDienVien.Location = new Point(130, 13);
+            lbDienVien.Name = "lbDienVien";
+            lbDienVien.Size = new Size(73, 20);
+            lbDienVien.TabIndex = 0;
+            lbDienVien.Text = "Diễn Viên";
+            // 
+            // panel10
+            // 
+            panel10.Controls.Add(label10);
+            panel10.Controls.Add(lbDoTuoi);
+            panel10.Location = new Point(3, 304);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(603, 57);
+            panel10.TabIndex = 0;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(3, 12);
+            label10.Name = "label10";
+            label10.Size = new Size(62, 20);
+            label10.TabIndex = 0;
+            label10.Text = "Độ Tuổi";
+            // 
+            // lbDoTuoi
+            // 
+            lbDoTuoi.AutoSize = true;
+            lbDoTuoi.Location = new Point(130, 11);
+            lbDoTuoi.Name = "lbDoTuoi";
+            lbDoTuoi.Size = new Size(62, 20);
+            lbDoTuoi.TabIndex = 0;
+            lbDoTuoi.Text = "Độ Tuổi";
+            // 
+            // panel9
+            // 
+            panel9.Controls.Add(label8);
+            panel9.Controls.Add(lbTrangThai);
+            panel9.Location = new Point(3, 367);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(603, 57);
+            panel9.TabIndex = 0;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(3, 12);
+            label8.Name = "label8";
+            label8.Size = new Size(78, 20);
+            label8.TabIndex = 0;
+            label8.Text = "Trạng Thái";
+            // 
+            // lbTrangThai
+            // 
+            lbTrangThai.AutoSize = true;
+            lbTrangThai.Location = new Point(130, 11);
+            lbTrangThai.Name = "lbTrangThai";
+            lbTrangThai.Size = new Size(78, 20);
+            lbTrangThai.TabIndex = 0;
+            lbTrangThai.Text = "Trạng Thái";
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(label6);
+            panel6.Controls.Add(lbNgayKhoiChieu);
+            panel6.Location = new Point(3, 430);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(603, 57);
+            panel6.TabIndex = 0;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(3, 12);
+            label6.Name = "label6";
+            label6.Size = new Size(119, 20);
+            label6.TabIndex = 0;
+            label6.Text = "Ngày Khởi Chiếu";
+            // 
+            // lbNgayKhoiChieu
+            // 
+            lbNgayKhoiChieu.AutoSize = true;
+            lbNgayKhoiChieu.Location = new Point(130, 16);
+            lbNgayKhoiChieu.Name = "lbNgayKhoiChieu";
+            lbNgayKhoiChieu.Size = new Size(119, 20);
+            lbNgayKhoiChieu.TabIndex = 0;
+            lbNgayKhoiChieu.Text = "Ngày Khởi Chiếu";
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(label3);
+            panel5.Controls.Add(lbThoiLuong);
+            panel5.Location = new Point(3, 168);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(603, 57);
+            panel5.TabIndex = 0;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(3, 12);
+            label3.Name = "label3";
+            label3.Size = new Size(84, 20);
+            label3.TabIndex = 0;
+            label3.Text = "Thời Lượng";
             // 
             // lbThoiLuong
             // 
             lbThoiLuong.AutoSize = true;
-            lbThoiLuong.Location = new Point(12, 9);
+            lbThoiLuong.Location = new Point(130, 11);
             lbThoiLuong.Name = "lbThoiLuong";
             lbThoiLuong.Size = new Size(84, 20);
             lbThoiLuong.TabIndex = 0;
             lbThoiLuong.Text = "Thời Lượng";
             // 
-            // lbDinhDang
+            // panel4
             // 
-            lbDinhDang.AutoSize = true;
-            lbDinhDang.Location = new Point(12, 10);
-            lbDinhDang.Name = "lbDinhDang";
-            lbDinhDang.Size = new Size(116, 20);
-            lbDinhDang.TabIndex = 0;
-            lbDinhDang.Text = "Định dạng phim";
+            panel4.Controls.Add(label2);
+            panel4.Controls.Add(lbDaoDien);
+            panel4.Location = new Point(3, 105);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(603, 57);
+            panel4.TabIndex = 0;
             // 
-            // lbTuoi
+            // label2
             // 
-            lbTuoi.AutoSize = true;
-            lbTuoi.Location = new Point(12, 16);
-            lbTuoi.Name = "lbTuoi";
-            lbTuoi.Size = new Size(62, 20);
-            lbTuoi.TabIndex = 0;
-            lbTuoi.Text = "Độ Tuổi";
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 12);
+            label2.Name = "label2";
+            label2.Size = new Size(99, 20);
+            label2.TabIndex = 0;
+            label2.Text = "Tên Đạo Diễn";
             // 
-            // panel8
+            // lbDaoDien
             // 
-            panel8.Controls.Add(lbPhuDe);
-            panel8.Location = new Point(3, 385);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(603, 57);
-            panel8.TabIndex = 0;
+            lbDaoDien.AutoSize = true;
+            lbDaoDien.Location = new Point(130, 12);
+            lbDaoDien.Name = "lbDaoDien";
+            lbDaoDien.Size = new Size(99, 20);
+            lbDaoDien.TabIndex = 0;
+            lbDaoDien.Text = "Tên Đạo Diễn";
             // 
-            // lbPhuDe
+            // panel3
             // 
-            lbPhuDe.AutoSize = true;
-            lbPhuDe.Location = new Point(12, 16);
-            lbPhuDe.Name = "lbPhuDe";
-            lbPhuDe.Size = new Size(56, 20);
-            lbPhuDe.TabIndex = 0;
-            lbPhuDe.Text = "Phụ Đề";
+            panel3.Controls.Add(lbTenPhim);
+            panel3.Location = new Point(3, 3);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(603, 96);
+            panel3.TabIndex = 0;
             // 
-            // ChiTietPhim
+            // lbTenPhim
+            // 
+            lbTenPhim.AutoSize = true;
+            lbTenPhim.Font = new Font("Yu Gothic UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbTenPhim.ForeColor = Color.Black;
+            lbTenPhim.Location = new Point(3, 12);
+            lbTenPhim.Name = "lbTenPhim";
+            lbTenPhim.Size = new Size(131, 38);
+            lbTenPhim.TabIndex = 0;
+            lbTenPhim.Text = "Tên Phim";
+            // 
+            // fChiTietPhim
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1134, 743);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "ChiTietPhim";
+            Name = "fChiTietPhim";
             Text = "ChiTietPhim";
             panel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -205,14 +342,26 @@
         private Panel panel4;
         private Panel panel3;
         private Panel panel7;
-        private Label lbDinhDang;
-        private Panel panel6;
-        private Label lbTuoi;
-        private Panel panel5;
         private Label lbThoiLuong;
-        private Label lbTheLoai;
+        private Panel panel6;
+        private Label lbNgayKhoiChieu;
+        private Panel panel5;
+        private Label lbDienVien;
+        private Label lbDaoDien;
         private Label lbTenPhim;
         private Panel panel8;
-        private Label lbPhuDe;
+        private Label lbMoTa;
+        private Panel panel9;
+        private Label lbTrangThai;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label3;
+        private Label label2;
+        private Label label7;
+        private Label label8;
+        private Panel panel10;
+        private Label label10;
+        private Label lbDoTuoi;
     }
 }

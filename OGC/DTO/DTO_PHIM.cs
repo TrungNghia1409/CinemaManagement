@@ -22,11 +22,13 @@ namespace OGC.DTO
         public string Poster_Url { get; set; }
         public string Anh { get; set; }
 
+        public string DoTuoi { get; set; }
+
         public PhimDTO() { }
 
         public PhimDTO(int id, string tenPhim, string daoDien, string dienVien, int idTheLoai, int idDinhDang,
                        int thoiLuong, string moTa, DateTime ngayKhoiChieu, int trangThai,
-                       string trailerUrl, string posterUrl, string anh)
+                       string trailerUrl, string posterUrl, string anh, string doTuoi)
         {
             ID = id;
             TenPhim = tenPhim;
@@ -41,6 +43,7 @@ namespace OGC.DTO
             Trailer_Url = trailerUrl;
             Poster_Url = posterUrl;
             Anh = anh;
+            DoTuoi = doTuoi;
         }
     }
 
