@@ -1,6 +1,6 @@
 ﻿namespace OGC
 {
-    partial class ChonPhim
+    partial class frmChonPhim
     {
         /// <summary>
         /// Required designer variable.
@@ -29,19 +29,17 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnTimPhim = new Button();
+            textBox1 = new TextBox();
+            label2 = new Label();
+            comboBox2 = new ComboBox();
+            comboBox1 = new ComboBox();
+            dateTimePicker1 = new DateTimePicker();
+            label1 = new Label();
             panel2 = new Panel();
             fplHienThiPhim = new FlowLayoutPanel();
-            label1 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            btnTimPhim = new Button();
-            btnDatVe = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            fplHienThiPhim.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -58,53 +56,21 @@
             panel1.Size = new Size(1103, 80);
             panel1.TabIndex = 0;
             // 
-            // panel2
+            // btnTimPhim
             // 
-            panel2.Controls.Add(fplHienThiPhim);
-            panel2.Location = new Point(3, 92);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1103, 513);
-            panel2.TabIndex = 1;
+            btnTimPhim.Location = new Point(1045, 18);
+            btnTimPhim.Name = "btnTimPhim";
+            btnTimPhim.Size = new Size(49, 28);
+            btnTimPhim.TabIndex = 5;
+            btnTimPhim.Text = "🔎";
+            btnTimPhim.UseVisualStyleBackColor = true;
             // 
-            // fplHienThiPhim
+            // textBox1
             // 
-            fplHienThiPhim.Controls.Add(btnDatVe);
-            fplHienThiPhim.Location = new Point(2, 5);
-            fplHienThiPhim.Name = "fplHienThiPhim";
-            fplHienThiPhim.Size = new Size(1098, 505);
-            fplHienThiPhim.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(16, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(100, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Đặt Vé Nhanh";
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(122, 18);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 1;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(378, 18);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 2;
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(535, 18);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(151, 28);
-            comboBox2.TabIndex = 2;
+            textBox1.Location = new Point(825, 19);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(214, 27);
+            textBox1.TabIndex = 4;
             // 
             // label2
             // 
@@ -115,44 +81,65 @@
             label2.TabIndex = 3;
             label2.Text = "Tên Phim";
             // 
-            // textBox1
+            // comboBox2
             // 
-            textBox1.Location = new Point(825, 19);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(214, 27);
-            textBox1.TabIndex = 4;
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(535, 18);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(151, 28);
+            comboBox2.TabIndex = 2;
             // 
-            // btnTimPhim
+            // comboBox1
             // 
-            btnTimPhim.Location = new Point(1045, 18);
-            btnTimPhim.Name = "btnTimPhim";
-            btnTimPhim.Size = new Size(49, 28);
-            btnTimPhim.TabIndex = 5;
-            btnTimPhim.Text = "🔎";
-            btnTimPhim.UseVisualStyleBackColor = true;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(378, 18);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 2;
             // 
-            // btnDatVe
+            // dateTimePicker1
             // 
-            btnDatVe.Location = new Point(3, 3);
-            btnDatVe.Name = "btnDatVe";
-            btnDatVe.Size = new Size(94, 29);
-            btnDatVe.TabIndex = 0;
-            btnDatVe.Text = "Đặt Vé";
-            btnDatVe.UseVisualStyleBackColor = true;
+            dateTimePicker1.Location = new Point(122, 18);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 1;
             // 
-            // ChonPhim
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(16, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Đặt Vé Nhanh";
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(fplHienThiPhim);
+            panel2.Location = new Point(3, 92);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1103, 513);
+            panel2.TabIndex = 1;
+            // 
+            // fplHienThiPhim
+            // 
+            fplHienThiPhim.Location = new Point(2, 5);
+            fplHienThiPhim.Name = "fplHienThiPhim";
+            fplHienThiPhim.Size = new Size(1098, 505);
+            fplHienThiPhim.TabIndex = 0;
+            // 
+            // frmChonPhim
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1107, 608);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "ChonPhim";
+            Name = "frmChonPhim";
             Text = "ChonPhim";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            fplHienThiPhim.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -168,6 +155,5 @@
         private Button btnTimPhim;
         private TextBox textBox1;
         private Label label2;
-        private Button btnDatVe;
     }
 }

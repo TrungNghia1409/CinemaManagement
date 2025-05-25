@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OGC
+namespace OGC.Phim
 {
-    public partial class ChonPhim : Form
+    public partial class fDatVe : Form
     {
-        public ChonPhim()
+        public fDatVe()
         {
             InitializeComponent();
         }
