@@ -20,12 +20,15 @@ namespace OGC.QuanLyDichVu
             InitializeComponent();
 
             this.monAn = monAn;
+            this.Tag = monAn;
 
             LoadData();
         }
 
         private void LoadData()
         {
+            if (monAn == null) return;
+
             lblTen.Text = monAn.TenMonAn;
             lblGia.Text = monAn.Gia.ToString("N0") + " VNĐ";
 
@@ -34,13 +37,35 @@ namespace OGC.QuanLyDichVu
                 // Load ảnh từ đường dẫn (dùng / thay cho \)
                 ptbAnh.Image = Image.FromFile(monAn.Anh);
                 ptbAnh.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                // GÁN TAG để xử lý click
+                ptbGioHang.Tag = monAn;
             }
             catch
             {
                 // Nếu không load được ảnh, có thể để ảnh mặc định hoặc để trống
-               
+
             }
         }
 
+
+
+        private void ptbGioHang_Click(object sender, EventArgs e)
+        {
+            DTO_MONAN food = (sender as PictureBox)?.Tag as DTO_MONAN;
+
+            if (food == null) return;
+
+            try
+            {
+                var frm = this.FindForm() as frmQuanLyDichVu;
+                frm?.AddToCart(food);
+                frm?.UpdateTotalPrice();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
     }
 }

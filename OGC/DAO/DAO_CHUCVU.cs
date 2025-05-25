@@ -58,7 +58,6 @@ namespace OGC.DAO
         //PHƯƠNG THỨC LẤY TenChucVu theo Username (NV) --> Phục vụ điều kiện trước khi xóa
         public string LayTenChucVuTheoUsername(string username)
         {
-            string tenChucVu = null;
             try
             {
                 string query = "EXEC sp_LayTenChucVuTheoUsername @TenChucVu ";
