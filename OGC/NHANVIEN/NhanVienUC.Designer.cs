@@ -39,12 +39,12 @@
             lblSDT = new Label();
             lblEmail = new Label();
             lblDiaChi = new Label();
-            ptbSua = new PictureBox();
             ptbXoa = new PictureBox();
+            ptbSua = new PictureBox();
             pnlNhanVien.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ptbSua).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ptbXoa).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ptbSua).BeginInit();
             SuspendLayout();
             // 
             // pnlNhanVien
@@ -203,17 +203,6 @@
             lblDiaChi.Text = "Địa chỉ";
             lblDiaChi.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // ptbSua
-            // 
-            ptbSua.Image = Properties.Resources.edit1;
-            ptbSua.Location = new Point(1666, 10);
-            ptbSua.Margin = new Padding(10, 10, 4, 4);
-            ptbSua.Name = "ptbSua";
-            ptbSua.Size = new Size(30, 30);
-            ptbSua.SizeMode = PictureBoxSizeMode.Zoom;
-            ptbSua.TabIndex = 1;
-            ptbSua.TabStop = false;
-            // 
             // ptbXoa
             // 
             ptbXoa.Image = Properties.Resources.Xoa1;
@@ -224,6 +213,17 @@
             ptbXoa.SizeMode = PictureBoxSizeMode.Zoom;
             ptbXoa.TabIndex = 1;
             ptbXoa.TabStop = false;
+            // 
+            // ptbSua
+            // 
+            ptbSua.Image = Properties.Resources.edit1;
+            ptbSua.Location = new Point(1666, 10);
+            ptbSua.Margin = new Padding(10, 10, 4, 4);
+            ptbSua.Name = "ptbSua";
+            ptbSua.Size = new Size(30, 30);
+            ptbSua.SizeMode = PictureBoxSizeMode.Zoom;
+            ptbSua.TabIndex = 1;
+            ptbSua.TabStop = false;
             // 
             // NhanVienUC
             // 
@@ -238,8 +238,8 @@
             pnlNhanVien.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ptbSua).EndInit();
             ((System.ComponentModel.ISupportInitialize)ptbXoa).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ptbSua).EndInit();
             ResumeLayout(false);
         }
 

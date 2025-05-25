@@ -126,5 +126,6 @@ namespace OGC.NHANVIEN
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             UIHelper.RoundPanelCorners(pnlNhanVien, 15);
         }
+
     }
 }
