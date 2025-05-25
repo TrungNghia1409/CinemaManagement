@@ -111,7 +111,8 @@ public class PhimDAO
             (int)row["TrangThai"],
             row["Trailer_Url"]?.ToString(),
             row["Poster_Url"]?.ToString(),
-            row["Anh"]?.ToString()
+            row["Anh"]?.ToString(),
+            row["DoTuoi"] == DBNull.Value ? null : row["DoTuoi"].ToString()
         );
     }
 }

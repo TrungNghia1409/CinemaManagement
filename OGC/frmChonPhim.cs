@@ -32,6 +32,8 @@ namespace OGC
         }
 
 
+
+
         #region Hiện phim lên fplHienThiPhim
         public void AddPhimToFlowLayout(PhimDTO phim)
         {
@@ -87,7 +89,7 @@ namespace OGC
                 Height = 20,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Font = new Font("Arial", 9, FontStyle.Regular),
-                ForeColor = Color.FromArgb(30, 30, 30) 
+                ForeColor = Color.FromArgb(30, 30, 30)
             };
 
 
@@ -161,7 +163,7 @@ namespace OGC
 
             if (phim != null)
             {
-                fChiTietPhim formChiTiet = new fChiTietPhim();
+                fChiTietPhim formChiTiet = new fChiTietPhim(phim);
                 formChiTiet.ShowDialog();
             }
         }
@@ -181,6 +183,29 @@ namespace OGC
 
 
         #endregion
+
+        private void txbTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = txbTimKiem.Text.Trim().ToLower();
+
+            foreach (Control control in fplHienThiPhim.Controls)
+            {
+                if (control is Panel panel)
+                {
+                    // Tìm FlowLayoutPanel bên trong Panel (giả sử là nơi chứa Label tên phim)
+                    FlowLayoutPanel innerPanel = panel.Controls.OfType<FlowLayoutPanel>().FirstOrDefault();
+                    if (innerPanel != null)
+                    {
+                        // Tìm Label tên phim bên trong
+                        Label lblTenPhim = innerPanel.Controls.OfType<Label>().FirstOrDefault();
+                        if (lblTenPhim != null)
+                        {
+                            panel.Visible = lblTenPhim.Text.ToLower().Contains(searchText);
+                        }
+                    }
+                }
+            }
+        }
     }
 
 

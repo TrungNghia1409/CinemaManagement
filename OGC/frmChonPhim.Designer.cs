@@ -30,7 +30,7 @@
         {
             panel1 = new Panel();
             btnTimPhim = new Button();
-            textBox1 = new TextBox();
+            txbTimKiem = new TextBox();
             label2 = new Label();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
@@ -45,7 +45,7 @@
             // panel1
             // 
             panel1.Controls.Add(btnTimPhim);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(txbTimKiem);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(comboBox1);
@@ -65,12 +65,13 @@
             btnTimPhim.Text = "🔎";
             btnTimPhim.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txbTimKiem
             // 
-            textBox1.Location = new Point(825, 19);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(214, 27);
-            textBox1.TabIndex = 4;
+            txbTimKiem.Location = new Point(825, 19);
+            txbTimKiem.Name = "txbTimKiem";
+            txbTimKiem.Size = new Size(214, 27);
+            txbTimKiem.TabIndex = 4;
+            txbTimKiem.TextChanged += txbTimKiem_TextChanged;
             // 
             // label2
             // 
@@ -153,7 +154,7 @@
         private DateTimePicker dateTimePicker1;
         private Label label1;
         private Button btnTimPhim;
-        private TextBox textBox1;
+        private TextBox txbTimKiem;
         private Label label2;
     }
 }
