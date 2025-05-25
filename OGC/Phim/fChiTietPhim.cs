@@ -26,11 +26,20 @@ namespace OGC.Phim
             lbMoTa.Text = phim.MoTa;
             lbTrangThai.Text = phim.TrangThai == 1 ? "Đang chiếu" : "Ngừng chiếu";
 
-            // Nếu có link ảnh, bạn có thể load vào PictureBox
-            //if (!string.IsNullOrEmpty(phim.Anh) && File.Exists(phim.Anh))
-            //{
-            //    picPoster.Image = Image.FromFile(phim.Anh);
-            //}
+            // Hiển thị hình ảnh
+            if (!string.IsNullOrEmpty(phim.Anh))
+            {
+                string fullPath = Path.Combine(Application.StartupPath, phim.Anh);
+                if (System.IO.File.Exists(fullPath))
+                {
+                    AnhPhim.Image = Image.FromFile(fullPath);
+                    AnhPhim.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    AnhPhim.Image = null; // hoặc ảnh mặc định
+                }
+            }
         }
     }
 }

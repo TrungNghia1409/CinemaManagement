@@ -1,8 +1,9 @@
-﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System;
-using OGC.frmThuocTinh;
-using OGC.QuanLyDichVu;
+﻿using OGC.frmThuocTinh;
 using OGC.NHANVIEN;
+using OGC.Phim;
+using OGC.QuanLyDichVu;
+using System;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace OGC
 {
@@ -55,7 +56,11 @@ namespace OGC
             OpenChildForm(new frmChonPhim());
             label1.Text = btnDatVe.Text;
         }
-
+        private void btnQuanLyPhim_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmQuanLyPhim());
+            label1.Text = btnQuanLyPhim.Text;
+        }
         #endregion
 
 
@@ -95,5 +100,6 @@ namespace OGC
 
 
 
+        
     }
 }
