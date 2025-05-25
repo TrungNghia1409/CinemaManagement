@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace OGC.DAO
 {
@@ -20,8 +22,10 @@ namespace OGC.DAO
         }
 
         private DataProvider() { }
-        string connectionSTR = @" Data Source=CAKE;Initial Catalog=CinemaManagement;Integrated Security=True;Trust Server Certificate=True;";
+        string connectionSTR = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=CinemaManagement;Integrated Security=True;Trust Server Certificate=True;";
         //Data Source=Data Source=CAKE;Initial Catalog=CinemaManagement;Integrated Security=True;Trust Server Certificate=True;
+        //Data Source=MSI\SQLEXPRESS;Initial Catalog=CinemaManagement;Integrated Security=True;Trust Server Certificate=True
+
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {

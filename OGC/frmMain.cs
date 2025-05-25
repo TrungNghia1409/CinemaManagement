@@ -50,7 +50,7 @@ namespace OGC
 
         private void btnDatVe_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ChonPhim());
+            OpenChildForm(new frmChonPhim());
             label1.Text = btnDatVe.Text;
         }
 
