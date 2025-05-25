@@ -95,5 +95,22 @@ namespace OGC.DAO
                 return false;
             }
         }
+
+        //-------- Lấy loại món ăm
+        public List<string> LayTatCaTenLoai()
+        {
+            List<string> danhSachTenLoai = new List<string>();
+
+            string query = "SELECT TenLoai FROM LOAIMONAN";
+
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                danhSachTenLoai.Add(row["TenLoai"].ToString());
+            }
+
+            return danhSachTenLoai;
+        }
     }
 }
