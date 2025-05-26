@@ -32,8 +32,10 @@
             txbDiaDiem = new TextBox();
             txbGiaVe = new TextBox();
             dtpNgayGio = new DateTimePicker();
-            cbTenphong = new ComboBox();
+            cbTenPhong = new ComboBox();
             cbTenPhim = new ComboBox();
+            txbIDPhong = new TextBox();
+            txbIDPhim = new TextBox();
             txbID = new TextBox();
             lblDiaDiem = new Label();
             lblGiaVe = new Label();
@@ -51,8 +53,6 @@
             btnSuaLC = new Button();
             btnXoaLC = new Button();
             btnDongLC = new Button();
-            cbIDPhim = new ComboBox();
-            cbIDPhong = new ComboBox();
             pnlTrai.SuspendLayout();
             pmlPhai.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbAnhPhong).BeginInit();
@@ -64,10 +64,10 @@
             pnlTrai.Controls.Add(txbDiaDiem);
             pnlTrai.Controls.Add(txbGiaVe);
             pnlTrai.Controls.Add(dtpNgayGio);
-            pnlTrai.Controls.Add(cbTenphong);
-            pnlTrai.Controls.Add(cbIDPhong);
-            pnlTrai.Controls.Add(cbIDPhim);
+            pnlTrai.Controls.Add(cbTenPhong);
             pnlTrai.Controls.Add(cbTenPhim);
+            pnlTrai.Controls.Add(txbIDPhong);
+            pnlTrai.Controls.Add(txbIDPhim);
             pnlTrai.Controls.Add(txbID);
             pnlTrai.Controls.Add(lblDiaDiem);
             pnlTrai.Controls.Add(lblGiaVe);
@@ -103,13 +103,14 @@
             dtpNgayGio.Size = new Size(200, 23);
             dtpNgayGio.TabIndex = 9;
             // 
-            // cbTenphong
+            // cbTenPhong
             // 
-            cbTenphong.FormattingEnabled = true;
-            cbTenphong.Location = new Point(128, 192);
-            cbTenphong.Name = "cbTenphong";
-            cbTenphong.Size = new Size(200, 23);
-            cbTenphong.TabIndex = 8;
+            cbTenPhong.FormattingEnabled = true;
+            cbTenPhong.Location = new Point(128, 192);
+            cbTenPhong.Name = "cbTenPhong";
+            cbTenPhong.Size = new Size(200, 23);
+            cbTenPhong.TabIndex = 8;
+            cbTenPhong.SelectedIndexChanged += cbTenPhong_SelectedIndexChanged;
             // 
             // cbTenPhim
             // 
@@ -118,6 +119,23 @@
             cbTenPhim.Name = "cbTenPhim";
             cbTenPhim.Size = new Size(200, 23);
             cbTenPhim.TabIndex = 8;
+            cbTenPhim.SelectedIndexChanged += cbTenPhim_SelectedIndexChanged;
+            // 
+            // txbIDPhong
+            // 
+            txbIDPhong.Location = new Point(128, 104);
+            txbIDPhong.Name = "txbIDPhong";
+            txbIDPhong.ReadOnly = true;
+            txbIDPhong.Size = new Size(200, 23);
+            txbIDPhong.TabIndex = 7;
+            // 
+            // txbIDPhim
+            // 
+            txbIDPhim.Location = new Point(128, 64);
+            txbIDPhim.Name = "txbIDPhim";
+            txbIDPhim.ReadOnly = true;
+            txbIDPhim.Size = new Size(200, 23);
+            txbIDPhim.TabIndex = 7;
             // 
             // txbID
             // 
@@ -288,22 +306,6 @@
             btnDongLC.Text = "Đóng";
             btnDongLC.UseVisualStyleBackColor = true;
             // 
-            // cbIDPhim
-            // 
-            cbIDPhim.FormattingEnabled = true;
-            cbIDPhim.Location = new Point(128, 64);
-            cbIDPhim.Name = "cbIDPhim";
-            cbIDPhim.Size = new Size(200, 23);
-            cbIDPhim.TabIndex = 8;
-            // 
-            // cbIDPhong
-            // 
-            cbIDPhong.FormattingEnabled = true;
-            cbIDPhong.Location = new Point(128, 104);
-            cbIDPhong.Name = "cbIDPhong";
-            cbIDPhong.Size = new Size(200, 23);
-            cbIDPhong.TabIndex = 8;
-            // 
             // frmThongTinLichChieu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -341,7 +343,7 @@
         private TextBox txbDiaDiem;
         private TextBox txbGiaVe;
         private DateTimePicker dtpNgayGio;
-        private ComboBox cbTenphong;
+        private ComboBox cbTenPhong;
         private ComboBox cbTenPhim;
         private Panel pmlPhai;
         private Label label3;
@@ -351,7 +353,7 @@
         private Button btnSuaLC;
         private Button btnXoaLC;
         private Button btnDongLC;
-        private ComboBox cbIDPhong;
-        private ComboBox cbIDPhim;
+        private TextBox txbIDPhong;
+        private TextBox txbIDPhim;
     }
 }

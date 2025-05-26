@@ -27,7 +27,7 @@ namespace OGC.LichChieu
 
             LoadLichChieu();
             LoadTenPhong();
-            
+
         }
 
         //------ Tìm kiếm bằng text không dấu
@@ -41,6 +41,10 @@ namespace OGC.LichChieu
         {
             string tuKhoa = RemoveDiacritics(txbTimKiem.Text.Trim().ToLower());
             LoadLichChieu(tuKhoa); // gọi lại hàm LoadNhanVien với từ khóa
+        }
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txbTimKiem.Text = string.Empty;
         }
 
 
@@ -150,5 +154,6 @@ namespace OGC.LichChieu
         #endregion
 
 
+       
     }
 }

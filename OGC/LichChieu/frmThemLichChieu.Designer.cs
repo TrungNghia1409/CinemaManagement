@@ -32,7 +32,7 @@
             txbDiaDiem = new TextBox();
             txbGiaVe = new TextBox();
             dtpNgayGio = new DateTimePicker();
-            cbTenphong = new ComboBox();
+            cbTenPhong = new ComboBox();
             cbTenPhim = new ComboBox();
             label3 = new Label();
             label1 = new Label();
@@ -49,9 +49,9 @@
             lblID = new Label();
             pmlPhai = new Panel();
             pnlTrai = new Panel();
+            txbIDPhong = new TextBox();
+            txbIDPhim = new TextBox();
             btnDongLC = new Button();
-            cbIDPhong = new ComboBox();
-            cbIDPhim = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)ptbAnhPhong).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ptbAnh).BeginInit();
             pmlPhai.SuspendLayout();
@@ -88,13 +88,14 @@
             dtpNgayGio.Size = new Size(200, 23);
             dtpNgayGio.TabIndex = 9;
             // 
-            // cbTenphong
+            // cbTenPhong
             // 
-            cbTenphong.FormattingEnabled = true;
-            cbTenphong.Location = new Point(128, 192);
-            cbTenphong.Name = "cbTenphong";
-            cbTenphong.Size = new Size(200, 23);
-            cbTenphong.TabIndex = 8;
+            cbTenPhong.FormattingEnabled = true;
+            cbTenPhong.Location = new Point(128, 192);
+            cbTenPhong.Name = "cbTenPhong";
+            cbTenPhong.Size = new Size(200, 23);
+            cbTenPhong.TabIndex = 8;
+            cbTenPhong.SelectedIndexChanged += cbTenphong_SelectedIndexChanged;
             // 
             // cbTenPhim
             // 
@@ -103,6 +104,7 @@
             cbTenPhim.Name = "cbTenPhim";
             cbTenPhim.Size = new Size(200, 23);
             cbTenPhim.TabIndex = 8;
+            cbTenPhim.SelectedIndexChanged += cbTenPhim_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -139,6 +141,7 @@
             // 
             txbID.Location = new Point(128, 24);
             txbID.Name = "txbID";
+            txbID.ReadOnly = true;
             txbID.Size = new Size(200, 23);
             txbID.TabIndex = 7;
             // 
@@ -247,10 +250,10 @@
             pnlTrai.Controls.Add(txbDiaDiem);
             pnlTrai.Controls.Add(txbGiaVe);
             pnlTrai.Controls.Add(dtpNgayGio);
-            pnlTrai.Controls.Add(cbTenphong);
-            pnlTrai.Controls.Add(cbIDPhim);
-            pnlTrai.Controls.Add(cbIDPhong);
+            pnlTrai.Controls.Add(cbTenPhong);
             pnlTrai.Controls.Add(cbTenPhim);
+            pnlTrai.Controls.Add(txbIDPhong);
+            pnlTrai.Controls.Add(txbIDPhim);
             pnlTrai.Controls.Add(txbID);
             pnlTrai.Controls.Add(lblDiaDiem);
             pnlTrai.Controls.Add(lblGiaVe);
@@ -265,6 +268,22 @@
             pnlTrai.Size = new Size(344, 352);
             pnlTrai.TabIndex = 3;
             // 
+            // txbIDPhong
+            // 
+            txbIDPhong.Location = new Point(128, 104);
+            txbIDPhong.Name = "txbIDPhong";
+            txbIDPhong.ReadOnly = true;
+            txbIDPhong.Size = new Size(200, 23);
+            txbIDPhong.TabIndex = 7;
+            // 
+            // txbIDPhim
+            // 
+            txbIDPhim.Location = new Point(128, 64);
+            txbIDPhim.Name = "txbIDPhim";
+            txbIDPhim.ReadOnly = true;
+            txbIDPhim.Size = new Size(200, 23);
+            txbIDPhim.TabIndex = 7;
+            // 
             // btnDongLC
             // 
             btnDongLC.Font = new Font("Segoe UI", 12F);
@@ -274,22 +293,6 @@
             btnDongLC.TabIndex = 5;
             btnDongLC.Text = "Đóng";
             btnDongLC.UseVisualStyleBackColor = true;
-            // 
-            // cbIDPhong
-            // 
-            cbIDPhong.FormattingEnabled = true;
-            cbIDPhong.Location = new Point(128, 104);
-            cbIDPhong.Name = "cbIDPhong";
-            cbIDPhong.Size = new Size(200, 23);
-            cbIDPhong.TabIndex = 8;
-            // 
-            // cbIDPhim
-            // 
-            cbIDPhim.FormattingEnabled = true;
-            cbIDPhim.Location = new Point(128, 64);
-            cbIDPhim.Name = "cbIDPhim";
-            cbIDPhim.Size = new Size(200, 23);
-            cbIDPhim.TabIndex = 8;
             // 
             // frmThemLichChieu
             // 
@@ -318,7 +321,7 @@
         private TextBox txbDiaDiem;
         private TextBox txbGiaVe;
         private DateTimePicker dtpNgayGio;
-        private ComboBox cbTenphong;
+        private ComboBox cbTenPhong;
         private ComboBox cbTenPhim;
         private Label label3;
         private Label label1;
@@ -336,7 +339,7 @@
         private Panel pmlPhai;
         private Panel pnlTrai;
         private Button btnDongLC;
-        private ComboBox cbIDPhim;
-        private ComboBox cbIDPhong;
+        private TextBox txbIDPhong;
+        private TextBox txbIDPhim;
     }
 }

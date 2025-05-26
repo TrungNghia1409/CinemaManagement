@@ -20,7 +20,7 @@ namespace OGC.NHANVIEN
         {
             InitializeComponent();
 
-            
+
             // Hiển thị thông tin ra các control
             txbID.Text = nhanVien.ID.ToString();
             txbTaiKhoan.Text = nhanVien.Username;
@@ -35,7 +35,7 @@ namespace OGC.NHANVIEN
 
         }
 
-
+        #region Methods
         //------- Phương thức sửa thông tin nhân viên
         private void btnSua_Click(object sender, EventArgs e)
         {
@@ -129,5 +129,51 @@ namespace OGC.NHANVIEN
                 }
             }
         }
+#endregion
+
+        #region Events
+        //-------- sự kiện chọn ảnh nhân viên
+        private void btnChonAnh_Click(object sender, EventArgs e)
+        {
+            string folderPath = @"D:\";
+
+            // Kiểm tra thư mục có tồn tại không
+            if (!Directory.Exists(folderPath))
+            {
+                MessageBox.Show("Thư mục không tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                // Tạo hộp thoại chọn file
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+
+                // Thiết lập thư mục mở ban đầu
+                openFileDialog.InitialDirectory = folderPath;
+
+                // Bộ lọc file (chỉ hiện các file ảnh)
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+
+                // Tiêu đề của hộp thoại
+                openFileDialog.Title = "Chọn ảnh";
+
+                // Hiển thị hộp thoại và kiểm tra nếu người dùng nhấn OK
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Lấy đường dẫn file đã chọn
+                    string selectedFilePath = openFileDialog.FileName;
+
+                    // Hiển thị ảnh trong PictureBox
+                    ptbAnhNV.Image = Image.FromFile(selectedFilePath);
+                    ptbAnhNV.SizeMode = PictureBoxSizeMode.StretchImage; // Co giãn ảnh vừa với khung
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể mở thư mục. Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
     }
 }
