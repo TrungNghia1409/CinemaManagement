@@ -36,7 +36,7 @@
             label1 = new Label();
             panel3 = new Panel();
             panel9 = new Panel();
-            button6 = new Button();
+            btnQuanLyPhim = new Button();
             panel7 = new Panel();
             btnDichVu = new Button();
             panel5 = new Panel();
@@ -65,19 +65,17 @@
             // 
             panel1.Controls.Add(Logo);
             panel1.Location = new Point(1, 1);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(90, 71);
+            panel1.Size = new Size(103, 95);
             panel1.TabIndex = 0;
             // 
             // Logo
             // 
             Logo.BorderStyle = BorderStyle.FixedSingle;
             Logo.Image = Properties.Resources.Logo;
-            Logo.Location = new Point(4, 0);
-            Logo.Margin = new Padding(3, 2, 3, 2);
+            Logo.Location = new Point(5, 0);
             Logo.Name = "Logo";
-            Logo.Size = new Size(84, 72);
+            Logo.Size = new Size(96, 95);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 0;
             Logo.TabStop = false;
@@ -89,18 +87,18 @@
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(pnlUser);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(96, 1);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(110, 1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1198, 72);
+            panel2.Size = new Size(1369, 95);
             panel2.TabIndex = 0;
             // 
             // pnlUser
             // 
             pnlUser.Controls.Add(lblUser);
-            pnlUser.Location = new Point(992, 8);
+            pnlUser.Location = new Point(1134, 11);
+            pnlUser.Margin = new Padding(3, 4, 3, 4);
             pnlUser.Name = "pnlUser";
-            pnlUser.Size = new Size(200, 48);
+            pnlUser.Size = new Size(229, 64);
             pnlUser.TabIndex = 2;
             // 
             // lblUser
@@ -109,16 +107,16 @@
             lblUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblUser.Location = new Point(0, 0);
             lblUser.Name = "lblUser";
-            lblUser.Size = new Size(200, 48);
+            lblUser.Size = new Size(229, 64);
             lblUser.TabIndex = 1;
             lblUser.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(19, 26);
+            label1.Location = new Point(22, 35);
             label1.Name = "label1";
-            label1.Size = new Size(40, 15);
+            label1.Size = new Size(50, 20);
             label1.TabIndex = 0;
             label1.Text = "Home";
             // 
@@ -131,46 +129,42 @@
             panel3.Controls.Add(panel8);
             panel3.Controls.Add(panel6);
             panel3.Controls.Add(panel4);
-            panel3.Location = new Point(1, 76);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(1, 101);
             panel3.Name = "panel3";
-            panel3.Size = new Size(202, 486);
+            panel3.Size = new Size(231, 647);
             panel3.TabIndex = 0;
             // 
             // panel9
             // 
-            panel9.Controls.Add(button6);
-            panel9.Location = new Point(3, 381);
-            panel9.Margin = new Padding(3, 2, 3, 2);
+            panel9.Controls.Add(btnQuanLyPhim);
+            panel9.Location = new Point(3, 508);
             panel9.Name = "panel9";
-            panel9.Size = new Size(196, 71);
+            panel9.Size = new Size(224, 95);
             panel9.TabIndex = 0;
             // 
-            // button6
+            // btnQuanLyPhim
             // 
-            button6.Location = new Point(0, 2);
-            button6.Margin = new Padding(3, 2, 3, 2);
-            button6.Name = "button6";
-            button6.Size = new Size(193, 67);
-            button6.TabIndex = 0;
-            button6.Text = "button1";
-            button6.UseVisualStyleBackColor = true;
+            btnQuanLyPhim.Location = new Point(0, 3);
+            btnQuanLyPhim.Name = "btnQuanLyPhim";
+            btnQuanLyPhim.Size = new Size(221, 89);
+            btnQuanLyPhim.TabIndex = 0;
+            btnQuanLyPhim.Text = "Quản Lý Phim";
+            btnQuanLyPhim.UseVisualStyleBackColor = true;
+            btnQuanLyPhim.Click += btnQuanLyPhim_Click;
             // 
             // panel7
             // 
             panel7.Controls.Add(btnDichVu);
-            panel7.Location = new Point(3, 230);
-            panel7.Margin = new Padding(3, 2, 3, 2);
+            panel7.Location = new Point(3, 307);
             panel7.Name = "panel7";
-            panel7.Size = new Size(196, 71);
+            panel7.Size = new Size(224, 95);
             panel7.TabIndex = 0;
             // 
             // btnDichVu
             // 
-            btnDichVu.Location = new Point(0, 2);
-            btnDichVu.Margin = new Padding(3, 2, 3, 2);
+            btnDichVu.Location = new Point(0, 3);
             btnDichVu.Name = "btnDichVu";
-            btnDichVu.Size = new Size(193, 67);
+            btnDichVu.Size = new Size(221, 89);
             btnDichVu.TabIndex = 0;
             btnDichVu.Text = "Dịch Vụ";
             btnDichVu.UseVisualStyleBackColor = true;
@@ -179,18 +173,16 @@
             // panel5
             // 
             panel5.Controls.Add(btnThuocTinh);
-            panel5.Location = new Point(3, 78);
-            panel5.Margin = new Padding(3, 2, 3, 2);
+            panel5.Location = new Point(3, 104);
             panel5.Name = "panel5";
-            panel5.Size = new Size(196, 71);
+            panel5.Size = new Size(224, 95);
             panel5.TabIndex = 0;
             // 
             // btnThuocTinh
             // 
-            btnThuocTinh.Location = new Point(0, 2);
-            btnThuocTinh.Margin = new Padding(3, 2, 3, 2);
+            btnThuocTinh.Location = new Point(0, 3);
             btnThuocTinh.Name = "btnThuocTinh";
-            btnThuocTinh.Size = new Size(193, 67);
+            btnThuocTinh.Size = new Size(221, 89);
             btnThuocTinh.TabIndex = 0;
             btnThuocTinh.Text = "Thuộc Tính";
             btnThuocTinh.UseVisualStyleBackColor = true;
@@ -199,18 +191,16 @@
             // panel8
             // 
             panel8.Controls.Add(btnLichChieu);
-            panel8.Location = new Point(3, 305);
-            panel8.Margin = new Padding(3, 2, 3, 2);
+            panel8.Location = new Point(3, 407);
             panel8.Name = "panel8";
-            panel8.Size = new Size(196, 71);
+            panel8.Size = new Size(224, 95);
             panel8.TabIndex = 0;
             // 
             // btnLichChieu
             // 
-            btnLichChieu.Location = new Point(0, 2);
-            btnLichChieu.Margin = new Padding(3, 2, 3, 2);
+            btnLichChieu.Location = new Point(0, 3);
             btnLichChieu.Name = "btnLichChieu";
-            btnLichChieu.Size = new Size(193, 67);
+            btnLichChieu.Size = new Size(221, 89);
             btnLichChieu.TabIndex = 0;
             btnLichChieu.Text = "Lịch Chiếu";
             btnLichChieu.UseVisualStyleBackColor = true;
@@ -219,18 +209,16 @@
             // panel6
             // 
             panel6.Controls.Add(btnDatVe);
-            panel6.Location = new Point(3, 154);
-            panel6.Margin = new Padding(3, 2, 3, 2);
+            panel6.Location = new Point(3, 205);
             panel6.Name = "panel6";
-            panel6.Size = new Size(196, 71);
+            panel6.Size = new Size(224, 95);
             panel6.TabIndex = 0;
             // 
             // btnDatVe
             // 
-            btnDatVe.Location = new Point(0, 2);
-            btnDatVe.Margin = new Padding(3, 2, 3, 2);
+            btnDatVe.Location = new Point(0, 3);
             btnDatVe.Name = "btnDatVe";
-            btnDatVe.Size = new Size(193, 67);
+            btnDatVe.Size = new Size(221, 89);
             btnDatVe.TabIndex = 0;
             btnDatVe.Text = "Đặt Vé";
             btnDatVe.UseVisualStyleBackColor = true;
@@ -239,40 +227,36 @@
             // panel4
             // 
             panel4.Controls.Add(btnTrangChu);
-            panel4.Location = new Point(3, 2);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(3, 3);
             panel4.Name = "panel4";
-            panel4.Size = new Size(196, 71);
+            panel4.Size = new Size(224, 95);
             panel4.TabIndex = 0;
             // 
             // btnTrangChu
             // 
-            btnTrangChu.Location = new Point(0, 2);
-            btnTrangChu.Margin = new Padding(3, 2, 3, 2);
+            btnTrangChu.Location = new Point(0, 3);
             btnTrangChu.Name = "btnTrangChu";
-            btnTrangChu.Size = new Size(193, 67);
+            btnTrangChu.Size = new Size(221, 89);
             btnTrangChu.TabIndex = 0;
             btnTrangChu.Text = "Trang Chủ";
             btnTrangChu.UseVisualStyleBackColor = true;
             // 
             // panel_Body
             // 
-            panel_Body.Location = new Point(206, 76);
-            panel_Body.Margin = new Padding(3, 2, 3, 2);
+            panel_Body.Location = new Point(235, 101);
             panel_Body.Name = "panel_Body";
-            panel_Body.Size = new Size(1089, 486);
+            panel_Body.Size = new Size(1245, 648);
             panel_Body.TabIndex = 1;
             // 
             // frmMain
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1297, 565);
+            ClientSize = new Size(1482, 753);
             Controls.Add(panel_Body);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chào mừng bạn đến với OGC";
@@ -309,7 +293,7 @@
         private Button btnLichChieu;
         private Button btnDatVe;
         private Button btnTrangChu;
-        private Button button6;
+        private Button btnQuanLyPhim;
         protected PictureBox Logo;
         private Panel panel_Body;
         private Panel pnlUser;
