@@ -30,7 +30,7 @@
         {
             pnlTrai = new Panel();
             btnChonAnh = new Button();
-            pictureBox1 = new PictureBox();
+            ptbAnhNV = new PictureBox();
             pnlPhai = new Panel();
             dtpNgaySinh = new DateTimePicker();
             btnDong = new Button();
@@ -54,14 +54,14 @@
             txbHoTen = new TextBox();
             txbTaiKhoan = new TextBox();
             pnlTrai.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ptbAnhNV).BeginInit();
             pnlPhai.SuspendLayout();
             SuspendLayout();
             // 
             // pnlTrai
             // 
             pnlTrai.Controls.Add(btnChonAnh);
-            pnlTrai.Controls.Add(pictureBox1);
+            pnlTrai.Controls.Add(ptbAnhNV);
             pnlTrai.Dock = DockStyle.Left;
             pnlTrai.Location = new Point(0, 0);
             pnlTrai.Name = "pnlTrai";
@@ -77,15 +77,16 @@
             btnChonAnh.TabIndex = 3;
             btnChonAnh.Text = "Chọn ảnh";
             btnChonAnh.UseVisualStyleBackColor = true;
+            btnChonAnh.Click += btnChonAnh_Click;
             // 
-            // pictureBox1
+            // ptbAnhNV
             // 
-            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Location = new Point(24, 128);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(144, 168);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
+            ptbAnhNV.BorderStyle = BorderStyle.FixedSingle;
+            ptbAnhNV.Location = new Point(24, 128);
+            ptbAnhNV.Name = "ptbAnhNV";
+            ptbAnhNV.Size = new Size(144, 168);
+            ptbAnhNV.TabIndex = 2;
+            ptbAnhNV.TabStop = false;
             // 
             // pnlPhai
             // 
@@ -321,7 +322,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmThongTinNhanVien";
             pnlTrai.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ptbAnhNV).EndInit();
             pnlPhai.ResumeLayout(false);
             pnlPhai.PerformLayout();
             ResumeLayout(false);
@@ -352,7 +353,7 @@
         private Button btnXoa;
         private Button btnDong;
         private Button btnChonAnh;
-        private PictureBox pictureBox1;
+        private PictureBox ptbAnhNV;
         private DateTimePicker dtpNgaySinh;
     }
 }

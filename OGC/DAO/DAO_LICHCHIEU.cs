@@ -86,7 +86,7 @@ namespace OGC.DAO
         //--------- sửa lịch chiếu
         public bool SuaLichChieu(int iD, string tenPhim, string tenPhong, DateTime ngayGio, decimal giaVe, string diaDiem)
         {
-            string query = "EXEC usp_suaLICHCHIEU @ID , @TenPhim , @TenPhong , @NgayGio , @GiaVe , @DiaDiem";
+            string query = "EXEC usp_suaLICHCHIEU @ID , @TenPhim , @TenPhong , @NgayGio , @GiaVe , @DiaDiem ";
 
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
             { iD, tenPhim, tenPhong, ngayGio, giaVe, diaDiem});

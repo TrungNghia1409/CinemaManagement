@@ -21,35 +21,73 @@ namespace OGC.LichChieu
         {
             InitializeComponent();
 
+            // ComboBox tên phim
+            cbTenPhim.DataSource = PhimDAO.Instance.GetAllPhim();
+            cbTenPhim.DisplayMember = "TenPhim";
+
+            // ComboBox tên phòng
+            cbTenPhong.DataSource = DAO_LOAIPHONG.Instance.DanhSachTenPhong_List();
+            cbTenPhong.DisplayMember = "TenPhong";
+
+
             // Hiển thị thông tin ra các control
             txbID.Text = lichChieu.ID.ToString();
-            cbIDPhim.Text = lichChieu.IDPhim.ToString();
-            cbIDPhong.Text = lichChieu.IDPhong.ToString();
+            txbIDPhim.Text = lichChieu.IDPhim.ToString();
+            txbIDPhong.Text = lichChieu.IDPhong.ToString();
             cbTenPhim.Text = lichChieu.TenPhim;
-            cbTenphong.Text = lichChieu.TenPhong;
+            cbTenPhong.Text = lichChieu.TenPhong;
             dtpNgayGio.Value = lichChieu.NgayGio;
             txbGiaVe.Text = lichChieu.GiaVe.ToString();
             txbDiaDiem.Text = lichChieu.DiaDiem;
             ptbAnh.Image = Image.FromFile(lichChieu.Anh);
             ptbAnhPhong.Image = Image.FromFile(lichChieu.AnhPhong);
 
-            // ComboBox tên phim
-            cbTenPhim.DataSource = PhimDAO.Instance.GetAllPhim();
-            cbTenPhim.DisplayMember = "TenPhim";
 
-            // ComboBox tên phòng
-            cbTenphong.DataSource = DAO_LOAIPHONG.Instance.DanhSachTenPhong_List();
-            cbTenphong.DisplayMember = "TenPhong";
 
-            // ComboBox ID phim
-            cbIDPhim.DataSource = PhimDAO.Instance.GetAllPhim();
-            cbIDPhim.DisplayMember = "ID";
 
-            // ComboBox ID phòng
-            cbIDPhong.DataSource = DAO_LOAIPHONG.Instance.LayMaPhong();
-            cbIDPhong.DisplayMember = "IDPhong";
         }
 
+
+        #region Events
+        // bắt sự kiện khi combobox thay đổi thì Text của textbox cũng thay đỏi theo
+        private void cbTenPhim_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTenPhim.SelectedItem != null)
+            {
+                PhimDTO phim = cbTenPhim.SelectedItem as PhimDTO;
+                try
+                {
+                    if (phim != null)
+                    {
+                        txbIDPhim.Text = phim.ID.ToString();
+                        ptbAnh.Load(phim.Anh); // load ảnh từ đường dẫn URL
+                    }
+                }
+                catch
+                {
+                    ptbAnh.Image = null;
+                    MessageBox.Show("Không thể tải ảnh từ đường dẫn.");
+                }
+            }
+            else
+            {
+                ptbAnh.Image = null;
+            }
+        }
+        private void cbTenPhong_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTenPhong.SelectedItem != null)
+            {
+                DTO_LOAIPHONG phong = cbTenPhong.SelectedItem as DTO_LOAIPHONG;
+                if (phong != null)
+                {
+                    txbIDPhong.Text = phong.ID.ToString();
+                }
+            }
+        }
+        #endregion
+
+        #region Methods
         private void btnSuaLC_Click(object sender, EventArgs e)
         {
             try
@@ -60,13 +98,13 @@ namespace OGC.LichChieu
                 // Nếu hợp lệ thì mới tiếp tục sửa lịch chiếu
                 int iD = int.Parse(txbID.Text);
                 string tenPhim = cbTenPhim.Text;
-                string tenPhong = cbTenphong.Text;
+                string tenPhong = cbTenPhong.Text;
                 DateTime ngayGio = DateTime.Parse(dtpNgayGio.Text);
                 decimal giaVe = decimal.Parse(txbGiaVe.Text);
                 string diaDiem = txbDiaDiem.Text;
 
                 bool phimTonTai = danhSachPhim.Any(p => p.TenPhim == cbTenPhim.Text);
-                bool phongTonTai = danhSachPhong.Contains(cbTenphong.Text);
+                bool phongTonTai = danhSachPhong.Contains(cbTenPhong.Text);
 
                 if (!phimTonTai || !phongTonTai)
                 {
@@ -151,8 +189,12 @@ namespace OGC.LichChieu
                 MessageBox.Show("Lịch chiếu đã diễn ra, không được xóa.");
             }
 
-          
-            
+
+
         }
+        #endregion
+
+
+       
     }
 }
