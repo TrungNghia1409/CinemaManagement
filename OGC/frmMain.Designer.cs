@@ -245,7 +245,7 @@
             // 
             panel_Body.Location = new Point(235, 101);
             panel_Body.Name = "panel_Body";
-            panel_Body.Size = new Size(1245, 648);
+            panel_Body.Size = new Size(1244, 648);
             panel_Body.TabIndex = 1;
             // 
             // frmMain
