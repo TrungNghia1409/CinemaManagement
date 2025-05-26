@@ -20,7 +20,7 @@ namespace OGC.Phim
             lbTenPhim.Text = phim.TenPhim;
             lbDaoDien.Text = phim.DaoDien;
             lbDienVien.Text = phim.DienVien;
-            lbDoTuoi.Text = phim.DoTuoi ?? "Không Giới Hạn Độ Tuổi";
+            lbDoTuoi.Text = phim.IDDoTuoi ?? "Không Giới Hạn Độ Tuổi";
             lbThoiLuong.Text = $"{phim.ThoiLuong} phút";
             lbNgayKhoiChieu.Text = phim.NgayKhoiChieu.ToString("dd/MM/yyyy");
             lbMoTa.Text = phim.MoTa;

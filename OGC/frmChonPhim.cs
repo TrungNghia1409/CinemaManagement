@@ -189,7 +189,6 @@ namespace OGC
 
             if (phim != null)
             {
-                // Ví dụ: mở form đặt vé, bạn cần có form fDatVe(phim)
                 fDatVe formDatVe = new fDatVe();
                 formDatVe.ShowDialog();
             }

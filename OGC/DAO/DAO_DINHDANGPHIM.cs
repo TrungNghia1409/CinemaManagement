@@ -22,7 +22,7 @@ namespace OGC.DAO
         //PHƯƠNG THỨC LOAD DANH SÁCH ĐỊNH DẠNG
         public DataTable DanhSachDinhDang()
         {
-            string query = "EXEC usp_danhsachDINHDANGPHIM ";
+            string query = "EXEC usp_danhsachDINHDANGPHIM";
             return DataProvider.Instance.ExecuteQuery(query);
         }
 
