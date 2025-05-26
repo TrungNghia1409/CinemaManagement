@@ -15,10 +15,38 @@ namespace OGC.NHANVIEN
 {
     public partial class NhanVienUC : UserControl
     {
-        public NhanVienUC()
+        public DTO_NHANVIEN NhanVienData { get; set; } // Thuộc tính lưu thông tin nhân viên
+        public NhanVienUC(DTO_NHANVIEN nv)
         {
+
             InitializeComponent();
+
+            this.NhanVienData = nv ?? new DTO_NHANVIEN();
+
+            // Gán giá trị hiển thị
+            this.ID = nv.ID.ToString();
+            this.Username = nv.Username;
+            this.ChucVu = nv.TenChucVu;
+            this.HoTen = nv.HoTen;
+            this.NgaySinh = nv.NgaySinh.ToString("dd/MM/yyyy");
+            this.GioiTinh = nv.GioiTinh;
+            this.SDT = nv.SDT;
+            this.Email = nv.Email;
+            this.DiaChi = nv.DiaChi;
+
+            RegisterClickEvents(this);
+
         }
+        public void RegisterClickEvents(Control parent)
+        {
+            parent.Click += pnlNhanVien_Click;
+            foreach (Control ctrl in parent.Controls)
+            {
+                RegisterClickEvents(ctrl); // đệ quy để bắt mọi control con
+            }
+        }
+
+
 
         public string ID
         {
@@ -127,5 +155,17 @@ namespace OGC.NHANVIEN
             UIHelper.RoundPanelCorners(pnlNhanVien, 15);
         }
 
+        private void pnlNhanVien_Click(object sender, EventArgs e)
+        {
+            if (NhanVienData != null)
+            {
+                frmThongTinNhanVien frm = new frmThongTinNhanVien(NhanVienData);
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Dữ liệu nhân viên chưa được gán.");
+            }
+        }
     }
 }

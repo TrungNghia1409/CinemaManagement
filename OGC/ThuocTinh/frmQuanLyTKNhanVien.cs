@@ -125,7 +125,6 @@ namespace OGC.ThuocTinh
                 //Kiểm tra nếu tài khoản rỗng
                 if ((taikhoan == "") || (matkhau == ""))
                 {
-                    MessageBox.Show($" {currentUser} ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     MessageBox.Show("Tài khoản hoặc mật khẩu không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -135,7 +134,7 @@ namespace OGC.ThuocTinh
                     MessageBox.Show($"Tên tài khoản '{taikhoan}' đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                else if ((DAO_TKNHANVIEN.Instance.AddTaiKhoanNhanVien(taikhoan, matkhau)))
+                else if ((DAO_NHANVIEN.Instance.ThemNhanVien(taikhoan, matkhau)))
                 {
                     MessageBox.Show("Thêm tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

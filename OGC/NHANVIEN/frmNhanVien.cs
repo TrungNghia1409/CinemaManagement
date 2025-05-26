@@ -19,9 +19,11 @@ namespace OGC.NHANVIEN
     public partial class frmNhanVien : Form
     {
         public string currentUser;
+        public static frmNhanVien Instance;
         public frmNhanVien(string username)
         {
             InitializeComponent();
+            Instance = this; // Gán thể hiện hiện tại vào Instance
 
             currentUser = username;
 
@@ -58,7 +60,7 @@ namespace OGC.NHANVIEN
 
 
 
-        private void LoadNhanVien(string tuKhoa = "")
+        public void LoadNhanVien(string tuKhoa = "")
         {
             flpNhanVien.Controls.Clear(); // Xóa dữ liệu cũ
 
@@ -77,7 +79,9 @@ namespace OGC.NHANVIEN
 
             foreach (DTO_NHANVIEN nv in danhSach)
             {
-                NhanVienUC uc = new NhanVienUC();
+                NhanVienUC uc = new NhanVienUC(nv);
+                uc.NhanVienData = nv;  // Đảm bảo nv không null
+
                 uc.ID = nv.ID.ToString();
                 uc.Username = nv.Username;
                 uc.ChucVu = nv.TenChucVu;
@@ -89,6 +93,9 @@ namespace OGC.NHANVIEN
                 uc.DiaChi = nv.DiaChi;
 
                 flpNhanVien.Controls.Add(uc);
+               
+
+
             }
         }
 
@@ -129,7 +136,7 @@ namespace OGC.NHANVIEN
 
             foreach (DTO_NHANVIEN nv in danhSach)
             {
-                NhanVienUC uc = new NhanVienUC();
+                NhanVienUC uc = new NhanVienUC(nv);
                 uc.ID = nv.ID.ToString();
                 uc.Username = nv.Username;
                 uc.ChucVu = nv.TenChucVu;

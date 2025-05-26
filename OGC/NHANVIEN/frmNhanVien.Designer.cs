@@ -57,7 +57,7 @@
             // cbChucVu
             // 
             cbChucVu.FormattingEnabled = true;
-            cbChucVu.Location = new Point(592, 32);
+            cbChucVu.Location = new Point(600, 32);
             cbChucVu.Name = "cbChucVu";
             cbChucVu.Size = new Size(136, 23);
             cbChucVu.TabIndex = 4;
@@ -76,7 +76,7 @@
             // btnReset
             // 
             btnReset.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnReset.Location = new Point(472, 24);
+            btnReset.Location = new Point(480, 24);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(100, 40);
             btnReset.TabIndex = 2;

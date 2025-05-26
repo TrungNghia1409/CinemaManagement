@@ -56,16 +56,16 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            tableLayoutPanel1.BackColor = Color.FromArgb(192, 255, 255);
+            tableLayoutPanel1.BackColor = SystemColors.GradientInactiveCaption;
             tableLayoutPanel1.ColumnCount = 11;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28.3653851F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 71.63461F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 199F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 229F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 168F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 89F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 174F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 305F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 153F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 149F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 266F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 274F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 48F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
@@ -91,6 +91,7 @@
             // lblTieuDeID
             // 
             lblTieuDeID.AutoSize = true;
+            lblTieuDeID.BackColor = SystemColors.GradientInactiveCaption;
             lblTieuDeID.Dock = DockStyle.Fill;
             lblTieuDeID.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblTieuDeID.Location = new Point(4, 0);
@@ -161,7 +162,7 @@
             lblTieuDeGioiTinh.Location = new Point(818, 0);
             lblTieuDeGioiTinh.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeGioiTinh.Name = "lblTieuDeGioiTinh";
-            lblTieuDeGioiTinh.Size = new Size(81, 50);
+            lblTieuDeGioiTinh.Size = new Size(145, 50);
             lblTieuDeGioiTinh.TabIndex = 0;
             lblTieuDeGioiTinh.Text = "Giới tính";
             lblTieuDeGioiTinh.TextAlign = ContentAlignment.MiddleCenter;
@@ -171,10 +172,10 @@
             lblTieuDeSDT.AutoSize = true;
             lblTieuDeSDT.Dock = DockStyle.Fill;
             lblTieuDeSDT.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTieuDeSDT.Location = new Point(907, 0);
+            lblTieuDeSDT.Location = new Point(971, 0);
             lblTieuDeSDT.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeSDT.Name = "lblTieuDeSDT";
-            lblTieuDeSDT.Size = new Size(166, 50);
+            lblTieuDeSDT.Size = new Size(141, 50);
             lblTieuDeSDT.TabIndex = 0;
             lblTieuDeSDT.Text = "Số điện thoại";
             lblTieuDeSDT.TextAlign = ContentAlignment.MiddleCenter;
@@ -184,10 +185,10 @@
             lblTieuDeEmail.AutoSize = true;
             lblTieuDeEmail.Dock = DockStyle.Fill;
             lblTieuDeEmail.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTieuDeEmail.Location = new Point(1081, 0);
+            lblTieuDeEmail.Location = new Point(1120, 0);
             lblTieuDeEmail.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeEmail.Name = "lblTieuDeEmail";
-            lblTieuDeEmail.Size = new Size(297, 50);
+            lblTieuDeEmail.Size = new Size(258, 50);
             lblTieuDeEmail.TabIndex = 0;
             lblTieuDeEmail.Text = "Email";
             lblTieuDeEmail.TextAlign = ContentAlignment.MiddleCenter;

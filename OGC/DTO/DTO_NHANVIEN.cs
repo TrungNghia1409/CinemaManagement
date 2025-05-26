@@ -9,7 +9,7 @@ namespace OGC.DTO
 {
     public class DTO_NHANVIEN
     {
-        public DTO_NHANVIEN(int ID, string Username, int IDChucVu, int IDChuVu, string HoTen, DateTime NgaySinh,
+        public DTO_NHANVIEN(int ID, string Username, int IDChucVu, string HoTen, DateTime NgaySinh,
                             string GioiTinh, string SDT, string Email, string DiaChi, string TenChucVu)
         {
             this.ID = ID;

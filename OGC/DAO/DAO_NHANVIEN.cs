@@ -20,33 +20,28 @@ namespace OGC.DAO
 
         private DAO_NHANVIEN() { }
 
-        //load TKNhanVien  ,   ChucVu vào button trong flowlayoutPanel
-        public List<DTO_NHANVIEN> LoadNhanVienList()
-        {
-            List<DTO_NHANVIEN> nhanvienList = new List<DTO_NHANVIEN>();
+        ////load TKNhanVien  ,   ChucVu vào button trong flowlayoutPanel
+        //public List<DTO_NHANVIEN> LoadNhanVienList()
+        //{
+        //    List<DTO_NHANVIEN> nhanvienList = new List<DTO_NHANVIEN>();
 
-            DataTable data = DataProvider.Instance.ExecuteQuery(@" EXEC usp_danhsachnhanvien ");
+        //    DataTable data = DataProvider.Instance.ExecuteQuery(@" EXEC usp_danhsachnhanvien ");
 
-            foreach (DataRow item in data.Rows)
-            {
-                DTO_NHANVIEN NhanVienDTO = new DTO_NHANVIEN(item);
-                nhanvienList.Add(NhanVienDTO);
-            }
+        //    foreach (DataRow item in data.Rows)
+        //    {
+        //        DTO_NHANVIEN NhanVienDTO = new DTO_NHANVIEN(item);
+        //        nhanvienList.Add(NhanVienDTO);
+        //    }
 
-            return nhanvienList;
-        }
+        //    return nhanvienList;
+        //}
 
         // Thêm nhân viên mới
         public List<DTO_NHANVIEN> DanhSachNhanVien()
         {
             List<DTO_NHANVIEN> list = new List<DTO_NHANVIEN>();
 
-            string query = @"
-                            SELECT NV.ID, NV.Username, CV.TenChucVu, NV.HoTen, NV.NgaySinh, 
-                                   NV.GioiTinh, NV.SDT, NV.Email, NV.DiaChi
-                            FROM NHANVIEN NV
-                            JOIN CHUCVU CV ON NV.IDChucVu = CV.ID
-                            JOIN TKNHANVIEN TK ON NV.Username = TK.Username ";
+            string query = @" usp_danhsachNHANVIEN ";
 
             DataTable dt = DataProvider.Instance.ExecuteQuery(query);
 
@@ -69,5 +64,89 @@ namespace OGC.DAO
             return list;
         }
 
+
+        //------Phương thức thêm nhân viên
+        // Thêm nhân viên mới
+        public bool ThemNhanVien(string tkNhanVien, string mkNhanVien)
+        {
+            // Thêm tài khoản nhân viên trước
+            bool addTaiKhoan = DAO_TKNHANVIEN.Instance.AddTaiKhoanNhanVien(tkNhanVien, mkNhanVien); //gọi phương thức AddTaiKhoanNhanVien trong DAO_TKNHANVIEN, bởi vì
+                                                                                                    //tạo nhân viên mới trong DAO_TKNHANVIEN sẽ hợp lý hơn, nhưng mà cũng cần vài trường trong table NhanVien nên phải rườm rà như vậy
+            if (!addTaiKhoan) return false;
+
+            // Sau khi thêm tài khoản thành công, thêm thông tin vào bảng NhanVien
+            string queryNhanVien = "EXEC usp_themNHANVIEN @Username , @IDChucVu , @HoTen , @NgaySinh , @GioiTinh , @SDT , @Email , @DiaChi ";
+
+            int iDChucVu = 13;
+            string hoTen = "Chưa cập nhật";
+            DateTime ngaySinh = new DateTime(2025, 1, 1);
+            string gioiTinh = "Chưa cập nhật";
+            string sDT = "Chưa cập nhật";
+            string email = "Chưa cập nhật";
+            string diaChi = "Chưa cập nhật";
+
+            int result = DataProvider.Instance.ExecuteNonQuery(queryNhanVien, new object[] { tkNhanVien, iDChucVu, hoTen, ngaySinh, gioiTinh, sDT, email, diaChi });
+
+            return result > 0;
+
+        }
+
+        //------Phương thức lấy mã nhân viên dựa vào Username 
+        public int GetIDByUsername(string tkNhanVien)
+        {
+            string query = "SELECT ID FROM NHANVIEN WHERE Username = @Username ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tkNhanVien });
+
+            if (result != null && int.TryParse(result.ToString(), out int id))
+            {
+                return id;
+            }
+
+            return -1; // Trả về -1 nếu không tìm thấy
+        }
+        //Xóa thông tin nhân viên (Xóa nhân viên)
+        public bool XoaNhanVien(string tkNhanVien)
+        {
+            int id = DAO_NHANVIEN.Instance.GetIDByUsername(tkNhanVien);
+            if (id == -1)
+            {
+                MessageBox.Show("Không tìm thấy nhân viên với username này!");
+            }
+
+            // Câu lệnh xóa trong bảng NhanVien
+            string query_NV = @" EXEC usp_xoaNHANVIEN @ID ";
+
+            // Câu lệnh xóa trong bảng TKNhanVien
+            string query_TKNV = @" EXEC usp_xoaTKNHANVIEN @Username ";
+
+
+            try
+            {
+                // Thực thi câu lệnh DELETE cho bảng NhanVien
+                int result1 = DataProvider.Instance.ExecuteNonQuery(query_NV, new object[] { id });
+
+                // Thực thi câu lệnh DELETE cho bảng TKNhanVien
+                int result2 = DataProvider.Instance.ExecuteNonQuery(query_TKNV, new object[] { tkNhanVien });
+
+                return ((result1 > 0) && (result2 > 0));
+            }
+            catch (Exception ex)
+            {
+                // Nếu có lỗi ,  rollback giao dịch
+                MessageBox.Show($"Lỗi khi xóa nhân viên: {ex.Message}");
+                return false;
+            }
+        }
+        //------Phương thức sửa thông tin nhân tin
+        public bool SuaNhanVien(string username, string hoTen, DateTime ngaySinh, string gioiTinh, string sDT, string email, string diaChi, string tenChucVu)
+        {
+            string query = "EXEC usp_suaNHANVIEN @Username , @HoTen , @NgaySinh , @GioiTinh , @SDT , @Email , @DiaChi , @TenChucVu";
+
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
+            { username, hoTen, ngaySinh, gioiTinh, sDT, email, diaChi, tenChucVu});
+
+            return result > 0;
+        }
     }
 }

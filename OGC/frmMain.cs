@@ -1,5 +1,6 @@
 ﻿using OGC.frmThuocTinh;
 using OGC.NHANVIEN;
+using OGC.LichChieu;
 using OGC.Phim;
 using OGC.QuanLyDichVu;
 using System;
@@ -91,7 +92,7 @@ namespace OGC
         }
         private void btnNhanVien_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmNhanVien(currentUser));
+            OpenChildForm(new frmQuanLyLichChieu());
         }
 
         #endregion
