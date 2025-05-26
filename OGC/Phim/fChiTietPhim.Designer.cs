@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            AnhPhim = new PictureBox();
             panel2 = new Panel();
             panel8 = new Panel();
             label7 = new Label();
@@ -54,6 +55,8 @@
             lbDaoDien = new Label();
             panel3 = new Panel();
             lbTenPhim = new Label();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)AnhPhim).BeginInit();
             panel2.SuspendLayout();
             panel8.SuspendLayout();
             panel7.SuspendLayout();
@@ -67,14 +70,22 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(AnhPhim);
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(504, 728);
             panel1.TabIndex = 0;
             // 
+            // AnhPhim
+            // 
+            AnhPhim.Location = new Point(3, 4);
+            AnhPhim.Name = "AnhPhim";
+            AnhPhim.Size = new Size(498, 721);
+            AnhPhim.TabIndex = 0;
+            AnhPhim.TabStop = false;
+            // 
             // panel2
             // 
-            panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(panel8);
             panel2.Controls.Add(panel7);
             panel2.Controls.Add(panel10);
@@ -315,6 +326,8 @@
             Controls.Add(panel1);
             Name = "fChiTietPhim";
             Text = "ChiTietPhim";
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)AnhPhim).EndInit();
             panel2.ResumeLayout(false);
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
@@ -363,5 +376,6 @@
         private Panel panel10;
         private Label label10;
         private Label lbDoTuoi;
+        private PictureBox AnhPhim;
     }
 }

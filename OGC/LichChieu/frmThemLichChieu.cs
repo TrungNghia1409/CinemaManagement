@@ -27,6 +27,7 @@ namespace OGC.LichChieu
             cbTenPhong.DataSource = DAO_LOAIPHONG.Instance.DanhSachTenPhong_List();
             cbTenPhong.DisplayMember = "TenPhong";
 
+
         }
         #region Events
 
@@ -36,12 +37,27 @@ namespace OGC.LichChieu
             if (cbTenPhim.SelectedItem != null)
             {
                 PhimDTO phim = cbTenPhim.SelectedItem as PhimDTO;
-                if (phim != null)
+                try
                 {
-                    txbIDPhim.Text = phim.ID.ToString();
+                    if (phim != null)
+                    {
+                        txbIDPhim.Text = phim.ID.ToString();
+                        ptbAnh.Load(phim.Anh); // load ảnh từ đường dẫn URL
+                    }
+                }
+                catch
+                {
+                    ptbAnh.Image = null;
+                    MessageBox.Show("Không thể tải ảnh từ đường dẫn.");
                 }
             }
+            else
+            {
+                ptbAnh.Image = null;
+            }
+
         }
+        
 
         private void cbTenphong_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -75,9 +91,15 @@ namespace OGC.LichChieu
                     MessageBox.Show("Vui lòng nhập đầy đủ thông tin lịch chiếu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (giaVe < 50000)
+                else if (giaVe < 50000)
                 {
                     MessageBox.Show("Giá vé phải lớn hơn 50000 VNĐ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else if (ngayGio < DateTime.Today)
+                {
+                    MessageBox.Show("Vui lòng nhập lịch chiếu trong tương lai!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 else if ((DAO_LICHCHIEU.Instance.ThemLichChieu(tenPhim, tenPhong, ngayGio, giaVe, diaDiem)))
                 {

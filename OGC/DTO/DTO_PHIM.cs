@@ -22,7 +22,7 @@ namespace OGC.DTO
         public string Poster_Url { get; set; }
         public string Anh { get; set; }
 
-        public string DoTuoi { get; set; }
+        public string IDDoTuoi { get; set; }
 
         public PhimDTO() { }
 
@@ -43,7 +43,7 @@ namespace OGC.DTO
             Trailer_Url = trailerUrl;
             Poster_Url = posterUrl;
             Anh = anh;
-            DoTuoi = doTuoi;
+            IDDoTuoi = doTuoi;
         }
     }
 

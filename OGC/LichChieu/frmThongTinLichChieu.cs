@@ -55,10 +55,23 @@ namespace OGC.LichChieu
             if (cbTenPhim.SelectedItem != null)
             {
                 PhimDTO phim = cbTenPhim.SelectedItem as PhimDTO;
-                if (phim != null)
+                try
                 {
-                    txbIDPhim.Text = phim.ID.ToString();
+                    if (phim != null)
+                    {
+                        txbIDPhim.Text = phim.ID.ToString();
+                        ptbAnh.Load(phim.Anh); // load ảnh từ đường dẫn URL
+                    }
                 }
+                catch
+                {
+                    ptbAnh.Image = null;
+                    MessageBox.Show("Không thể tải ảnh từ đường dẫn.");
+                }
+            }
+            else
+            {
+                ptbAnh.Image = null;
             }
         }
         private void cbTenPhong_SelectedIndexChanged(object sender, EventArgs e)

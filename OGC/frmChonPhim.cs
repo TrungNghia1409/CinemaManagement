@@ -54,10 +54,25 @@ namespace OGC
                 Cursor = Cursors.Hand
             };
 
-            if (!string.IsNullOrEmpty(phim.Anh) && File.Exists(phim.Anh))
+            // Nối đường dẫn ảnh với thư mục chạy ứng dụng
+            string fullPath = Path.Combine(Application.StartupPath, phim.Anh);
+
+            if (!string.IsNullOrEmpty(phim.Anh) && File.Exists(fullPath))
             {
-                pictureBox.Image = Image.FromFile(phim.Anh);
+                using (var fs = new FileStream(fullPath, FileMode.Open, FileAccess.Read))
+                {
+                    pictureBox.Image = Image.FromStream(fs);
+                }
             }
+            else
+            {
+                pictureBox.Image = null;
+                // hoặc pictureBox.Image = Properties.Resources.NoImage; // ảnh mặc định nếu có
+            }
+
+    
+
+            fplHienThiPhim.Controls.Add(phimPanel);
 
             Label lblTenPhim = new Label
             {
@@ -82,8 +97,8 @@ namespace OGC
             Label lblNgayKhoiChieu = new Label
             {
                 Text = phim.NgayKhoiChieu > DateTime.MinValue
-                ? $"Khởi chiếu: {phim.NgayKhoiChieu:dd/MM/yyyy}"
-                  : "Khởi chiếu: N/A",
+                    ? $"Khởi chiếu: {phim.NgayKhoiChieu:dd/MM/yyyy}"
+                    : "Khởi chiếu: N/A",
                 AutoSize = false,
                 Width = 160,
                 Height = 20,
@@ -91,7 +106,6 @@ namespace OGC
                 Font = new Font("Arial", 9, FontStyle.Regular),
                 ForeColor = Color.FromArgb(30, 30, 30)
             };
-
 
             Button btnChiTiet = new Button
             {
@@ -175,7 +189,6 @@ namespace OGC
 
             if (phim != null)
             {
-                // Ví dụ: mở form đặt vé, bạn cần có form fDatVe(phim)
                 fDatVe formDatVe = new fDatVe();
                 formDatVe.ShowDialog();
             }
