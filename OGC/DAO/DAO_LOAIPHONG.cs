@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OGC.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -22,6 +23,40 @@ namespace OGC.DAO
             string query = "EXEC usp_danhsachLOAIPHONG";
             return DataProvider.Instance.ExecuteQuery(query);
         }
+
+        #region PHONGCHIEU
+        public List<string> DanhSachTenPhong_List()
+        {
+            List<string> ds = new List<string>();
+
+            string query = "SELECT TenPhong FROM PHONGCHIEU";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in data.Rows)
+            {
+                ds.Add(row["TenPhong"].ToString());
+            }
+
+            return ds;
+        }
+        public List<string> LayMaPhong()
+        {
+            List<string> ds = new List<string>();
+
+            string query = "SELECT ID FROM PHONGCHIEU";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in data.Rows)
+            {
+                ds.Add(row["ID"].ToString());
+            }
+
+            return ds;
+        }
+        #endregion
+
 
         //PHƯƠNG THỨC THÊM loại phòng
         public bool ThemLoaiPhong(string tenLoaiPhong)

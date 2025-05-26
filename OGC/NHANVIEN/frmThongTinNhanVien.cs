@@ -1,0 +1,133 @@
+﻿using OGC.DAO;
+using OGC.DTO;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+
+namespace OGC.NHANVIEN
+{
+    public partial class frmThongTinNhanVien : Form
+    {
+
+        public frmThongTinNhanVien(DTO_NHANVIEN nhanVien)
+        {
+            InitializeComponent();
+
+            
+            // Hiển thị thông tin ra các control
+            txbID.Text = nhanVien.ID.ToString();
+            txbTaiKhoan.Text = nhanVien.Username;
+            txbChucVu.Text = nhanVien.TenChucVu;
+            txbHoTen.Text = nhanVien.HoTen;
+            dtpNgaySinh.Value = nhanVien.NgaySinh;
+            txbGioiTinh.Text = nhanVien.GioiTinh;
+            txbSDT.Text = nhanVien.SDT;
+            txbEmail.Text = nhanVien.Email;
+            txbDiaChi.Text = nhanVien.DiaChi;
+
+
+        }
+
+
+        //------- Phương thức sửa thông tin nhân viên
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<string> danhSachChucVu = DAO_CHUCVU.Instance.DanhSachChucVu_List();
+
+                if (!danhSachChucVu.Contains(txbChucVu.Text))
+                {
+                    MessageBox.Show("Chức vụ không tồn tại. Vui lòng nhập đúng tên chức vụ có trong hệ thống.");
+                    return;
+                }
+
+                // Nếu hợp lệ thì mới tiếp tục sửa nhân viên
+                string username = txbTaiKhoan.Text;
+                string hoTen = txbHoTen.Text;
+                DateTime ngaySinh = DateTime.Parse(dtpNgaySinh.Text);
+                string gioiTinh = txbGioiTinh.Text;
+                string sDT = txbSDT.Text;
+                string email = txbEmail.Text;
+                string diaChi = txbDiaChi.Text;
+                string tenChucVu = txbChucVu.Text;
+
+                // Gọi DAO để cập nhật thông tin
+                bool isUpdated = DAO_NHANVIEN.Instance.SuaNhanVien(username, hoTen, ngaySinh, gioiTinh, sDT, email, diaChi, tenChucVu);
+
+                if (isUpdated)
+                {
+                    MessageBox.Show("Cập nhật thông tin nhân viên thành công!");
+                    frmNhanVien.Instance?.LoadNhanVien();
+
+                    this.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật thất bại! Vui lòng kiểm tra lại thông tin.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            // Lấy tài khoản nhân viên đăng nhập từ frmMain
+            frmMain mainForm = Application.OpenForms["frmMain"] as frmMain;
+            string tklogin = mainForm.GetUsername();
+
+            string username = txbTaiKhoan.Text;
+
+            int id = int.Parse(txbID.Text);
+
+            if (txbTaiKhoan.Text == tklogin)
+            {
+                MessageBox.Show("Không thể xóa tài khoản đang đăng nhập!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Xác nhận xóa
+            DialogResult dialogResult = MessageBox.Show(
+                "Bạn có chắc chắn muốn xóa nhân viên này không?",
+                "Xác nhận xóa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+
+                    // Gọi DAO để xóa nhân viên
+                    bool isDeleted = DAO_NHANVIEN.Instance.XoaNhanVien(username);
+
+                    if (isDeleted)
+                    {
+                        MessageBox.Show("Xóa nhân viên thành công!");
+                        frmNhanVien.Instance?.LoadNhanVien();
+                        this.Close(); // Đóng form thông tin sau khi xóa
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa thất bại. Vui lòng thử lại!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}");
+                }
+            }
+        }
+    }
+}

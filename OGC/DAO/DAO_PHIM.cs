@@ -15,7 +15,9 @@ public class PhimDAO
         {
             if (instance == null) instance = new PhimDAO();
             return instance;
-        }
+            //get { if (instance == null) instance = new PhimDAO(); return PhimDAO.instance; }
+            //private set { PhimDAO.instance = value; }
+    }
     }
 
     private PhimDAO() { }
@@ -35,7 +37,7 @@ public class PhimDAO
 
         return list;
     }
-
+   
     // Thêm phim
     public bool InsertPhim(PhimDTO phim)
     {
@@ -94,6 +96,30 @@ public class PhimDAO
 
         return null;
     }
+
+    ////--------lấy IDPhim dựa trên tên phim
+    //public int? LayIDTheoTenPhim(string tenPhim)
+    //{
+    //    try
+    //    {
+    //        string query = "SELECT ID FROM PHIM WHERE TenPhim = @TenPhim ";
+    //        object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim });
+
+    //        if (result != null)
+    //        {
+    //            return Convert.ToInt32(result);
+    //        }
+    //        return null;
+    //    }
+
+    //    catch (Exception ex)
+    //    {
+    //        // Nếu có lỗi ,  rollback giao dịch
+    //        MessageBox.Show($"Lỗi khi cố gắng lấy ID dựa trên tên phim: {ex.Message}");
+    //        return null;
+    //    }
+    //}
+
 
     // Hàm ánh xạ từ DataRow sang DTO
     private PhimDTO MapPhim(DataRow row)
