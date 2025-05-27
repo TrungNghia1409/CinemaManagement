@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             AnhPhim = new PictureBox();
-            btnXoaPhim = new Button();
+            btnThoat = new Button();
             btnThemPhim = new Button();
             panel15 = new Panel();
             btnTaiAnh = new Button();
@@ -87,14 +87,14 @@
             AnhPhim.TabIndex = 2;
             AnhPhim.TabStop = false;
             // 
-            // btnXoaPhim
+            // btnThoat
             // 
-            btnXoaPhim.Location = new Point(405, 606);
-            btnXoaPhim.Name = "btnXoaPhim";
-            btnXoaPhim.Size = new Size(94, 29);
-            btnXoaPhim.TabIndex = 14;
-            btnXoaPhim.Text = "Hủy";
-            btnXoaPhim.UseVisualStyleBackColor = true;
+            btnThoat.Location = new Point(405, 606);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(94, 29);
+            btnThoat.TabIndex = 14;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
             // 
             // btnThemPhim
             // 
@@ -147,7 +147,7 @@
             tbMoTa.Location = new Point(7, 35);
             tbMoTa.Multiline = true;
             tbMoTa.Name = "tbMoTa";
-            tbMoTa.Size = new Size(307, 226);
+            tbMoTa.Size = new Size(302, 226);
             tbMoTa.TabIndex = 1;
             // 
             // label11
@@ -395,7 +395,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1121, 744);
             Controls.Add(AnhPhim);
-            Controls.Add(btnXoaPhim);
+            Controls.Add(btnThoat);
             Controls.Add(btnThemPhim);
             Controls.Add(panel15);
             Controls.Add(panel13);
@@ -438,7 +438,7 @@
         #endregion
 
         private PictureBox AnhPhim;
-        private Button btnXoaPhim;
+        private Button btnThoat;
         private Button btnThemPhim;
         private Panel panel15;
         private Button btnTaiAnh;

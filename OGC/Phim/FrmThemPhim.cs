@@ -1,17 +1,9 @@
-﻿using OGC.DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
-using System.Threading;
-
+using OGC.DAO;
+using OGC.DTO;
 
 namespace OGC.Phim
 {
@@ -20,50 +12,119 @@ namespace OGC.Phim
         public FrmThemPhim()
         {
             InitializeComponent();
+            LoadComboBoxData();
         }
-        private void frmThemPhim_Load(object sender, EventArgs e)
-        {
-            // Thiết lập ngôn ngữ và định dạng là tiếng Việt
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("vi-VN");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("vi-VN");
 
-            // Cấu hình DateTimePicker
-            dtpKhoiChieu.Format = DateTimePickerFormat.Custom;
-            dtpKhoiChieu.CustomFormat = "dddd, dd/MM/yyyy";
+        private void LoadComboBoxData()
+        {
+            // Load thể loại phim
+            cbTheLoaiPhim.DataSource = DAO_THELOAIPHIM.Instance.DanhSachTheLoaiPhim();
+            cbTheLoaiPhim.DisplayMember = "TenTheLoai";
+            cbTheLoaiPhim.ValueMember = "ID";
+
+            // Load độ tuổi
+            cbDoTuoi.DataSource = DAO_DoTuoi.Instance.DanhSachDoTuoi();
+            cbDoTuoi.DisplayMember = "TenDoTuoi";
+            cbDoTuoi.ValueMember = "ID";
+
+            // Trạng thái
+            cbTrangThai.DataSource = new List<KeyValuePair<int, string>>
+            {
+                new KeyValuePair<int, string>(1, "Đang chiếu"),
+                new KeyValuePair<int, string>(0, "Ngừng chiếu")
+            };
+            cbTrangThai.DisplayMember = "Value";
+            cbTrangThai.ValueMember = "Key";
+
+            // định dạng
+            cbLoaiphong.DataSource = DAO_DINHDANGPHIM.Instance.DanhSachDinhDang();
+            cbLoaiphong.DisplayMember = "TenDinhDang";
+            cbLoaiphong.ValueMember = "ID";
+
         }
 
         private void btnThemPhim_Click(object sender, EventArgs e)
         {
-            //PhimDTO phim = new PhimDTO(
-            //        id: 0, // ID sẽ tự tăng trong CSDL
-            //        tenPhim: tbTenPhim.Text,
-            //        daoDien: tbDaoDien.Text,
-            //        dienVien: tbDienVien.Text,
-            //        //iDTheLoaiPhim: (int)cbTheLoai.SelectedValue,
-            //        //iDDinhDang: (int)cbDinhDang.SelectedValue,
-            //        thoiLuong: int.Parse(tbThoiLuong.Text),
-            //        moTa: tbMoTa.Text,
-            //        ngayKhoiChieu: dtpKhoiChieu.Value,
-            //        trangThai: (int)cbTrangThai.SelectedValue,
-            //        //trailer_Url: tbTrailer.Text,
-            //        //poster_Url: tbPoster.Text,
-            //        /*nh: txbAnh.Text,*/
-            //        doTuoi: cbDoTuoi.SelectedItem?.ToString()
-            //    );
+            string tenPhim = tbTenPhim.Text.Trim();
+            string daoDien = tbDaoDien.Text.Trim();
+            string dienVien = tbDienVien.Text.Trim();
+            string moTa = tbMoTa.Text.Trim();
 
-            //bool result = PhimDAO.Instance.InsertPhim(phim);
-            //if (result)
-            //{
-            //    MessageBox.Show("Thêm phim thành công");
-            //    
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Thêm phim thất bại");
-            //}
+            // Kiểm tra thời lượng có phải số không
+            if (!int.TryParse(tbThoiLuong.Text.Trim(), out int thoiLuong))
+            {
+                MessageBox.Show("Thời lượng phải là số.");
+                return;
+            }
+
+            // Kiểm tra SelectedValue không null trước khi chuyển kiểu
+            if (cbTheLoaiPhim.SelectedValue == null)
+            {
+                MessageBox.Show("Vui lòng chọn thể loại phim hợp lệ.");
+                return;
+            }
+            if (cbDoTuoi.SelectedValue == null)
+            {
+                MessageBox.Show("Vui lòng chọn độ tuổi hợp lệ.");
+                return;
+            }
+
+            // Ép kiểu trực tiếp nếu chắc chắn kiểu dữ liệu là int
+            int idTheLoai = 0;
+            int idDoTuoi = 0;
+
+            // Lấy idTheLoai an toàn
+            if (cbTheLoaiPhim.SelectedValue == null || !int.TryParse(cbTheLoaiPhim.SelectedValue.ToString(), out idTheLoai))
+            {
+                MessageBox.Show("Vui lòng chọn thể loại phim hợp lệ.");
+                return;
+            }
+
+            // Lấy idDoTuoi an toàn
+            if (cbDoTuoi.SelectedValue == null || !int.TryParse(cbDoTuoi.SelectedValue.ToString(), out idDoTuoi))
+            {
+                MessageBox.Show("Vui lòng chọn độ tuổi hợp lệ.");
+                return;
+            }
+
+
+            // Lấy trạng thái từ combobox trạng thái
+            int trangThai = ((KeyValuePair<int, string>)cbTrangThai.SelectedItem).Key;
+
+            // Lấy ngày khởi chiếu
+            DateTime ngayKhoiChieu = dtpKhoiChieu.Value;
+
+            // Tạo DTO và gọi insert
+            bool result = PhimDAO.Instance.InsertPhim(new PhimDTO
+            {
+                TenPhim = tenPhim,
+                DaoDien = daoDien,
+                DienVien = dienVien,
+                ThoiLuong = thoiLuong,
+                NgayKhoiChieu = ngayKhoiChieu,
+                IDDoTuoi = idDoTuoi.ToString(), 
+                MoTa = moTa,
+                TrangThai = trangThai,
+                IDTheLoaiPhim = idTheLoai,
+                // IDDinhDang = idDinhDang, nếu có
+            });
+
+            if (result)
+            {
+                MessageBox.Show("Thêm phim thành công!");
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Thêm phim thất bại!");
+            }
 
         }
 
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
-
