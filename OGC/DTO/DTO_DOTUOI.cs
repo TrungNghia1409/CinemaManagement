@@ -8,17 +8,17 @@ namespace OGC.DTO
 {
     internal class DTO_DOTUOI
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string TenDoTuoi { get; set; }
         public DTO_DOTUOI() { }
-        public DTO_DOTUOI(int id, string tenDoTuoi)
+        public DTO_DOTUOI(string id, string tenDoTuoi)
         {
             ID = id;
             TenDoTuoi = tenDoTuoi;
         }
         public DTO_DOTUOI(System.Data.DataRow row)
         {
-            ID = (int)row["ID"];
+            ID = row["ID"].ToString();
             TenDoTuoi = row["TenDoTuoi"].ToString();
         }
     }

@@ -23,12 +23,42 @@ namespace OGC.LichChieu
         {
             InitializeComponent();
 
+
             Instance = this;
 
             LoadLichChieu();
             LoadTenPhong();
 
         }
+
+        private void LoadLichChieuTheoNgay(DateTime tuNgay, DateTime denNgay)
+        {
+            flpLichChieu.Controls.Clear(); // Xóa các UC cũ
+
+            TieuDeUC ucTieuDe = new TieuDeUC(); // Thêm tiêu đề nếu cần
+            pnlTieuDe.Controls.Clear();
+            pnlTieuDe.Controls.Add(ucTieuDe);
+
+            List<DTO_LICHCHIEU> danhSach = DAO_LICHCHIEU.Instance.LocLichChieuTheoKhoangNgay(tuNgay, denNgay);
+
+            foreach (DTO_LICHCHIEU lc in danhSach)
+            {
+                LichChieuUC uc = new LichChieuUC(lc);
+
+                uc.TenPhim = lc.TenPhim;
+                uc.TenPhong = lc.TenPhong;
+                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy");
+                uc.GiaVe = lc.GiaVe;
+                uc.DiaDiem = lc.DiaDiem;
+                uc.TrangThai = lc.TrangThai;
+                uc.Anh = lc.Anh;
+                uc.AnhPhong = lc.AnhPhong;
+
+                flpLichChieu.Controls.Add(uc);
+            }
+
+        }
+
 
         //------ Tìm kiếm bằng text không dấu
         public static string RemoveDiacritics(string text)
@@ -154,6 +184,15 @@ namespace OGC.LichChieu
         #endregion
 
 
-       
+
+        private void dtpBatDau_ValueChanged(object sender, EventArgs e)
+        {
+            LoadLichChieuTheoNgay(dtpBatDau.Value, dtpKetThuc.Value);
+        }
+
+        private void dtpKetThuc_ValueChanged(object sender, EventArgs e)
+        {
+            LoadLichChieuTheoNgay(dtpKetThuc.Value, dtpKetThuc.Value);
+        }
     }
 }
