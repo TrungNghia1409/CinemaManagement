@@ -43,7 +43,7 @@ public class PhimDAO
     {
         string query = @"INSERT INTO PHIM 
                          (TenPhim, DaoDien, DienVien, IDTheLoaiPhim, IDDinhDang, ThoiLuong, MoTa, NgayKhoiChieu, TrangThai, Trailer_Url, Poster_Url, Anh)
-                         VALUES (@TenPhim, @DaoDien, @DienVien, @IDTheLoaiPhim, @IDDinhDang, @ThoiLuong, @MoTa, @NgayKhoiChieu, @TrangThai, @Trailer, @Poster, @Anh)";
+                         VALUES (@TenPhim , @DaoDien , @DienVien , @IDTheLoaiPhim , @IDDinhDang , @ThoiLuong , @MoTa , @NgayKhoiChieu , @TrangThai , @Trailer , @Poster , @Anh )";
         int result = DataProvider.Instance.ExecuteNonQuery(query,
             new object[]
             {

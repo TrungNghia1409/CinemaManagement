@@ -208,7 +208,10 @@ namespace OGC.Phim
         private void btnThemPhim_Click(object sender, EventArgs e)
         {
             FrmThemPhim frmThemPhim = new FrmThemPhim();
-            frmThemPhim.ShowDialog();
+            if (frmThemPhim.ShowDialog() == DialogResult.OK)
+            {
+                LoadDanhSachPhim(); 
+            }
         }
     }
 }
