@@ -27,6 +27,7 @@ namespace OGC.LichChieu
             Instance = this;
 
             LoadLichChieu();
+            //LoadLichChieuTheoNgay(dtpBatDau.Value.Date, dtpKetThuc.Value.Date.AddDays(1).AddTicks(-1));
             LoadTenPhong();
 
         }
@@ -51,14 +52,39 @@ namespace OGC.LichChieu
                 uc.GiaVe = lc.GiaVe;
                 uc.DiaDiem = lc.DiaDiem;
                 uc.TrangThai = lc.TrangThai;
-                uc.Anh = lc.Anh;
-                uc.AnhPhong = lc.AnhPhong;
 
                 flpLichChieu.Controls.Add(uc);
             }
 
         }
+        private void dtpBatDau_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime batDau = dtpBatDau.Value.Date;
+            DateTime ketThuc = dtpKetThuc.Value.Date.AddDays(1).AddTicks(-1);
 
+            if (batDau < DateTime.Now.Date)
+            {
+                MessageBox.Show("Thời gian bắt đầu không được nhỏ hơn ngày hôm nay!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            LoadLichChieuTheoNgay(batDau, ketThuc);
+
+        }
+
+        private void dtpKetThuc_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime batDau = dtpBatDau.Value.Date;
+            DateTime ketThuc = dtpKetThuc.Value.Date.AddDays(1).AddTicks(-1);
+
+            if (batDau > ketThuc)
+            {
+                MessageBox.Show("Thời gian bắt đầu phải nhỏ hơn hoặc bằng thời gian kết thúc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            LoadLichChieuTheoNgay(batDau, ketThuc);
+        }
 
         //------ Tìm kiếm bằng text không dấu
         public static string RemoveDiacritics(string text)
@@ -184,15 +210,24 @@ namespace OGC.LichChieu
         #endregion
 
 
-
-        private void dtpBatDau_ValueChanged(object sender, EventArgs e)
+        private void chbBoLoc_CheckedChanged(object sender, EventArgs e)
         {
-            LoadLichChieuTheoNgay(dtpBatDau.Value, dtpKetThuc.Value);
-        }
+            if (chbBoLoc.Checked)
+            {
+                // Nếu "Bỏ lọc" được bật → hiển thị tất cả
+                LoadLichChieu();
 
-        private void dtpKetThuc_ValueChanged(object sender, EventArgs e)
-        {
-            LoadLichChieuTheoNgay(dtpKetThuc.Value, dtpKetThuc.Value);
+                // Vô hiệu hóa DateTimePicker để người dùng không thay đổi
+                dtpBatDau.Enabled = false;
+                dtpKetThuc.Enabled = false;
+            }
+            else
+            {
+                // Khi bỏ chọn "Bỏ lọc" → áp dụng lại bộ lọc theo ngày
+                dtpBatDau.Enabled = true;
+                dtpKetThuc.Enabled = true;
+                LoadLichChieuTheoNgay(dtpBatDau.Value.Date, dtpKetThuc.Value.Date.AddDays(1).AddTicks(-1));
+            }
         }
     }
 }
