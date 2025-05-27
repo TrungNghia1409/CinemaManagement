@@ -37,5 +37,25 @@ namespace OGC.DAO
 
             return list;
         }
+
+        public string DanhSachIDDoTuoi(string tenDoTuoi)
+        {
+            string query = @"SELECT ID FROM DOTUOI WHERE TenDoTuoi = @TenDoTuoi ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query,
+                new object[]
+                {
+            tenDoTuoi
+                });
+
+            if (result != null)
+                return result.ToString();
+
+            return null; // hoặc trả về string.Empty tùy bạn
+        }
+
+
     }
+
+
 }

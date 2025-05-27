@@ -1,9 +1,10 @@
-﻿using System;
+﻿using OGC.DAO;
+using OGC.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using OGC.DAO;
-using OGC.DTO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace OGC.Phim
 {
@@ -49,6 +50,11 @@ namespace OGC.Phim
             string daoDien = tbDaoDien.Text.Trim();
             string dienVien = tbDienVien.Text.Trim();
             string moTa = tbMoTa.Text.Trim();
+            string trailerUrl = "";       // textbox chứa link trailer
+            string posterUrl = "";         // textbox chứa link poster
+            string anh = "";                     // textbox chứa link ảnh hoặc đường dẫn ảnh
+
+
 
             // Kiểm tra thời lượng có phải số không
             if (!int.TryParse(tbThoiLuong.Text.Trim(), out int thoiLuong))
@@ -71,7 +77,6 @@ namespace OGC.Phim
 
             // Ép kiểu trực tiếp nếu chắc chắn kiểu dữ liệu là int
             int idTheLoai = 0;
-            int idDoTuoi = 0;
 
             // Lấy idTheLoai an toàn
             if (cbTheLoaiPhim.SelectedValue == null || !int.TryParse(cbTheLoaiPhim.SelectedValue.ToString(), out idTheLoai))
@@ -80,8 +85,11 @@ namespace OGC.Phim
                 return;
             }
 
-            // Lấy idDoTuoi an toàn
-            if (cbDoTuoi.SelectedValue == null || !int.TryParse(cbDoTuoi.SelectedValue.ToString(), out idDoTuoi))
+            string doTuoiChon = DAO_DoTuoi.Instance.DanhSachIDDoTuoi(cbDoTuoi.Text);
+
+            string idDoTuoi = doTuoiChon;
+
+            if (string.IsNullOrEmpty(idDoTuoi))
             {
                 MessageBox.Show("Vui lòng chọn độ tuổi hợp lệ.");
                 return;
@@ -106,6 +114,9 @@ namespace OGC.Phim
                 MoTa = moTa,
                 TrangThai = trangThai,
                 IDTheLoaiPhim = idTheLoai,
+                Trailer_Url = trailerUrl, // nếu có
+                Poster_Url = posterUrl,   // nếu có
+                Anh = anh,         // nếu có
                 // IDDinhDang = idDinhDang, nếu có
             });
 

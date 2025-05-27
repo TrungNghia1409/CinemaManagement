@@ -40,16 +40,26 @@ public class PhimDAO
    
     // Thêm phim
     public bool InsertPhim(PhimDTO phim)
-    {
+    { //nhớ bổ sung URL TRAILER, ANH vào câu lệnh SQl ở dòng 45 46
         string query = @"INSERT INTO PHIM 
-                         (TenPhim, DaoDien, DienVien, IDTheLoaiPhim, IDDinhDang, ThoiLuong, MoTa, NgayKhoiChieu, TrangThai, Trailer_Url, Poster_Url, Anh)
-                         VALUES (@TenPhim , @DaoDien , @DienVien , @IDTheLoaiPhim , @IDDinhDang , @ThoiLuong , @MoTa , @NgayKhoiChieu , @TrangThai , @Trailer , @Poster , @Anh )";
+                        (TenPhim, DaoDien, DienVien, IDTheLoaiPhim, IDDinhDang, ThoiLuong, MoTa, NgayKhoiChieu, TrangThai, Trailer_Url, Poster_Url, Anh, IDDoTuoi)
+                        VALUES ( @TenPhim , @DaoDien , @DienVien , @IDTheLoaiPhim , @IDDinhDang , @ThoiLuong , @MoTa , @NgayKhoiChieu , @TrangThai , @Trailer_Url , @Poster_Url , @Anh ,   @IDDoTuoi )";
         int result = DataProvider.Instance.ExecuteNonQuery(query,
             new object[]
             {
-                phim.TenPhim, phim.DaoDien, phim.DienVien, phim.IDTheLoaiPhim, phim.IDDinhDang,
-                phim.ThoiLuong, phim.MoTa, phim.NgayKhoiChieu, phim.TrangThai,
-                phim.Trailer_Url, phim.Poster_Url, phim.Anh
+                 phim.TenPhim,
+                phim.DaoDien,
+                phim.DienVien,
+                phim.IDTheLoaiPhim,
+                phim.IDDinhDang = 1,
+                phim.ThoiLuong,
+                phim.MoTa,
+                phim.NgayKhoiChieu,
+                phim.TrangThai,
+                phim.Trailer_Url,     // đúng tên biến: @Trailer_Url
+                phim.Poster_Url,      // đúng tên biến: @Poster_Url
+                phim.Anh,
+                phim.IDDoTuoi
             });
 
         return result > 0;
@@ -59,11 +69,11 @@ public class PhimDAO
     public bool UpdatePhim(PhimDTO phim)
     {
         string query = @"UPDATE PHIM SET 
-                            TenPhim = @TenPhim, DaoDien = @DaoDien, DienVien = @DienVien,
-                            IDTheLoaiPhim = @IDTheLoaiPhim, IDDinhDang = @IDDinhDang,
-                            ThoiLuong = @ThoiLuong, MoTa = @MoTa, NgayKhoiChieu = @NgayKhoiChieu,
-                            TrangThai = @TrangThai, Trailer_Url = @Trailer, Poster_Url = @Poster, Anh = @Anh
-                         WHERE ID = @ID";
+                            TenPhim = @TenPhim , DaoDien = @DaoDien , DienVien = @DienVien ,
+                            IDTheLoaiPhim = @IDTheLoaiPhim , IDDinhDang = @IDDinhDang ,
+                            ThoiLuong = @ThoiLuong , MoTa = @MoTa, NgayKhoiChieu = @NgayKhoiChieu ,
+                            TrangThai = @TrangThai , Trailer_Url = @Trailer , Poster_Url = @Poster , Anh = @Anh
+                         WHERE ID = @ID ";
         int result = DataProvider.Instance.ExecuteNonQuery(query,
             new object[]
             {

@@ -107,5 +107,42 @@ namespace OGC.DAO
             }
             return null;
         }
+
+
+        //---------- test chức năng lọc ngày chiếu
+        public List<DTO_LICHCHIEU> LocLichChieuTheoKhoangNgay(DateTime tuNgay, DateTime denNgay)
+        {
+            List<DTO_LICHCHIEU> danhSach = new List<DTO_LICHCHIEU>();
+            string query = @"
+        SELECT LC.ID, LC.IDPhim, ISNULL(P.TenPhim, LC.TenPhim) AS TenPhim,
+               LC.IDPhong, LC.NgayGio, LC.GiaVe, LC.DiaDiem
+        FROM LICHCHIEU LC
+        LEFT JOIN PHIM P ON LC.IDPhim = P.ID
+        WHERE LC.NgayGio >= @tuNgay AND LC.NgayGio <= @denNgay
+        ORDER BY LC.NgayGio ";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { tuNgay, denNgay });
+
+            foreach (DataRow row in data.Rows)
+            {
+                danhSach.Add(new DTO_LICHCHIEU(row));
+            }
+
+            return danhSach;
+        }
+
+        public List<DTO_LICHCHIEU> LocLichChieuTuNgay(DateTime tuNgay)
+        {
+            List<DTO_LICHCHIEU> danhSach = new List<DTO_LICHCHIEU>();
+            string query = "SELECT * FROM LichChieu WHERE NgayGio >= @tuNgay";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { tuNgay });
+
+            foreach (DataRow row in data.Rows)
+            {
+                danhSach.Add(new DTO_LICHCHIEU(row));
+            }
+            return danhSach;
+        }
+
     }
 }
