@@ -40,7 +40,7 @@ namespace OGC.DAO
 
         public string DanhSachIDDoTuoi(string tenDoTuoi)
         {
-            string query = @"SELECT ID FROM DOTUOI WHERE TenDoTuoi = @TenDoTuoi ";
+            string query = @"SELECT ID FROM DOTUOI WHERE LTRIM(RTRIM(TenDoTuoi)) = LTRIM(RTRIM( @TenDoTuoi ))";
 
             object result = DataProvider.Instance.ExecuteScalar(query,
                 new object[]
