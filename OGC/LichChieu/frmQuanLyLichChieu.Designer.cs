@@ -37,6 +37,7 @@
             pnlTop = new Panel();
             btnThemLC = new Button();
             pnlDate = new Panel();
+            chbBoLoc = new CheckBox();
             label1 = new Label();
             dtpKetThuc = new DateTimePicker();
             dtpBatDau = new DateTimePicker();
@@ -56,17 +57,15 @@
             panel1.Controls.Add(pnlMid);
             panel1.Controls.Add(pnlTop);
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1225, 597);
+            panel1.Size = new Size(1072, 448);
             panel1.TabIndex = 0;
             // 
             // pnlBottom
             // 
-            pnlBottom.Location = new Point(0, 533);
-            pnlBottom.Margin = new Padding(3, 4, 3, 4);
+            pnlBottom.Location = new Point(0, 400);
             pnlBottom.Name = "pnlBottom";
-            pnlBottom.Size = new Size(1225, 69);
+            pnlBottom.Size = new Size(1072, 52);
             pnlBottom.TabIndex = 2;
             // 
             // pnlMid
@@ -74,38 +73,34 @@
             pnlMid.Controls.Add(pnlLichChieu);
             pnlMid.Controls.Add(pnlTieuDe);
             pnlMid.Dock = DockStyle.Top;
-            pnlMid.Location = new Point(0, 80);
-            pnlMid.Margin = new Padding(3, 4, 3, 4);
+            pnlMid.Location = new Point(0, 60);
             pnlMid.Name = "pnlMid";
-            pnlMid.Size = new Size(1225, 437);
+            pnlMid.Size = new Size(1072, 328);
             pnlMid.TabIndex = 1;
             // 
             // pnlLichChieu
             // 
             pnlLichChieu.Controls.Add(flpLichChieu);
             pnlLichChieu.Dock = DockStyle.Top;
-            pnlLichChieu.Location = new Point(0, 64);
-            pnlLichChieu.Margin = new Padding(3, 4, 3, 4);
+            pnlLichChieu.Location = new Point(0, 48);
             pnlLichChieu.Name = "pnlLichChieu";
-            pnlLichChieu.Size = new Size(1225, 395);
+            pnlLichChieu.Size = new Size(1072, 296);
             pnlLichChieu.TabIndex = 1;
             // 
             // flpLichChieu
             // 
             flpLichChieu.Dock = DockStyle.Top;
             flpLichChieu.Location = new Point(0, 0);
-            flpLichChieu.Margin = new Padding(3, 4, 3, 4);
             flpLichChieu.Name = "flpLichChieu";
-            flpLichChieu.Size = new Size(1225, 384);
+            flpLichChieu.Size = new Size(1072, 288);
             flpLichChieu.TabIndex = 1;
             // 
             // pnlTieuDe
             // 
             pnlTieuDe.Dock = DockStyle.Top;
             pnlTieuDe.Location = new Point(0, 0);
-            pnlTieuDe.Margin = new Padding(3, 4, 3, 4);
             pnlTieuDe.Name = "pnlTieuDe";
-            pnlTieuDe.Size = new Size(1225, 64);
+            pnlTieuDe.Size = new Size(1072, 48);
             pnlTieuDe.TabIndex = 0;
             // 
             // pnlTop
@@ -117,18 +112,16 @@
             pnlTop.Controls.Add(txbTimKiem);
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
-            pnlTop.Margin = new Padding(3, 4, 3, 4);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(1225, 80);
+            pnlTop.Size = new Size(1072, 60);
             pnlTop.TabIndex = 0;
             // 
             // btnThemLC
             // 
             btnThemLC.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnThemLC.Location = new Point(1170, 16);
-            btnThemLC.Margin = new Padding(3, 4, 3, 4);
+            btnThemLC.Location = new Point(1024, 12);
             btnThemLC.Name = "btnThemLC";
-            btnThemLC.Size = new Size(40, 47);
+            btnThemLC.Size = new Size(35, 35);
             btnThemLC.TabIndex = 4;
             btnThemLC.Text = "✚";
             btnThemLC.UseVisualStyleBackColor = true;
@@ -136,49 +129,59 @@
             // 
             // pnlDate
             // 
+            pnlDate.Controls.Add(chbBoLoc);
             pnlDate.Controls.Add(label1);
             pnlDate.Controls.Add(dtpKetThuc);
             pnlDate.Controls.Add(dtpBatDau);
-            pnlDate.Location = new Point(576, 11);
-            pnlDate.Margin = new Padding(3, 4, 3, 4);
+            pnlDate.Location = new Point(432, 8);
             pnlDate.Name = "pnlDate";
-            pnlDate.Size = new Size(558, 53);
+            pnlDate.Size = new Size(576, 40);
             pnlDate.TabIndex = 3;
+            // 
+            // chbBoLoc
+            // 
+            chbBoLoc.AutoSize = true;
+            chbBoLoc.Location = new Point(464, 12);
+            chbBoLoc.Name = "chbBoLoc";
+            chbBoLoc.Size = new Size(57, 19);
+            chbBoLoc.TabIndex = 5;
+            chbBoLoc.Text = "Tất cả";
+            chbBoLoc.UseVisualStyleBackColor = true;
+            chbBoLoc.CheckedChanged += chbBoLoc_CheckedChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(269, 15);
+            label1.Location = new Point(220, 11);
             label1.Name = "label1";
-            label1.Size = new Size(32, 28);
+            label1.Size = new Size(25, 21);
             label1.TabIndex = 0;
             label1.Text = "To";
             // 
             // dtpKetThuc
             // 
-            dtpKetThuc.Location = new Point(329, 12);
-            dtpKetThuc.Margin = new Padding(3, 4, 3, 4);
+            dtpKetThuc.CustomFormat = "dd/MM/yyyy";
+            dtpKetThuc.Location = new Point(256, 8);
             dtpKetThuc.Name = "dtpKetThuc";
-            dtpKetThuc.Size = new Size(228, 27);
+            dtpKetThuc.Size = new Size(200, 23);
             dtpKetThuc.TabIndex = 0;
             dtpKetThuc.ValueChanged += dtpKetThuc_ValueChanged;
             // 
             // dtpBatDau
             // 
-            dtpBatDau.Location = new Point(9, 12);
-            dtpBatDau.Margin = new Padding(3, 4, 3, 4);
+            dtpBatDau.CustomFormat = "dd/MM/yyyy";
+            dtpBatDau.Location = new Point(8, 9);
             dtpBatDau.Name = "dtpBatDau";
-            dtpBatDau.Size = new Size(228, 27);
+            dtpBatDau.Size = new Size(200, 23);
             dtpBatDau.TabIndex = 0;
             dtpBatDau.ValueChanged += dtpBatDau_ValueChanged;
             // 
             // btnReset
             // 
-            btnReset.Location = new Point(320, 21);
-            btnReset.Margin = new Padding(3, 4, 3, 4);
+            btnReset.Location = new Point(224, 16);
             btnReset.Name = "btnReset";
-            btnReset.Size = new Size(86, 31);
+            btnReset.Size = new Size(75, 23);
             btnReset.TabIndex = 2;
             btnReset.Text = "Reset";
             btnReset.UseVisualStyleBackColor = true;
@@ -187,30 +190,27 @@
             // cbTenPhong
             // 
             cbTenPhong.FormattingEnabled = true;
-            cbTenPhong.Location = new Point(421, 21);
-            cbTenPhong.Margin = new Padding(3, 4, 3, 4);
+            cbTenPhong.Location = new Point(312, 16);
             cbTenPhong.Name = "cbTenPhong";
-            cbTenPhong.Size = new Size(138, 28);
+            cbTenPhong.Size = new Size(96, 23);
             cbTenPhong.TabIndex = 1;
             cbTenPhong.SelectedIndexChanged += cbTenPhong_SelectedIndexChanged;
             // 
             // txbTimKiem
             // 
-            txbTimKiem.Location = new Point(9, 21);
-            txbTimKiem.Margin = new Padding(3, 4, 3, 4);
+            txbTimKiem.Location = new Point(8, 16);
             txbTimKiem.Multiline = true;
             txbTimKiem.Name = "txbTimKiem";
-            txbTimKiem.Size = new Size(292, 29);
+            txbTimKiem.Size = new Size(208, 23);
             txbTimKiem.TabIndex = 0;
             txbTimKiem.TextChanged += txbTimKiem_TextChanged;
             // 
             // frmQuanLyLichChieu
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1226, 596);
+            ClientSize = new Size(1073, 447);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmQuanLyLichChieu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmQuanLyLichChieu";
@@ -241,5 +241,6 @@
         private Panel pnlTieuDe;
         private FlowLayoutPanel flpLichChieu;
         private Button btnThemLC;
+        private CheckBox chbBoLoc;
     }
 }

@@ -113,15 +113,21 @@ namespace OGC.DAO
         public List<DTO_LICHCHIEU> LocLichChieuTheoKhoangNgay(DateTime tuNgay, DateTime denNgay)
         {
             List<DTO_LICHCHIEU> danhSach = new List<DTO_LICHCHIEU>();
-            string query = @"
-        SELECT LC.ID, LC.IDPhim, ISNULL(P.TenPhim, LC.TenPhim) AS TenPhim,
-               LC.IDPhong, LC.NgayGio, LC.GiaVe, LC.DiaDiem
-        FROM LICHCHIEU LC
-        LEFT JOIN PHIM P ON LC.IDPhim = P.ID
-        WHERE LC.NgayGio >= @tuNgay AND LC.NgayGio <= @denNgay
-        ORDER BY LC.NgayGio ";
+            string query = @" 
+                             SELECT lc.ID, lc.IDPhim, lc.IDPhong, ISNULL(P.TenPhim, LC.TenPhim) AS TenPhim,
+                                    pc.TenPhong, LC.NgayGio, LC.GiaVe, LC.DiaDiem
+                             FROM LICHCHIEU LC
+                             LEFT JOIN PHIM P ON LC.IDPhim = P.ID
+                             LEFT JOIN PHONGCHIEU pc ON pc.ID = lc.IDPhong
+                             WHERE ( LC.NgayGio >=  @tuNgay  ) AND ( LC.NgayGio <=   @denNgay  )
+                             ORDER BY LC.NgayGio";
 
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { tuNgay, denNgay });
+            // CHUẨN HÓA: Bao phủ cả ngày đến 23:59:59
+            DateTime tuNgayChuan = tuNgay.Date;
+            DateTime denNgayChuan = denNgay.Date.AddDays(1).AddTicks(-1);
+
+            // Truyền DateTime trực tiếp
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { tuNgayChuan, denNgayChuan });
 
             foreach (DataRow row in data.Rows)
             {
