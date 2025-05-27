@@ -1,17 +1,19 @@
-﻿using OGC.DTO;
-using OGC.DAO;  // nhớ import DAO để dùng
+﻿using OGC.DAO;  // nhớ import DAO để dùng
+using OGC.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;       // dùng cho File.Exists
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
-using System.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 
 namespace OGC.Phim
@@ -137,6 +139,17 @@ namespace OGC.Phim
                     cbLoaiphong.SelectedValue = Convert.ToInt32(row.Cells["IDDinhDang"].Value);
                 }
 
+                if (row.Cells["Trailer_Url"].Value != null)
+                    tbTrailer.Text = row.Cells["Trailer_Url"].Value.ToString();
+
+                //// Poster và ảnh nếu có
+                //if (row.Cells["Poster_Url"].Value != null)
+                //    tbPoster.Text = row.Cells["Poster_Url"].Value.ToString();
+
+                //if (row.Cells["Anh"].Value != null)
+                //    tbAnh.Text = row.Cells["Anh"].Value.ToString();
+
+
 
                 // Hiển thị ảnh
                 try
@@ -210,7 +223,53 @@ namespace OGC.Phim
             FrmThemPhim frmThemPhim = new FrmThemPhim();
             if (frmThemPhim.ShowDialog() == DialogResult.OK)
             {
-                LoadDanhSachPhim(); 
+                LoadDanhSachPhim();
+            }
+        }
+
+        private void btnXemTrailer_Click(object sender, EventArgs e)
+        {
+            string trailerPath = tbTrailer.Text.Trim();
+
+            if (!string.IsNullOrEmpty(trailerPath) && File.Exists(trailerPath))
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = trailerPath,
+                    UseShellExecute = true
+                });
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy trailer. Vui lòng kiểm tra lại đường dẫn.");
+            }
+        }
+
+        private void btnChonFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Video files (*.mp4;*.avi)|*.mp4;*.avi";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                tbTrailer.Text = ofd.FileName;
+            }
+        }
+
+        private void btnTaiAnh_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp|All Files|*.*";
+                openFileDialog.Title = "Chọn ảnh Poster";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = openFileDialog.FileName;
+
+                    // Hiển thị ảnh lên PictureBox
+                    AnhPhim.Image = Image.FromFile(filePath);
+
+                }
             }
         }
     }

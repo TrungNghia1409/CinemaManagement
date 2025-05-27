@@ -64,6 +64,11 @@
             panel3 = new Panel();
             tbTenPhim = new TextBox();
             label1 = new Label();
+            panel1 = new Panel();
+            btnChonFile = new Button();
+            btnXemTrailer = new Button();
+            tbTrailer = new TextBox();
+            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)AnhPhim).BeginInit();
             panel15.SuspendLayout();
             panel13.SuspendLayout();
@@ -76,6 +81,7 @@
             panel5.SuspendLayout();
             panel7.SuspendLayout();
             panel3.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // AnhPhim
@@ -89,7 +95,7 @@
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(405, 606);
+            btnThoat.Location = new Point(670, 475);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(94, 29);
             btnThoat.TabIndex = 14;
@@ -98,7 +104,7 @@
             // 
             // btnThemPhim
             // 
-            btnThemPhim.Location = new Point(281, 606);
+            btnThemPhim.Location = new Point(549, 475);
             btnThemPhim.Name = "btnThemPhim";
             btnThemPhim.Size = new Size(94, 29);
             btnThemPhim.TabIndex = 16;
@@ -123,6 +129,7 @@
             btnTaiAnh.TabIndex = 1;
             btnTaiAnh.Text = "Tải Ảnh";
             btnTaiAnh.UseVisualStyleBackColor = true;
+            btnTaiAnh.Click += btnTaiAnh_Click;
             // 
             // btnXoaAnh
             // 
@@ -137,9 +144,9 @@
             // 
             panel13.Controls.Add(tbMoTa);
             panel13.Controls.Add(label11);
-            panel13.Location = new Point(800, 12);
+            panel13.Location = new Point(475, 260);
             panel13.Name = "panel13";
-            panel13.Size = new Size(314, 264);
+            panel13.Size = new Size(319, 203);
             panel13.TabIndex = 4;
             // 
             // tbMoTa
@@ -147,7 +154,7 @@
             tbMoTa.Location = new Point(7, 35);
             tbMoTa.Multiline = true;
             tbMoTa.Name = "tbMoTa";
-            tbMoTa.Size = new Size(302, 226);
+            tbMoTa.Size = new Size(309, 159);
             tbMoTa.TabIndex = 1;
             // 
             // label11
@@ -163,9 +170,9 @@
             // 
             panel12.Controls.Add(dtpKhoiChieu);
             panel12.Controls.Add(label10);
-            panel12.Location = new Point(475, 508);
+            panel12.Location = new Point(807, 260);
             panel12.Name = "panel12";
-            panel12.Size = new Size(319, 78);
+            panel12.Size = new Size(321, 105);
             panel12.TabIndex = 5;
             // 
             // dtpKhoiChieu
@@ -188,7 +195,7 @@
             // 
             panel10.Controls.Add(cbTrangThai);
             panel10.Controls.Add(label8);
-            panel10.Location = new Point(475, 446);
+            panel10.Location = new Point(807, 198);
             panel10.Name = "panel10";
             panel10.Size = new Size(319, 56);
             panel10.TabIndex = 6;
@@ -239,7 +246,7 @@
             // 
             panel9.Controls.Add(cbTheLoaiPhim);
             panel9.Controls.Add(label7);
-            panel9.Location = new Point(475, 322);
+            panel9.Location = new Point(807, 74);
             panel9.Name = "panel9";
             panel9.Size = new Size(319, 56);
             panel9.TabIndex = 8;
@@ -290,7 +297,7 @@
             // 
             panel8.Controls.Add(cbLoaiphong);
             panel8.Controls.Add(label6);
-            panel8.Location = new Point(475, 384);
+            panel8.Location = new Point(807, 136);
             panel8.Name = "panel8";
             panel8.Size = new Size(319, 56);
             panel8.TabIndex = 10;
@@ -341,7 +348,7 @@
             // 
             panel7.Controls.Add(cbDoTuoi);
             panel7.Controls.Add(label5);
-            panel7.Location = new Point(475, 260);
+            panel7.Location = new Point(807, 12);
             panel7.Name = "panel7";
             panel7.Size = new Size(319, 56);
             panel7.TabIndex = 12;
@@ -389,11 +396,59 @@
             label1.TabIndex = 0;
             label1.Text = "Tên Phim";
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(btnChonFile);
+            panel1.Controls.Add(btnXemTrailer);
+            panel1.Controls.Add(tbTrailer);
+            panel1.Controls.Add(label9);
+            panel1.Location = new Point(805, 380);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(321, 83);
+            panel1.TabIndex = 17;
+            // 
+            // btnChonFile
+            // 
+            btnChonFile.Location = new Point(105, 38);
+            btnChonFile.Name = "btnChonFile";
+            btnChonFile.Size = new Size(94, 29);
+            btnChonFile.TabIndex = 3;
+            btnChonFile.Text = "Tải Trailer";
+            btnChonFile.UseVisualStyleBackColor = true;
+            btnChonFile.Click += btnChonFile_Click;
+            // 
+            // btnXemTrailer
+            // 
+            btnXemTrailer.Location = new Point(215, 39);
+            btnXemTrailer.Name = "btnXemTrailer";
+            btnXemTrailer.Size = new Size(94, 29);
+            btnXemTrailer.TabIndex = 2;
+            btnXemTrailer.Text = "Xem Trailer";
+            btnXemTrailer.UseVisualStyleBackColor = true;
+            btnXemTrailer.Click += btnXemTrailer_Click;
+            // 
+            // tbTrailer
+            // 
+            tbTrailer.Location = new Point(105, 6);
+            tbTrailer.Name = "tbTrailer";
+            tbTrailer.Size = new Size(213, 27);
+            tbTrailer.TabIndex = 1;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(7, 9);
+            label9.Name = "label9";
+            label9.Size = new Size(93, 20);
+            label9.TabIndex = 0;
+            label9.Text = "Video Trailer";
+            // 
             // FrmThemPhim
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1121, 744);
+            ClientSize = new Size(1137, 538);
+            Controls.Add(panel1);
             Controls.Add(AnhPhim);
             Controls.Add(btnThoat);
             Controls.Add(btnThemPhim);
@@ -432,6 +487,8 @@
             panel7.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -473,5 +530,10 @@
         private Panel panel3;
         private TextBox tbTenPhim;
         private Label label1;
+        private Panel panel1;
+        private Button btnChonFile;
+        private Button btnXemTrailer;
+        private TextBox tbTrailer;
+        private Label label9;
     }
 }

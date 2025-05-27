@@ -42,8 +42,8 @@ public class PhimDAO
     public bool InsertPhim(PhimDTO phim)
     { //nhớ bổ sung URL TRAILER, ANH vào câu lệnh SQl ở dòng 45 46
         string query = @"INSERT INTO PHIM 
-                        (TenPhim, DaoDien, DienVien, IDTheLoaiPhim, IDDinhDang, ThoiLuong, MoTa, NgayKhoiChieu, TrangThai, Trailer_Url, Poster_Url, Anh, IDDoTuoi)
-                        VALUES ( @TenPhim , @DaoDien , @DienVien , @IDTheLoaiPhim , @IDDinhDang , @ThoiLuong , @MoTa , @NgayKhoiChieu , @TrangThai , @Trailer_Url , @Poster_Url , @Anh ,   @IDDoTuoi )";
+                        (TenPhim, DaoDien, DienVien, IDTheLoaiPhim, IDDinhDang, ThoiLuong, MoTa, NgayKhoiChieu, TrangThai, Trailer_Url, Anh, IDDoTuoi)
+                        VALUES ( @TenPhim , @DaoDien , @DienVien , @IDTheLoaiPhim , @IDDinhDang , @ThoiLuong , @MoTa , @NgayKhoiChieu , @TrangThai , @Trailer_Url , @Anh ,  @IDDoTuoi )";
         int result = DataProvider.Instance.ExecuteNonQuery(query,
             new object[]
             {
@@ -51,13 +51,12 @@ public class PhimDAO
                 phim.DaoDien,
                 phim.DienVien,
                 phim.IDTheLoaiPhim,
-                phim.IDDinhDang = 1,
+                phim.IDDinhDang,
                 phim.ThoiLuong,
                 phim.MoTa,
                 phim.NgayKhoiChieu,
                 phim.TrangThai,
-                phim.Trailer_Url,     // đúng tên biến: @Trailer_Url
-                phim.Poster_Url,      // đúng tên biến: @Poster_Url
+                phim.Trailer_Url,  
                 phim.Anh,
                 phim.IDDoTuoi
             });
