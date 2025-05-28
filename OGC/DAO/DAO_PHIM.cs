@@ -70,16 +70,26 @@ public class PhimDAO
         string query = @"UPDATE PHIM SET 
                             TenPhim = @TenPhim , DaoDien = @DaoDien , DienVien = @DienVien ,
                             IDTheLoaiPhim = @IDTheLoaiPhim , IDDinhDang = @IDDinhDang ,
-                            ThoiLuong = @ThoiLuong , MoTa = @MoTa, NgayKhoiChieu = @NgayKhoiChieu ,
-                            TrangThai = @TrangThai , Trailer_Url = @Trailer , Poster_Url = @Poster , Anh = @Anh
-                         WHERE ID = @ID ";
+                            ThoiLuong = @ThoiLuong , MoTa = @MoTa , NgayKhoiChieu = @NgayKhoiChieu ,
+                            TrangThai = @TrangThai , Trailer_Url = @Trailer , Anh = @Anh 
+                             WHERE ID = @ID ";
         int result = DataProvider.Instance.ExecuteNonQuery(query,
             new object[]
             {
-                phim.TenPhim, phim.DaoDien, phim.DienVien, phim.IDTheLoaiPhim, phim.IDDinhDang,
-                phim.ThoiLuong, phim.MoTa, phim.NgayKhoiChieu, phim.TrangThai,
-                phim.Trailer_Url, phim.Poster_Url, phim.Anh, phim.ID
+                phim.TenPhim,
+                phim.DaoDien,
+                phim.DienVien,
+                phim.IDTheLoaiPhim,
+                phim.IDDinhDang,
+                phim.ThoiLuong,
+                phim.MoTa,
+                phim.NgayKhoiChieu,
+                phim.TrangThai,
+                phim.Trailer_Url,
+                string.IsNullOrEmpty(phim.Anh) ? (object)DBNull.Value : phim.Anh,
+                phim.ID
             });
+
 
         return result > 0;
     }
