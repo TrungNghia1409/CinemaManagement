@@ -30,15 +30,20 @@
         {
             panel2 = new Panel();
             panel1 = new Panel();
+            btnTaiAnh = new Button();
+            label13 = new Label();
+            btnXoaAnh = new Button();
             AnhPhim = new PictureBox();
             btnXoaPhim = new Button();
             btnSuaPhim = new Button();
             btnThemPhim = new Button();
-            panel15 = new Panel();
-            btnTaiAnh = new Button();
-            btnXoaAnh = new Button();
-            panel13 = new Panel();
+            panel16 = new Panel();
             tbMoTa = new TextBox();
+            label12 = new Label();
+            panel13 = new Panel();
+            btnChonFile = new Button();
+            btnXemTrailer = new Button();
+            tbTrailer = new TextBox();
             label11 = new Label();
             panel12 = new Panel();
             dtpKhoiChieu = new DateTimePicker();
@@ -74,7 +79,7 @@
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AnhPhim).BeginInit();
-            panel15.SuspendLayout();
+            panel16.SuspendLayout();
             panel13.SuspendLayout();
             panel12.SuspendLayout();
             panel10.SuspendLayout();
@@ -97,16 +102,23 @@
             panel2.Location = new Point(3, 3);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
+
             panel2.Size = new Size(1029, 502);
+
+            panel2.Size = new Size(1211, 689);
+
             panel2.TabIndex = 0;
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnTaiAnh);
+            panel1.Controls.Add(label13);
+            panel1.Controls.Add(btnXoaAnh);
             panel1.Controls.Add(AnhPhim);
             panel1.Controls.Add(btnXoaPhim);
             panel1.Controls.Add(btnSuaPhim);
             panel1.Controls.Add(btnThemPhim);
-            panel1.Controls.Add(panel15);
+            panel1.Controls.Add(panel16);
             panel1.Controls.Add(panel13);
             panel1.Controls.Add(panel12);
             panel1.Controls.Add(panel10);
@@ -117,26 +129,70 @@
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel3);
+
             panel1.Location = new Point(482, 6);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(544, 498);
+
+            panel1.Location = new Point(440, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(768, 679);
+
             panel1.TabIndex = 1;
+            // 
+            // btnTaiAnh
+            // 
+            btnTaiAnh.Location = new Point(566, 315);
+            btnTaiAnh.Name = "btnTaiAnh";
+            btnTaiAnh.Size = new Size(94, 29);
+            btnTaiAnh.TabIndex = 1;
+            btnTaiAnh.Text = "Tải Ảnh";
+            btnTaiAnh.UseVisualStyleBackColor = true;
+            btnTaiAnh.Click += btnTaiAnh_Click;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(328, 2);
+            label13.Name = "label13";
+            label13.Size = new Size(72, 20);
+            label13.TabIndex = 0;
+            label13.Text = "Ảnh Phim";
+            // 
+            // btnXoaAnh
+            // 
+            btnXoaAnh.Location = new Point(466, 315);
+            btnXoaAnh.Name = "btnXoaAnh";
+            btnXoaAnh.Size = new Size(94, 29);
+            btnXoaAnh.TabIndex = 1;
+            btnXoaAnh.Text = "Xóa Ảnh";
+            btnXoaAnh.UseVisualStyleBackColor = true;
             // 
             // AnhPhim
             // 
+
             AnhPhim.Location = new Point(284, 2);
             AnhPhim.Margin = new Padding(3, 2, 3, 2);
             AnhPhim.Name = "AnhPhim";
             AnhPhim.Size = new Size(260, 198);
+
+            AnhPhim.Location = new Point(328, 27);
+            AnhPhim.Name = "AnhPhim";
+            AnhPhim.Size = new Size(434, 282);
+
             AnhPhim.SizeMode = PictureBoxSizeMode.StretchImage;
             AnhPhim.TabIndex = 0;
             AnhPhim.TabStop = false;
             // 
             // btnXoaPhim
             // 
+
             btnXoaPhim.Location = new Point(200, 437);
             btnXoaPhim.Margin = new Padding(3, 2, 3, 2);
+
+            btnXoaPhim.Location = new Point(395, 603);
+
             btnXoaPhim.Name = "btnXoaPhim";
             btnXoaPhim.Size = new Size(82, 22);
             btnXoaPhim.TabIndex = 1;
@@ -146,8 +202,12 @@
             // 
             // btnSuaPhim
             // 
+
             btnSuaPhim.Location = new Point(99, 437);
             btnSuaPhim.Margin = new Padding(3, 2, 3, 2);
+
+            btnSuaPhim.Location = new Point(281, 603);
+
             btnSuaPhim.Name = "btnSuaPhim";
             btnSuaPhim.Size = new Size(82, 22);
             btnSuaPhim.TabIndex = 1;
@@ -156,8 +216,11 @@
             // 
             // btnThemPhim
             // 
+
             btnThemPhim.Location = new Point(3, 437);
             btnThemPhim.Margin = new Padding(3, 2, 3, 2);
+
+            btnThemPhim.Location = new Point(166, 603);
             btnThemPhim.Name = "btnThemPhim";
             btnThemPhim.Size = new Size(82, 22);
             btnThemPhim.TabIndex = 1;
@@ -165,15 +228,16 @@
             btnThemPhim.UseVisualStyleBackColor = true;
             btnThemPhim.Click += btnThemPhim_Click;
             // 
-            // panel15
+            // panel16
             // 
-            panel15.Controls.Add(btnTaiAnh);
-            panel15.Controls.Add(btnXoaAnh);
-            panel15.Location = new Point(284, 202);
-            panel15.Margin = new Padding(3, 2, 3, 2);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(257, 26);
-            panel15.TabIndex = 0;
+
+            //panel15.Controls.Add(btnTaiAnh);
+            //panel15.Controls.Add(btnXoaAnh);
+            //panel15.Location = new Point(284, 202);
+            //panel15.Margin = new Padding(3, 2, 3, 2);
+            //panel15.Name = "panel15";
+            //panel15.Size = new Size(257, 26);
+            //panel15.TabIndex = 0;
             // 
             // btnTaiAnh
             // 
@@ -204,6 +268,14 @@
             panel13.Name = "panel13";
             panel13.Size = new Size(260, 200);
             panel13.TabIndex = 0;
+
+            panel16.Controls.Add(tbMoTa);
+            panel16.Controls.Add(label12);
+            panel16.Location = new Point(328, 437);
+            panel16.Name = "panel16";
+            panel16.Size = new Size(437, 160);
+            panel16.TabIndex = 0;
+
             // 
             // tbMoTa
             // 
@@ -211,17 +283,74 @@
             tbMoTa.Margin = new Padding(3, 2, 3, 2);
             tbMoTa.Multiline = true;
             tbMoTa.Name = "tbMoTa";
+
             tbMoTa.Size = new Size(247, 178);
+
+            tbMoTa.Size = new Size(427, 210);
+
             tbMoTa.TabIndex = 1;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(7, 2);
+            label12.Name = "label12";
+            label12.Size = new Size(51, 20);
+            label12.TabIndex = 0;
+            label12.Text = "Mô Tả";
+            // 
+            // panel13
+            // 
+            panel13.Controls.Add(btnChonFile);
+            panel13.Controls.Add(btnXemTrailer);
+            panel13.Controls.Add(tbTrailer);
+            panel13.Controls.Add(label11);
+            panel13.Location = new Point(328, 353);
+            panel13.Name = "panel13";
+            panel13.Size = new Size(437, 83);
+            panel13.TabIndex = 0;
+            // 
+            // btnChonFile
+            // 
+            btnChonFile.Location = new Point(138, 39);
+            btnChonFile.Name = "btnChonFile";
+            btnChonFile.Size = new Size(94, 29);
+            btnChonFile.TabIndex = 3;
+            btnChonFile.Text = "Tải Trailer";
+            btnChonFile.UseVisualStyleBackColor = true;
+            btnChonFile.Click += btnChonFile_Click;
+            // 
+            // btnXemTrailer
+            // 
+            btnXemTrailer.Location = new Point(238, 39);
+            btnXemTrailer.Name = "btnXemTrailer";
+            btnXemTrailer.Size = new Size(94, 29);
+            btnXemTrailer.TabIndex = 2;
+            btnXemTrailer.Text = "Xem Trailer";
+            btnXemTrailer.UseVisualStyleBackColor = true;
+            btnXemTrailer.Click += btnXemTrailer_Click;
+            // 
+            // tbTrailer
+            // 
+            tbTrailer.Location = new Point(105, 6);
+            tbTrailer.Name = "tbTrailer";
+            tbTrailer.Size = new Size(329, 27);
+            tbTrailer.TabIndex = 1;
             // 
             // label11
             // 
             label11.AutoSize = true;
+
             label11.Location = new Point(6, 2);
             label11.Name = "label11";
             label11.Size = new Size(40, 15);
+
+            label11.Location = new Point(7, 9);
+            label11.Name = "label11";
+            label11.Size = new Size(93, 20);
+
             label11.TabIndex = 0;
-            label11.Text = "Mô Tả";
+            label11.Text = "Video Trailer";
             // 
             // panel12
             // 
@@ -230,7 +359,11 @@
             panel12.Location = new Point(3, 374);
             panel12.Margin = new Padding(3, 2, 3, 2);
             panel12.Name = "panel12";
+
             panel12.Size = new Size(279, 58);
+
+            panel12.Size = new Size(319, 98);
+
             panel12.TabIndex = 0;
             // 
             // dtpKhoiChieu
@@ -238,7 +371,11 @@
             dtpKhoiChieu.Location = new Point(6, 30);
             dtpKhoiChieu.Margin = new Padding(3, 2, 3, 2);
             dtpKhoiChieu.Name = "dtpKhoiChieu";
+
             dtpKhoiChieu.Size = new Size(237, 23);
+
+            dtpKhoiChieu.Size = new Size(306, 27);
+
             dtpKhoiChieu.TabIndex = 1;
             // 
             // label10
@@ -478,7 +615,11 @@
             dtgvPhim.Margin = new Padding(3, 2, 3, 2);
             dtgvPhim.Name = "dtgvPhim";
             dtgvPhim.RowHeadersWidth = 51;
+
             dtgvPhim.Size = new Size(474, 498);
+
+            dtgvPhim.Size = new Size(431, 679);
+
             dtgvPhim.TabIndex = 0;
             // 
             // panel11
@@ -512,7 +653,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+
             ClientSize = new Size(1032, 506);
+
+            ClientSize = new Size(1226, 697);
+
             Controls.Add(panel2);
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmQuanLyPhim";
@@ -520,8 +665,10 @@
             Text = "QuanLyPhim";
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)AnhPhim).EndInit();
-            panel15.ResumeLayout(false);
+            panel16.ResumeLayout(false);
+            panel16.PerformLayout();
             panel13.ResumeLayout(false);
             panel13.PerformLayout();
             panel12.ResumeLayout(false);
@@ -552,7 +699,6 @@
         private Panel panel2;
         private DataGridView dtgvPhim;
         private Panel panel1;
-        private Panel panel15;
         private Panel panel3;
         private Label label1;
         private Panel panel4;
@@ -572,7 +718,6 @@
         private Panel panel7;
         private Label label5;
         private Panel panel13;
-        private TextBox tbMoTa;
         private Label label11;
         private Panel panel12;
         private Label label10;
@@ -592,5 +737,12 @@
         private Button btnXoaAnh;
         private Button btnTaiAnh;
         private DateTimePicker dtpKhoiChieu;
+        private Panel panel16;
+        private TextBox tbMoTa;
+        private Label label12;
+        private Label label13;
+        private Button btnXemTrailer;
+        private TextBox tbTrailer;
+        private Button btnChonFile;
     }
 }
