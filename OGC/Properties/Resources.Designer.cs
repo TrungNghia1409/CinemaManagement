@@ -153,6 +153,16 @@ namespace OGC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap film1 {
+            get {
+                object obj = ResourceManager.GetObject("film1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap food {
             get {
                 object obj = ResourceManager.GetObject("food", resourceCulture);
@@ -173,6 +183,16 @@ namespace OGC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lichchieu {
+            get {
+                object obj = ResourceManager.GetObject("lichchieu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Logo {
             get {
                 object obj = ResourceManager.GetObject("Logo", resourceCulture);
@@ -186,6 +206,16 @@ namespace OGC.Properties {
         internal static System.Drawing.Bitmap password {
             get {
                 object obj = ResourceManager.GetObject("password", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap phongchieu {
+            get {
+                object obj = ResourceManager.GetObject("phongchieu", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -216,6 +246,26 @@ namespace OGC.Properties {
         internal static System.Drawing.Bitmap theloaiphim {
             get {
                 object obj = ResourceManager.GetObject("theloaiphim", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap thuoctinh {
+            get {
+                object obj = ResourceManager.GetObject("thuoctinh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap thuoctinh1 {
+            get {
+                object obj = ResourceManager.GetObject("thuoctinh1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
