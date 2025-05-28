@@ -32,14 +32,11 @@
             panel1 = new Panel();
             btnTaiAnh = new Button();
             label13 = new Label();
-            btnXoaAnh = new Button();
-            AnhPhim = new PictureBox();
-            btnXoaPhim = new Button();
-            btnSuaPhim = new Button();
-            btnThemPhim = new Button();
             panel16 = new Panel();
             tbMoTa = new TextBox();
             label12 = new Label();
+            btnXoaAnh = new Button();
+            AnhPhim = new PictureBox();
             panel13 = new Panel();
             btnChonFile = new Button();
             btnXemTrailer = new Button();
@@ -73,13 +70,13 @@
             tbTenPhim = new TextBox();
             label1 = new Label();
             dtgvPhim = new DataGridView();
-            panel11 = new Panel();
-            textBox9 = new TextBox();
-            label9 = new Label();
+            btnThemPhim = new Button();
+            btnSuaPhim = new Button();
+            btnXoaPhim = new Button();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)AnhPhim).BeginInit();
             panel16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)AnhPhim).BeginInit();
             panel13.SuspendLayout();
             panel12.SuspendLayout();
             panel10.SuspendLayout();
@@ -91,34 +88,27 @@
             panel7.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvPhim).BeginInit();
-            panel11.SuspendLayout();
             SuspendLayout();
             // 
             // panel2
             // 
             panel2.Controls.Add(panel1);
             panel2.Controls.Add(dtgvPhim);
-            panel2.Controls.Add(panel11);
-            panel2.Location = new Point(3, 3);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Controls.Add(btnThemPhim);
+            panel2.Controls.Add(btnSuaPhim);
+            panel2.Controls.Add(btnXoaPhim);
+            panel2.Location = new Point(0, 2);
             panel2.Name = "panel2";
-
-            panel2.Size = new Size(1029, 502);
-
-            panel2.Size = new Size(1211, 689);
-
+            panel2.Size = new Size(1225, 648);
             panel2.TabIndex = 0;
             // 
             // panel1
             // 
             panel1.Controls.Add(btnTaiAnh);
             panel1.Controls.Add(label13);
+            panel1.Controls.Add(panel16);
             panel1.Controls.Add(btnXoaAnh);
             panel1.Controls.Add(AnhPhim);
-            panel1.Controls.Add(btnXoaPhim);
-            panel1.Controls.Add(btnSuaPhim);
-            panel1.Controls.Add(btnThemPhim);
-            panel1.Controls.Add(panel16);
             panel1.Controls.Add(panel13);
             panel1.Controls.Add(panel12);
             panel1.Controls.Add(panel10);
@@ -129,23 +119,16 @@
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel3);
-
-            panel1.Location = new Point(482, 6);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(503, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(544, 498);
-
-            panel1.Location = new Point(440, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(768, 679);
-
+            panel1.Size = new Size(716, 595);
             panel1.TabIndex = 1;
             // 
             // btnTaiAnh
             // 
-            btnTaiAnh.Location = new Point(566, 315);
+            btnTaiAnh.Location = new Point(448, 265);
             btnTaiAnh.Name = "btnTaiAnh";
-            btnTaiAnh.Size = new Size(94, 29);
+            btnTaiAnh.Size = new Size(107, 29);
             btnTaiAnh.TabIndex = 1;
             btnTaiAnh.Text = "Tải Ảnh";
             btnTaiAnh.UseVisualStyleBackColor = true;
@@ -154,150 +137,56 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(328, 2);
+            label13.Location = new Point(339, 3);
             label13.Name = "label13";
             label13.Size = new Size(72, 20);
             label13.TabIndex = 0;
             label13.Text = "Ảnh Phim";
             // 
+            // panel16
+            // 
+            panel16.Controls.Add(tbMoTa);
+            panel16.Controls.Add(label12);
+            panel16.Location = new Point(331, 419);
+            panel16.Margin = new Padding(3, 4, 3, 4);
+            panel16.Name = "panel16";
+            panel16.Size = new Size(376, 169);
+            panel16.TabIndex = 0;
+            // 
+            // tbMoTa
+            // 
+            tbMoTa.Location = new Point(3, 26);
+            tbMoTa.Multiline = true;
+            tbMoTa.Name = "tbMoTa";
+            tbMoTa.Size = new Size(370, 140);
+            tbMoTa.TabIndex = 1;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(8, 3);
+            label12.Name = "label12";
+            label12.Size = new Size(51, 20);
+            label12.TabIndex = 0;
+            label12.Text = "Mô Tả";
+            // 
             // btnXoaAnh
             // 
-            btnXoaAnh.Location = new Point(466, 315);
+            btnXoaAnh.Location = new Point(580, 266);
             btnXoaAnh.Name = "btnXoaAnh";
-            btnXoaAnh.Size = new Size(94, 29);
+            btnXoaAnh.Size = new Size(107, 29);
             btnXoaAnh.TabIndex = 1;
             btnXoaAnh.Text = "Xóa Ảnh";
             btnXoaAnh.UseVisualStyleBackColor = true;
             // 
             // AnhPhim
             // 
-
-            AnhPhim.Location = new Point(284, 2);
-            AnhPhim.Margin = new Padding(3, 2, 3, 2);
+            AnhPhim.Location = new Point(331, 26);
             AnhPhim.Name = "AnhPhim";
-            AnhPhim.Size = new Size(260, 198);
-
-            AnhPhim.Location = new Point(328, 27);
-            AnhPhim.Name = "AnhPhim";
-            AnhPhim.Size = new Size(434, 282);
-
+            AnhPhim.Size = new Size(376, 236);
             AnhPhim.SizeMode = PictureBoxSizeMode.StretchImage;
             AnhPhim.TabIndex = 0;
             AnhPhim.TabStop = false;
-            // 
-            // btnXoaPhim
-            // 
-
-            btnXoaPhim.Location = new Point(200, 437);
-            btnXoaPhim.Margin = new Padding(3, 2, 3, 2);
-
-            btnXoaPhim.Location = new Point(395, 603);
-
-            btnXoaPhim.Name = "btnXoaPhim";
-            btnXoaPhim.Size = new Size(82, 22);
-            btnXoaPhim.TabIndex = 1;
-            btnXoaPhim.Text = "Xóa Phim";
-            btnXoaPhim.UseVisualStyleBackColor = true;
-            btnXoaPhim.Click += btnXoaPhim_Click;
-            // 
-            // btnSuaPhim
-            // 
-
-            btnSuaPhim.Location = new Point(99, 437);
-            btnSuaPhim.Margin = new Padding(3, 2, 3, 2);
-
-            btnSuaPhim.Location = new Point(281, 603);
-
-            btnSuaPhim.Name = "btnSuaPhim";
-            btnSuaPhim.Size = new Size(82, 22);
-            btnSuaPhim.TabIndex = 1;
-            btnSuaPhim.Text = "Sửa Phim";
-            btnSuaPhim.UseVisualStyleBackColor = true;
-            // 
-            // btnThemPhim
-            // 
-
-            btnThemPhim.Location = new Point(3, 437);
-            btnThemPhim.Margin = new Padding(3, 2, 3, 2);
-
-            btnThemPhim.Location = new Point(166, 603);
-            btnThemPhim.Name = "btnThemPhim";
-            btnThemPhim.Size = new Size(82, 22);
-            btnThemPhim.TabIndex = 1;
-            btnThemPhim.Text = "Thêm Phim";
-            btnThemPhim.UseVisualStyleBackColor = true;
-            btnThemPhim.Click += btnThemPhim_Click;
-            // 
-            // panel16
-            // 
-
-            //panel15.Controls.Add(btnTaiAnh);
-            //panel15.Controls.Add(btnXoaAnh);
-            //panel15.Location = new Point(284, 202);
-            //panel15.Margin = new Padding(3, 2, 3, 2);
-            //panel15.Name = "panel15";
-            //panel15.Size = new Size(257, 26);
-            //panel15.TabIndex = 0;
-            // 
-            // btnTaiAnh
-            // 
-            btnTaiAnh.Location = new Point(156, 2);
-            btnTaiAnh.Margin = new Padding(3, 2, 3, 2);
-            btnTaiAnh.Name = "btnTaiAnh";
-            btnTaiAnh.Size = new Size(82, 22);
-            btnTaiAnh.TabIndex = 1;
-            btnTaiAnh.Text = "Tải Ảnh";
-            btnTaiAnh.UseVisualStyleBackColor = true;
-            // 
-            // btnXoaAnh
-            // 
-            btnXoaAnh.Location = new Point(6, 2);
-            btnXoaAnh.Margin = new Padding(3, 2, 3, 2);
-            btnXoaAnh.Name = "btnXoaAnh";
-            btnXoaAnh.Size = new Size(82, 22);
-            btnXoaAnh.TabIndex = 1;
-            btnXoaAnh.Text = "Xóa Ảnh";
-            btnXoaAnh.UseVisualStyleBackColor = true;
-            // 
-            // panel13
-            // 
-            panel13.Controls.Add(tbMoTa);
-            panel13.Controls.Add(label11);
-            panel13.Location = new Point(284, 233);
-            panel13.Margin = new Padding(3, 2, 3, 2);
-            panel13.Name = "panel13";
-            panel13.Size = new Size(260, 200);
-            panel13.TabIndex = 0;
-
-            panel16.Controls.Add(tbMoTa);
-            panel16.Controls.Add(label12);
-            panel16.Location = new Point(328, 437);
-            panel16.Name = "panel16";
-            panel16.Size = new Size(437, 160);
-            panel16.TabIndex = 0;
-
-            // 
-            // tbMoTa
-            // 
-            tbMoTa.Location = new Point(6, 19);
-            tbMoTa.Margin = new Padding(3, 2, 3, 2);
-            tbMoTa.Multiline = true;
-            tbMoTa.Name = "tbMoTa";
-
-            tbMoTa.Size = new Size(247, 178);
-
-            tbMoTa.Size = new Size(427, 210);
-
-            tbMoTa.TabIndex = 1;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(7, 2);
-            label12.Name = "label12";
-            label12.Size = new Size(51, 20);
-            label12.TabIndex = 0;
-            label12.Text = "Mô Tả";
             // 
             // panel13
             // 
@@ -305,16 +194,17 @@
             panel13.Controls.Add(btnXemTrailer);
             panel13.Controls.Add(tbTrailer);
             panel13.Controls.Add(label11);
-            panel13.Location = new Point(328, 353);
+            panel13.Location = new Point(331, 301);
             panel13.Name = "panel13";
-            panel13.Size = new Size(437, 83);
+            panel13.Size = new Size(376, 111);
             panel13.TabIndex = 0;
             // 
             // btnChonFile
             // 
-            btnChonFile.Location = new Point(138, 39);
+            btnChonFile.Location = new Point(120, 52);
+            btnChonFile.Margin = new Padding(3, 4, 3, 4);
             btnChonFile.Name = "btnChonFile";
-            btnChonFile.Size = new Size(94, 29);
+            btnChonFile.Size = new Size(107, 39);
             btnChonFile.TabIndex = 3;
             btnChonFile.Text = "Tải Trailer";
             btnChonFile.UseVisualStyleBackColor = true;
@@ -322,9 +212,10 @@
             // 
             // btnXemTrailer
             // 
-            btnXemTrailer.Location = new Point(238, 39);
+            btnXemTrailer.Location = new Point(252, 52);
+            btnXemTrailer.Margin = new Padding(3, 4, 3, 4);
             btnXemTrailer.Name = "btnXemTrailer";
-            btnXemTrailer.Size = new Size(94, 29);
+            btnXemTrailer.Size = new Size(107, 39);
             btnXemTrailer.TabIndex = 2;
             btnXemTrailer.Text = "Xem Trailer";
             btnXemTrailer.UseVisualStyleBackColor = true;
@@ -332,23 +223,18 @@
             // 
             // tbTrailer
             // 
-            tbTrailer.Location = new Point(105, 6);
+            tbTrailer.Location = new Point(120, 8);
+            tbTrailer.Margin = new Padding(3, 4, 3, 4);
             tbTrailer.Name = "tbTrailer";
-            tbTrailer.Size = new Size(329, 27);
+            tbTrailer.Size = new Size(250, 27);
             tbTrailer.TabIndex = 1;
             // 
             // label11
             // 
             label11.AutoSize = true;
-
-            label11.Location = new Point(6, 2);
-            label11.Name = "label11";
-            label11.Size = new Size(40, 15);
-
-            label11.Location = new Point(7, 9);
+            label11.Location = new Point(8, 12);
             label11.Name = "label11";
             label11.Size = new Size(93, 20);
-
             label11.TabIndex = 0;
             label11.Text = "Video Trailer";
             // 
@@ -356,34 +242,24 @@
             // 
             panel12.Controls.Add(dtpKhoiChieu);
             panel12.Controls.Add(label10);
-            panel12.Location = new Point(3, 374);
-            panel12.Margin = new Padding(3, 2, 3, 2);
+            panel12.Location = new Point(3, 499);
             panel12.Name = "panel12";
-
-            panel12.Size = new Size(279, 58);
-
-            panel12.Size = new Size(319, 98);
-
+            panel12.Size = new Size(319, 89);
             panel12.TabIndex = 0;
             // 
             // dtpKhoiChieu
             // 
-            dtpKhoiChieu.Location = new Point(6, 30);
-            dtpKhoiChieu.Margin = new Padding(3, 2, 3, 2);
+            dtpKhoiChieu.Location = new Point(7, 40);
             dtpKhoiChieu.Name = "dtpKhoiChieu";
-
-            dtpKhoiChieu.Size = new Size(237, 23);
-
             dtpKhoiChieu.Size = new Size(306, 27);
-
             dtpKhoiChieu.TabIndex = 1;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(6, 11);
+            label10.Location = new Point(7, 15);
             label10.Name = "label10";
-            label10.Size = new Size(96, 15);
+            label10.Size = new Size(119, 20);
             label10.TabIndex = 0;
             label10.Text = "Ngày Khởi Chiếu";
             // 
@@ -391,27 +267,25 @@
             // 
             panel10.Controls.Add(cbTrangThai);
             panel10.Controls.Add(label8);
-            panel10.Location = new Point(3, 328);
-            panel10.Margin = new Padding(3, 2, 3, 2);
+            panel10.Location = new Point(3, 437);
             panel10.Name = "panel10";
-            panel10.Size = new Size(279, 42);
+            panel10.Size = new Size(319, 56);
             panel10.TabIndex = 0;
             // 
             // cbTrangThai
             // 
             cbTrangThai.FormattingEnabled = true;
-            cbTrangThai.Location = new Point(74, 9);
-            cbTrangThai.Margin = new Padding(3, 2, 3, 2);
+            cbTrangThai.Location = new Point(85, 12);
             cbTrangThai.Name = "cbTrangThai";
-            cbTrangThai.Size = new Size(200, 23);
+            cbTrangThai.Size = new Size(228, 28);
             cbTrangThai.TabIndex = 1;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(6, 11);
+            label8.Location = new Point(7, 15);
             label8.Name = "label8";
-            label8.Size = new Size(61, 15);
+            label8.Size = new Size(78, 20);
             label8.TabIndex = 0;
             label8.Text = "Trạng Thái";
             // 
@@ -419,26 +293,24 @@
             // 
             panel6.Controls.Add(tbDienVien);
             panel6.Controls.Add(label4);
-            panel6.Location = new Point(3, 142);
-            panel6.Margin = new Padding(3, 2, 3, 2);
+            panel6.Location = new Point(3, 189);
             panel6.Name = "panel6";
-            panel6.Size = new Size(279, 42);
+            panel6.Size = new Size(319, 56);
             panel6.TabIndex = 0;
             // 
             // tbDienVien
             // 
-            tbDienVien.Location = new Point(74, 9);
-            tbDienVien.Margin = new Padding(3, 2, 3, 2);
+            tbDienVien.Location = new Point(85, 12);
             tbDienVien.Name = "tbDienVien";
-            tbDienVien.Size = new Size(203, 23);
+            tbDienVien.Size = new Size(231, 27);
             tbDienVien.TabIndex = 1;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 11);
+            label4.Location = new Point(7, 15);
             label4.Name = "label4";
-            label4.Size = new Size(57, 15);
+            label4.Size = new Size(73, 20);
             label4.TabIndex = 0;
             label4.Text = "Diễn Viên";
             // 
@@ -446,27 +318,25 @@
             // 
             panel9.Controls.Add(cbTheLoaiPhim);
             panel9.Controls.Add(label7);
-            panel9.Location = new Point(3, 235);
-            panel9.Margin = new Padding(3, 2, 3, 2);
+            panel9.Location = new Point(3, 313);
             panel9.Name = "panel9";
-            panel9.Size = new Size(279, 42);
+            panel9.Size = new Size(319, 56);
             panel9.TabIndex = 0;
             // 
             // cbTheLoaiPhim
             // 
             cbTheLoaiPhim.FormattingEnabled = true;
-            cbTheLoaiPhim.Location = new Point(74, 9);
-            cbTheLoaiPhim.Margin = new Padding(3, 2, 3, 2);
+            cbTheLoaiPhim.Location = new Point(85, 12);
             cbTheLoaiPhim.Name = "cbTheLoaiPhim";
-            cbTheLoaiPhim.Size = new Size(200, 23);
+            cbTheLoaiPhim.Size = new Size(228, 28);
             cbTheLoaiPhim.TabIndex = 1;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(3, 11);
+            label7.Location = new Point(3, 15);
             label7.Name = "label7";
-            label7.Size = new Size(51, 15);
+            label7.Size = new Size(65, 20);
             label7.TabIndex = 0;
             label7.Text = "Thể Loại";
             // 
@@ -474,26 +344,24 @@
             // 
             panel4.Controls.Add(tbThoiLuong);
             panel4.Controls.Add(label2);
-            panel4.Location = new Point(3, 49);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(3, 65);
             panel4.Name = "panel4";
-            panel4.Size = new Size(279, 42);
+            panel4.Size = new Size(319, 56);
             panel4.TabIndex = 0;
             // 
             // tbThoiLuong
             // 
-            tbThoiLuong.Location = new Point(74, 9);
-            tbThoiLuong.Margin = new Padding(3, 2, 3, 2);
+            tbThoiLuong.Location = new Point(85, 12);
             tbThoiLuong.Name = "tbThoiLuong";
-            tbThoiLuong.Size = new Size(203, 23);
+            tbThoiLuong.Size = new Size(231, 27);
             tbThoiLuong.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 11);
+            label2.Location = new Point(3, 15);
             label2.Name = "label2";
-            label2.Size = new Size(67, 15);
+            label2.Size = new Size(84, 20);
             label2.TabIndex = 0;
             label2.Text = "Thời Lượng";
             // 
@@ -501,27 +369,25 @@
             // 
             panel8.Controls.Add(cbLoaiphong);
             panel8.Controls.Add(label6);
-            panel8.Location = new Point(3, 281);
-            panel8.Margin = new Padding(3, 2, 3, 2);
+            panel8.Location = new Point(3, 375);
             panel8.Name = "panel8";
-            panel8.Size = new Size(279, 42);
+            panel8.Size = new Size(319, 56);
             panel8.TabIndex = 0;
             // 
             // cbLoaiphong
             // 
             cbLoaiphong.FormattingEnabled = true;
-            cbLoaiphong.Location = new Point(74, 9);
-            cbLoaiphong.Margin = new Padding(3, 2, 3, 2);
+            cbLoaiphong.Location = new Point(85, 12);
             cbLoaiphong.Name = "cbLoaiphong";
-            cbLoaiphong.Size = new Size(200, 23);
+            cbLoaiphong.Size = new Size(228, 28);
             cbLoaiphong.TabIndex = 1;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(3, 11);
+            label6.Location = new Point(3, 15);
             label6.Name = "label6";
-            label6.Size = new Size(67, 15);
+            label6.Size = new Size(83, 20);
             label6.TabIndex = 0;
             label6.Text = "Loại Phòng";
             // 
@@ -529,26 +395,24 @@
             // 
             panel5.Controls.Add(tbDaoDien);
             panel5.Controls.Add(label3);
-            panel5.Location = new Point(3, 95);
-            panel5.Margin = new Padding(3, 2, 3, 2);
+            panel5.Location = new Point(3, 127);
             panel5.Name = "panel5";
-            panel5.Size = new Size(279, 42);
+            panel5.Size = new Size(319, 56);
             panel5.TabIndex = 0;
             // 
             // tbDaoDien
             // 
-            tbDaoDien.Location = new Point(74, 9);
-            tbDaoDien.Margin = new Padding(3, 2, 3, 2);
+            tbDaoDien.Location = new Point(85, 12);
             tbDaoDien.Name = "tbDaoDien";
-            tbDaoDien.Size = new Size(203, 23);
+            tbDaoDien.Size = new Size(231, 27);
             tbDaoDien.TabIndex = 1;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 11);
+            label3.Location = new Point(7, 15);
             label3.Name = "label3";
-            label3.Size = new Size(55, 15);
+            label3.Size = new Size(72, 20);
             label3.TabIndex = 0;
             label3.Text = "Đạo Diễn";
             // 
@@ -556,27 +420,25 @@
             // 
             panel7.Controls.Add(cbDoTuoi);
             panel7.Controls.Add(label5);
-            panel7.Location = new Point(3, 188);
-            panel7.Margin = new Padding(3, 2, 3, 2);
+            panel7.Location = new Point(3, 251);
             panel7.Name = "panel7";
-            panel7.Size = new Size(279, 42);
+            panel7.Size = new Size(319, 56);
             panel7.TabIndex = 0;
             // 
             // cbDoTuoi
             // 
             cbDoTuoi.FormattingEnabled = true;
-            cbDoTuoi.Location = new Point(74, 11);
-            cbDoTuoi.Margin = new Padding(3, 2, 3, 2);
+            cbDoTuoi.Location = new Point(85, 15);
             cbDoTuoi.Name = "cbDoTuoi";
-            cbDoTuoi.Size = new Size(200, 23);
+            cbDoTuoi.Size = new Size(228, 28);
             cbDoTuoi.TabIndex = 1;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(6, 14);
+            label5.Location = new Point(7, 19);
             label5.Name = "label5";
-            label5.Size = new Size(48, 15);
+            label5.Size = new Size(62, 20);
             label5.TabIndex = 0;
             label5.Text = "Độ Tuổi";
             // 
@@ -584,26 +446,24 @@
             // 
             panel3.Controls.Add(tbTenPhim);
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(3, 2);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(279, 42);
+            panel3.Size = new Size(319, 56);
             panel3.TabIndex = 0;
             // 
             // tbTenPhim
             // 
-            tbTenPhim.Location = new Point(74, 9);
-            tbTenPhim.Margin = new Padding(3, 2, 3, 2);
+            tbTenPhim.Location = new Point(85, 12);
             tbTenPhim.Name = "tbTenPhim";
-            tbTenPhim.Size = new Size(203, 23);
+            tbTenPhim.Size = new Size(231, 27);
             tbTenPhim.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 14);
+            label1.Location = new Point(7, 19);
             label1.Name = "label1";
-            label1.Size = new Size(56, 15);
+            label1.Size = new Size(69, 20);
             label1.TabIndex = 0;
             label1.Text = "Tên Phim";
             // 
@@ -611,64 +471,57 @@
             // 
             dtgvPhim.BorderStyle = BorderStyle.Fixed3D;
             dtgvPhim.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvPhim.Location = new Point(3, 2);
-            dtgvPhim.Margin = new Padding(3, 2, 3, 2);
+            dtgvPhim.Location = new Point(4, 4);
             dtgvPhim.Name = "dtgvPhim";
             dtgvPhim.RowHeadersWidth = 51;
-
-            dtgvPhim.Size = new Size(474, 498);
-
-            dtgvPhim.Size = new Size(431, 679);
-
+            dtgvPhim.Size = new Size(493, 595);
             dtgvPhim.TabIndex = 0;
             // 
-            // panel11
+            // btnThemPhim
             // 
-            panel11.Controls.Add(textBox9);
-            panel11.Controls.Add(label9);
-            panel11.Location = new Point(482, 376);
-            panel11.Margin = new Padding(3, 2, 3, 2);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(279, 42);
-            panel11.TabIndex = 0;
+            btnThemPhim.Location = new Point(649, 607);
+            btnThemPhim.Name = "btnThemPhim";
+            btnThemPhim.Size = new Size(94, 29);
+            btnThemPhim.TabIndex = 1;
+            btnThemPhim.Text = "Thêm Phim";
+            btnThemPhim.UseVisualStyleBackColor = true;
+            btnThemPhim.Click += btnThemPhim_Click;
             // 
-            // textBox9
+            // btnSuaPhim
             // 
-            textBox9.Location = new Point(74, 9);
-            textBox9.Margin = new Padding(3, 2, 3, 2);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(203, 23);
-            textBox9.TabIndex = 1;
+            btnSuaPhim.Location = new Point(749, 607);
+            btnSuaPhim.Name = "btnSuaPhim";
+            btnSuaPhim.Size = new Size(94, 29);
+            btnSuaPhim.TabIndex = 1;
+            btnSuaPhim.Text = "Sửa Phim";
+            btnSuaPhim.UseVisualStyleBackColor = true;
+            btnSuaPhim.Click += btnSuaPhim_Click;
             // 
-            // label9
+            // btnXoaPhim
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(6, 11);
-            label9.Name = "label9";
-            label9.Size = new Size(61, 15);
-            label9.TabIndex = 0;
-            label9.Text = "Trạng Thái";
+            btnXoaPhim.Location = new Point(849, 607);
+            btnXoaPhim.Name = "btnXoaPhim";
+            btnXoaPhim.Size = new Size(94, 29);
+            btnXoaPhim.TabIndex = 1;
+            btnXoaPhim.Text = "Xóa Phim";
+            btnXoaPhim.UseVisualStyleBackColor = true;
+            btnXoaPhim.Click += btnXoaPhim_Click;
             // 
             // frmQuanLyPhim
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-
-            ClientSize = new Size(1032, 506);
-
-            ClientSize = new Size(1226, 697);
-
+            ClientSize = new Size(1225, 650);
             Controls.Add(panel2);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "frmQuanLyPhim";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "QuanLyPhim";
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)AnhPhim).EndInit();
             panel16.ResumeLayout(false);
             panel16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)AnhPhim).EndInit();
             panel13.ResumeLayout(false);
             panel13.PerformLayout();
             panel12.ResumeLayout(false);
@@ -690,8 +543,6 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvPhim).EndInit();
-            panel11.ResumeLayout(false);
-            panel11.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -721,9 +572,6 @@
         private Label label11;
         private Panel panel12;
         private Label label10;
-        private Panel panel11;
-        private TextBox textBox9;
-        private Label label9;
         private ComboBox cbLoaiphong;
         private ComboBox cbDoTuoi;
         private ComboBox cbTrangThai;
