@@ -125,6 +125,52 @@ namespace OGC.ThongKe
 
         #endregion
 
+        #region sự kiện gọi form
+        private void btnForm_DoanhThu_Click(object sender, EventArgs e)
+        {
+            frmThongKeDoanhThu f = new frmThongKeDoanhThu();
+            f.ShowDialog();
+        }
+        private void btnForm_Ve_Click(object sender, EventArgs e)
+        {
+            frmThongKeVe f = new frmThongKeVe();
+            f.ShowDialog();
+        }
+        private void btnForm_KhachHang_Click(object sender, EventArgs e)
+        {
+            frmThongKeKhachHang f = new frmThongKeKhachHang();
+            f.ShowDialog();
+        }
+        private void btnForm_Phim_Click(object sender, EventArgs e)
+        {
+            frmThongKePhim f = new frmThongKePhim();
+            f.ShowDialog();
+        }
+        private void btnForm_NhanVien_Click(object sender, EventArgs e)
+        {
+            frmThongKeNhanVien f = new frmThongKeNhanVien();
+            f.ShowDialog();
+        }
+
+        private void btnForm_PhongChieu_Click(object sender, EventArgs e)
+        {
+            frmThongKePhongChieu f = new frmThongKePhongChieu();
+            f.ShowDialog();
+        }
+
+        private void btnForm_LichChieu_Click(object sender, EventArgs e)
+        {
+            frmThongKeLichChieu f = new frmThongKeLichChieu();
+            f.ShowDialog();
+        }
+
+        private void btnForm_DichVu_Click(object sender, EventArgs e)
+        {
+            frmThongKeDichVu f = new frmThongKeDichVu();
+            f.ShowDialog();
+        }
+        #endregion
+
         private void frmThongKe_Load(object sender, EventArgs e)
         {
             //// Tạo biểu đồ mới
@@ -154,5 +200,7 @@ namespace OGC.ThongKe
             //pnlPhai.Controls.Clear();        // Xóa control cũ nếu có
             //pnlPhai.Controls.Add(chart);     // Thêm biểu đồ vào panel
         }
+
+
     }
 }
