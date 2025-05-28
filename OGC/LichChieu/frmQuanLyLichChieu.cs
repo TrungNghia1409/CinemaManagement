@@ -51,7 +51,6 @@ namespace OGC.LichChieu
                 uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy");
                 uc.GiaVe = lc.GiaVe;
                 uc.DiaDiem = lc.DiaDiem;
-                uc.TrangThai = lc.TrangThai;
 
                 flpLichChieu.Controls.Add(uc);
             }

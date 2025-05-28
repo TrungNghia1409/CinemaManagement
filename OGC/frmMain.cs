@@ -95,6 +95,7 @@ namespace OGC
             OpenChildForm(new frmQuanLyLichChieu());
         }
 
+
         #endregion
 
 
