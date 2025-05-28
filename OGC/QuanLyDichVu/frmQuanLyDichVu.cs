@@ -307,5 +307,9 @@ namespace OGC.QuanLyDichVu
         #endregion
 
 
+        private void btnThemSanPham_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

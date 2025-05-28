@@ -37,6 +37,7 @@
             btnPhongChieu = new Button();
             pnlPhim = new Panel();
             btnPhim = new Button();
+            btnDoAn = new Button();
             pnlLichChieu.SuspendLayout();
             pnlThuocTinh.SuspendLayout();
             pnlPhongChieu.SuspendLayout();
@@ -165,9 +166,20 @@
             btnPhim.UseVisualStyleBackColor = true;
             btnPhim.Click += btnPhim_Click;
             // 
+            // btnDoAn
+            // 
+            btnDoAn.Location = new Point(1139, 120);
+            btnDoAn.Name = "btnDoAn";
+            btnDoAn.Size = new Size(94, 29);
+            btnDoAn.TabIndex = 13;
+            btnDoAn.Text = "Đồ Ăn";
+            btnDoAn.UseVisualStyleBackColor = true;
+            btnDoAn.Click += btnDoAn_Click;
+            // 
             // frmQuanLyChung
             // 
-            ClientSize = new Size(1072, 447);
+            ClientSize = new Size(1343, 447);
+            Controls.Add(btnDoAn);
             Controls.Add(pnlLichChieu);
             Controls.Add(pnlThuocTinh);
             Controls.Add(pnlPhongChieu);
@@ -196,5 +208,6 @@
         private Button btnPhongChieu;
         private Panel pnlPhim;
         private Button btnPhim;
+        private Button btnDoAn;
     }
 }

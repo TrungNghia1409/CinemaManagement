@@ -49,7 +49,28 @@ namespace OGC.DAO
             return result;
         }
 
-        
+        public bool ThemMonAn(string tenMonAn, int idLoaiMonAn, decimal gia, string moTa, string anh)
+        {
+            string query = "INSERT INTO MONAN (TenMonAn, IDLoaiMonAn, Gia, MoTa, Anh) VALUES ( @ten , @idLoai , @gia , @moTa , @anh )";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { tenMonAn, idLoaiMonAn, gia, moTa, anh });
+            return result > 0;
+        }
+
+        public bool SuaMonAn(int id, string tenMonAn, int idLoaiMonAn, decimal gia, string moTa, string anh)
+        {
+            string query = "UPDATE MONAN SET TenMonAn = @ten , IDLoaiMonAn = @idLoai , Gia = @gia , MoTa = @moTa , Anh = @anh WHERE ID = @id ";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { tenMonAn, idLoaiMonAn, gia, moTa, anh, id });
+            return result > 0;
+        }
+
+        public bool XoaMonAn(int idMonAn)
+        {
+            string query = "DELETE FROM MONAN WHERE ID = @id ";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { idMonAn });
+            return result > 0;
+        }
+
+
 
     }
 }

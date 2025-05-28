@@ -1,6 +1,7 @@
 ﻿using OGC.frmThuocTinh;
 using OGC.LichChieu;
 using OGC.Phim;
+using OGC.QuanLyDichVu;
 using OGC.ThuocTinh;
 using System;
 using System.Collections.Generic;
@@ -81,10 +82,15 @@ namespace OGC.QuanLyChung
         }
 
 
-
+        private void btnDoAn_Click(object sender, EventArgs e)
+        {
+            frmQuanLyMonAn f = new frmQuanLyMonAn();
+            f.ShowDialog();
+        }
 
 
         #endregion
+
 
 
 
