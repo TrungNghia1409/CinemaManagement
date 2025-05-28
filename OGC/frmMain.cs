@@ -5,6 +5,8 @@ using OGC.Phim;
 using OGC.QuanLyDichVu;
 using System;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using OGC.QuanLyChung;
+using OGC.ThongKe;
 
 namespace OGC
 {
@@ -82,10 +84,7 @@ namespace OGC
         }
 
         //mở các form con
-        private void btnThuocTinh_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new fThuocTinh(currentUser));
-        }
+
         private void btnDichVu_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmQuanLyDichVu());
@@ -95,13 +94,23 @@ namespace OGC
             OpenChildForm(new frmQuanLyLichChieu());
         }
 
+        private void btnQuanLyChung_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmQuanLyChung(currentUser));
+        }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmThongKe());
+        }
+
 
         #endregion
 
 
 
+        // OpenChildForm(new fThuocTinh(currentUser));
 
 
-        
     }
 }

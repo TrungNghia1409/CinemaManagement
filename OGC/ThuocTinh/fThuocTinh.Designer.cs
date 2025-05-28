@@ -239,6 +239,7 @@
             Controls.Add(pnlTKNhanVien);
             Controls.Add(pnlChucVu);
             Name = "fThuocTinh";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmThuocTinh";
             pnlLoaiPhong.ResumeLayout(false);
             pnlDinhDangPhim.ResumeLayout(false);
