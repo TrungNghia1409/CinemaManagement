@@ -452,8 +452,9 @@
             btnForm_LichChieu.Name = "btnForm_LichChieu";
             btnForm_LichChieu.Size = new Size(208, 32);
             btnForm_LichChieu.TabIndex = 3;
-            btnForm_LichChieu.Text = "button1";
+            btnForm_LichChieu.Text = "Thống Kê Lịch Chiếu";
             btnForm_LichChieu.UseVisualStyleBackColor = false;
+            btnForm_LichChieu.Click += btnForm_LichChieu_Click;
             // 
             // pnlForm_DichVu
             // 
@@ -474,8 +475,9 @@
             btnForm_DichVu.Name = "btnForm_DichVu";
             btnForm_DichVu.Size = new Size(208, 32);
             btnForm_DichVu.TabIndex = 4;
-            btnForm_DichVu.Text = "button1";
+            btnForm_DichVu.Text = "Thống Kê Dịch Vụ";
             btnForm_DichVu.UseVisualStyleBackColor = false;
+            btnForm_DichVu.Click += btnForm_DichVu_Click;
             // 
             // pnlForm_Phim
             // 
@@ -496,8 +498,9 @@
             btnForm_Phim.Name = "btnForm_Phim";
             btnForm_Phim.Size = new Size(208, 32);
             btnForm_Phim.TabIndex = 5;
-            btnForm_Phim.Text = "button1";
+            btnForm_Phim.Text = "Thống Kê Phim";
             btnForm_Phim.UseVisualStyleBackColor = false;
+            btnForm_Phim.Click += btnForm_Phim_Click;
             // 
             // pnlForm_NhanVien
             // 
@@ -518,8 +521,9 @@
             btnForm_NhanVien.Name = "btnForm_NhanVien";
             btnForm_NhanVien.Size = new Size(208, 32);
             btnForm_NhanVien.TabIndex = 6;
-            btnForm_NhanVien.Text = "button1";
+            btnForm_NhanVien.Text = "Thống Kê Nhân Viên";
             btnForm_NhanVien.UseVisualStyleBackColor = false;
+            btnForm_NhanVien.Click += btnForm_NhanVien_Click;
             // 
             // pnlForm_KhachHang
             // 
@@ -540,8 +544,9 @@
             btnForm_KhachHang.Name = "btnForm_KhachHang";
             btnForm_KhachHang.Size = new Size(208, 32);
             btnForm_KhachHang.TabIndex = 7;
-            btnForm_KhachHang.Text = "button1";
+            btnForm_KhachHang.Text = "Thống Kê Khách Hàng";
             btnForm_KhachHang.UseVisualStyleBackColor = false;
+            btnForm_KhachHang.Click += btnForm_KhachHang_Click;
             // 
             // pnlForm_PhongChieu
             // 
@@ -562,8 +567,9 @@
             btnForm_PhongChieu.Name = "btnForm_PhongChieu";
             btnForm_PhongChieu.Size = new Size(208, 32);
             btnForm_PhongChieu.TabIndex = 8;
-            btnForm_PhongChieu.Text = "button1";
+            btnForm_PhongChieu.Text = "Thống Kê Phòng Chiếu";
             btnForm_PhongChieu.UseVisualStyleBackColor = false;
+            btnForm_PhongChieu.Click += btnForm_PhongChieu_Click;
             // 
             // pnlForm_Ve
             // 
@@ -584,8 +590,9 @@
             btnForm_Ve.Name = "btnForm_Ve";
             btnForm_Ve.Size = new Size(208, 32);
             btnForm_Ve.TabIndex = 9;
-            btnForm_Ve.Text = "button1";
+            btnForm_Ve.Text = "Thống Kê Vé Bán";
             btnForm_Ve.UseVisualStyleBackColor = false;
+            btnForm_Ve.Click += btnForm_Ve_Click;
             // 
             // pnlForm_DoanhThu
             // 
@@ -608,6 +615,7 @@
             btnForm_DoanhThu.TabIndex = 10;
             btnForm_DoanhThu.Text = " Thống Kê Doanh Thu";
             btnForm_DoanhThu.UseVisualStyleBackColor = false;
+            btnForm_DoanhThu.Click += btnForm_DoanhThu_Click;
             // 
             // frmThongKe
             // 
