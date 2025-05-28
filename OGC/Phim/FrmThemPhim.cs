@@ -17,6 +17,32 @@ namespace OGC.Phim
             LoadComboBoxData();
         }
 
+        // Lưu ảnh vào thư mục Images trong dự án
+        private string SaveImageToProjectFolder(string sourceFilePath)
+        {
+            string folder = Path.Combine(Application.StartupPath, "Images");
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
+            string fileName = Path.GetFileName(sourceFilePath);
+            string destPath = Path.Combine(folder, fileName);
+
+            int count = 1;
+            while (File.Exists(destPath))
+            {
+                string fileNameOnly = Path.GetFileNameWithoutExtension(fileName);
+                string extension = Path.GetExtension(fileName);
+                string newFileName = $"{fileNameOnly}({count}){extension}";
+                destPath = Path.Combine(folder, newFileName);
+                count++;
+            }
+
+            File.Copy(sourceFilePath, destPath);
+
+            return "Images\\" + Path.GetFileName(destPath);
+        }
+
+
         private void LoadComboBoxData()
         {
             // Load thể loại phim
@@ -53,7 +79,7 @@ namespace OGC.Phim
             string moTa = tbMoTa.Text.Trim();
             string trailerUrl = tbTrailer.Text.Trim();
             //string posterUrl = tbPoster.Text.Trim();   
-            string anh = AnhPhim.Text.Trim();                   
+            string anh = AnhPhim.Text.Trim();
 
 
 
@@ -130,7 +156,7 @@ namespace OGC.Phim
                 IDTheLoaiPhim = idTheLoai,
                 IDDinhDang = idDinhDang,
                 Trailer_Url = trailerUrl, // nếu có
-                /*Poster_Url = posterUrl,*/  
+                /*Poster_Url = posterUrl,*/
                 Anh = anh,         // nếu có
                 // IDDinhDang = idDinhDang, nếu có
             });
@@ -189,9 +215,21 @@ namespace OGC.Phim
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                AnhPhim.Text = openFileDialog.FileName;
-                AnhPhim.Image = Image.FromFile(openFileDialog.FileName);
+                string relativePath = SaveImageToProjectFolder(openFileDialog.FileName);
+
+                // Hiển thị ảnh
+                string fullPath = Path.Combine(Application.StartupPath, relativePath);
+                AnhPhim.Image = Image.FromFile(fullPath);
+
+                // Gắn đường dẫn tương đối vào Tag để lưu sau này
+                AnhPhim.Tag = relativePath;
             }
+        }
+
+        private void btnThoat_Click_1(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

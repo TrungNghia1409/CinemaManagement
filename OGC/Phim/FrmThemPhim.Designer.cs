@@ -32,8 +32,6 @@
             btnThoat = new Button();
             btnThemPhim = new Button();
             panel15 = new Panel();
-            btnTaiAnh = new Button();
-            btnXoaAnh = new Button();
             panel13 = new Panel();
             tbMoTa = new TextBox();
             label11 = new Label();
@@ -69,6 +67,7 @@
             btnXemTrailer = new Button();
             tbTrailer = new TextBox();
             label9 = new Label();
+            btnTaiAnh = new Button();
             ((System.ComponentModel.ISupportInitialize)AnhPhim).BeginInit();
             panel15.SuspendLayout();
             panel13.SuspendLayout();
@@ -101,6 +100,7 @@
             btnThoat.TabIndex = 14;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click_1;
             // 
             // btnThemPhim
             // 
@@ -115,30 +115,10 @@
             // panel15
             // 
             panel15.Controls.Add(btnTaiAnh);
-            panel15.Controls.Add(btnXoaAnh);
             panel15.Location = new Point(87, 469);
             panel15.Name = "panel15";
             panel15.Size = new Size(263, 35);
             panel15.TabIndex = 3;
-            // 
-            // btnTaiAnh
-            // 
-            btnTaiAnh.Location = new Point(166, 3);
-            btnTaiAnh.Name = "btnTaiAnh";
-            btnTaiAnh.Size = new Size(94, 29);
-            btnTaiAnh.TabIndex = 1;
-            btnTaiAnh.Text = "Tải Ảnh";
-            btnTaiAnh.UseVisualStyleBackColor = true;
-            btnTaiAnh.Click += btnTaiAnh_Click;
-            // 
-            // btnXoaAnh
-            // 
-            btnXoaAnh.Location = new Point(7, 3);
-            btnXoaAnh.Name = "btnXoaAnh";
-            btnXoaAnh.Size = new Size(94, 29);
-            btnXoaAnh.TabIndex = 1;
-            btnXoaAnh.Text = "Xóa Ảnh";
-            btnXoaAnh.UseVisualStyleBackColor = true;
             // 
             // panel13
             // 
@@ -443,6 +423,16 @@
             label9.TabIndex = 0;
             label9.Text = "Video Trailer";
             // 
+            // btnTaiAnh
+            // 
+            btnTaiAnh.Location = new Point(75, 3);
+            btnTaiAnh.Name = "btnTaiAnh";
+            btnTaiAnh.Size = new Size(94, 29);
+            btnTaiAnh.TabIndex = 1;
+            btnTaiAnh.Text = "Tải Ảnh";
+            btnTaiAnh.UseVisualStyleBackColor = true;
+            btnTaiAnh.Click += btnTaiAnh_Click;
+            // 
             // FrmThemPhim
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -498,8 +488,6 @@
         private Button btnThoat;
         private Button btnThemPhim;
         private Panel panel15;
-        private Button btnTaiAnh;
-        private Button btnXoaAnh;
         private Panel panel13;
         private TextBox tbMoTa;
         private Label label11;
@@ -535,5 +523,6 @@
         private Button btnXemTrailer;
         private TextBox tbTrailer;
         private Label label9;
+        private Button btnTaiAnh;
     }
 }

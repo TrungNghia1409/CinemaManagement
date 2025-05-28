@@ -42,6 +42,29 @@ namespace OGC.Phim
 
         }
 
+        private string SaveImageToProjectFolder(string sourceFilePath)
+        {
+            string folder = Path.Combine(Application.StartupPath, "Images");
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
+            string fileName = Path.GetFileName(sourceFilePath);
+            string destPath = Path.Combine(folder, fileName);
+
+            int count = 1;
+            while (File.Exists(destPath))
+            {
+                string fileNameOnly = Path.GetFileNameWithoutExtension(fileName);
+                string extension = Path.GetExtension(fileName);
+                string newFileName = $"{fileNameOnly}({count}){extension}";
+                destPath = Path.Combine(folder, newFileName);
+                count++;
+            }
+
+            File.Copy(sourceFilePath, destPath);
+
+            return "Images\\" + Path.GetFileName(destPath);
+        }
 
 
         // Load thể loại phim vào combo box
@@ -265,13 +288,16 @@ namespace OGC.Phim
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string filePath = openFileDialog.FileName;
+                    string sourcePath = openFileDialog.FileName;
+
+                    // Lưu ảnh vào thư mục dự án (Images) và lấy đường dẫn tương đối
+                    string relativePath = SaveImageToProjectFolder(sourcePath);
 
                     // Hiển thị ảnh lên PictureBox
-                    AnhPhim.Image = Image.FromFile(filePath);
+                    string fullPath = Path.Combine(Application.StartupPath, relativePath);
+                    AnhPhim.Image = Image.FromFile(fullPath);
 
-                    // Lưu đường dẫn tương đối vào Tag để sử dụng khi cập nhật
-                    string relativePath = Path.GetRelativePath(Application.StartupPath, filePath);
+                    // Gắn đường dẫn ảnh (tương đối) vào Tag để lưu vào DB
                     AnhPhim.Tag = relativePath;
                 }
             }
