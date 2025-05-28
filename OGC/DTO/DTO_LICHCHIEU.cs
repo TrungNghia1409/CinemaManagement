@@ -34,7 +34,7 @@ namespace OGC.DTO
             this.IDPhong = (int)row["IDPhong"];
             this.NgayGio = Convert.ToDateTime(row["Ngaygio"]);
             this.GiaVe  = (decimal)row["GiaVe"];
-            this.DiaDiem = row["GiaVe"].ToString();
+            this.DiaDiem = row["DiaDiem"].ToString();
         }
         public string Anh { get; set; }
         public string AnhPhong { get; set; }

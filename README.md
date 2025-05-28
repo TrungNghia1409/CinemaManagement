@@ -1,1 +1,1 @@
-70% frmNhanVien
+form thong ke
