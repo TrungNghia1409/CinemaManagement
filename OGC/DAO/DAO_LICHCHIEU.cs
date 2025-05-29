@@ -49,6 +49,34 @@ namespace OGC.DAO
 
             return list;
         }
+        //--------- Trả về phim được chiếu nhiều nhất
+        public List<string> GetPhimChieuNhieuNhat()
+        {
+            string query = "EXEC usp_PhimChieuNhieuNhat ";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            List<string> danhSach = new List<string>();
+            foreach (DataRow row in data.Rows)
+            {
+                danhSach.Add(row["TenPhim"].ToString());
+            }
+            return danhSach;
+        }
+        //--------- Trả về phim được chiếu ít nhất
+        public List<string> GetPhimChieuItNhat()
+        {
+            string query = "EXEC usp_PhimChieuItNhat ";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            List<string> danhSach = new List<string>();
+            foreach (DataRow row in data.Rows)
+            {
+                danhSach.Add(row["TenPhim"].ToString());
+            }
+            return danhSach;
+        }
 
         //--------- thêm lịch chiếu
         public bool ThemLichChieu(string tenPhim, string tenPhong, DateTime ngayGio, decimal giaVe, string diaDiem)
@@ -115,7 +143,7 @@ namespace OGC.DAO
             List<DTO_LICHCHIEU> danhSach = new List<DTO_LICHCHIEU>();
             string query = @" 
                              SELECT lc.ID, lc.IDPhim, lc.IDPhong, ISNULL(P.TenPhim, LC.TenPhim) AS TenPhim,
-                                    pc.TenPhong, LC.NgayGio, LC.GiaVe, LC.DiaDiem
+                                    pc.TenPhong, LC.NgayGio, LC.GiaVe, LC.DiaDiem, P.Anh, pc.AnhPhong
                              FROM LICHCHIEU LC
                              LEFT JOIN PHIM P ON LC.IDPhim = P.ID
                              LEFT JOIN PHONGCHIEU pc ON pc.ID = lc.IDPhong

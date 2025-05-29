@@ -63,16 +63,18 @@
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel3);
-            panel1.Location = new Point(4, 6);
+            panel1.Location = new Point(4, 4);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(606, 412);
+            panel1.Size = new Size(530, 309);
             panel1.TabIndex = 2;
             // 
             // btnTaiAnhMonAn
             // 
-            btnTaiAnhMonAn.Location = new Point(82, 365);
+            btnTaiAnhMonAn.Location = new Point(72, 274);
+            btnTaiAnhMonAn.Margin = new Padding(3, 2, 3, 2);
             btnTaiAnhMonAn.Name = "btnTaiAnhMonAn";
-            btnTaiAnhMonAn.Size = new Size(94, 29);
+            btnTaiAnhMonAn.Size = new Size(82, 22);
             btnTaiAnhMonAn.TabIndex = 3;
             btnTaiAnhMonAn.Text = "Tải Ảnh";
             btnTaiAnhMonAn.UseVisualStyleBackColor = true;
@@ -80,9 +82,10 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(500, 365);
+            btnHuy.Location = new Point(438, 274);
+            btnHuy.Margin = new Padding(3, 2, 3, 2);
             btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(94, 29);
+            btnHuy.Size = new Size(82, 22);
             btnHuy.TabIndex = 2;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
@@ -90,9 +93,10 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(400, 365);
+            btnThem.Location = new Point(350, 274);
+            btnThem.Margin = new Padding(3, 2, 3, 2);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(94, 29);
+            btnThem.Size = new Size(82, 22);
             btnThem.TabIndex = 2;
             btnThem.Text = "Xác Nhận";
             btnThem.UseVisualStyleBackColor = true;
@@ -102,34 +106,35 @@
             // 
             panel16.Controls.Add(tbMoTaMonAn);
             panel16.Controls.Add(label12);
-            panel16.Location = new Point(257, 193);
-            panel16.Margin = new Padding(3, 4, 3, 4);
+            panel16.Location = new Point(225, 145);
             panel16.Name = "panel16";
-            panel16.Size = new Size(337, 169);
+            panel16.Size = new Size(295, 127);
             panel16.TabIndex = 0;
             // 
             // tbMoTaMonAn
             // 
-            tbMoTaMonAn.Location = new Point(10, 26);
+            tbMoTaMonAn.Location = new Point(9, 20);
+            tbMoTaMonAn.Margin = new Padding(3, 2, 3, 2);
             tbMoTaMonAn.Multiline = true;
             tbMoTaMonAn.Name = "tbMoTaMonAn";
-            tbMoTaMonAn.Size = new Size(322, 140);
+            tbMoTaMonAn.Size = new Size(282, 106);
             tbMoTaMonAn.TabIndex = 1;
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(8, 3);
+            label12.Location = new Point(7, 2);
             label12.Name = "label12";
-            label12.Size = new Size(51, 20);
+            label12.Size = new Size(40, 15);
             label12.TabIndex = 0;
             label12.Text = "Mô Tả";
             // 
             // AnhDoAn
             // 
-            AnhDoAn.Location = new Point(3, 6);
+            AnhDoAn.Location = new Point(3, 4);
+            AnhDoAn.Margin = new Padding(3, 2, 3, 2);
             AnhDoAn.Name = "AnhDoAn";
-            AnhDoAn.Size = new Size(248, 353);
+            AnhDoAn.Size = new Size(217, 265);
             AnhDoAn.SizeMode = PictureBoxSizeMode.StretchImage;
             AnhDoAn.TabIndex = 0;
             AnhDoAn.TabStop = false;
@@ -138,24 +143,26 @@
             // 
             panel5.Controls.Add(tbGiaMonAn);
             panel5.Controls.Add(label3);
-            panel5.Location = new Point(257, 130);
+            panel5.Location = new Point(225, 98);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(337, 56);
+            panel5.Size = new Size(295, 42);
             panel5.TabIndex = 0;
             // 
             // tbGiaMonAn
             // 
-            tbGiaMonAn.Location = new Point(101, 12);
+            tbGiaMonAn.Location = new Point(88, 9);
+            tbGiaMonAn.Margin = new Padding(3, 2, 3, 2);
             tbGiaMonAn.Name = "tbGiaMonAn";
-            tbGiaMonAn.Size = new Size(231, 27);
+            tbGiaMonAn.Size = new Size(203, 23);
             tbGiaMonAn.TabIndex = 1;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(7, 15);
+            label3.Location = new Point(6, 11);
             label3.Name = "label3";
-            label3.Size = new Size(31, 20);
+            label3.Size = new Size(24, 15);
             label3.TabIndex = 0;
             label3.Text = "Giá";
             // 
@@ -163,25 +170,27 @@
             // 
             panel7.Controls.Add(cbLoaiMonAn);
             panel7.Controls.Add(label5);
-            panel7.Location = new Point(257, 68);
+            panel7.Location = new Point(225, 51);
+            panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(337, 56);
+            panel7.Size = new Size(295, 42);
             panel7.TabIndex = 0;
             // 
             // cbLoaiMonAn
             // 
             cbLoaiMonAn.FormattingEnabled = true;
-            cbLoaiMonAn.Location = new Point(101, 15);
+            cbLoaiMonAn.Location = new Point(88, 11);
+            cbLoaiMonAn.Margin = new Padding(3, 2, 3, 2);
             cbLoaiMonAn.Name = "cbLoaiMonAn";
-            cbLoaiMonAn.Size = new Size(231, 28);
+            cbLoaiMonAn.Size = new Size(203, 23);
             cbLoaiMonAn.TabIndex = 1;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(7, 19);
+            label5.Location = new Point(6, 14);
             label5.Name = "label5";
-            label5.Size = new Size(37, 20);
+            label5.Size = new Size(29, 15);
             label5.TabIndex = 0;
             label5.Text = "Loại";
             // 
@@ -189,34 +198,38 @@
             // 
             panel3.Controls.Add(tbTenMonAn);
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(257, 6);
+            panel3.Location = new Point(225, 4);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(337, 56);
+            panel3.Size = new Size(295, 42);
             panel3.TabIndex = 0;
             // 
             // tbTenMonAn
             // 
-            tbTenMonAn.Location = new Point(101, 12);
+            tbTenMonAn.Location = new Point(88, 9);
+            tbTenMonAn.Margin = new Padding(3, 2, 3, 2);
             tbTenMonAn.Name = "tbTenMonAn";
-            tbTenMonAn.Size = new Size(231, 27);
+            tbTenMonAn.Size = new Size(203, 23);
             tbTenMonAn.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(10, 19);
+            label1.Location = new Point(9, 14);
             label1.Name = "label1";
-            label1.Size = new Size(88, 20);
+            label1.Size = new Size(71, 15);
             label1.TabIndex = 0;
             label1.Text = "Tên Món Ăn";
             // 
             // frmThemMonAn
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(616, 423);
+            ClientSize = new Size(539, 317);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmThemMonAn";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmThemDoAn";
             panel1.ResumeLayout(false);
             panel16.ResumeLayout(false);
