@@ -49,6 +49,11 @@ namespace OGC.QuanLyChung
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             UIHelper.RoundPanelCorners(pnlLichChieu, 30);
         }
+        private void pnlDichVu_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            UIHelper.RoundPanelCorners(pnlDichVu, 30);
+        }
         #endregion
 
 
@@ -99,5 +104,6 @@ namespace OGC.QuanLyChung
 
 
 
+      
     }
 }

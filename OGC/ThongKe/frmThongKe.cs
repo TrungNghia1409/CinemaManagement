@@ -1,4 +1,6 @@
 ﻿using LiveCharts.Definitions.Charts;
+using OGC.DAO;
+using OGC.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +22,7 @@ namespace OGC.ThongKe
         {
             InitializeComponent();
 
-           
+            LoadThongKe();
         }
         
 
@@ -175,7 +177,88 @@ namespace OGC.ThongKe
         }
         #endregion
 
-      
+        #region Methods
+        //------ Phương thức hiển thị doanh thu theo ngày, tháng
+        private void LoadThongKe()
+        {
+
+            // ------Lấy doanh thu ngày
+            double doanhThuNgay = DAO_HD_VE.Instance.GetDoanhThuNgay() + DAO_HD_MONAN.Instance.GetDoanhThuNgay();
+            lbl_KetQua_DoanhThuNgay.Text = doanhThuNgay.ToString("N0") + " VNĐ";
+
+            //------ Lấy doanh thu tháng
+            double doanhThuThang = DAO_HD_VE.Instance.GetDoanhThuThang() + DAO_HD_MONAN.Instance.GetDoanhThuThang();
+            lbl_KetQua_DoanhThuThang.Text = doanhThuThang.ToString("N0") + " VNĐ";
+
+            //------Số vé bán trong ngày
+            int soVeNgay = DAO_HD_VE.Instance.GetSoVeBanTrongNgay();
+            lbl_KetQua_SoVeNgay.Text = soVeNgay.ToString("N0") + " vé";
+
+            //-------Số vé bán trong tháng
+            int soVeThang = DAO_HD_VE.Instance.GetSoVeBanTrongThang();
+            lbl_KetQua_SoVeThang.Text = soVeThang.ToString("N0") + " vé";
+
+            //-------Nhân viên bán vé nổi trội
+            List<string> danhSachNhanVienBanVe = DAO_HD_VE.Instance.GetDanhSachNhanVienBanVeNoiTroi();
+
+            if (danhSachNhanVienBanVe.Count == 0)
+            {
+                lbl_KetQua_NhanVienBanVe.Text = "Không có dữ liệu";
+            }
+            else
+            {
+                // Gộp tên các nhân viên, cách nhau bằng dấu phẩy
+                lbl_KetQua_NhanVienBanVe.Text = string.Join(", ", danhSachNhanVienBanVe);
+            }
+
+            //-------Nhân viên dịch vụ nổi trội
+            List<string> danhSachNhanVienDichVu = DAO_HD_MONAN.Instance.GetDanhSachNhanVienDichVuNoiTroi();
+
+            if (danhSachNhanVienDichVu.Count == 0)
+            {
+                lbl_KetQua_NhanVienDichVu.Text = "Không có dữ liệu";
+            }
+            else
+            {
+                // Gộp tên các nhân viên, cách nhau bằng dấu phẩy
+                lbl_KetQua_NhanVienDichVu.Text = string.Join(", ", danhSachNhanVienDichVu);
+            }
+
+            //--------Phim được chiếu nhiều nhất
+            var dsPhimChieuNhieu = DAO_LICHCHIEU.Instance.GetPhimChieuNhieuNhat();
+            if (dsPhimChieuNhieu.Count > 0)
+            {
+                lbl_KetQua_PhimChieuNhieuNhat.Text = dsPhimChieuNhieu[0]; // chỉ hiển thị cột TenPhim của dòng đầu tiên
+            }
+            else
+            {
+                lbl_KetQua_PhimChieuNhieuNhat.Text = "Không có phim nào";
+            }
+
+            //------------Phim được chiếu ít nhất
+            var dsPhimChieuIt = DAO_LICHCHIEU.Instance.GetPhimChieuItNhat();
+            if (dsPhimChieuIt.Count > 0)
+            {
+                lbl_KetQua_PhimChieuItNhat.Text = dsPhimChieuIt[0]; // chỉ hiển thị cột TenPhim của dòng đầu tiên
+            }
+            else
+            {
+                lbl_KetQua_PhimChieuItNhat.Text = "Không có phim nào";
+            }
+            //------------Phim có doanh thu cao nhất
+            var dsPhimDoanhThuCao = PhimDAO.Instance.GetPhimDoanhThuCaoNhatThang();
+            if (dsPhimDoanhThuCao.Count > 0)
+            {
+                lbl_KetQua_PhimDoanhThuCaoNhat.Text = dsPhimDoanhThuCao[0]; // chỉ hiển thị cột TenPhim của dòng đầu tiên
+            }
+            else
+            {
+                lbl_KetQua_PhimDoanhThuCaoNhat.Text = "Không có phim nào";
+            }
+        }
+        #endregion
+
+
 
     }
 }

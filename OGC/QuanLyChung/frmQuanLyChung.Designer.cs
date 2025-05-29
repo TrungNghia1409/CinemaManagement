@@ -38,10 +38,12 @@
             pnlPhim = new Panel();
             btnPhim = new Button();
             btnDoAn = new Button();
+            pnlDichVu = new Panel();
             pnlLichChieu.SuspendLayout();
             pnlThuocTinh.SuspendLayout();
             pnlPhongChieu.SuspendLayout();
             pnlPhim.SuspendLayout();
+            pnlDichVu.SuspendLayout();
             SuspendLayout();
             // 
             // pnlLichChieu
@@ -49,12 +51,13 @@
             pnlLichChieu.Controls.Add(btnLichChieu);
             pnlLichChieu.Location = new Point(72, 232);
             pnlLichChieu.Name = "pnlLichChieu";
-            pnlLichChieu.Size = new Size(408, 152);
+            pnlLichChieu.Size = new Size(264, 152);
             pnlLichChieu.TabIndex = 7;
             pnlLichChieu.Paint += pnlLichChieu_Paint;
             // 
             // btnLichChieu
             // 
+            btnLichChieu.BackColor = SystemColors.ControlLight;
             btnLichChieu.Dock = DockStyle.Fill;
             btnLichChieu.FlatAppearance.BorderSize = 0;
             btnLichChieu.FlatStyle = FlatStyle.Flat;
@@ -65,25 +68,26 @@
             btnLichChieu.Location = new Point(0, 0);
             btnLichChieu.Name = "btnLichChieu";
             btnLichChieu.Padding = new Padding(0, 30, 0, 0);
-            btnLichChieu.Size = new Size(408, 152);
+            btnLichChieu.Size = new Size(264, 152);
             btnLichChieu.TabIndex = 0;
             btnLichChieu.Text = "LỊCH CHIẾU";
             btnLichChieu.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnLichChieu.UseVisualStyleBackColor = true;
+            btnLichChieu.UseVisualStyleBackColor = false;
             btnLichChieu.Click += btnLichChieu_Click;
             // 
             // pnlThuocTinh
             // 
             pnlThuocTinh.Controls.Add(btnThuocTinh);
             pnlThuocTinh.Controls.Add(button1);
-            pnlThuocTinh.Location = new Point(592, 232);
+            pnlThuocTinh.Location = new Point(408, 233);
             pnlThuocTinh.Name = "pnlThuocTinh";
-            pnlThuocTinh.Size = new Size(408, 152);
+            pnlThuocTinh.Size = new Size(264, 152);
             pnlThuocTinh.TabIndex = 10;
             pnlThuocTinh.Paint += pnlThuocTinh_Paint;
             // 
             // btnThuocTinh
             // 
+            btnThuocTinh.BackColor = SystemColors.ControlLight;
             btnThuocTinh.Dock = DockStyle.Fill;
             btnThuocTinh.FlatAppearance.BorderSize = 0;
             btnThuocTinh.FlatStyle = FlatStyle.Flat;
@@ -94,11 +98,11 @@
             btnThuocTinh.Location = new Point(0, 0);
             btnThuocTinh.Name = "btnThuocTinh";
             btnThuocTinh.Padding = new Padding(0, 15, 0, 0);
-            btnThuocTinh.Size = new Size(408, 152);
+            btnThuocTinh.Size = new Size(264, 152);
             btnThuocTinh.TabIndex = 0;
             btnThuocTinh.Text = "THUỘC TÍNH";
             btnThuocTinh.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnThuocTinh.UseVisualStyleBackColor = true;
+            btnThuocTinh.UseVisualStyleBackColor = false;
             btnThuocTinh.Click += btnThuocTinh_Click;
             // 
             // button1
@@ -113,29 +117,30 @@
             // pnlPhongChieu
             // 
             pnlPhongChieu.Controls.Add(btnPhongChieu);
-            pnlPhongChieu.Location = new Point(592, 63);
+            pnlPhongChieu.Location = new Point(408, 64);
             pnlPhongChieu.Name = "pnlPhongChieu";
-            pnlPhongChieu.Size = new Size(408, 152);
+            pnlPhongChieu.Size = new Size(264, 152);
             pnlPhongChieu.TabIndex = 11;
             pnlPhongChieu.Paint += pnlPhongChieu_Paint;
             // 
             // btnPhongChieu
             // 
+            btnPhongChieu.BackColor = SystemColors.ControlLight;
             btnPhongChieu.Dock = DockStyle.Fill;
             btnPhongChieu.FlatAppearance.BorderSize = 0;
             btnPhongChieu.FlatStyle = FlatStyle.Flat;
             btnPhongChieu.Font = new Font("Segoe UI", 14.25F);
-            btnPhongChieu.ForeColor = Color.Gray;
+            btnPhongChieu.ForeColor = SystemColors.GrayText;
             btnPhongChieu.Image = Properties.Resources.phongchieu;
             btnPhongChieu.ImageAlign = ContentAlignment.TopCenter;
             btnPhongChieu.Location = new Point(0, 0);
             btnPhongChieu.Name = "btnPhongChieu";
             btnPhongChieu.Padding = new Padding(0, 30, 0, 0);
-            btnPhongChieu.Size = new Size(408, 152);
+            btnPhongChieu.Size = new Size(264, 152);
             btnPhongChieu.TabIndex = 0;
             btnPhongChieu.Text = "PHÒNG CHIẾU";
             btnPhongChieu.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnPhongChieu.UseVisualStyleBackColor = true;
+            btnPhongChieu.UseVisualStyleBackColor = false;
             btnPhongChieu.Click += btnPhongChieu_Click;
             // 
             // pnlPhim
@@ -143,12 +148,13 @@
             pnlPhim.Controls.Add(btnPhim);
             pnlPhim.Location = new Point(72, 64);
             pnlPhim.Name = "pnlPhim";
-            pnlPhim.Size = new Size(408, 152);
+            pnlPhim.Size = new Size(264, 152);
             pnlPhim.TabIndex = 12;
             pnlPhim.Paint += pnlPhim_Paint;
             // 
             // btnPhim
             // 
+            btnPhim.BackColor = SystemColors.ControlLight;
             btnPhim.Dock = DockStyle.Fill;
             btnPhim.FlatAppearance.BorderSize = 0;
             btnPhim.FlatStyle = FlatStyle.Flat;
@@ -159,27 +165,46 @@
             btnPhim.Location = new Point(0, 0);
             btnPhim.Name = "btnPhim";
             btnPhim.Padding = new Padding(0, 30, 0, 0);
-            btnPhim.Size = new Size(408, 152);
+            btnPhim.Size = new Size(264, 152);
             btnPhim.TabIndex = 0;
             btnPhim.Text = "PHIM";
             btnPhim.TextImageRelation = TextImageRelation.ImageAboveText;
-            btnPhim.UseVisualStyleBackColor = true;
+            btnPhim.UseVisualStyleBackColor = false;
             btnPhim.Click += btnPhim_Click;
             // 
             // btnDoAn
             // 
-            btnDoAn.Location = new Point(1139, 120);
+            btnDoAn.BackColor = SystemColors.ControlLight;
+            btnDoAn.Dock = DockStyle.Fill;
+            btnDoAn.FlatAppearance.BorderSize = 0;
+            btnDoAn.FlatStyle = FlatStyle.Flat;
+            btnDoAn.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDoAn.ForeColor = SystemColors.GrayText;
+            btnDoAn.Image = Properties.Resources.catering;
+            btnDoAn.ImageAlign = ContentAlignment.TopCenter;
+            btnDoAn.Location = new Point(0, 0);
             btnDoAn.Name = "btnDoAn";
-            btnDoAn.Size = new Size(94, 29);
+            btnDoAn.Padding = new Padding(0, 30, 0, 0);
+            btnDoAn.Size = new Size(264, 152);
             btnDoAn.TabIndex = 13;
-            btnDoAn.Text = "Đồ Ăn";
-            btnDoAn.UseVisualStyleBackColor = true;
+            btnDoAn.Text = "DỊCH VỤ";
+            btnDoAn.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnDoAn.UseVisualStyleBackColor = false;
             btnDoAn.Click += btnDoAn_Click;
+            // 
+            // pnlDichVu
+            // 
+            pnlDichVu.Controls.Add(btnDoAn);
+            pnlDichVu.Location = new Point(744, 64);
+            pnlDichVu.Name = "pnlDichVu";
+            pnlDichVu.Size = new Size(264, 152);
+            pnlDichVu.TabIndex = 14;
+            pnlDichVu.Paint += pnlDichVu_Paint;
             // 
             // frmQuanLyChung
             // 
-            ClientSize = new Size(1343, 447);
-            Controls.Add(btnDoAn);
+            ClientSize = new Size(1072, 447);
+            Controls.Add(pnlDichVu);
             Controls.Add(pnlLichChieu);
             Controls.Add(pnlThuocTinh);
             Controls.Add(pnlPhongChieu);
@@ -190,6 +215,7 @@
             pnlThuocTinh.ResumeLayout(false);
             pnlPhongChieu.ResumeLayout(false);
             pnlPhim.ResumeLayout(false);
+            pnlDichVu.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -209,5 +235,6 @@
         private Panel pnlPhim;
         private Button btnPhim;
         private Button btnDoAn;
+        private Panel pnlDichVu;
     }
 }

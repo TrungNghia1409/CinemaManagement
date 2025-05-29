@@ -45,12 +45,16 @@ namespace OGC.LichChieu
             foreach (DTO_LICHCHIEU lc in danhSach)
             {
                 LichChieuUC uc = new LichChieuUC(lc);
+                uc.LichChieuData = lc;  // Đảm bảo lc không null
 
                 uc.TenPhim = lc.TenPhim;
                 uc.TenPhong = lc.TenPhong;
                 uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy");
                 uc.GiaVe = lc.GiaVe;
                 uc.DiaDiem = lc.DiaDiem;
+                uc.TrangThai = lc.TrangThai;
+                uc.Anh = lc.Anh;
+                uc.AnhPhong = lc.AnhPhong;
 
                 flpLichChieu.Controls.Add(uc);
             }

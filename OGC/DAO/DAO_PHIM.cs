@@ -37,7 +37,21 @@ public class PhimDAO
 
         return list;
     }
-   
+    //Phim có doanh thu cao nhất
+    public List<string> GetPhimDoanhThuCaoNhatThang()
+    {
+        string query = "EXEC usp_PhimDoanhThuCaoNhatThang ";
+
+        DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+        List<string> danhSach = new List<string>();
+        foreach (DataRow row in data.Rows)
+        {
+            danhSach.Add(row["TenPhim"].ToString());
+        }
+        return danhSach;
+    }
+
     // Thêm phim
     public bool InsertPhim(PhimDTO phim)
     { //nhớ bổ sung URL TRAILER, ANH vào câu lệnh SQl ở dòng 45 46
