@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveCharts.Definitions.Charts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.DataVisualization.Charting;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -18,7 +20,9 @@ namespace OGC.ThongKe
         {
             InitializeComponent();
 
+           
         }
+        
 
         #region Thay đổi viền panel
         private void pnlForm_DoanhThu_Paint(object sender, PaintEventArgs e)
@@ -171,36 +175,7 @@ namespace OGC.ThongKe
         }
         #endregion
 
-        private void frmThongKe_Load(object sender, EventArgs e)
-        {
-            //// Tạo biểu đồ mới
-            //Chart chart = new Chart();
-            //chart.Dock = DockStyle.Fill; // Cho biểu đồ chiếm toàn bộ panel
-
-            //// Khu vực vẽ biểu đồ
-            //ChartArea area = new ChartArea("MainArea");
-            //chart.ChartAreas.Add(area);
-
-            //// Series dữ liệu
-            //Series series = new Series("Doanh thu");
-            //series.ChartType = SeriesChartType.Column;
-
-            //// Dữ liệu giả lập doanh thu 7 ngày
-            //series.Points.AddXY("T2", 1000000);
-            //series.Points.AddXY("T3", 1500000);
-            //series.Points.AddXY("T4", 1800000);
-            //series.Points.AddXY("T5", 1700000);
-            //series.Points.AddXY("T6", 1300000);
-            //series.Points.AddXY("T7", 1600000);
-            //series.Points.AddXY("CN", 1900000);
-
-            //chart.Series.Add(series);
-
-            //// Thêm biểu đồ vào panelPhai
-            //pnlPhai.Controls.Clear();        // Xóa control cũ nếu có
-            //pnlPhai.Controls.Add(chart);     // Thêm biểu đồ vào panel
-        }
-
+      
 
     }
 }

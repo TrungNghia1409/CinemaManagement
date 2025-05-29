@@ -626,7 +626,6 @@
             Controls.Add(pnlTongQuanThongKe);
             Name = "frmThongKe";
             Text = "frmThongKe";
-            Load += frmThongKe_Load;
             pnlTongQuanThongKe.ResumeLayout(false);
             pnlTrai.ResumeLayout(false);
             pnlPhimDoanhThuCaoNhat.ResumeLayout(false);
