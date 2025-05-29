@@ -65,38 +65,41 @@
             // 
             // txbThang
             // 
-            txbThang.Location = new Point(64, 224);
+            txbThang.Location = new Point(104, 224);
             txbThang.Name = "txbThang";
-            txbThang.Size = new Size(200, 23);
+            txbThang.Size = new Size(160, 23);
             txbThang.TabIndex = 2;
             // 
             // txbNgay
             // 
-            txbNgay.Location = new Point(64, 104);
+            txbNgay.Location = new Point(104, 104);
             txbNgay.Name = "txbNgay";
-            txbNgay.Size = new Size(200, 23);
+            txbNgay.Size = new Size(160, 23);
             txbNgay.TabIndex = 2;
             // 
             // dtpNam
             // 
-            dtpNam.Location = new Point(64, 312);
+            dtpNam.Location = new Point(104, 312);
             dtpNam.Name = "dtpNam";
-            dtpNam.Size = new Size(200, 23);
+            dtpNam.Size = new Size(160, 23);
             dtpNam.TabIndex = 1;
+            dtpNam.ValueChanged += dtpNam_ValueChanged;
             // 
             // dtpThang
             // 
-            dtpThang.Location = new Point(64, 192);
+            dtpThang.Location = new Point(104, 192);
             dtpThang.Name = "dtpThang";
-            dtpThang.Size = new Size(200, 23);
+            dtpThang.Size = new Size(160, 23);
             dtpThang.TabIndex = 1;
+            dtpThang.ValueChanged += dtpThang_ValueChanged;
             // 
             // dtpNgay
             // 
-            dtpNgay.Location = new Point(64, 72);
+            dtpNgay.Location = new Point(104, 72);
             dtpNgay.Name = "dtpNgay";
-            dtpNgay.Size = new Size(200, 23);
+            dtpNgay.Size = new Size(160, 23);
             dtpNgay.TabIndex = 1;
+            dtpNgay.ValueChanged += dtpNgay_ValueChanged;
             // 
             // rdbNam
             // 
@@ -138,6 +141,7 @@
             rdbKhachHang_DatVe.TabStop = true;
             rdbKhachHang_DatVe.Text = "Danh sách khách hàng đặt vé nhiều nhất";
             rdbKhachHang_DatVe.UseVisualStyleBackColor = true;
+            rdbKhachHang_DatVe.CheckedChanged += rdbKhachHang_DatVe_CheckedChanged;
             // 
             // rdbKhachHang_ChuaTungDatVe
             // 
@@ -149,6 +153,7 @@
             rdbKhachHang_ChuaTungDatVe.TabStop = true;
             rdbKhachHang_ChuaTungDatVe.Text = "Danh sách khách chưa từng đặt vé";
             rdbKhachHang_ChuaTungDatVe.UseVisualStyleBackColor = true;
+            rdbKhachHang_ChuaTungDatVe.CheckedChanged += rdbKhachHang_ChuaTungDatVe_CheckedChanged;
             // 
             // rdbKhachHang_DiemThuong
             // 
@@ -160,17 +165,19 @@
             rdbKhachHang_DiemThuong.TabStop = true;
             rdbKhachHang_DiemThuong.Text = "Danh sách khách hàng có điểm thưởng cao nhất";
             rdbKhachHang_DiemThuong.UseVisualStyleBackColor = true;
+            rdbKhachHang_DiemThuong.CheckedChanged += rdbKhachHang_DiemThuong_CheckedChanged;
             // 
             // rdbKhachHang_Tong
             // 
             rdbKhachHang_Tong.AutoSize = true;
             rdbKhachHang_Tong.Location = new Point(16, 38);
             rdbKhachHang_Tong.Name = "rdbKhachHang_Tong";
-            rdbKhachHang_Tong.Size = new Size(103, 19);
+            rdbKhachHang_Tong.Size = new Size(203, 19);
             rdbKhachHang_Tong.TabIndex = 2;
             rdbKhachHang_Tong.TabStop = true;
-            rdbKhachHang_Tong.Text = "Số khách hàng";
+            rdbKhachHang_Tong.Text = "Số khách hàng theo từng khu vực";
             rdbKhachHang_Tong.UseVisualStyleBackColor = true;
+            rdbKhachHang_Tong.CheckedChanged += rdbKhachHang_Tong_CheckedChanged;
             // 
             // lblKetQuaThongKe
             // 
@@ -189,6 +196,7 @@
             lblThang.Size = new Size(38, 15);
             lblThang.TabIndex = 3;
             lblThang.Text = "label1";
+            lblThang.Visible = false;
             // 
             // lblNgay
             // 
@@ -198,12 +206,13 @@
             lblNgay.Size = new Size(38, 15);
             lblNgay.TabIndex = 3;
             lblNgay.Text = "label1";
+            lblNgay.Visible = false;
             // 
             // txbNam
             // 
-            txbNam.Location = new Point(64, 344);
+            txbNam.Location = new Point(104, 344);
             txbNam.Name = "txbNam";
-            txbNam.Size = new Size(200, 23);
+            txbNam.Size = new Size(160, 23);
             txbNam.TabIndex = 2;
             // 
             // lblTieuChi
@@ -252,6 +261,7 @@
             lblNam.Size = new Size(38, 15);
             lblNam.TabIndex = 3;
             lblNam.Text = "label1";
+            lblNam.Visible = false;
             // 
             // rdbThang
             // 
