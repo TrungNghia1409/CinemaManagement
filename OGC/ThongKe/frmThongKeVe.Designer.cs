@@ -39,7 +39,6 @@
             rdbVe_LoaiPhong = new RadioButton();
             rdbSoVe_Phim = new RadioButton();
             rdbVe_SuatChieu = new RadioButton();
-            rdbTongSoVeBan = new RadioButton();
             lblKetQuaThongKe = new Label();
             lblThang = new Label();
             lblNgay = new Label();
@@ -65,38 +64,41 @@
             // 
             // txbThang
             // 
-            txbThang.Location = new Point(64, 224);
+            txbThang.Location = new Point(104, 224);
             txbThang.Name = "txbThang";
-            txbThang.Size = new Size(200, 23);
+            txbThang.Size = new Size(160, 23);
             txbThang.TabIndex = 2;
             // 
             // txbNgay
             // 
-            txbNgay.Location = new Point(64, 104);
+            txbNgay.Location = new Point(104, 104);
             txbNgay.Name = "txbNgay";
-            txbNgay.Size = new Size(200, 23);
+            txbNgay.Size = new Size(160, 23);
             txbNgay.TabIndex = 2;
             // 
             // dtpNam
             // 
-            dtpNam.Location = new Point(64, 312);
+            dtpNam.Location = new Point(104, 312);
             dtpNam.Name = "dtpNam";
-            dtpNam.Size = new Size(200, 23);
+            dtpNam.Size = new Size(160, 23);
             dtpNam.TabIndex = 1;
+            dtpNam.ValueChanged += dtpNam_ValueChanged;
             // 
             // dtpThang
             // 
-            dtpThang.Location = new Point(64, 192);
+            dtpThang.Location = new Point(104, 192);
             dtpThang.Name = "dtpThang";
-            dtpThang.Size = new Size(200, 23);
+            dtpThang.Size = new Size(160, 23);
             dtpThang.TabIndex = 1;
+            dtpThang.ValueChanged += dtpThang_ValueChanged;
             // 
             // dtpNgay
             // 
-            dtpNgay.Location = new Point(64, 72);
+            dtpNgay.Location = new Point(104, 72);
             dtpNgay.Name = "dtpNgay";
-            dtpNgay.Size = new Size(200, 23);
+            dtpNgay.Size = new Size(160, 23);
             dtpNgay.TabIndex = 1;
+            dtpNgay.ValueChanged += dtpNgay_ValueChanged;
             // 
             // rdbNam
             // 
@@ -131,13 +133,14 @@
             // rdbVe_LoaiPhong
             // 
             rdbVe_LoaiPhong.AutoSize = true;
-            rdbVe_LoaiPhong.Location = new Point(264, 72);
+            rdbVe_LoaiPhong.Location = new Point(24, 40);
             rdbVe_LoaiPhong.Name = "rdbVe_LoaiPhong";
             rdbVe_LoaiPhong.Size = new Size(168, 19);
             rdbVe_LoaiPhong.TabIndex = 2;
             rdbVe_LoaiPhong.TabStop = true;
             rdbVe_LoaiPhong.Text = "Số vé theo từng loại phòng";
             rdbVe_LoaiPhong.UseVisualStyleBackColor = true;
+            rdbVe_LoaiPhong.CheckedChanged += rdbVe_LoaiPhong_CheckedChanged;
             // 
             // rdbSoVe_Phim
             // 
@@ -149,6 +152,7 @@
             rdbSoVe_Phim.TabStop = true;
             rdbSoVe_Phim.Text = "Số vé bán theo từng phim";
             rdbSoVe_Phim.UseVisualStyleBackColor = true;
+            rdbSoVe_Phim.CheckedChanged += rdbSoVe_Phim_CheckedChanged;
             // 
             // rdbVe_SuatChieu
             // 
@@ -160,17 +164,7 @@
             rdbVe_SuatChieu.TabStop = true;
             rdbVe_SuatChieu.Text = "Số vé theo từng suất chiếu";
             rdbVe_SuatChieu.UseVisualStyleBackColor = true;
-            // 
-            // rdbTongSoVeBan
-            // 
-            rdbTongSoVeBan.AutoSize = true;
-            rdbTongSoVeBan.Location = new Point(24, 38);
-            rdbTongSoVeBan.Name = "rdbTongSoVeBan";
-            rdbTongSoVeBan.Size = new Size(105, 19);
-            rdbTongSoVeBan.TabIndex = 2;
-            rdbTongSoVeBan.TabStop = true;
-            rdbTongSoVeBan.Text = "Tổng số vé bán";
-            rdbTongSoVeBan.UseVisualStyleBackColor = true;
+            rdbVe_SuatChieu.CheckedChanged += rdbVe_SuatChieu_CheckedChanged;
             // 
             // lblKetQuaThongKe
             // 
@@ -189,6 +183,7 @@
             lblThang.Size = new Size(38, 15);
             lblThang.TabIndex = 3;
             lblThang.Text = "label1";
+            lblThang.Visible = false;
             // 
             // lblNgay
             // 
@@ -198,12 +193,13 @@
             lblNgay.Size = new Size(38, 15);
             lblNgay.TabIndex = 3;
             lblNgay.Text = "label1";
+            lblNgay.Visible = false;
             // 
             // txbNam
             // 
-            txbNam.Location = new Point(64, 344);
+            txbNam.Location = new Point(104, 344);
             txbNam.Name = "txbNam";
-            txbNam.Size = new Size(200, 23);
+            txbNam.Size = new Size(160, 23);
             txbNam.TabIndex = 2;
             // 
             // lblTieuChi
@@ -252,6 +248,7 @@
             lblNam.Size = new Size(38, 15);
             lblNam.TabIndex = 3;
             lblNam.Text = "label1";
+            lblNam.Visible = false;
             // 
             // rdbThang
             // 
@@ -270,7 +267,6 @@
             pnlDoanhThu_dgv.Controls.Add(rdbVe_LoaiPhong);
             pnlDoanhThu_dgv.Controls.Add(rdbSoVe_Phim);
             pnlDoanhThu_dgv.Controls.Add(rdbVe_SuatChieu);
-            pnlDoanhThu_dgv.Controls.Add(rdbTongSoVeBan);
             pnlDoanhThu_dgv.Controls.Add(lblKetQuaThongKe);
             pnlDoanhThu_dgv.Controls.Add(lblTieuChi);
             pnlDoanhThu_dgv.Location = new Point(280, 0);
@@ -373,7 +369,6 @@
         private RadioButton rdbVe_LoaiPhong;
         private RadioButton rdbSoVe_Phim;
         private RadioButton rdbVe_SuatChieu;
-        private RadioButton rdbTongSoVeBan;
         private Label lblKetQuaThongKe;
         private Label lblThang;
         private Label lblNgay;

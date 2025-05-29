@@ -68,9 +68,56 @@ namespace OGC.DAO
         }
 
         //------ Phương thức trả về phim được chiếu nhiều nhất (ở DAO LICHCHIEU)
-        
-        //------ Phương thức trả về phim được chiếu ít nhất
+
+        //------ Phương thức trả về phim được chiếu ít nhất (PhimDAO)
         //------ Phương thức trả về phim có doanh thu cao nhất
+
+
+
+        //------- Tổng doanh thu
+        public decimal TinhTongDoanhThu(DateTime? ngay, int? thang, int? nam)
+        {
+            string query = "EXEC usp_TinhTongDoanhThu @Ngay , @Thang , @Nam ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] 
+            {
+                ngay.HasValue ? ngay.Value.Date : (object)DBNull.Value,
+                thang.HasValue ? thang : (object)DBNull.Value,
+                nam.HasValue ? nam : (object)DBNull.Value
+            });
+
+            return result != DBNull.Value ? Convert.ToDecimal(result) : 0;
+        }
+
+        //------- Tổng số vé bán theo ngày, hoặc tháng, hoặc năm chọn trên dtp
+        public int TongSoVeBan(DateTime? ngay, int? thang, int? nam)
+        {
+            string query = "EXEC usp_TinhTongSoVe @Ngay , @Thang , @Nam ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[]     
+            {
+                ngay.HasValue ? ngay.Value.Date : (object)DBNull.Value,
+                thang.HasValue ? thang : (object)DBNull.Value,
+                nam.HasValue ? nam : (object)DBNull.Value
+            });
+
+            return result != DBNull.Value ? Convert.ToInt32(result) : 0;
+        }
+
+        //------------Tổng số khách hàng trong ngày, tháng, năm
+        public int TongSoKhachHang(DateTime? ngay, int? thang, int? nam)
+        {
+            string query = "EXEC usp_ThongKeKhachHangDaMua @Ngay , @Thang , @Nam ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[]
+            {
+                ngay.HasValue ? ngay.Value.Date : (object)DBNull.Value,
+                thang.HasValue ? thang : (object)DBNull.Value,
+                nam.HasValue ? nam : (object)DBNull.Value
+            });
+
+            return result != DBNull.Value ? Convert.ToInt32(result) : 0;
+        }
 
 
     }

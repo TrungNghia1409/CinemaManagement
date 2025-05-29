@@ -39,7 +39,6 @@
             rdbPhim_DoanhThu_Thap = new RadioButton();
             rdbPhim_DatVe_NhieuNhat = new RadioButton();
             rdbPhim_DoanhThu_Cao = new RadioButton();
-            rdbPhim_DanhSach = new RadioButton();
             lblKetQuaThongKe = new Label();
             lblThang = new Label();
             lblNgay = new Label();
@@ -65,38 +64,41 @@
             // 
             // txbThang
             // 
-            txbThang.Location = new Point(64, 224);
+            txbThang.Location = new Point(104, 224);
             txbThang.Name = "txbThang";
-            txbThang.Size = new Size(200, 23);
+            txbThang.Size = new Size(160, 23);
             txbThang.TabIndex = 2;
             // 
             // txbNgay
             // 
-            txbNgay.Location = new Point(64, 104);
+            txbNgay.Location = new Point(104, 104);
             txbNgay.Name = "txbNgay";
-            txbNgay.Size = new Size(200, 23);
+            txbNgay.Size = new Size(160, 23);
             txbNgay.TabIndex = 2;
             // 
             // dtpNam
             // 
-            dtpNam.Location = new Point(64, 312);
+            dtpNam.Location = new Point(104, 312);
             dtpNam.Name = "dtpNam";
-            dtpNam.Size = new Size(200, 23);
+            dtpNam.Size = new Size(160, 23);
             dtpNam.TabIndex = 1;
+            dtpNam.ValueChanged += dtpNam_ValueChanged;
             // 
             // dtpThang
             // 
-            dtpThang.Location = new Point(64, 192);
+            dtpThang.Location = new Point(104, 192);
             dtpThang.Name = "dtpThang";
-            dtpThang.Size = new Size(200, 23);
+            dtpThang.Size = new Size(160, 23);
             dtpThang.TabIndex = 1;
+            dtpThang.ValueChanged += dtpThang_ValueChanged;
             // 
             // dtpNgay
             // 
-            dtpNgay.Location = new Point(64, 72);
+            dtpNgay.Location = new Point(104, 72);
             dtpNgay.Name = "dtpNgay";
-            dtpNgay.Size = new Size(200, 23);
+            dtpNgay.Size = new Size(160, 23);
             dtpNgay.TabIndex = 1;
+            dtpNgay.ValueChanged += dtpNgay_ValueChanged;
             // 
             // rdbNam
             // 
@@ -131,13 +133,14 @@
             // rdbPhim_DoanhThu_Thap
             // 
             rdbPhim_DoanhThu_Thap.AutoSize = true;
-            rdbPhim_DoanhThu_Thap.Location = new Point(264, 72);
+            rdbPhim_DoanhThu_Thap.Location = new Point(24, 40);
             rdbPhim_DoanhThu_Thap.Name = "rdbPhim_DoanhThu_Thap";
             rdbPhim_DoanhThu_Thap.Size = new Size(223, 19);
             rdbPhim_DoanhThu_Thap.TabIndex = 2;
             rdbPhim_DoanhThu_Thap.TabStop = true;
             rdbPhim_DoanhThu_Thap.Text = "Danh sách phim doanh thu thấp nhất";
             rdbPhim_DoanhThu_Thap.UseVisualStyleBackColor = true;
+            rdbPhim_DoanhThu_Thap.CheckedChanged += rdbPhim_DoanhThu_Thap_CheckedChanged;
             // 
             // rdbPhim_DatVe_NhieuNhat
             // 
@@ -149,6 +152,7 @@
             rdbPhim_DatVe_NhieuNhat.TabStop = true;
             rdbPhim_DatVe_NhieuNhat.Text = "Danh sách phim được đặt vé nhiều nhất";
             rdbPhim_DatVe_NhieuNhat.UseVisualStyleBackColor = true;
+            rdbPhim_DatVe_NhieuNhat.CheckedChanged += rdbPhim_DatVe_NhieuNhat_CheckedChanged;
             // 
             // rdbPhim_DoanhThu_Cao
             // 
@@ -160,17 +164,7 @@
             rdbPhim_DoanhThu_Cao.TabStop = true;
             rdbPhim_DoanhThu_Cao.Text = "Danh sách phim doanh thu cao nhất";
             rdbPhim_DoanhThu_Cao.UseVisualStyleBackColor = true;
-            // 
-            // rdbPhim_DanhSach
-            // 
-            rdbPhim_DanhSach.AutoSize = true;
-            rdbPhim_DanhSach.Location = new Point(24, 38);
-            rdbPhim_DanhSach.Name = "rdbPhim_DanhSach";
-            rdbPhim_DanhSach.Size = new Size(111, 19);
-            rdbPhim_DanhSach.TabIndex = 2;
-            rdbPhim_DanhSach.TabStop = true;
-            rdbPhim_DanhSach.Text = "Danh sách phim";
-            rdbPhim_DanhSach.UseVisualStyleBackColor = true;
+            rdbPhim_DoanhThu_Cao.CheckedChanged += rdbPhim_DoanhThu_Cao_CheckedChanged;
             // 
             // lblKetQuaThongKe
             // 
@@ -189,6 +183,7 @@
             lblThang.Size = new Size(38, 15);
             lblThang.TabIndex = 3;
             lblThang.Text = "label1";
+            lblThang.Visible = false;
             // 
             // lblNgay
             // 
@@ -198,12 +193,13 @@
             lblNgay.Size = new Size(38, 15);
             lblNgay.TabIndex = 3;
             lblNgay.Text = "label1";
+            lblNgay.Visible = false;
             // 
             // txbNam
             // 
-            txbNam.Location = new Point(64, 344);
+            txbNam.Location = new Point(104, 344);
             txbNam.Name = "txbNam";
-            txbNam.Size = new Size(200, 23);
+            txbNam.Size = new Size(160, 23);
             txbNam.TabIndex = 2;
             // 
             // lblTieuChi
@@ -252,6 +248,7 @@
             lblNam.Size = new Size(38, 15);
             lblNam.TabIndex = 3;
             lblNam.Text = "label1";
+            lblNam.Visible = false;
             // 
             // rdbThang
             // 
@@ -270,7 +267,6 @@
             pnlDoanhThu_dgv.Controls.Add(rdbPhim_DoanhThu_Thap);
             pnlDoanhThu_dgv.Controls.Add(rdbPhim_DatVe_NhieuNhat);
             pnlDoanhThu_dgv.Controls.Add(rdbPhim_DoanhThu_Cao);
-            pnlDoanhThu_dgv.Controls.Add(rdbPhim_DanhSach);
             pnlDoanhThu_dgv.Controls.Add(lblKetQuaThongKe);
             pnlDoanhThu_dgv.Controls.Add(lblTieuChi);
             pnlDoanhThu_dgv.Location = new Point(280, 0);
@@ -373,7 +369,6 @@
         private RadioButton rdbPhim_DoanhThu_Thap;
         private RadioButton rdbPhim_DatVe_NhieuNhat;
         private RadioButton rdbPhim_DoanhThu_Cao;
-        private RadioButton rdbPhim_DanhSach;
         private Label lblKetQuaThongKe;
         private Label lblThang;
         private Label lblNgay;
