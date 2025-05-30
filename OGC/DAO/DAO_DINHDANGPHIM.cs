@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OGC.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -94,6 +95,21 @@ namespace OGC.DAO
                 MessageBox.Show($"Lỗi khi sửa tên định dạng: {ex.Message}");
                 return false;
             }
+        }
+
+        public List<DTO_DINHDANGPHIM> ListDinhDangPhim()
+        {
+            List<DTO_DINHDANGPHIM> list = new List<DTO_DINHDANGPHIM>();
+
+            string query = "EXEC usp_danhsachDINHDANGPHIM";
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(new DTO_DINHDANGPHIM(row));
+            }
+
+            return list;
         }
     }
 }

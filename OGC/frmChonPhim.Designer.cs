@@ -32,9 +32,9 @@
             btnTimPhim = new Button();
             txbTimKiem = new TextBox();
             label2 = new Label();
-            comboBox2 = new ComboBox();
-            comboBox1 = new ComboBox();
-            dateTimePicker1 = new DateTimePicker();
+            cbtheloaiphim = new ComboBox();
+            cbdinhdang = new ComboBox();
+            dtpChonNgayChieu = new DateTimePicker();
             label1 = new Label();
             panel2 = new Panel();
             fplHienThiPhim = new FlowLayoutPanel();
@@ -47,9 +47,9 @@
             panel1.Controls.Add(btnTimPhim);
             panel1.Controls.Add(txbTimKiem);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(comboBox2);
-            panel1.Controls.Add(comboBox1);
-            panel1.Controls.Add(dateTimePicker1);
+            panel1.Controls.Add(cbtheloaiphim);
+            panel1.Controls.Add(cbdinhdang);
+            panel1.Controls.Add(dtpChonNgayChieu);
             panel1.Controls.Add(label1);
             panel1.Location = new Point(3, 6);
             panel1.Name = "panel1";
@@ -82,28 +82,31 @@
             label2.TabIndex = 3;
             label2.Text = "Tên Phim";
             // 
-            // comboBox2
+            // cbtheloaiphim
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(535, 18);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(151, 28);
-            comboBox2.TabIndex = 2;
+            cbtheloaiphim.FormattingEnabled = true;
+            cbtheloaiphim.Location = new Point(535, 18);
+            cbtheloaiphim.Name = "cbtheloaiphim";
+            cbtheloaiphim.Size = new Size(151, 28);
+            cbtheloaiphim.TabIndex = 2;
+            cbtheloaiphim.SelectedIndexChanged += cbtheloaiphim_SelectedIndexChanged_1;
             // 
-            // comboBox1
+            // cbdinhdang
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(378, 18);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 2;
+            cbdinhdang.FormattingEnabled = true;
+            cbdinhdang.Location = new Point(378, 18);
+            cbdinhdang.Name = "cbdinhdang";
+            cbdinhdang.Size = new Size(151, 28);
+            cbdinhdang.TabIndex = 2;
+            cbdinhdang.SelectedIndexChanged += cbdinhdang_SelectedIndexChanged_1;
             // 
-            // dateTimePicker1
+            // dtpChonNgayChieu
             // 
-            dateTimePicker1.Location = new Point(122, 18);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 1;
+            dtpChonNgayChieu.Location = new Point(122, 18);
+            dtpChonNgayChieu.Name = "dtpChonNgayChieu";
+            dtpChonNgayChieu.Size = new Size(250, 27);
+            dtpChonNgayChieu.TabIndex = 1;
+            dtpChonNgayChieu.ValueChanged += dtpChonNgayChieu_ValueChanged;
             // 
             // label1
             // 
@@ -149,9 +152,9 @@
         private Panel panel1;
         private Panel panel2;
         private FlowLayoutPanel fplHienThiPhim;
-        private ComboBox comboBox2;
-        private ComboBox comboBox1;
-        private DateTimePicker dateTimePicker1;
+        private ComboBox cbtheloaiphim;
+        private ComboBox cbdinhdang;
+        private DateTimePicker dtpChonNgayChieu;
         private Label label1;
         private Button btnTimPhim;
         private TextBox txbTimKiem;
