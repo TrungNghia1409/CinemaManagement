@@ -253,25 +253,7 @@ namespace OGC
 
         private void txbTimKiem_TextChanged(object sender, EventArgs e)
         {
-            string searchText = txbTimKiem.Text.Trim().ToLower();
-
-            foreach (Control control in fplHienThiPhim.Controls)
-            {
-                if (control is Panel panel)
-                {
-                    // Tìm FlowLayoutPanel bên trong Panel (giả sử là nơi chứa Label tên phim)
-                    FlowLayoutPanel innerPanel = panel.Controls.OfType<FlowLayoutPanel>().FirstOrDefault();
-                    if (innerPanel != null)
-                    {
-                        // Tìm Label tên phim bên trong
-                        Label lblTenPhim = innerPanel.Controls.OfType<Label>().FirstOrDefault();
-                        if (lblTenPhim != null)
-                        {
-                            panel.Visible = lblTenPhim.Text.ToLower().Contains(searchText);
-                        }
-                    }
-                }
-            }
+            LoadPhimTheoBoLoc();
         }
 
         private void LoadPhimTheoNgayChieu(DateTime ngayChieu)
@@ -288,33 +270,6 @@ namespace OGC
         }
 
 
-      
-        private void LoadPhimTheoIDTheLoai(int idTheLoai)
-        {
-            fplHienThiPhim.Controls.Clear();
-
-            List<PhimDTO> danhSachPhim = PhimDAO.Instance.GetPhimByIDTheLoai(idTheLoai);
-
-            foreach (PhimDTO phim in danhSachPhim)
-            {
-                AddPhimToFlowLayout(phim);
-            }
-        }
-
-
-
-        private void LoadPhimTheoIDDinhDang(int idTheLoai)
-        {
-            fplHienThiPhim.Controls.Clear();
-
-            List<PhimDTO> danhSachPhim = PhimDAO.Instance.GetPhimByIDDinhDang(idTheLoai);
-
-            foreach (PhimDTO phim in danhSachPhim)
-            {
-                AddPhimToFlowLayout(phim);
-            }
-        }
-
         private void dtpChonNgayChieu_ValueChanged(object sender, EventArgs e)
         {
             LoadPhimTheoNgayChieu(dtpChonNgayChieu.Value.Date);
@@ -322,28 +277,12 @@ namespace OGC
 
         private void cbdinhdang_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            var dinhDang = (DTO_DINHDANGPHIM)cbdinhdang.SelectedItem;
-            if (dinhDang.ID == 0) // Tất cả
-            {
-                LoadPhimList();
-            }
-            else
-            {
-                LoadPhimTheoIDDinhDang(dinhDang.ID);
-            }
+            LoadPhimTheoBoLoc();
         }
 
         private void cbtheloaiphim_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            var selected = (DTO_THELOAIPHIM)cbtheloaiphim.SelectedItem;
-            if (selected.ID == 0) // Tất cả
-            {
-                LoadPhimList();
-            }
-            else
-            {
-                LoadPhimTheoIDTheLoai(selected.ID);
-            }
+            LoadPhimTheoBoLoc();
         }
     }
 }
