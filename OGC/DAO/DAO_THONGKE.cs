@@ -178,5 +178,43 @@ namespace OGC.DAO
 
         #endregion
 
+        #region thống kê nhân viên
+
+        //danh sách nhân viên mới trong tháng năm
+        public DataTable DanhSachNhanVienMoi(int? thang, int? nam)
+        {
+            string query = "EXEC usp_DanhSachNhanVienMoi @Thang , @Nam" ;
+            return DataProvider.Instance.ExecuteQuery(query, new object[]
+            {
+        thang.HasValue ? (object)thang : DBNull.Value,
+        nam.HasValue ? (object)nam : DBNull.Value
+            });
+        }
+
+        //số lượng bán vé của từng nhân viên
+        public DataTable SoLuongVeCuaTungNhanVien()
+        {
+            string query = @"  EXEC usp_SoLuongHoaDonVe_TheoNhanVien  ";
+
+            return DataProvider.Instance.ExecuteQuery(query);
+        }
+        //số lượng bán dịch vụ của từng nhân viên
+        public DataTable SoLuongDichVuCuaTungNhanVien()
+        {
+            string query = @"  EXEC usp_SoLuongHoaDonMonAn_TheoNhanVien ";
+
+            return DataProvider.Instance.ExecuteQuery(query);
+        }
+        //nhân viên mang lại doanh thu cao nhất
+        public DataTable NhanVienMangLaiDoanhThuCaoNhat()
+        {
+            string query = @"  EXEC usp_NhanVien_DoanhThuCaoNhat ";
+
+            return DataProvider.Instance.ExecuteQuery(query);
+        }
+
+
+        #endregion
+
     }
 }
