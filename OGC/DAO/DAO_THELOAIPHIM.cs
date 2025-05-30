@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OGC.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -24,6 +25,32 @@ namespace OGC.DAO
         {
             string query = "EXEC usp_danhsachTHELOAIPHIM";
             return DataProvider.Instance.ExecuteQuery(query);
+        }
+        //lấy id của thể loại phim theo tên
+        public int GetIDByTenTheLoai(string tenTheLoai)
+        {
+            string query = "SELECT ID FROM THELOAIPHIM WHERE TenTheLoai = @TenTheLoai ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenTheLoai });
+
+            if (result != null)
+                return Convert.ToInt32(result);
+
+            return -1; // Không tìm thấy
+        }
+
+        public List<DTO_THELOAIPHIM> ListTheLoaiPhim()
+        {
+            List<DTO_THELOAIPHIM> list = new List<DTO_THELOAIPHIM>();
+
+            string query = "EXEC usp_danhsachTHELOAIPHIM";
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(new DTO_THELOAIPHIM(row));
+            }
+
+            return list;
         }
 
         //PHƯƠNG THỨC THÊM THỂ LOẠI

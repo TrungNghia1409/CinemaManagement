@@ -23,6 +23,21 @@ namespace OGC.DAO
             string query = "EXEC usp_danhsachLOAIPHONG";
             return DataProvider.Instance.ExecuteQuery(query);
         }
+        public List<DTO_LOAIPHONG> GetAllLoaiPhong()
+        {
+            List<DTO_LOAIPHONG> list = new List<DTO_LOAIPHONG>();
+
+            string query = "SELECT * FROM LOAIPHONG";
+
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(new DTO_LOAIPHONG(row));
+            }
+
+            return list;
+        }
 
         #region PHONGCHIEU
         public List<string> DanhSachTenPhong_List()
@@ -57,6 +72,14 @@ namespace OGC.DAO
         }
         #endregion
 
+
+        public int GetIDByTenLoaiPhong(string tenLoaiPhong)
+        {
+            string query = "SELECT ID FROM LOAIPHONG WHERE TenLoaiPhong = @TenLoaiPhong ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenLoaiPhong });
+
+            return (result != null && int.TryParse(result.ToString(), out int id)) ? id : -1;
+        }
 
         //PHƯƠNG THỨC THÊM loại phòng
         public bool ThemLoaiPhong(string tenLoaiPhong)

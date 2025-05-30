@@ -22,11 +22,31 @@ public class PhimDAO
 
     private PhimDAO() { }
 
+    private PhimDTO MapPhim(DataRow row)
+    {
+        return new PhimDTO(
+            (int)row["ID"],
+            row["TenPhim"].ToString(),
+            row["DaoDien"]?.ToString(),
+            row["DienVien"]?.ToString(),
+            (int)row["IDTheLoaiPhim"],
+            (int)row["IDDinhDang"],
+            (int)row["ThoiLuong"],
+            row["MoTa"]?.ToString(),
+            (DateTime)row["NgayKhoiChieu"],
+            (int)row["TrangThai"],
+            row["Trailer_Url"]?.ToString(),
+            row["Poster_Url"]?.ToString(),
+            row["Anh"]?.ToString(),
+            row["IDDoTuoi"] == DBNull.Value ? null : row["IDDoTuoi"].ToString()
+        );
+    }
+
     // Lấy tất cả phim
     public List<PhimDTO> GetAllPhim()
     {
         List<PhimDTO> list = new List<PhimDTO>();
-        string query = "SELECT * FROM PHIM";
+        string query = "SELECT * FROM PHIM ";
         DataTable data = DataProvider.Instance.ExecuteQuery(query);
 
         foreach (DataRow row in data.Rows)
@@ -37,7 +57,58 @@ public class PhimDAO
 
         return list;
     }
-   
+    //
+
+
+    public List<PhimDTO> GetPhimByIDTheLoai(int idTheLoai)
+    {
+        List<PhimDTO> list = new List<PhimDTO>();
+
+        string query = "SELECT * FROM PHIM WHERE IDTheLoaiPhim = @ID " ;
+        DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { idTheLoai });
+
+        foreach (DataRow row in dt.Rows)
+        {
+            PhimDTO phim = MapPhim(row);
+            list.Add(phim);
+        }
+
+        return list;
+    }
+    public List<PhimDTO> GetPhimByIDDinhDang(int idDinhDang)
+    {
+        List<PhimDTO> list = new List<PhimDTO>();
+
+        string query = "SELECT * FROM PHIM WHERE IDDinhDang = @IDDinhDang ";
+        DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { idDinhDang });
+
+        foreach (DataRow row in dt.Rows)
+        {
+            PhimDTO phim = MapPhim(row);
+            list.Add(phim);
+        }
+
+        return list;
+    }
+
+    public List<PhimDTO> GetPhimByNgayChieu(DateTime ngayChieu)
+    {
+        List<PhimDTO> list = new List<PhimDTO>();
+        string query = "SELECT * FROM PHIM WHERE CAST(NgayKhoiChieu AS DATE) = @ngayChieu";
+
+        DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { ngayChieu.Date });
+
+        foreach (DataRow row in data.Rows)
+        {
+            list.Add(MapPhim(row));
+        }
+
+        return list;
+    }
+
+
+
+
     // Thêm phim
     public bool InsertPhim(PhimDTO phim)
     { //nhớ bổ sung URL TRAILER, ANH vào câu lệnh SQl ở dòng 45 46
@@ -116,48 +187,6 @@ public class PhimDAO
         return null;
     }
 
-    ////--------lấy IDPhim dựa trên tên phim
-    //public int? LayIDTheoTenPhim(string tenPhim)
-    //{
-    //    try
-    //    {
-    //        string query = "SELECT ID FROM PHIM WHERE TenPhim = @TenPhim ";
-    //        object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim });
-
-    //        if (result != null)
-    //        {
-    //            return Convert.ToInt32(result);
-    //        }
-    //        return null;
-    //    }
-
-    //    catch (Exception ex)
-    //    {
-    //        // Nếu có lỗi ,  rollback giao dịch
-    //        MessageBox.Show($"Lỗi khi cố gắng lấy ID dựa trên tên phim: {ex.Message}");
-    //        return null;
-    //    }
-    //}
-
-
-    // Hàm ánh xạ từ DataRow sang DTO
-    private PhimDTO MapPhim(DataRow row)
-    {
-        return new PhimDTO(
-            (int)row["ID"],
-            row["TenPhim"].ToString(),
-            row["DaoDien"]?.ToString(),
-            row["DienVien"]?.ToString(),
-            (int)row["IDTheLoaiPhim"],
-            (int)row["IDDinhDang"],
-            (int)row["ThoiLuong"],
-            row["MoTa"]?.ToString(),
-            (DateTime)row["NgayKhoiChieu"],
-            (int)row["TrangThai"],
-            row["Trailer_Url"]?.ToString(),
-            row["Poster_Url"]?.ToString(),
-            row["Anh"]?.ToString(),
-            row["IDDoTuoi"] == DBNull.Value ? null : row["IDDoTuoi"].ToString()
-        );
-    }
+    
+   
 }

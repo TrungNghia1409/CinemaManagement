@@ -48,7 +48,6 @@
             panel16 = new Panel();
             tbMoTaMonAn = new TextBox();
             label12 = new Label();
-            btnXoaAnh = new Button();
             AnhDoAn = new PictureBox();
             panel5.SuspendLayout();
             panel7.SuspendLayout();
@@ -163,7 +162,6 @@
             panel1.Controls.Add(btnTaiAnhMonAn);
             panel1.Controls.Add(label13);
             panel1.Controls.Add(panel16);
-            panel1.Controls.Add(btnXoaAnh);
             panel1.Controls.Add(AnhDoAn);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel7);
@@ -205,7 +203,7 @@
             // 
             // btnTaiAnhMonAn
             // 
-            btnTaiAnhMonAn.Location = new Point(346, 365);
+            btnTaiAnhMonAn.Location = new Point(396, 365);
             btnTaiAnhMonAn.Name = "btnTaiAnhMonAn";
             btnTaiAnhMonAn.Size = new Size(85, 29);
             btnTaiAnhMonAn.TabIndex = 1;
@@ -248,15 +246,6 @@
             label12.Size = new Size(51, 20);
             label12.TabIndex = 0;
             label12.Text = "Mô Tả";
-            // 
-            // btnXoaAnh
-            // 
-            btnXoaAnh.Location = new Point(442, 365);
-            btnXoaAnh.Name = "btnXoaAnh";
-            btnXoaAnh.Size = new Size(85, 29);
-            btnXoaAnh.TabIndex = 1;
-            btnXoaAnh.Text = "Xóa Ảnh";
-            btnXoaAnh.UseVisualStyleBackColor = true;
             // 
             // AnhDoAn
             // 
@@ -309,7 +298,6 @@
         private Panel panel16;
         private TextBox tbMoTaMonAn;
         private Label label12;
-        private Button btnXoaAnh;
         private PictureBox AnhDoAn;
         private Button btnThemMonAn;
         private Button btnXoaMonAn;

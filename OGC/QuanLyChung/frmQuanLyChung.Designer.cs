@@ -168,7 +168,7 @@
             // 
             // btnDoAn
             // 
-            btnDoAn.Location = new Point(1139, 120);
+            btnDoAn.Location = new Point(1006, 130);
             btnDoAn.Name = "btnDoAn";
             btnDoAn.Size = new Size(94, 29);
             btnDoAn.TabIndex = 13;
