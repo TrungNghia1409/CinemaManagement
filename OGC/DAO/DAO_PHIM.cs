@@ -35,7 +35,7 @@ public class PhimDAO
         }
         if (idTheLoai != 0)
         {
-            query += " AND IDTheLoai = @IDTheLoai";
+            query += " AND IDTheLoaiPhim = @IDTheLoai";
             parameters.Add(idTheLoai);
         }
         if (idDinhDang != 0)
@@ -69,7 +69,7 @@ public class PhimDAO
             tenPhim: row["TenPhim"].ToString(),
             daoDien: row["DaoDien"].ToString(),
             dienVien: row["DienVien"].ToString(),
-            idTheLoai: Convert.ToInt32(row["IDTheLoai"]),
+            idTheLoai: Convert.ToInt32(row["IDTheLoaiPhim"]),
             idDinhDang: Convert.ToInt32(row["IDDinhDang"]),
             thoiLuong: Convert.ToInt32(row["ThoiLuong"]),
             moTa: row["MoTa"].ToString(),
