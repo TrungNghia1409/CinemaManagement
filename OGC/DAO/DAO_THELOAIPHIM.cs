@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OGC.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -95,6 +96,21 @@ namespace OGC.DAO
                 MessageBox.Show($"Lỗi khi xóa thể loại phim: {ex.Message}");
                 return false;
             }
+        }
+
+        public List<DTO_THELOAIPHIM> ListTheLoaiPhim()
+        {
+            List<DTO_THELOAIPHIM> list = new List<DTO_THELOAIPHIM>();
+
+            string query = "EXEC usp_danhsachTHELOAIPHIM";
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(new DTO_THELOAIPHIM(row));
+            }
+
+            return list;
         }
     }
 }

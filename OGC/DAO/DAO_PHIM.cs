@@ -22,6 +22,67 @@ public class PhimDAO
 
     private PhimDAO() { }
 
+    // Lấy danh sách phim theo bộ lọc
+    public List<PhimDTO> GetPhimTheoBoLoc(DateTime ngayChieu, int idTheLoai, int idDinhDang, string tuKhoa)
+    {
+        string query = "SELECT * FROM PHIM WHERE 1=1";
+
+        List<object> parameters = new List<object>();
+        if (ngayChieu != DateTime.MinValue)
+        {
+            query += " AND CONVERT(date, NgayKhoiChieu) = @NgayChieu";
+            parameters.Add(ngayChieu);
+        }
+        if (idTheLoai != 0)
+        {
+            query += " AND IDTheLoai = @IDTheLoai";
+            parameters.Add(idTheLoai);
+        }
+        if (idDinhDang != 0)
+        {
+            query += " AND IDDinhDang = @IDDinhDang";
+            parameters.Add(idDinhDang);
+        }
+        if (!string.IsNullOrEmpty(tuKhoa))
+        {
+            query += " AND LOWER(TenPhim) LIKE @TuKhoa";
+            parameters.Add("%" + tuKhoa.ToLower() + "%");
+        }
+
+        DataTable dt = DataProvider.Instance.ExecuteQuery(query, parameters.ToArray());
+
+        List<PhimDTO> list = new List<PhimDTO>();
+
+        foreach (DataRow row in dt.Rows)
+        {
+            list.Add(DataRowToPhimDTO(row));
+        }
+
+        return list;
+    }
+
+    // Hàm chuyển DataRow sang PhimDTO
+    private PhimDTO DataRowToPhimDTO(DataRow row)
+    {
+        return new PhimDTO(
+            id: Convert.ToInt32(row["ID"]),
+            tenPhim: row["TenPhim"].ToString(),
+            daoDien: row["DaoDien"].ToString(),
+            dienVien: row["DienVien"].ToString(),
+            idTheLoai: Convert.ToInt32(row["IDTheLoai"]),
+            idDinhDang: Convert.ToInt32(row["IDDinhDang"]),
+            thoiLuong: Convert.ToInt32(row["ThoiLuong"]),
+            moTa: row["MoTa"].ToString(),
+            ngayKhoiChieu: Convert.ToDateTime(row["NgayKhoiChieu"]),
+            trangThai: Convert.ToInt32(row["TrangThai"]),
+            trailerUrl: row["Trailer_Url"].ToString(),
+            posterUrl: row["Poster_Url"].ToString(),
+            anh: row["Anh"].ToString(),
+            doTuoi: row["IDDoTuoi"].ToString()
+        );
+    }
+
+
     // Lấy tất cả phim
     public List<PhimDTO> GetAllPhim()
     {
@@ -37,6 +98,8 @@ public class PhimDAO
 
         return list;
     }
+
+
     //Phim có doanh thu cao nhất
     public List<string> GetPhimDoanhThuCaoNhatThang()
     {
@@ -130,28 +193,53 @@ public class PhimDAO
         return null;
     }
 
-    ////--------lấy IDPhim dựa trên tên phim
-    //public int? LayIDTheoTenPhim(string tenPhim)
-    //{
-    //    try
-    //    {
-    //        string query = "SELECT ID FROM PHIM WHERE TenPhim = @TenPhim ";
-    //        object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim });
+    public List<PhimDTO> GetPhimByIDDinhDang(int idDinhDang)
+    {
+        List<PhimDTO> list = new List<PhimDTO>();
 
-    //        if (result != null)
-    //        {
-    //            return Convert.ToInt32(result);
-    //        }
-    //        return null;
-    //    }
+        string query = "SELECT * FROM PHIM WHERE IDDinhDang = @IDDinhDang ";
+        DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { idDinhDang });
 
-    //    catch (Exception ex)
-    //    {
-    //        // Nếu có lỗi ,  rollback giao dịch
-    //        MessageBox.Show($"Lỗi khi cố gắng lấy ID dựa trên tên phim: {ex.Message}");
-    //        return null;
-    //    }
-    //}
+        foreach (DataRow row in dt.Rows)
+        {
+            PhimDTO phim = MapPhim(row);
+            list.Add(phim);
+        }
+
+        return list;
+    }
+
+    public List<PhimDTO> GetPhimByIDTheLoai(int idTheLoai)
+    {
+        List<PhimDTO> list = new List<PhimDTO>();
+
+        string query = "SELECT * FROM PHIM WHERE IDTheLoaiPhim = @ID ";
+        DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { idTheLoai });
+
+        foreach (DataRow row in dt.Rows)
+        {
+            PhimDTO phim = MapPhim(row);
+            list.Add(phim);
+        }
+
+        return list;
+    }
+ 
+
+    public List<PhimDTO> GetPhimByNgayChieu(DateTime ngayChieu)
+    {
+        List<PhimDTO> list = new List<PhimDTO>();
+        string query = "SELECT * FROM PHIM WHERE CAST(NgayKhoiChieu AS DATE) = @ngayChieu";
+
+        DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { ngayChieu.Date });
+
+        foreach (DataRow row in data.Rows)
+        {
+            list.Add(MapPhim(row));
+        }
+
+        return list;
+    }
 
 
     // Hàm ánh xạ từ DataRow sang DTO

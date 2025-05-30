@@ -1,4 +1,6 @@
-﻿using OGC.DTO;
+﻿using OGC.DAO;
+using OGC.DTO;
+using OGC.NHANVIEN;
 using OGC.Phim;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace OGC
 {
@@ -18,6 +21,11 @@ namespace OGC
         {
             InitializeComponent();
             LoadPhimList(); // Gọi hàm LoadPhimList để tải danh sách phim
+            LoadPhimTheoNgayChieu(dtpChonNgayChieu.Value.Date);
+            LoadDinhDangPhimToComboBox();
+            LoadTheLoaiPhim();
+            LoadPhimTheoBoLoc();// Tải thể loại phim vào ComboBox
+
         }
 
         public void LoadPhimList()
@@ -30,6 +38,52 @@ namespace OGC
                 AddPhimToFlowLayout(phim);
             }
         }
+
+
+        private void LoadPhimTheoBoLoc()
+        {
+            fplHienThiPhim.Controls.Clear();
+
+            DateTime ngayChieu = dtpChonNgayChieu.Value.Date;
+
+            int idTheLoai = (cbtheloaiphim.SelectedItem as DTO_THELOAIPHIM)?.ID ?? 0;
+            int idDinhDang = (cbdinhdang.SelectedItem as DTO_DINHDANGPHIM)?.ID ?? 0;
+
+            string tuKhoa = txbTimKiem.Text.Trim().ToLower();
+
+            List<PhimDTO> danhSachPhim = PhimDAO.Instance.GetPhimTheoBoLoc(ngayChieu, idTheLoai, idDinhDang, tuKhoa);
+
+            foreach (PhimDTO phim in danhSachPhim)
+            {
+                AddPhimToFlowLayout(phim);
+            }
+        }
+
+        private void LoadTheLoaiPhim()
+        {
+            List<DTO_THELOAIPHIM> list = DAO_THELOAIPHIM.Instance.ListTheLoaiPhim();
+
+            // Thêm tùy chọn "Tất cả"
+            list.Insert(0, new DTO_THELOAIPHIM { ID = 0, TenTheLoai = "Tất cả" });
+
+            cbtheloaiphim.DataSource = list;
+            cbtheloaiphim.DisplayMember = "TenTheLoai";
+            cbtheloaiphim.ValueMember = "ID";
+
+        }
+
+        private void LoadDinhDangPhimToComboBox()
+        {
+            List<DTO_DINHDANGPHIM> list = DAO_DINHDANGPHIM.Instance.ListDinhDangPhim();
+
+            // Thêm tùy chọn "Tất cả"
+            list.Insert(0, new DTO_DINHDANGPHIM { ID = 0, TenDinhDang = "Tất cả" });
+
+            cbdinhdang.DataSource = list;
+            cbdinhdang.DisplayMember = "TenDinhDang";
+            cbdinhdang.ValueMember = "ID";
+        }
+
 
 
 
@@ -70,7 +124,7 @@ namespace OGC
                 // hoặc pictureBox.Image = Properties.Resources.NoImage; // ảnh mặc định nếu có
             }
 
-    
+
 
             fplHienThiPhim.Controls.Add(phimPanel);
 
@@ -219,7 +273,79 @@ namespace OGC
                 }
             }
         }
+
+        private void LoadPhimTheoNgayChieu(DateTime ngayChieu)
+        {
+            fplHienThiPhim.Controls.Clear();
+
+            List<PhimDTO> danhSachPhim = PhimDAO.Instance.GetPhimByNgayChieu(ngayChieu);
+
+            foreach (PhimDTO phim in danhSachPhim)
+            {
+
+                AddPhimToFlowLayout(phim);
+            }
+        }
+
+
+      
+        private void LoadPhimTheoIDTheLoai(int idTheLoai)
+        {
+            fplHienThiPhim.Controls.Clear();
+
+            List<PhimDTO> danhSachPhim = PhimDAO.Instance.GetPhimByIDTheLoai(idTheLoai);
+
+            foreach (PhimDTO phim in danhSachPhim)
+            {
+                AddPhimToFlowLayout(phim);
+            }
+        }
+
+
+
+        private void LoadPhimTheoIDDinhDang(int idTheLoai)
+        {
+            fplHienThiPhim.Controls.Clear();
+
+            List<PhimDTO> danhSachPhim = PhimDAO.Instance.GetPhimByIDDinhDang(idTheLoai);
+
+            foreach (PhimDTO phim in danhSachPhim)
+            {
+                AddPhimToFlowLayout(phim);
+            }
+        }
+
+        private void dtpChonNgayChieu_ValueChanged(object sender, EventArgs e)
+        {
+            LoadPhimTheoNgayChieu(dtpChonNgayChieu.Value.Date);
+        }
+
+        private void cbdinhdang_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            var dinhDang = (DTO_DINHDANGPHIM)cbdinhdang.SelectedItem;
+            if (dinhDang.ID == 0) // Tất cả
+            {
+                LoadPhimList();
+            }
+            else
+            {
+                LoadPhimTheoIDDinhDang(dinhDang.ID);
+            }
+        }
+
+        private void cbtheloaiphim_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            var selected = (DTO_THELOAIPHIM)cbtheloaiphim.SelectedItem;
+            if (selected.ID == 0) // Tất cả
+            {
+                LoadPhimList();
+            }
+            else
+            {
+                LoadPhimTheoIDTheLoai(selected.ID);
+            }
+        }
     }
-
-
 }
+
+
