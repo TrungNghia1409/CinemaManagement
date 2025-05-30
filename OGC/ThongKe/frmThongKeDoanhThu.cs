@@ -17,13 +17,6 @@ namespace OGC.ThongKe
         {
             InitializeComponent();
 
-            dtpThang.Format = DateTimePickerFormat.Custom;
-            dtpThang.CustomFormat = "MM/yyyy";
-
-            dtpNam.Format = DateTimePickerFormat.Custom;
-            dtpNam.CustomFormat = "yyyy";
-
-
         }
 
         private void lblThongKe_Click(object sender, EventArgs e)
@@ -31,51 +24,216 @@ namespace OGC.ThongKe
             this.Close();
         }
 
-        #region Doanh thu theo ngày, tháng, năm
-        private void dtpNgay_ValueChanged(object sender, EventArgs e)
+        private void frmThongKeDoanhThu_Load(object sender, EventArgs e)
         {
-            // Chỉ xử lý khi RadioButton được CHỌN (không cần gán Checked = true)
+            // Load năm từ 2020 đến năm hiện tại
+            int currentYear = DateTime.Now.Year;
+            for (int year = 2020; year <= currentYear; year++)
+            {
+                cbNam.Items.Add(year);
+            }
+
+            // Load tháng từ 1 đến 12
+            for (int month = 1; month <= 12; month++)
+            {
+                cbThang.Items.Add(month);
+            }
+
+            // Mặc định disable hết các ComboBox
+            cbNgay.Enabled = false;
+            cbThang.Enabled = false;
+            cbNam.Enabled = false;
+        }
+
+        #region Doanh thu theo ngày, tháng, năm
+
+        private void rdbNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            cbNam.Enabled = true;
+            cbThang.Enabled = true;
+            cbNgay.Enabled = true;
+
+            cbTheoThangNam_Thang.Enabled = false;
+            cbTheoThangNam_Nam.Enabled = false;
+
+            cbTheoNam.Enabled = false;
+
+            LoadNgay(); // Cập nhật số ngày dựa vào tháng và năm hiện tại nếu có sẵn
+        }
+
+        private void rdbThang_CheckedChanged(object sender, EventArgs e)
+        {
+            cbNam.Enabled = false;
+            cbThang.Enabled = false;
+            cbNgay.Enabled = false;
+
+            cbTheoThangNam_Thang.Enabled = true;
+            cbTheoThangNam_Nam.Enabled = true;
+
+            cbTheoNam.Enabled = false;
+
+            LoadComboBoxThang();
+            LoadComboBoxNam();
+        }
+
+        private void rdbNam_CheckedChanged(object sender, EventArgs e)
+        {
+            cbNam.Enabled = false;
+            cbThang.Enabled = false;
+            cbNgay.Enabled = false;
+
+            cbTheoThangNam_Thang.Enabled = false;
+            cbTheoThangNam_Nam.Enabled = false;
+
+            cbTheoNam.Enabled = true;
+
+            LoadComboBoxNam();
+        }
+        private void LoadNgay()
+        {
+            if (cbThang.SelectedItem != null && cbNam.SelectedItem != null)
+            {
+                int month = Convert.ToInt32(cbThang.SelectedItem);
+                int year = Convert.ToInt32(cbNam.SelectedItem);
+
+                int daysInMonth = DateTime.DaysInMonth(year, month);
+                cbNgay.Items.Clear();
+                for (int day = 1; day <= daysInMonth; day++)
+                {
+                    cbNgay.Items.Add(day);
+                }
+            }
+        }
+        private void LoadComboBoxThang()
+        {
+            cbTheoThangNam_Thang.Items.Clear();
+            for (int i = 1; i <= 12; i++)
+            {
+                cbTheoThangNam_Thang.Items.Add(i);
+            }
+            cbTheoThangNam_Thang.SelectedIndex = 0;
+        }
+
+        private void LoadComboBoxNam()
+        {
+            cbTheoThangNam_Nam.Items.Clear();
+            cbTheoNam.Items.Clear();
+
+            int currentYear = DateTime.Now.Year;
+            for (int i = currentYear - 10; i <= currentYear + 1; i++)
+            {
+                cbTheoThangNam_Nam.Items.Add(i);
+                cbTheoNam.Items.Add(i);
+            }
+
+            cbTheoThangNam_Nam.SelectedIndex = 10; // năm hiện tại
+            cbTheoNam.SelectedIndex = 10;
+        }
+
+        private void cbNgay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CapNhatDoanhThu();
+        }
+
+        private void cbThang_SelectedIndexChanged(object sender, EventArgs e)
+        {
             if (rdbNgay.Checked)
             {
-                DateTime ngayChon = dtpNgay.Value;
-                decimal doanhThu = DAO_HD_VE.Instance.TinhTongDoanhThu(ngayChon.Date, null, null);
+                LoadNgay();
 
-                // Hiển thị kết quả
+                CapNhatDoanhThu();
+            }
+        }
+
+        private void cbNam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdbNgay.Checked)
+            {
+                LoadNgay();
+
+                CapNhatDoanhThu();
+            }
+        }
+
+        private void cbTheoThangNam_Thang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CapNhatDoanhThu();
+        }
+
+        private void cbTheoThangNam_Nam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CapNhatDoanhThu();
+        }
+
+        private void cbTheoNam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CapNhatDoanhThu();
+        }
+
+
+        private void CapNhatDoanhThu()
+        {
+            int? ngay = null, thang = null, nam = null;
+
+            if (rdbNgay.Checked)
+            {
+                if (int.TryParse(cbNgay.Text, out int d) &&
+                    int.TryParse(cbThang.Text, out int m) &&
+                    int.TryParse(cbNam.Text, out int y))
+                {
+                    ngay = d;
+                    thang = m;
+                    nam = y;
+                }
+                else
+                {
+                    txbNgay.Text = "Dữ liệu không hợp lệ";
+                    return;
+                }
+
+                decimal doanhThu = DAO_HD_VE.Instance.TinhTongDoanhThu(ngay, thang, nam);
                 txbNgay.Text = doanhThu.ToString("N0") + " VNĐ";
-                lblNgay.Text = $"Ngày {ngayChon.Day}/{ngayChon.Month}/{ngayChon.Year}";
+                lblNgay.Text = $"Ngày {ngay}/{thang}/{nam}";
                 lblNgay.Visible = true;
-
             }
-
-        }
-
-        private void dtpThang_ValueChanged(object sender, EventArgs e)
-        {
-            if (rdbThang.Checked)
+            else if (rdbThang.Checked)
             {
-                DateTime ngayChon = dtpThang.Value;
-                decimal doanhThu = DAO_HD_VE.Instance.TinhTongDoanhThu(null, ngayChon.Month, ngayChon.Year);
+                if (int.TryParse(cbTheoThangNam_Thang.Text, out int m) &&
+                    int.TryParse(cbTheoThangNam_Nam.Text, out int y))
+                {
+                    thang = m;
+                    nam = y;
+                }
+                else
+                {
+                    txbThang.Text = "Dữ liệu không hợp lệ";
+                    return;
+                }
 
-                // Hiển thị kết quả
+                decimal doanhThu = DAO_HD_VE.Instance.TinhTongDoanhThu(null, thang, nam);
                 txbThang.Text = doanhThu.ToString("N0") + " VNĐ";
-                lblThang.Text = $"Tháng {ngayChon.Month}/{ngayChon.Year}";
+                lblThang.Text = $"Tháng {thang}/{nam}";
                 lblThang.Visible = true;
-
             }
-        }
-
-        private void dtpNam_ValueChanged(object sender, EventArgs e)
-        {
-            if (rdbNam.Checked)
+            else if (rdbNam.Checked)
             {
-                DateTime ngayChon = dtpNam.Value;
-                decimal doanhThu = DAO_HD_VE.Instance.TinhTongDoanhThu(null, null, ngayChon.Year);
+                if (int.TryParse(cbTheoNam.Text, out int y))
+                {
+                    nam = y;
+                }
+                else
+                {
+                    txbNam.Text = "Dữ liệu không hợp lệ";
+                    return;
+                }
 
+                decimal doanhThu = DAO_HD_VE.Instance.TinhTongDoanhThu(null, null, nam);
                 txbNam.Text = doanhThu.ToString("N0") + " VNĐ";
-                lblNam.Text = $"Năm {ngayChon.Year}";
+                lblNam.Text = $"Năm {nam}";
                 lblNam.Visible = true;
             }
         }
+
         #endregion
 
         private void rdbDoanhThu_NhanVien_CheckedChanged(object sender, EventArgs e)
@@ -105,5 +263,7 @@ namespace OGC.ThongKe
                 dgvKetQuaThongKe_DoanhThu.DataSource = DAO_THONGKE.Instance.DoanhThuTheoTungSuatChieu();
             }
         }
+
+ 
     }
 }

@@ -28,27 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txbThang = new TextBox();
-            txbNgay = new TextBox();
-            dtpNam = new DateTimePicker();
-            dtpThang = new DateTimePicker();
-            dtpNgay = new DateTimePicker();
-            rdbNam = new RadioButton();
-            rdbNgay = new RadioButton();
             dgvKetQuaThongKe_LichChieu = new DataGridView();
             rdbLichChieu_DongKhach = new RadioButton();
             rdbLichChieu_SoLuongPhim = new RadioButton();
             rdbLichChieu_VangKhach = new RadioButton();
             rdbLichChieu_SoLuongKhach = new RadioButton();
             lblKetQuaThongKe = new Label();
-            lblThang = new Label();
-            lblNgay = new Label();
-            txbNam = new TextBox();
             lblTieuChi = new Label();
             lblLoaiThongKe = new Label();
             pnlDoanhThu_ThoiGian = new Panel();
-            lblNam = new Label();
+            btnThongKe = new Button();
+            lblngayChon = new Label();
+            txbKetQua = new TextBox();
+            cbNam = new ComboBox();
+            cbThang = new ComboBox();
+            cbNgay = new ComboBox();
+            rdbNam = new RadioButton();
             rdbThang = new RadioButton();
+            rdbNgay = new RadioButton();
             pnlDoanhThu_dgv = new Panel();
             pnlDuoi = new Panel();
             btnXuatExcel = new Button();
@@ -62,63 +59,6 @@
             pnlDuoi.SuspendLayout();
             pnlTren.SuspendLayout();
             SuspendLayout();
-            // 
-            // txbThang
-            // 
-            txbThang.Location = new Point(64, 224);
-            txbThang.Name = "txbThang";
-            txbThang.Size = new Size(200, 23);
-            txbThang.TabIndex = 2;
-            // 
-            // txbNgay
-            // 
-            txbNgay.Location = new Point(64, 104);
-            txbNgay.Name = "txbNgay";
-            txbNgay.Size = new Size(200, 23);
-            txbNgay.TabIndex = 2;
-            // 
-            // dtpNam
-            // 
-            dtpNam.Location = new Point(64, 312);
-            dtpNam.Name = "dtpNam";
-            dtpNam.Size = new Size(200, 23);
-            dtpNam.TabIndex = 1;
-            // 
-            // dtpThang
-            // 
-            dtpThang.Location = new Point(64, 192);
-            dtpThang.Name = "dtpThang";
-            dtpThang.Size = new Size(200, 23);
-            dtpThang.TabIndex = 1;
-            // 
-            // dtpNgay
-            // 
-            dtpNgay.Location = new Point(64, 72);
-            dtpNgay.Name = "dtpNgay";
-            dtpNgay.Size = new Size(200, 23);
-            dtpNgay.TabIndex = 1;
-            // 
-            // rdbNam
-            // 
-            rdbNam.AutoSize = true;
-            rdbNam.Location = new Point(8, 288);
-            rdbNam.Name = "rdbNam";
-            rdbNam.Size = new Size(80, 19);
-            rdbNam.TabIndex = 0;
-            rdbNam.TabStop = true;
-            rdbNam.Text = "Theo Năm";
-            rdbNam.UseVisualStyleBackColor = true;
-            // 
-            // rdbNgay
-            // 
-            rdbNgay.AutoSize = true;
-            rdbNgay.Location = new Point(8, 48);
-            rdbNgay.Name = "rdbNgay";
-            rdbNgay.Size = new Size(82, 19);
-            rdbNgay.TabIndex = 0;
-            rdbNgay.TabStop = true;
-            rdbNgay.Text = "Theo Ngày";
-            rdbNgay.UseVisualStyleBackColor = true;
             // 
             // dgvKetQuaThongKe_LichChieu
             // 
@@ -181,31 +121,6 @@
             lblKetQuaThongKe.TabIndex = 0;
             lblKetQuaThongKe.Text = "Kết quả thống kê";
             // 
-            // lblThang
-            // 
-            lblThang.AutoSize = true;
-            lblThang.Location = new Point(8, 229);
-            lblThang.Name = "lblThang";
-            lblThang.Size = new Size(38, 15);
-            lblThang.TabIndex = 3;
-            lblThang.Text = "label1";
-            // 
-            // lblNgay
-            // 
-            lblNgay.AutoSize = true;
-            lblNgay.Location = new Point(8, 109);
-            lblNgay.Name = "lblNgay";
-            lblNgay.Size = new Size(38, 15);
-            lblNgay.TabIndex = 3;
-            lblNgay.Text = "label1";
-            // 
-            // txbNam
-            // 
-            txbNam.Location = new Point(64, 344);
-            txbNam.Name = "txbNam";
-            txbNam.Size = new Size(200, 23);
-            txbNam.TabIndex = 2;
-            // 
             // lblTieuChi
             // 
             lblTieuChi.AutoSize = true;
@@ -226,43 +141,108 @@
             // 
             // pnlDoanhThu_ThoiGian
             // 
-            pnlDoanhThu_ThoiGian.Controls.Add(lblLoaiThongKe);
-            pnlDoanhThu_ThoiGian.Controls.Add(lblNam);
-            pnlDoanhThu_ThoiGian.Controls.Add(lblThang);
-            pnlDoanhThu_ThoiGian.Controls.Add(lblNgay);
-            pnlDoanhThu_ThoiGian.Controls.Add(txbNam);
-            pnlDoanhThu_ThoiGian.Controls.Add(txbThang);
-            pnlDoanhThu_ThoiGian.Controls.Add(txbNgay);
-            pnlDoanhThu_ThoiGian.Controls.Add(dtpNam);
-            pnlDoanhThu_ThoiGian.Controls.Add(dtpThang);
-            pnlDoanhThu_ThoiGian.Controls.Add(dtpNgay);
+            pnlDoanhThu_ThoiGian.Controls.Add(btnThongKe);
+            pnlDoanhThu_ThoiGian.Controls.Add(lblngayChon);
+            pnlDoanhThu_ThoiGian.Controls.Add(txbKetQua);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbNam);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbThang);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbNgay);
             pnlDoanhThu_ThoiGian.Controls.Add(rdbNam);
             pnlDoanhThu_ThoiGian.Controls.Add(rdbThang);
             pnlDoanhThu_ThoiGian.Controls.Add(rdbNgay);
+            pnlDoanhThu_ThoiGian.Controls.Add(lblLoaiThongKe);
             pnlDoanhThu_ThoiGian.Location = new Point(0, 0);
             pnlDoanhThu_ThoiGian.Name = "pnlDoanhThu_ThoiGian";
             pnlDoanhThu_ThoiGian.Size = new Size(280, 400);
             pnlDoanhThu_ThoiGian.TabIndex = 0;
             // 
-            // lblNam
+            // btnThongKe
             // 
-            lblNam.AutoSize = true;
-            lblNam.Location = new Point(8, 349);
-            lblNam.Name = "lblNam";
-            lblNam.Size = new Size(38, 15);
-            lblNam.TabIndex = 3;
-            lblNam.Text = "label1";
+            btnThongKe.Location = new Point(144, 224);
+            btnThongKe.Name = "btnThongKe";
+            btnThongKe.Size = new Size(75, 23);
+            btnThongKe.TabIndex = 21;
+            btnThongKe.Text = "Thống kê";
+            btnThongKe.UseVisualStyleBackColor = true;
+            btnThongKe.Click += btnThongKe_Click;
+            // 
+            // lblngayChon
+            // 
+            lblngayChon.AutoSize = true;
+            lblngayChon.Location = new Point(8, 187);
+            lblngayChon.Name = "lblngayChon";
+            lblngayChon.Size = new Size(38, 15);
+            lblngayChon.TabIndex = 20;
+            lblngayChon.Text = "label1";
+            // 
+            // txbKetQua
+            // 
+            txbKetQua.Location = new Point(96, 184);
+            txbKetQua.Name = "txbKetQua";
+            txbKetQua.Size = new Size(172, 23);
+            txbKetQua.TabIndex = 19;
+            // 
+            // cbNam
+            // 
+            cbNam.FormattingEnabled = true;
+            cbNam.Location = new Point(168, 144);
+            cbNam.Name = "cbNam";
+            cbNam.Size = new Size(81, 23);
+            cbNam.TabIndex = 16;
+            cbNam.SelectedIndexChanged += cbNam_SelectedIndexChanged;
+            // 
+            // cbThang
+            // 
+            cbThang.FormattingEnabled = true;
+            cbThang.Location = new Point(168, 96);
+            cbThang.Name = "cbThang";
+            cbThang.Size = new Size(81, 23);
+            cbThang.TabIndex = 17;
+            cbThang.SelectedIndexChanged += cbThang_SelectedIndexChanged;
+            // 
+            // cbNgay
+            // 
+            cbNgay.FormattingEnabled = true;
+            cbNgay.Location = new Point(168, 48);
+            cbNgay.Name = "cbNgay";
+            cbNgay.Size = new Size(81, 23);
+            cbNgay.TabIndex = 18;
+            // 
+            // rdbNam
+            // 
+            rdbNam.AutoSize = true;
+            rdbNam.Location = new Point(64, 144);
+            rdbNam.Name = "rdbNam";
+            rdbNam.Size = new Size(80, 19);
+            rdbNam.TabIndex = 13;
+            rdbNam.TabStop = true;
+            rdbNam.Text = "Theo Năm";
+            rdbNam.UseVisualStyleBackColor = true;
+            rdbNam.CheckedChanged += rdbNam_CheckedChanged;
             // 
             // rdbThang
             // 
             rdbThang.AutoSize = true;
-            rdbThang.Location = new Point(8, 168);
+            rdbThang.Location = new Point(64, 96);
             rdbThang.Name = "rdbThang";
             rdbThang.Size = new Size(87, 19);
-            rdbThang.TabIndex = 0;
+            rdbThang.TabIndex = 14;
             rdbThang.TabStop = true;
             rdbThang.Text = "Theo Tháng";
             rdbThang.UseVisualStyleBackColor = true;
+            rdbThang.CheckedChanged += rdbThang_CheckedChanged;
+            // 
+            // rdbNgay
+            // 
+            rdbNgay.AutoSize = true;
+            rdbNgay.Location = new Point(64, 48);
+            rdbNgay.Name = "rdbNgay";
+            rdbNgay.Size = new Size(82, 19);
+            rdbNgay.TabIndex = 15;
+            rdbNgay.TabStop = true;
+            rdbNgay.Text = "Theo Ngày";
+            rdbNgay.UseVisualStyleBackColor = true;
+            rdbNgay.CheckedChanged += rdbNgay_CheckedChanged;
             // 
             // pnlDoanhThu_dgv
             // 
@@ -349,6 +329,7 @@
             Name = "frmThongKeLichChieu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmThongKeLichChieu";
+            Load += frmThongKeLichChieu_Load;
             ((System.ComponentModel.ISupportInitialize)dgvKetQuaThongKe_LichChieu).EndInit();
             pnlDoanhThu_ThoiGian.ResumeLayout(false);
             pnlDoanhThu_ThoiGian.PerformLayout();
@@ -361,28 +342,15 @@
         }
 
         #endregion
-
-        private TextBox txbThang;
-        private TextBox txbNgay;
-        private DateTimePicker dtpNam;
-        private DateTimePicker dtpThang;
-        private DateTimePicker dtpNgay;
-        private RadioButton rdbNam;
-        private RadioButton rdbNgay;
         private DataGridView dgvKetQuaThongKe_LichChieu;
         private RadioButton rdbLichChieu_DongKhach;
         private RadioButton rdbLichChieu_SoLuongPhim;
         private RadioButton rdbLichChieu_VangKhach;
         private RadioButton rdbLichChieu_SoLuongKhach;
         private Label lblKetQuaThongKe;
-        private Label lblThang;
-        private Label lblNgay;
-        private TextBox txbNam;
         private Label lblTieuChi;
         private Label lblLoaiThongKe;
         private Panel pnlDoanhThu_ThoiGian;
-        private Label lblNam;
-        private RadioButton rdbThang;
         private Panel pnlDoanhThu_dgv;
         private Panel pnlDuoi;
         private Button btnXuatExcel;
@@ -390,5 +358,14 @@
         private Label lblThongKeLichChieu;
         private Label lblThongKe;
         private Panel pnlTren;
+        private Button btnThongKe;
+        private Label lblngayChon;
+        private TextBox txbKetQua;
+        private ComboBox cbNam;
+        private ComboBox cbThang;
+        private ComboBox cbNgay;
+        private RadioButton rdbNam;
+        private RadioButton rdbThang;
+        private RadioButton rdbNgay;
     }
 }

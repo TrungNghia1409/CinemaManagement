@@ -75,13 +75,13 @@ namespace OGC.DAO
 
 
         //------- Tổng doanh thu
-        public decimal TinhTongDoanhThu(DateTime? ngay, int? thang, int? nam)
+        public decimal TinhTongDoanhThu(int? ngay, int? thang, int? nam)
         {
             string query = "EXEC usp_TinhTongDoanhThu @Ngay , @Thang , @Nam ";
 
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] 
             {
-                ngay.HasValue ? ngay.Value.Date : (object)DBNull.Value,
+                ngay.HasValue ? ngay : (object)DBNull.Value,
                 thang.HasValue ? thang : (object)DBNull.Value,
                 nam.HasValue ? nam : (object)DBNull.Value
             });
@@ -90,13 +90,13 @@ namespace OGC.DAO
         }
 
         //------- Tổng số vé bán theo ngày, hoặc tháng, hoặc năm chọn trên dtp
-        public int TongSoVeBan(DateTime? ngay, int? thang, int? nam)
+        public int TongSoVeBan(int? ngay, int? thang, int? nam)
         {
             string query = "EXEC usp_TinhTongSoVe @Ngay , @Thang , @Nam ";
 
             object result = DataProvider.Instance.ExecuteScalar(query, new object[]     
             {
-                ngay.HasValue ? ngay.Value.Date : (object)DBNull.Value,
+                ngay.HasValue ? ngay : (object)DBNull.Value,
                 thang.HasValue ? thang : (object)DBNull.Value,
                 nam.HasValue ? nam : (object)DBNull.Value
             });

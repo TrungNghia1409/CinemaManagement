@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -77,43 +78,37 @@ namespace OGC.DAO
         //----------- Danh sách khách hàng theo từng khu vực
         public DataTable KhachHangTheoTungKhuVuc()
         {
-            string query = @" SELECT DiaChi, COUNT(*) AS SoLuongKhach
-                                FROM KhachHang
-                                GROUP BY DiaChi ";
+            string query = @" EXEC usp_KhachHangTheoTungKhuVuc ";
 
             return DataProvider.Instance.ExecuteQuery(query);
         }
         //----------- Danh sách khách hàng chưa từng đặt vé
         public DataTable DanhSachKhachHangChuaTungDatVe()
         {
-            string query = @" SELECT * FROM KhachHang
-                        WHERE ID NOT IN (
-                            SELECT DISTINCT IDKhachHang
-                            FROM HD_VE
-                            WHERE IDKhachHang IS NOT NULL
-                        )";
+            string query = @" EXEC usp_DanhSachKhachHangChuaTungDatVe ";
 
             return DataProvider.Instance.ExecuteQuery(query);
         }
         //----------- Danh sách khách hàng có điểm thưởng cao nhất
         public DataTable DanhSachKhachHangCoDiemThuongCaoNhat()
         {
-            string query = @" SELECT TOP 10 *
-                                FROM KhachHang
-                                ORDER BY DiemThuong DESC ";
+            string query = @" EXEC usp_DanhSachKhachHangCoDiemThuongCaoNhat ";
 
             return DataProvider.Instance.ExecuteQuery(query);
         }
-        //----------- Danh sách khách hàng đặt vé nhiều nhất
-        public DataTable DanhSachKhachHangDatVeNhieuNhat()
+        //----------- Danh sách khách hàng đặt vé nhiều nhất && thống kê khách hàng đã mua
+        public DataTable ThucThiProc_ThongKe_KhachHang(string tenProc, int? ngay, int? thang, int? nam)
         {
-            string query = @" SELECT kh.ID, kh.HoTen, COUNT(*) AS SoLuotDatVe
-                                FROM HD_VE hd
-                                JOIN KhachHang kh ON hd.IDKhachHang = kh.ID
-                                GROUP BY kh.ID, kh.HoTen
-                                ORDER BY SoLuotDatVe DESC ";
+            string query = $"{tenProc} @Ngay , @Thang , @Nam";
 
-            return DataProvider.Instance.ExecuteQuery(query);
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[]
+          {
+                ngay.HasValue ? ngay : (object)DBNull.Value,
+                thang.HasValue ? thang : (object)DBNull.Value,
+                nam.HasValue ? nam : (object)DBNull.Value
+          });
+
+            return result;
         }
 
         #endregion
@@ -121,57 +116,21 @@ namespace OGC.DAO
         #region thống kê phim
 
         //--danh sách phim đang chiếu, lọc theo ngày, tháng, năm
-        public DataTable ThongKePhim(DateTime? ngay, int? thang, int? nam)
-        {
-            string query = @" EXEC usp_ThongKePhim @Ngay , @Thang , @Nam ";
-
-             DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[]
-            {
-                ngay.HasValue ? ngay.Value.Date : (object)DBNull.Value,
-                thang.HasValue ? thang : (object)DBNull.Value,
-                nam.HasValue ? nam : (object)DBNull.Value
-            });
-
-            return result;
-        }
 
         //----- Top 5 Phim có doanh thu cao nhất
-        public DataTable PhimDoanhThuCaoNhat()
+        public DataTable ThucThiProc_ThongKe_Phim(string tenProc, int? ngay, int? thang, int? nam)
         {
-            string query = @"  SELECT TOP 5 p.ID, p.TenPhim, SUM(hd.TongTien) AS DoanhThu
-                                FROM PHIM p
-                                JOIN LICHCHIEU lc ON p.ID = lc.IDPhim
-                                JOIN VE v ON lc.ID = v.IDLichChieu
-                                JOIN HD_VE hd ON v.IDHoaDonVe = hd.ID
-                                GROUP BY p.ID, p.TenPhim
-                                ORDER BY DoanhThu DESC; ";
 
-            return DataProvider.Instance.ExecuteQuery(query);
-        }
-        //----- Top 5 Phim có doanh thu thấp nhất
-        public DataTable PhimDoanhThuThapNhat()
-        {
-            string query = @"  SELECT TOP 5 p.ID, p.TenPhim, SUM(hd.TongTien) AS DoanhThu
-                                FROM PHIM p
-                                JOIN LICHCHIEU lc ON p.ID = lc.IDPhim
-                                JOIN VE v ON lc.ID = v.IDLichChieu
-                                JOIN HD_VE hd ON v.IDHoaDonVe = hd.ID
-                                GROUP BY p.ID, p.TenPhim
-                                ORDER BY DoanhThu ASC; ";
+            string query = $"{tenProc} @Ngay , @Thang , @Nam";
 
-            return DataProvider.Instance.ExecuteQuery(query);
-        }
-        //----- Top 5 Phim được đặt vé nhiều nhất
-        public DataTable PhimDuocDatVeNhieuNhat()
-        {
-            string query = @" SELECT TOP 5 p.ID, p.TenPhim, SUM(v.SoLuong) AS SoVe
-                                FROM PHIM p
-                                JOIN LICHCHIEU lc ON p.ID = lc.IDPhim
-                                JOIN VE v ON lc.ID = v.IDLichChieu
-                                GROUP BY p.ID, p.TenPhim
-                                ORDER BY SoVe DESC; ";
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[]
+          {
+                ngay.HasValue ? ngay : (object)DBNull.Value,
+                thang.HasValue ? thang : (object)DBNull.Value,
+                nam.HasValue ? nam : (object)DBNull.Value
+          });
 
-            return DataProvider.Instance.ExecuteQuery(query);
+            return result;
         }
 
 
@@ -214,6 +173,60 @@ namespace OGC.DAO
         }
 
 
+        #endregion
+
+        #region thống kê phòng chiếu
+        public DataTable ThucThiProc_ThongKe_PhongChieu(string tenProc, int? ngay, int? thang, int? nam)
+        {
+
+            string query = $"{tenProc} @Ngay , @Thang , @Nam";
+
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[]
+          {
+                ngay.HasValue ? ngay : (object)DBNull.Value,
+                thang.HasValue ? thang : (object)DBNull.Value,
+                nam.HasValue ? nam : (object)DBNull.Value
+          });
+
+            return result;
+        }
+
+
+        #endregion
+
+        #region thống kê lịch chiếu
+        public DataTable ThucThiProc_ThongKe_LichChieu(string tenProc, int? ngay, int? thang, int? nam)
+        {
+
+            string query = $"{tenProc} @Ngay , @Thang , @Nam";
+
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[]
+          {
+                ngay.HasValue ? ngay : (object)DBNull.Value,
+                thang.HasValue ? thang : (object)DBNull.Value,
+                nam.HasValue ? nam : (object)DBNull.Value
+          });
+
+            return result;
+        }
+        #endregion
+
+        #region thống kê dịch vụ
+
+        public DataTable ThucThiProc_ThongKe_DichVu(string tenProc, int? ngay, int? thang, int? nam)
+        {
+
+            string query = $"{tenProc} @Ngay , @Thang , @Nam";
+
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[]
+          {
+                ngay.HasValue ? ngay : (object)DBNull.Value,
+                thang.HasValue ? thang : (object)DBNull.Value,
+                nam.HasValue ? nam : (object)DBNull.Value
+          });
+
+            return result;
+        }
         #endregion
 
     }

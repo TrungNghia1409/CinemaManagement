@@ -30,9 +30,6 @@
         {
             txbThang = new TextBox();
             txbNgay = new TextBox();
-            dtpNam = new DateTimePicker();
-            dtpThang = new DateTimePicker();
-            dtpNgay = new DateTimePicker();
             rdbNam = new RadioButton();
             rdbNgay = new RadioButton();
             dgvKetQuaThongKe_Ve = new DataGridView();
@@ -46,6 +43,12 @@
             lblTieuChi = new Label();
             lblLoaiThongKe = new Label();
             pnlDoanhThu_ThoiGian = new Panel();
+            cbTheoNam = new ComboBox();
+            cbTheoThangNam_Nam = new ComboBox();
+            cbNam = new ComboBox();
+            cbTheoThangNam_Thang = new ComboBox();
+            cbThang = new ComboBox();
+            cbNgay = new ComboBox();
             lblNam = new Label();
             rdbThang = new RadioButton();
             pnlDoanhThu_dgv = new Panel();
@@ -76,30 +79,6 @@
             txbNgay.Size = new Size(160, 23);
             txbNgay.TabIndex = 2;
             // 
-            // dtpNam
-            // 
-            dtpNam.Location = new Point(104, 312);
-            dtpNam.Name = "dtpNam";
-            dtpNam.Size = new Size(160, 23);
-            dtpNam.TabIndex = 1;
-            dtpNam.ValueChanged += dtpNam_ValueChanged;
-            // 
-            // dtpThang
-            // 
-            dtpThang.Location = new Point(104, 192);
-            dtpThang.Name = "dtpThang";
-            dtpThang.Size = new Size(160, 23);
-            dtpThang.TabIndex = 1;
-            dtpThang.ValueChanged += dtpThang_ValueChanged;
-            // 
-            // dtpNgay
-            // 
-            dtpNgay.Location = new Point(104, 72);
-            dtpNgay.Name = "dtpNgay";
-            dtpNgay.Size = new Size(160, 23);
-            dtpNgay.TabIndex = 1;
-            dtpNgay.ValueChanged += dtpNgay_ValueChanged;
-            // 
             // rdbNam
             // 
             rdbNam.AutoSize = true;
@@ -110,6 +89,7 @@
             rdbNam.TabStop = true;
             rdbNam.Text = "Theo Năm";
             rdbNam.UseVisualStyleBackColor = true;
+            rdbNam.CheckedChanged += rdbNam_CheckedChanged;
             // 
             // rdbNgay
             // 
@@ -121,6 +101,7 @@
             rdbNgay.TabStop = true;
             rdbNgay.Text = "Theo Ngày";
             rdbNgay.UseVisualStyleBackColor = true;
+            rdbNgay.CheckedChanged += rdbNgay_CheckedChanged;
             // 
             // dgvKetQuaThongKe_Ve
             // 
@@ -222,6 +203,12 @@
             // 
             // pnlDoanhThu_ThoiGian
             // 
+            pnlDoanhThu_ThoiGian.Controls.Add(cbTheoNam);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbTheoThangNam_Nam);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbNam);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbTheoThangNam_Thang);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbThang);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbNgay);
             pnlDoanhThu_ThoiGian.Controls.Add(lblLoaiThongKe);
             pnlDoanhThu_ThoiGian.Controls.Add(lblNam);
             pnlDoanhThu_ThoiGian.Controls.Add(lblThang);
@@ -229,9 +216,6 @@
             pnlDoanhThu_ThoiGian.Controls.Add(txbNam);
             pnlDoanhThu_ThoiGian.Controls.Add(txbThang);
             pnlDoanhThu_ThoiGian.Controls.Add(txbNgay);
-            pnlDoanhThu_ThoiGian.Controls.Add(dtpNam);
-            pnlDoanhThu_ThoiGian.Controls.Add(dtpThang);
-            pnlDoanhThu_ThoiGian.Controls.Add(dtpNgay);
             pnlDoanhThu_ThoiGian.Controls.Add(rdbNam);
             pnlDoanhThu_ThoiGian.Controls.Add(rdbThang);
             pnlDoanhThu_ThoiGian.Controls.Add(rdbNgay);
@@ -239,6 +223,60 @@
             pnlDoanhThu_ThoiGian.Name = "pnlDoanhThu_ThoiGian";
             pnlDoanhThu_ThoiGian.Size = new Size(280, 400);
             pnlDoanhThu_ThoiGian.TabIndex = 0;
+            // 
+            // cbTheoNam
+            // 
+            cbTheoNam.FormattingEnabled = true;
+            cbTheoNam.Location = new Point(216, 312);
+            cbTheoNam.Name = "cbTheoNam";
+            cbTheoNam.Size = new Size(48, 23);
+            cbTheoNam.TabIndex = 21;
+            cbTheoNam.SelectedIndexChanged += cbTheoNam_SelectedIndexChanged;
+            // 
+            // cbTheoThangNam_Nam
+            // 
+            cbTheoThangNam_Nam.FormattingEnabled = true;
+            cbTheoThangNam_Nam.Location = new Point(216, 192);
+            cbTheoThangNam_Nam.Name = "cbTheoThangNam_Nam";
+            cbTheoThangNam_Nam.Size = new Size(48, 23);
+            cbTheoThangNam_Nam.TabIndex = 21;
+            cbTheoThangNam_Nam.SelectedIndexChanged += cbTheoThangNam_Nam_SelectedIndexChanged;
+            // 
+            // cbNam
+            // 
+            cbNam.FormattingEnabled = true;
+            cbNam.Location = new Point(216, 72);
+            cbNam.Name = "cbNam";
+            cbNam.Size = new Size(48, 23);
+            cbNam.TabIndex = 21;
+            cbNam.SelectedIndexChanged += cbNam_SelectedIndexChanged;
+            // 
+            // cbTheoThangNam_Thang
+            // 
+            cbTheoThangNam_Thang.FormattingEnabled = true;
+            cbTheoThangNam_Thang.Location = new Point(160, 192);
+            cbTheoThangNam_Thang.Name = "cbTheoThangNam_Thang";
+            cbTheoThangNam_Thang.Size = new Size(48, 23);
+            cbTheoThangNam_Thang.TabIndex = 20;
+            cbTheoThangNam_Thang.SelectedIndexChanged += cbTheoThangNam_Thang_SelectedIndexChanged;
+            // 
+            // cbThang
+            // 
+            cbThang.FormattingEnabled = true;
+            cbThang.Location = new Point(160, 72);
+            cbThang.Name = "cbThang";
+            cbThang.Size = new Size(48, 23);
+            cbThang.TabIndex = 20;
+            cbThang.SelectedIndexChanged += cbThang_SelectedIndexChanged;
+            // 
+            // cbNgay
+            // 
+            cbNgay.FormattingEnabled = true;
+            cbNgay.Location = new Point(104, 72);
+            cbNgay.Name = "cbNgay";
+            cbNgay.Size = new Size(48, 23);
+            cbNgay.TabIndex = 19;
+            cbNgay.SelectedIndexChanged += cbNgay_SelectedIndexChanged;
             // 
             // lblNam
             // 
@@ -260,6 +298,7 @@
             rdbThang.TabStop = true;
             rdbThang.Text = "Theo Tháng";
             rdbThang.UseVisualStyleBackColor = true;
+            rdbThang.CheckedChanged += rdbThang_CheckedChanged;
             // 
             // pnlDoanhThu_dgv
             // 
@@ -345,6 +384,7 @@
             Name = "frmThongKeVe";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmThongKeVe";
+            Load += frmThongKeVe_Load;
             ((System.ComponentModel.ISupportInitialize)dgvKetQuaThongKe_Ve).EndInit();
             pnlDoanhThu_ThoiGian.ResumeLayout(false);
             pnlDoanhThu_ThoiGian.PerformLayout();
@@ -360,9 +400,6 @@
 
         private TextBox txbThang;
         private TextBox txbNgay;
-        private DateTimePicker dtpNam;
-        private DateTimePicker dtpThang;
-        private DateTimePicker dtpNgay;
         private RadioButton rdbNam;
         private RadioButton rdbNgay;
         private DataGridView dgvKetQuaThongKe_Ve;
@@ -385,5 +422,11 @@
         private Label lblThongKeVe;
         private Label lblThongKe;
         private Panel pnlTren;
+        private ComboBox cbNgay;
+        private ComboBox cbThang;
+        private ComboBox cbNam;
+        private ComboBox cbTheoNam;
+        private ComboBox cbTheoThangNam_Nam;
+        private ComboBox cbTheoThangNam_Thang;
     }
 }

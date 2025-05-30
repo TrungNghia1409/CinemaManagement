@@ -46,6 +46,9 @@ namespace OGC.ThongKe
             cbNam.Enabled = false;
         }
 
+
+
+        #region sự kiện load ngày tháng năm, và hiển thị danh sách nhân viên mới
         private void rdbNgay_CheckedChanged(object sender, EventArgs e)
         {
             cbNam.Enabled = true;
@@ -54,8 +57,6 @@ namespace OGC.ThongKe
 
             LoadNgay(); // Cập nhật số ngày dựa vào tháng và năm hiện tại nếu có sẵn
         }
-
-        #region sự kiện load ngày tháng năm, và hiển thị danh sách nhân viên mới
         private void rdbThang_CheckedChanged(object sender, EventArgs e)
         {
             cbNam.Enabled = true;
@@ -113,6 +114,8 @@ namespace OGC.ThongKe
 
                 dgvKetQuaThongKe_NhanVien.DataSource = dt;
 
+                lblngayChon.Text = $" Tháng {thang}/{nam}";
+
                 txbSoLuongNhanVienMoi.Text = dt.Rows.Count.ToString() + " người";
             }
             else if (rdbThang.Enabled == false && (int.TryParse(cbNam.Text, out nam)))
@@ -138,6 +141,7 @@ namespace OGC.ThongKe
             {
                 DataTable dt = DAO_THONGKE.Instance.DanhSachNhanVienMoi(null, nam);
                 dgvKetQuaThongKe_NhanVien.DataSource = dt;
+                lblngayChon.Text = $" Năm {nam}";
                 txbSoLuongNhanVienMoi.Text = dt.Rows.Count.ToString() + " người";
             }
             else
