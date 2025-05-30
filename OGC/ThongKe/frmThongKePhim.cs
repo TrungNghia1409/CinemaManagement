@@ -16,13 +16,6 @@ namespace OGC.ThongKe
         public frmThongKePhim()
         {
             InitializeComponent();
-
-            dtpThang.Format = DateTimePickerFormat.Custom;
-            dtpThang.CustomFormat = "MM/yyyy";
-
-            dtpNam.Format = DateTimePickerFormat.Custom;
-            dtpNam.CustomFormat = "yyyy";
-
         }
 
         private void lblThongKe_Click(object sender, EventArgs e)
@@ -30,90 +23,243 @@ namespace OGC.ThongKe
             this.Close();
         }
 
+        private void frmThongKePhim_Load(object sender, EventArgs e)
+        {
+            // Load năm từ 2020 đến năm hiện tại
+            int currentYear = DateTime.Now.Year;
+            for (int year = 2020; year <= currentYear; year++)
+            {
+                cbNam.Items.Add(year);
+            }
+
+            // Load tháng từ 1 đến 12
+            for (int month = 1; month <= 12; month++)
+            {
+                cbThang.Items.Add(month);
+            }
+
+            // Mặc định disable hết các ComboBox
+            cbNgay.Enabled = false;
+            cbThang.Enabled = false;
+            cbNam.Enabled = false;
+        }
+
         #region Doanh thu theo ngày, tháng, năm
 
-        private void dtpNgay_ValueChanged(object sender, EventArgs e)
+        private void rdbNgay_CheckedChanged(object sender, EventArgs e)
         {
-            // Chỉ xử lý khi RadioButton được CHỌN (không cần gán Checked = true)
+            cbNam.Enabled = true;
+            cbThang.Enabled = true;
+            cbNgay.Enabled = true;
+
+            LoadNgay(); // Cập nhật số ngày dựa vào tháng và năm hiện tại nếu có sẵn
+        }
+
+        private void rdbThang_CheckedChanged(object sender, EventArgs e)
+        {
+            cbNam.Enabled = true;
+            cbThang.Enabled = true;
+            cbNgay.Enabled = false;
+        }
+
+        private void rdbNam_CheckedChanged(object sender, EventArgs e)
+        {
+            cbNam.Enabled = true;
+            cbThang.Enabled = false;
+            cbNgay.Enabled = false;
+        }
+        private void LoadNgay()
+        {
+            if (cbThang.SelectedItem != null && cbNam.SelectedItem != null)
+            {
+                int month = Convert.ToInt32(cbThang.SelectedItem);
+                int year = Convert.ToInt32(cbNam.SelectedItem);
+
+                int daysInMonth = DateTime.DaysInMonth(year, month);
+                cbNgay.Items.Clear();
+                for (int day = 1; day <= daysInMonth; day++)
+                {
+                    cbNgay.Items.Add(day);
+                }
+            }
+        }
+
+        private void cbThang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdbNgay.Checked)
+                LoadNgay();
+        }
+
+        private void cbNam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rdbNgay.Checked)
+                LoadNgay();
+        }
+        #endregion
+
+
+        #region xử lý thống kê
+
+        private void XuLyThongKe()
+        {
+            string tenProc = "";
+
+            // Xác định proc cần gọi dựa trên tiêu chí
+            if (rdbPhim_ThongKe.Checked)
+                tenProc = "EXEC usp_ThongKePhim";
+            else if (rdbPhim_DoanhThu_Cao.Checked)
+                tenProc = "EXEC usp_PhimDoanhThuCaoNhat";
+            else if (rdbPhim_DoanhThu_Thap.Checked)
+                tenProc = "EXEC PhimDoanhThuThapNhat";
+            else if (rdbPhim_DatVe_NhieuNhat.Checked)
+                tenProc = "EXEC usp_PhimDuocDatVeNhieuNhat";
+            else
+                return;
+
+            // Xác định các giá trị thời gian dựa theo lựa chọn
+            int? ngay = null, thang = null, nam = null;
+
             if (rdbNgay.Checked)
             {
-                DateTime ngayChon = dtpNgay.Value;
-                DataTable phim = DAO_THONGKE.Instance.ThongKePhim(ngayChon.Date, null, null);
-
-                // Hiển thị kết quả
-                txbNgay.Text = phim.Rows.Count.ToString() + " phim";
-                lblNgay.Text = $"Ngày {ngayChon.Day}/{ngayChon.Month}/{ngayChon.Year}";
-                lblNgay.Visible = true;
-
-                dgvKetQuaThongKe_Phim.DataSource = phim;
-
+                if (int.TryParse(cbNgay.Text, out int d) &&
+                    int.TryParse(cbThang.Text, out int m) &&
+                    int.TryParse(cbNam.Text, out int y))
+                {
+                    ngay = d;
+                    thang = m;
+                    nam = y;
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập đúng định dạng ngày/tháng/năm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
-        }
-
-        private void dtpThang_ValueChanged(object sender, EventArgs e)
-        {
-            if (rdbThang.Checked)
+            else if (rdbThang.Checked)
             {
-                DateTime ngayChon = dtpThang.Value;
-                DataTable phim = DAO_THONGKE.Instance.ThongKePhim(null, ngayChon.Month, ngayChon.Year);
-
-
-                // Hiển thị kết quả
-                txbThang.Text = phim.Rows.Count.ToString() + " phim";
-                lblThang.Text = $"Tháng {ngayChon.Month}/{ngayChon.Year}";
-                lblThang.Visible = true;
-
-                dgvKetQuaThongKe_Phim.DataSource = phim;
-
+                if (int.TryParse(cbThang.Text, out int m) &&
+                    int.TryParse(cbNam.Text, out int y))
+                {
+                    thang = m;
+                    nam = y;
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn đúng tháng và năm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
-        }
-
-        private void dtpNam_ValueChanged(object sender, EventArgs e)
-        {
-            if (rdbNam.Checked)
+            else if (rdbNam.Checked)
             {
-                DateTime ngayChon = dtpNam.Value;
-                DataTable phim = DAO_THONGKE.Instance.ThongKePhim(null, null, ngayChon.Year);
+                if (int.TryParse(cbNam.Text, out int y))
+                {
+                    nam = y;
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn đúng năm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
 
-                // Hiển thị kết quả
-                txbNam.Text = phim.Rows.Count.ToString() + " phim";
-                lblNam.Text = $"Năm {ngayChon.Year}";
-                lblNam.Visible = true;
+            // Gọi DAO static method
+            DataTable dt = DAO_THONGKE.Instance.ThucThiProc_ThongKe_Phim(tenProc, ngay, thang, nam);
+            dgvKetQuaThongKe_Phim.DataSource = dt;
+            if (dt.Rows.Count == 0)
+            {
+                txbKetQua.Text = "0";
+                return;
+            }
 
-                dgvKetQuaThongKe_Phim.DataSource = phim;
+            else if (rdbPhim_ThongKe.Checked)
+            {
+                txbKetQua.Text = dt.Rows.Count.ToString() + " phim";
+            }
+
+            // 2. Doanh thu cao nhất
+            else if (rdbPhim_DoanhThu_Cao.Checked)
+            {
+                decimal maxDoanhThu = decimal.MinValue;
+                string tenPhimMax = "Không xác định";
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["DoanhThu"] != DBNull.Value)
+                    {
+                        decimal value = Convert.ToDecimal(row["DoanhThu"]);
+                        if (value > maxDoanhThu)
+                        {
+                            maxDoanhThu = value;
+                            tenPhimMax = row["TenPhim"].ToString();
+                        }
+                    }
+                }
+
+                if (maxDoanhThu == decimal.MinValue)
+                    txbKetQua.Text = "0 VNĐ";
+                else
+                    txbKetQua.Text = $"Phim: {tenPhimMax} - {maxDoanhThu:#,##0} VNĐ";
+            }
+
+            // 3. Doanh thu thấp nhất
+            else if (rdbPhim_DoanhThu_Thap.Checked)
+            {
+                decimal minDoanhThu = decimal.MaxValue;
+                string tenPhimMin = "Không xác định";
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["DoanhThu"] != DBNull.Value)
+                    {
+                        decimal value = Convert.ToDecimal(row["DoanhThu"]);
+                        if (value < minDoanhThu)
+                        {
+                            minDoanhThu = value;
+                            tenPhimMin = row["TenPhim"].ToString();
+                        }
+                    }
+                }
+
+                if (minDoanhThu == decimal.MaxValue)
+                    txbKetQua.Text = "0 VNĐ";
+                else
+                    txbKetQua.Text = $"Phim: {tenPhimMin} - {minDoanhThu:#,##0} VNĐ";
+            }
+
+            // 4. Tên phim được đặt vé nhiều nhất (dựa trên số lượng vé)
+            else if (rdbPhim_DatVe_NhieuNhat.Checked)
+            {
+                int maxSoLuong = int.MinValue;
+                string tenPhimMax = "Không xác định";
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["SoVe"] != DBNull.Value)
+                    {
+                        int sl = Convert.ToInt32(row["SoVe"]);
+                        if (sl > maxSoLuong)
+                        {
+                            maxSoLuong = sl;
+                            tenPhimMax = row["TenPhim"].ToString();
+                        }
+                    }
+                }
+
+                if (maxSoLuong == int.MinValue)
+                    txbKetQua.Text = "0 vé";
+                else
+                    txbKetQua.Text = $"Phim: {tenPhimMax} - {maxSoLuong} vé";
             }
         }
-
 
 
         #endregion
 
 
-        private void rdbPhim_DoanhThu_Thap_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdbPhim_DoanhThu_Thap.Checked)
-            {
-                dgvKetQuaThongKe_Phim.DataSource = null; // Xóa dữ liệu hiện tại
-                dgvKetQuaThongKe_Phim.DataSource = DAO_THONGKE.Instance.PhimDoanhThuThapNhat();
-            }
-        }
 
-        private void rdbPhim_DoanhThu_Cao_CheckedChanged(object sender, EventArgs e)
+        private void btnThongKe_Click(object sender, EventArgs e)
         {
-            if (rdbPhim_DoanhThu_Cao.Checked)
-            {
-                dgvKetQuaThongKe_Phim.DataSource = null; // Xóa dữ liệu hiện tại
-                dgvKetQuaThongKe_Phim.DataSource = DAO_THONGKE.Instance.PhimDoanhThuCaoNhat();
-            }
-        }
-
-        private void rdbPhim_DatVe_NhieuNhat_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdbPhim_DatVe_NhieuNhat.Checked)
-            {
-                dgvKetQuaThongKe_Phim.DataSource = null; // Xóa dữ liệu hiện tại
-                dgvKetQuaThongKe_Phim.DataSource = DAO_THONGKE.Instance.PhimDuocDatVeNhieuNhat();
-            }
+            XuLyThongKe();
         }
     }
 }

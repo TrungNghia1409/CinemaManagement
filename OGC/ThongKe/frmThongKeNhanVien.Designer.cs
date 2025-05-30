@@ -171,7 +171,7 @@
             // lblngayChon
             // 
             lblngayChon.AutoSize = true;
-            lblngayChon.Location = new Point(16, 187);
+            lblngayChon.Location = new Point(8, 187);
             lblngayChon.Name = "lblngayChon";
             lblngayChon.Size = new Size(38, 15);
             lblngayChon.TabIndex = 6;
@@ -179,9 +179,9 @@
             // 
             // txbSoLuongNhanVienMoi
             // 
-            txbSoLuongNhanVienMoi.Location = new Point(96, 184);
+            txbSoLuongNhanVienMoi.Location = new Point(104, 184);
             txbSoLuongNhanVienMoi.Name = "txbSoLuongNhanVienMoi";
-            txbSoLuongNhanVienMoi.Size = new Size(172, 23);
+            txbSoLuongNhanVienMoi.Size = new Size(164, 23);
             txbSoLuongNhanVienMoi.TabIndex = 5;
             // 
             // cbNam

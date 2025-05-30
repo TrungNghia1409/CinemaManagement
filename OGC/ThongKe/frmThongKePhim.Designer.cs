@@ -28,27 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txbThang = new TextBox();
-            txbNgay = new TextBox();
-            dtpNam = new DateTimePicker();
-            dtpThang = new DateTimePicker();
-            dtpNgay = new DateTimePicker();
-            rdbNam = new RadioButton();
-            rdbNgay = new RadioButton();
             dgvKetQuaThongKe_Phim = new DataGridView();
             rdbPhim_DoanhThu_Thap = new RadioButton();
             rdbPhim_DatVe_NhieuNhat = new RadioButton();
             rdbPhim_DoanhThu_Cao = new RadioButton();
             lblKetQuaThongKe = new Label();
-            lblThang = new Label();
-            lblNgay = new Label();
-            txbNam = new TextBox();
             lblTieuChi = new Label();
             lblLoaiThongKe = new Label();
             pnlDoanhThu_ThoiGian = new Panel();
-            lblNam = new Label();
+            btnThongKe = new Button();
+            txbKetQua = new TextBox();
+            cbNam = new ComboBox();
+            cbThang = new ComboBox();
+            cbNgay = new ComboBox();
+            rdbNam = new RadioButton();
             rdbThang = new RadioButton();
+            rdbNgay = new RadioButton();
             pnlDoanhThu_dgv = new Panel();
+            rdbPhim_ThongKe = new RadioButton();
             pnlDuoi = new Panel();
             btnXuatExcel = new Button();
             btnTaiBieuDo = new Button();
@@ -62,66 +59,6 @@
             pnlTren.SuspendLayout();
             SuspendLayout();
             // 
-            // txbThang
-            // 
-            txbThang.Location = new Point(104, 224);
-            txbThang.Name = "txbThang";
-            txbThang.Size = new Size(160, 23);
-            txbThang.TabIndex = 2;
-            // 
-            // txbNgay
-            // 
-            txbNgay.Location = new Point(104, 104);
-            txbNgay.Name = "txbNgay";
-            txbNgay.Size = new Size(160, 23);
-            txbNgay.TabIndex = 2;
-            // 
-            // dtpNam
-            // 
-            dtpNam.Location = new Point(104, 312);
-            dtpNam.Name = "dtpNam";
-            dtpNam.Size = new Size(160, 23);
-            dtpNam.TabIndex = 1;
-            dtpNam.ValueChanged += dtpNam_ValueChanged;
-            // 
-            // dtpThang
-            // 
-            dtpThang.Location = new Point(104, 192);
-            dtpThang.Name = "dtpThang";
-            dtpThang.Size = new Size(160, 23);
-            dtpThang.TabIndex = 1;
-            dtpThang.ValueChanged += dtpThang_ValueChanged;
-            // 
-            // dtpNgay
-            // 
-            dtpNgay.Location = new Point(104, 72);
-            dtpNgay.Name = "dtpNgay";
-            dtpNgay.Size = new Size(160, 23);
-            dtpNgay.TabIndex = 1;
-            dtpNgay.ValueChanged += dtpNgay_ValueChanged;
-            // 
-            // rdbNam
-            // 
-            rdbNam.AutoSize = true;
-            rdbNam.Location = new Point(8, 288);
-            rdbNam.Name = "rdbNam";
-            rdbNam.Size = new Size(80, 19);
-            rdbNam.TabIndex = 0;
-            rdbNam.TabStop = true;
-            rdbNam.Text = "Theo Năm";
-            rdbNam.UseVisualStyleBackColor = true;
-            // 
-            // rdbNgay
-            // 
-            rdbNgay.AutoSize = true;
-            rdbNgay.Location = new Point(8, 48);
-            rdbNgay.Name = "rdbNgay";
-            rdbNgay.Size = new Size(82, 19);
-            rdbNgay.TabIndex = 0;
-            rdbNgay.TabStop = true;
-            rdbNgay.Text = "Theo Ngày";
-            rdbNgay.UseVisualStyleBackColor = true;
-            // 
             // dgvKetQuaThongKe_Phim
             // 
             dgvKetQuaThongKe_Phim.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -133,14 +70,13 @@
             // rdbPhim_DoanhThu_Thap
             // 
             rdbPhim_DoanhThu_Thap.AutoSize = true;
-            rdbPhim_DoanhThu_Thap.Location = new Point(24, 40);
+            rdbPhim_DoanhThu_Thap.Location = new Point(264, 72);
             rdbPhim_DoanhThu_Thap.Name = "rdbPhim_DoanhThu_Thap";
             rdbPhim_DoanhThu_Thap.Size = new Size(223, 19);
             rdbPhim_DoanhThu_Thap.TabIndex = 2;
             rdbPhim_DoanhThu_Thap.TabStop = true;
             rdbPhim_DoanhThu_Thap.Text = "Danh sách phim doanh thu thấp nhất";
             rdbPhim_DoanhThu_Thap.UseVisualStyleBackColor = true;
-            rdbPhim_DoanhThu_Thap.CheckedChanged += rdbPhim_DoanhThu_Thap_CheckedChanged;
             // 
             // rdbPhim_DatVe_NhieuNhat
             // 
@@ -152,7 +88,6 @@
             rdbPhim_DatVe_NhieuNhat.TabStop = true;
             rdbPhim_DatVe_NhieuNhat.Text = "Danh sách phim được đặt vé nhiều nhất";
             rdbPhim_DatVe_NhieuNhat.UseVisualStyleBackColor = true;
-            rdbPhim_DatVe_NhieuNhat.CheckedChanged += rdbPhim_DatVe_NhieuNhat_CheckedChanged;
             // 
             // rdbPhim_DoanhThu_Cao
             // 
@@ -164,7 +99,6 @@
             rdbPhim_DoanhThu_Cao.TabStop = true;
             rdbPhim_DoanhThu_Cao.Text = "Danh sách phim doanh thu cao nhất";
             rdbPhim_DoanhThu_Cao.UseVisualStyleBackColor = true;
-            rdbPhim_DoanhThu_Cao.CheckedChanged += rdbPhim_DoanhThu_Cao_CheckedChanged;
             // 
             // lblKetQuaThongKe
             // 
@@ -174,33 +108,6 @@
             lblKetQuaThongKe.Size = new Size(97, 15);
             lblKetQuaThongKe.TabIndex = 0;
             lblKetQuaThongKe.Text = "Kết quả thống kê";
-            // 
-            // lblThang
-            // 
-            lblThang.AutoSize = true;
-            lblThang.Location = new Point(8, 229);
-            lblThang.Name = "lblThang";
-            lblThang.Size = new Size(38, 15);
-            lblThang.TabIndex = 3;
-            lblThang.Text = "label1";
-            lblThang.Visible = false;
-            // 
-            // lblNgay
-            // 
-            lblNgay.AutoSize = true;
-            lblNgay.Location = new Point(8, 109);
-            lblNgay.Name = "lblNgay";
-            lblNgay.Size = new Size(38, 15);
-            lblNgay.TabIndex = 3;
-            lblNgay.Text = "label1";
-            lblNgay.Visible = false;
-            // 
-            // txbNam
-            // 
-            txbNam.Location = new Point(104, 344);
-            txbNam.Name = "txbNam";
-            txbNam.Size = new Size(160, 23);
-            txbNam.TabIndex = 2;
             // 
             // lblTieuChi
             // 
@@ -222,48 +129,104 @@
             // 
             // pnlDoanhThu_ThoiGian
             // 
-            pnlDoanhThu_ThoiGian.Controls.Add(lblLoaiThongKe);
-            pnlDoanhThu_ThoiGian.Controls.Add(lblNam);
-            pnlDoanhThu_ThoiGian.Controls.Add(lblThang);
-            pnlDoanhThu_ThoiGian.Controls.Add(lblNgay);
-            pnlDoanhThu_ThoiGian.Controls.Add(txbNam);
-            pnlDoanhThu_ThoiGian.Controls.Add(txbThang);
-            pnlDoanhThu_ThoiGian.Controls.Add(txbNgay);
-            pnlDoanhThu_ThoiGian.Controls.Add(dtpNam);
-            pnlDoanhThu_ThoiGian.Controls.Add(dtpThang);
-            pnlDoanhThu_ThoiGian.Controls.Add(dtpNgay);
+            pnlDoanhThu_ThoiGian.Controls.Add(btnThongKe);
+            pnlDoanhThu_ThoiGian.Controls.Add(txbKetQua);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbNam);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbThang);
+            pnlDoanhThu_ThoiGian.Controls.Add(cbNgay);
             pnlDoanhThu_ThoiGian.Controls.Add(rdbNam);
             pnlDoanhThu_ThoiGian.Controls.Add(rdbThang);
             pnlDoanhThu_ThoiGian.Controls.Add(rdbNgay);
+            pnlDoanhThu_ThoiGian.Controls.Add(lblLoaiThongKe);
             pnlDoanhThu_ThoiGian.Location = new Point(0, 0);
             pnlDoanhThu_ThoiGian.Name = "pnlDoanhThu_ThoiGian";
             pnlDoanhThu_ThoiGian.Size = new Size(280, 400);
             pnlDoanhThu_ThoiGian.TabIndex = 0;
             // 
-            // lblNam
+            // btnThongKe
             // 
-            lblNam.AutoSize = true;
-            lblNam.Location = new Point(8, 349);
-            lblNam.Name = "lblNam";
-            lblNam.Size = new Size(38, 15);
-            lblNam.TabIndex = 3;
-            lblNam.Text = "label1";
-            lblNam.Visible = false;
+            btnThongKe.Location = new Point(96, 216);
+            btnThongKe.Name = "btnThongKe";
+            btnThongKe.Size = new Size(75, 23);
+            btnThongKe.TabIndex = 39;
+            btnThongKe.Text = "Thống kê";
+            btnThongKe.UseVisualStyleBackColor = true;
+            btnThongKe.Click += btnThongKe_Click;
+            // 
+            // txbKetQua
+            // 
+            txbKetQua.Location = new Point(8, 176);
+            txbKetQua.Name = "txbKetQua";
+            txbKetQua.Size = new Size(260, 23);
+            txbKetQua.TabIndex = 37;
+            txbKetQua.TextAlign = HorizontalAlignment.Center;
+            // 
+            // cbNam
+            // 
+            cbNam.FormattingEnabled = true;
+            cbNam.Location = new Point(168, 136);
+            cbNam.Name = "cbNam";
+            cbNam.Size = new Size(81, 23);
+            cbNam.TabIndex = 34;
+            cbNam.SelectedIndexChanged += cbNam_SelectedIndexChanged;
+            // 
+            // cbThang
+            // 
+            cbThang.FormattingEnabled = true;
+            cbThang.Location = new Point(168, 88);
+            cbThang.Name = "cbThang";
+            cbThang.Size = new Size(81, 23);
+            cbThang.TabIndex = 35;
+            cbThang.SelectedIndexChanged += cbThang_SelectedIndexChanged;
+            // 
+            // cbNgay
+            // 
+            cbNgay.FormattingEnabled = true;
+            cbNgay.Location = new Point(168, 40);
+            cbNgay.Name = "cbNgay";
+            cbNgay.Size = new Size(81, 23);
+            cbNgay.TabIndex = 36;
+            // 
+            // rdbNam
+            // 
+            rdbNam.AutoSize = true;
+            rdbNam.Location = new Point(64, 136);
+            rdbNam.Name = "rdbNam";
+            rdbNam.Size = new Size(80, 19);
+            rdbNam.TabIndex = 31;
+            rdbNam.TabStop = true;
+            rdbNam.Text = "Theo Năm";
+            rdbNam.UseVisualStyleBackColor = true;
+            rdbNam.CheckedChanged += rdbNam_CheckedChanged;
             // 
             // rdbThang
             // 
             rdbThang.AutoSize = true;
-            rdbThang.Location = new Point(8, 168);
+            rdbThang.Location = new Point(64, 88);
             rdbThang.Name = "rdbThang";
             rdbThang.Size = new Size(87, 19);
-            rdbThang.TabIndex = 0;
+            rdbThang.TabIndex = 32;
             rdbThang.TabStop = true;
             rdbThang.Text = "Theo Tháng";
             rdbThang.UseVisualStyleBackColor = true;
+            rdbThang.CheckedChanged += rdbThang_CheckedChanged;
+            // 
+            // rdbNgay
+            // 
+            rdbNgay.AutoSize = true;
+            rdbNgay.Location = new Point(64, 40);
+            rdbNgay.Name = "rdbNgay";
+            rdbNgay.Size = new Size(82, 19);
+            rdbNgay.TabIndex = 33;
+            rdbNgay.TabStop = true;
+            rdbNgay.Text = "Theo Ngày";
+            rdbNgay.UseVisualStyleBackColor = true;
+            rdbNgay.CheckedChanged += rdbNgay_CheckedChanged;
             // 
             // pnlDoanhThu_dgv
             // 
             pnlDoanhThu_dgv.Controls.Add(dgvKetQuaThongKe_Phim);
+            pnlDoanhThu_dgv.Controls.Add(rdbPhim_ThongKe);
             pnlDoanhThu_dgv.Controls.Add(rdbPhim_DoanhThu_Thap);
             pnlDoanhThu_dgv.Controls.Add(rdbPhim_DatVe_NhieuNhat);
             pnlDoanhThu_dgv.Controls.Add(rdbPhim_DoanhThu_Cao);
@@ -273,6 +236,17 @@
             pnlDoanhThu_dgv.Name = "pnlDoanhThu_dgv";
             pnlDoanhThu_dgv.Size = new Size(520, 400);
             pnlDoanhThu_dgv.TabIndex = 1;
+            // 
+            // rdbPhim_ThongKe
+            // 
+            rdbPhim_ThongKe.AutoSize = true;
+            rdbPhim_ThongKe.Location = new Point(24, 40);
+            rdbPhim_ThongKe.Name = "rdbPhim_ThongKe";
+            rdbPhim_ThongKe.Size = new Size(105, 19);
+            rdbPhim_ThongKe.TabIndex = 2;
+            rdbPhim_ThongKe.TabStop = true;
+            rdbPhim_ThongKe.Text = "Thống kê phim";
+            rdbPhim_ThongKe.UseVisualStyleBackColor = true;
             // 
             // pnlDuoi
             // 
@@ -345,6 +319,7 @@
             Name = "frmThongKePhim";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmThongKePhim";
+            Load += frmThongKePhim_Load;
             ((System.ComponentModel.ISupportInitialize)dgvKetQuaThongKe_Phim).EndInit();
             pnlDoanhThu_ThoiGian.ResumeLayout(false);
             pnlDoanhThu_ThoiGian.PerformLayout();
@@ -357,27 +332,14 @@
         }
 
         #endregion
-
-        private TextBox txbThang;
-        private TextBox txbNgay;
-        private DateTimePicker dtpNam;
-        private DateTimePicker dtpThang;
-        private DateTimePicker dtpNgay;
-        private RadioButton rdbNam;
-        private RadioButton rdbNgay;
         private DataGridView dgvKetQuaThongKe_Phim;
         private RadioButton rdbPhim_DoanhThu_Thap;
         private RadioButton rdbPhim_DatVe_NhieuNhat;
         private RadioButton rdbPhim_DoanhThu_Cao;
         private Label lblKetQuaThongKe;
-        private Label lblThang;
-        private Label lblNgay;
-        private TextBox txbNam;
         private Label lblTieuChi;
         private Label lblLoaiThongKe;
         private Panel pnlDoanhThu_ThoiGian;
-        private Label lblNam;
-        private RadioButton rdbThang;
         private Panel pnlDoanhThu_dgv;
         private Panel pnlDuoi;
         private Button btnXuatExcel;
@@ -385,5 +347,14 @@
         private Label lblThongKePhim;
         private Label lblThongKe;
         private Panel pnlTren;
+        private Button btnThongKe;
+        private TextBox txbKetQua;
+        private ComboBox cbNam;
+        private ComboBox cbThang;
+        private ComboBox cbNgay;
+        private RadioButton rdbNam;
+        private RadioButton rdbThang;
+        private RadioButton rdbNgay;
+        private RadioButton rdbPhim_ThongKe;
     }
 }
