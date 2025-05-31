@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -300,8 +302,23 @@ namespace OGC.QuanLyDichVu
         //-------- sự kiện mở form phương thức thanh toán
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-            frmPhuongThucThanhToan f = new frmPhuongThucThanhToan();
-            f.ShowDialog();
+            // Loại bỏ các dấu phân cách hàng nghìn (ví dụ: , hoặc .) và chuyển đổi sang decimal
+            string cleanText = Regex.Replace(txbTongTien.Text, "[,.]", "");
+            if (decimal.TryParse(cleanText, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal tongTien))
+            {
+                if (tongTien > int.MaxValue)
+                {
+                    MessageBox.Show($"Số tiền vượt quá giới hạn cho phép ({int.MaxValue} VND).", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                frmPhuongThucThanhToan frm = new frmPhuongThucThanhToan((long)tongTien);
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Tổng tiền không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
