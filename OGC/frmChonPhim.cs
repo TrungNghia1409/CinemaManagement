@@ -243,8 +243,13 @@ namespace OGC
 
             if (phim != null)
             {
-                fDatVe formDatVe = new fDatVe();
-                formDatVe.ShowDialog();
+                string tenPhim = phim.TenPhim;
+                DateTime ngayChieu = dtpChonNgayChieu.Value.Date;
+                string theLoai = cbtheloaiphim.Text;
+                string dinhDang = cbdinhdang.Text;
+
+                fDatVe datVeForm = new fDatVe(tenPhim, ngayChieu, theLoai, dinhDang);
+                datVeForm.ShowDialog();
             }
         }
 

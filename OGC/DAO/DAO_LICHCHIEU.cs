@@ -178,5 +178,34 @@ namespace OGC.DAO
             return danhSach;
         }
 
+        // Lấy danh sách lịch chiếu theo phim, ngày và định dạng
+        public List<DTO_LICHCHIEU> GetLichChieuTheoPhimNgayDinhDang(string tenPhim, DateTime ngayChieu, string tenDinhDang)
+        {
+            List<DTO_LICHCHIEU> danhSach = new List<DTO_LICHCHIEU>();
+
+            string query = "EXEC usp_GetGioChieuTheoPhimNgayDinhDang @TenPhim , @NgayChieu , @TenDinhDang";
+
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim, ngayChieu, tenDinhDang });
+
+            foreach (DataRow row in dt.Rows)
+            {
+                DTO_LICHCHIEU lc = new DTO_LICHCHIEU();
+
+                // Bắt buộc ánh xạ những trường DTO có
+                lc.ID = row.Table.Columns.Contains("IDLichChieu") ? Convert.ToInt32(row["IDLichChieu"]) : 0;
+                lc.TenPhim = row["TenPhim"].ToString();
+                lc.TenPhong = row["TenPhong"].ToString();
+                lc.NgayGio = Convert.ToDateTime($"{row["NgayChieu"]} {row["GioChieu"]}");
+                lc.GiaVe = Convert.ToDecimal(row["GiaVe"]);
+                lc.DiaDiem = row["DiaDiem"].ToString();
+
+                // Bỏ qua TenDinhDang (vì DTO không có)
+
+                danhSach.Add(lc);
+            }
+
+            return danhSach;
+        }
+
     }
 }
