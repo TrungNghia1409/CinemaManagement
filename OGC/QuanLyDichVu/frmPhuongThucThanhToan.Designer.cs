@@ -60,6 +60,7 @@
             btnChuyenKhoan.TabIndex = 1;
             btnChuyenKhoan.Text = "Chuyển khoản";
             btnChuyenKhoan.UseVisualStyleBackColor = true;
+            btnChuyenKhoan.Click += btnChuyenKhoan_Click;
             // 
             // frmPhuongThucThanhToan
             // 

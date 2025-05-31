@@ -43,6 +43,9 @@ namespace OGC.ThongKe
             cbNgay.Enabled = false;
             cbThang.Enabled = false;
             cbNam.Enabled = false;
+            cbTheoThangNam_Thang.Enabled = false;
+            cbTheoThangNam_Nam.Enabled = false;
+            cbTheoNam.Enabled = false;
         }
 
         #region Doanh thu theo ngày, tháng, năm
