@@ -1,4 +1,5 @@
-﻿using OGC.DAO;
+﻿using ClosedXML.Excel;
+using OGC.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -260,6 +261,63 @@ namespace OGC.ThongKe
         private void btnThongKe_Click(object sender, EventArgs e)
         {
             XuLyThongKe();
+        }
+
+        private void XuatExcelTuDataGridView(DataGridView dgv, string tenFile)
+        {
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("ThongKe");
+
+                // Ghi tiêu đề cột
+                for (int col = 0; col < dgv.Columns.Count; col++)
+                {
+                    worksheet.Cell(1, col + 1).Value = dgv.Columns[col].HeaderText;
+                    worksheet.Cell(1, col + 1).Style.Font.Bold = true;
+                    worksheet.Cell(1, col + 1).Style.Fill.BackgroundColor = XLColor.LightGray;
+                }
+
+                // Ghi dữ liệu
+                for (int row = 0; row < dgv.Rows.Count; row++)
+                {
+                    for (int col = 0; col < dgv.Columns.Count; col++)
+                    {
+                        var value = dgv.Rows[row].Cells[col].Value;
+                        worksheet.Cell(row + 2, col + 1).Value = value?.ToString();
+                    }
+                }
+
+                worksheet.Columns().AdjustToContents();
+
+                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), tenFile + ".xlsx");
+                workbook.SaveAs(path);
+
+                MessageBox.Show($"Xuất thành công tại:\n{path}", "Xuất Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            string tenFile = "ThongKePhim";
+
+            if (rdbPhim_ThongKe.Checked)
+            {
+                tenFile = "ThongKePhim_";
+            }
+            else if (rdbPhim_DatVe_NhieuNhat.Checked)
+            {
+                tenFile = "ThongKePhim_DuocDatVeNhieuNhat";
+            }
+            else if (rdbPhim_DoanhThu_Cao.Checked)
+            {
+                tenFile = "ThongKePhim_DoanhThuCaoNhat";
+            }
+            else if (rdbPhim_DoanhThu_Thap.Checked)
+            {
+                tenFile = "ThongKePhim_DoanhThuThapNhat";
+            }
+
+            XuatExcelTuDataGridView(dgvKetQuaThongKe_Phim, tenFile);
         }
     }
 }
