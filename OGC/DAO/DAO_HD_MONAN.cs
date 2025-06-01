@@ -50,5 +50,27 @@ namespace OGC.DAO
             return danhSach;
         }
 
+        //------- Thêm hóa đơn món ăn mới
+        public int ThemHoaDonMonAn(int iDNhanVien, int iDKhachHang, decimal tongTien)
+        {
+            string query = "EXEC ThemHoaDonMonAn @IDNhanVien , @IDKhachHang , @TongTien ";
+            try
+            {
+                object result = DataProvider.Instance.ExecuteScalar(query, new object[] { iDNhanVien, iDKhachHang, tongTien });
+
+                if (result != null && int.TryParse(result.ToString(), out int idHD))
+                {
+                    return idHD;
+                }
+
+                return -1; // Không thành công
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi thêm hóa đơn món ăn: {ex.Message}");
+                return -1;
+            }
+        }
+
     }
 }

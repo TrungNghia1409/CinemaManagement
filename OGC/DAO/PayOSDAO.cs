@@ -56,7 +56,7 @@ namespace OGC.DAO
                     {
                         new Item
                         {
-                            name = requestDTO.description ?? "Dịch vụ",
+                            name = requestDTO.description ?? "Tổng hóa đơn",
                             quantity = 1,
                             price = requestDTO.amount
                         }
@@ -67,7 +67,7 @@ namespace OGC.DAO
                 foreach (var item in requestDTO.items)
                 {
                     if (item.price > int.MaxValue)
-                        throw new Exception($"Giá sản phẩm '{item.name}' vượt quá giới hạn cho phép ({int.MaxValue} VND)");
+                        throw new Exception($"Giá sản phẩm '{item.name}' vượt quá giới hạn cho phép ({long.MaxValue} VND)");
                 }
 
                 // Chuyển đổi DTO sang PaymentData của payOS.Net5

@@ -25,21 +25,7 @@ namespace OGC.DAO
         }
 
         #region PHONGCHIEU
-        public List<string> DanhSachTenPhong_List()
-        {
-            List<string> ds = new List<string>();
-
-            string query = "SELECT TenPhong FROM PHONGCHIEU";
-
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow row in data.Rows)
-            {
-                ds.Add(row["TenPhong"].ToString());
-            }
-
-            return ds;
-        }
+       
         public List<string> LayMaPhong()
         {
             List<string> ds = new List<string>();
