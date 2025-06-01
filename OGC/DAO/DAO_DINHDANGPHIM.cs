@@ -111,5 +111,24 @@ namespace OGC.DAO
 
             return list;
         }
+
+        public DTO_DINHDANGPHIM GetDinhDangPhimTheoTenPhim(string tenPhim)
+        {
+            string query = "EXEC usp_GetDinhDangPhimTheoTenPhim @TenPhim ";
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim });
+
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                return new DTO_DINHDANGPHIM
+                {
+                    ID = Convert.ToInt32(row["ID"]),
+                    TenDinhDang = row["TenDinhDang"].ToString()
+                };
+            }
+            return null;
+        }
+
+
     }
 }
