@@ -207,5 +207,14 @@ namespace OGC.DAO
             return danhSach;
         }
 
+
+
+        public DataTable GetGioChieuTheoPhimVaNgay(string tenPhim, DateTime ngayChieu)
+        {
+            string query = "EXEC usp_GetGioChieuTheoPhimVaNgay @TenPhim , @NgayChieu";
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim, ngayChieu });
+        }
+
+
     }
 }
