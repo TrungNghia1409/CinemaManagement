@@ -11,15 +11,19 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static OGC.DTO.DTO_CartItem;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OGC.QuanLyDichVu
 {
     public partial class frmQuanLyDichVu : Form
     {
-        public frmQuanLyDichVu()
+        public string currentUser;
+        public frmQuanLyDichVu(string username)
         {
             InitializeComponent();
+
+            this.currentUser = username;
 
             LoadDichVu();
             LoadTenLoaiVaoComboBox();
@@ -77,6 +81,9 @@ namespace OGC.QuanLyDichVu
                 flpDichVu.Controls.Add(flpLoai);
             }
         }
+
+
+
 
         #endregion
 
@@ -267,7 +274,50 @@ namespace OGC.QuanLyDichVu
 
         }
 
+
+
+
+        #region lấy danh sách giỏ hàng từ flpCart
+
+        public List<CartItem> GetCartItems()
+        {
+            List<CartItem> items = new List<CartItem>();
+
+            foreach (Control control in flpCart.Controls)
+            {
+                if (control is Panel panel)
+                {
+                    string tenMonAn = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Font.Bold)?.Text;
+                    string slText = panel.Controls.OfType<Label>().FirstOrDefault(l => l.Text.StartsWith("SL:"))?.Text;
+                    string donGiaText = panel.Controls.OfType<Label>().FirstOrDefault(l => l.ForeColor == Color.Red)?.Text;
+
+                    if (!string.IsNullOrEmpty(tenMonAn) && !string.IsNullOrEmpty(slText) && !string.IsNullOrEmpty(donGiaText))
+                    {
+                        int soLuong = int.Parse(slText.Replace("SL: ", ""));
+                        decimal donGia = decimal.Parse(donGiaText.Replace(",", "").Trim());
+
+                        items.Add(new CartItem
+                        {
+                            TenMonAn = tenMonAn,
+                            SoLuong = soLuong,
+                            DonGia = donGia
+                        });
+                    }
+                }
+            }
+
+            return items;
+        }
+
+
+
         #endregion
+
+        #endregion
+
+
+
+
 
 
         #region Events
@@ -306,7 +356,7 @@ namespace OGC.QuanLyDichVu
             string cleanText = Regex.Replace(txbTongTien.Text, "[,.]", "");
             if (decimal.TryParse(cleanText, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal tongTien))
             {
-                if (tongTien > int.MaxValue)
+                if (tongTien > long.MaxValue)
                 {
                     MessageBox.Show($"Số tiền vượt quá giới hạn cho phép ({int.MaxValue} VND).", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -327,6 +377,16 @@ namespace OGC.QuanLyDichVu
         private void btnThemSanPham_Click(object sender, EventArgs e)
         {
 
+        }
+       
+        private void btnXacNhanThanhToanThanhCong_Click(object sender, EventArgs e)
+        {
+            decimal tongTien = decimal.Parse(txbTongTien.Text.Replace(",", ""));
+            int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser);
+            List<CartItem> gioHang = GetCartItems();
+
+            frmXacNhanThanhToan frm = new frmXacNhanThanhToan(tongTien, idNhanVien, gioHang);
+            frm.ShowDialog(); // hoặc frm.Show()
         }
     }
 }

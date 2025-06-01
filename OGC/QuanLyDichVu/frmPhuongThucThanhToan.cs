@@ -37,7 +37,7 @@ namespace OGC.QuanLyDichVu
                     {
                         new Item
                         {
-                            name = "Dịch vụ",
+                            name = "Tổng hóa đơn",
                             quantity = 1,
                             price = tongTien
                         }

@@ -49,7 +49,7 @@ namespace OGC.LichChieu
 
                 uc.TenPhim = lc.TenPhim;
                 uc.TenPhong = lc.TenPhong;
-                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy");
+                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy HH:mm ");
                 uc.GiaVe = lc.GiaVe;
                 uc.DiaDiem = lc.DiaDiem;
                 uc.TrangThai = lc.TrangThai;
@@ -143,7 +143,7 @@ namespace OGC.LichChieu
 
                 uc.TenPhim = lc.TenPhim;
                 uc.TenPhong = lc.TenPhong;
-                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy");
+                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy hh:mm tt");
                 uc.GiaVe = lc.GiaVe;
                 uc.DiaDiem = lc.DiaDiem;
                 uc.TrangThai = lc.TrangThai;
@@ -180,7 +180,7 @@ namespace OGC.LichChieu
 
                 uc.TenPhim = lc.TenPhim;
                 uc.TenPhong = lc.TenPhong;
-                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy");
+                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy HH:mm");
                 uc.GiaVe = lc.GiaVe;
                 uc.DiaDiem = lc.DiaDiem;
                 uc.TrangThai = lc.TrangThai;

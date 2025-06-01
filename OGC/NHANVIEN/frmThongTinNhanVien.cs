@@ -49,13 +49,36 @@ namespace OGC.NHANVIEN
                     return;
                 }
 
+                // Kiểm tra số điện thoại
+                string sDT = txbSDT.Text;
+                if (sDT.Length != 10 || !sDT.StartsWith("0"))
+                {
+                    MessageBox.Show("Số điện thoại phải có 10 ký tự và bắt đầu bằng số 0.");
+                    return;
+                }
+
+                // Kiểm tra email
+                string email = txbEmail.Text;
+                if (!email.EndsWith("@gmail.com") || email.IndexOf('@') != email.LastIndexOf('@'))
+                {
+                    MessageBox.Show("Email phải có định dạng @gmail.com và chỉ chứa một ký tự @.");
+                    return;
+                }
+
+                // Kiểm tra ngày sinh
+                DateTime ngaySinh = DateTime.Parse(dtpNgaySinh.Text);
+                if (ngaySinh.Year > 2005)
+                {
+                    MessageBox.Show("Ngày sinh phải từ năm 2005 trở về trước.");
+                    return;
+                }
+
                 // Nếu hợp lệ thì mới tiếp tục sửa nhân viên
                 string username = txbTaiKhoan.Text;
                 string hoTen = txbHoTen.Text;
-                DateTime ngaySinh = DateTime.Parse(dtpNgaySinh.Text);
+
                 string gioiTinh = txbGioiTinh.Text;
-                string sDT = txbSDT.Text;
-                string email = txbEmail.Text;
+
                 string diaChi = txbDiaChi.Text;
                 string tenChucVu = txbChucVu.Text;
 

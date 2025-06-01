@@ -87,7 +87,7 @@ namespace OGC
 
         private void btnDichVu_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmQuanLyDichVu());
+            OpenChildForm(new frmQuanLyDichVu(currentUser));
         }
         private void btnNhanVien_Click(object sender, EventArgs e)
         {
