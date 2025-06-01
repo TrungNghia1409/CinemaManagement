@@ -172,6 +172,8 @@
             txbMatKhau.Name = "txbMatKhau";
             txbMatKhau.Size = new Size(272, 40);
             txbMatKhau.TabIndex = 0;
+            txbMatKhau.Enter += txbMatKhau_Enter;
+            txbMatKhau.Leave += txbMatKhau_Leave;
             // 
             // pnlTaiKhoan
             // 
@@ -192,6 +194,8 @@
             txbTaiKhoan.Name = "txbTaiKhoan";
             txbTaiKhoan.Size = new Size(272, 40);
             txbTaiKhoan.TabIndex = 0;
+            txbTaiKhoan.Enter += txbTaiKhoan_Enter;
+            txbTaiKhoan.Leave += txbTaiKhoan_Leave;
             // 
             // frmDangNhap
             // 

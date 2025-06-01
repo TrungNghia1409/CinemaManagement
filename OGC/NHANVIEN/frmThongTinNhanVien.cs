@@ -15,7 +15,7 @@ namespace OGC.NHANVIEN
 {
     public partial class frmThongTinNhanVien : Form
     {
-
+        private string duongDanAnh = ""; // Lưu đường dẫn ảnh được chọn
         public frmThongTinNhanVien(DTO_NHANVIEN nhanVien)
         {
             InitializeComponent();
@@ -83,7 +83,7 @@ namespace OGC.NHANVIEN
                 string tenChucVu = txbChucVu.Text;
 
                 // Gọi DAO để cập nhật thông tin
-                bool isUpdated = DAO_NHANVIEN.Instance.SuaNhanVien(username, hoTen, ngaySinh, gioiTinh, sDT, email, diaChi, tenChucVu);
+                bool isUpdated = DAO_NHANVIEN.Instance.SuaNhanVien(username, hoTen, ngaySinh, gioiTinh, sDT, email, diaChi, tenChucVu, duongDanAnh);
 
                 if (isUpdated)
                 {
@@ -190,6 +190,8 @@ namespace OGC.NHANVIEN
                     // Hiển thị ảnh trong PictureBox
                     ptbAnhNV.Image = Image.FromFile(selectedFilePath);
                     ptbAnhNV.SizeMode = PictureBoxSizeMode.StretchImage; // Co giãn ảnh vừa với khung
+
+                    duongDanAnh = selectedFilePath; // Gán vào biến toàn cục
                 }
             }
             catch (Exception ex)

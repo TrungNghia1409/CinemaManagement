@@ -10,7 +10,7 @@ namespace OGC.DTO
     public class DTO_NHANVIEN
     {
         public DTO_NHANVIEN(int ID, string Username, int IDChucVu, string HoTen, DateTime NgaySinh,
-                            string GioiTinh, string SDT, string Email, string DiaChi, string TenChucVu)
+                            string GioiTinh, string SDT, string Email, string DiaChi, string TenChucVu , string AnhNV)
         {
             this.ID = ID;
             this.Username = Username;
@@ -23,6 +23,7 @@ namespace OGC.DTO
             this.DiaChi = DiaChi;
 
             this.TenChucVu = TenChucVu;
+            this.AnhNV = AnhNV; 
         }
 
         public DTO_NHANVIEN() { }
@@ -41,6 +42,7 @@ namespace OGC.DTO
             this.DiaChi = row["DiaChi"].ToString();
 
             this.TenChucVu = row["TenChucVu"].ToString();
+            this.AnhNV = row["AnhNV"].ToString();
         }
 
 
@@ -113,6 +115,13 @@ namespace OGC.DTO
         {
             get { return tenChucVu; }
             set { tenChucVu = value; }
+        }
+
+        private string anhNV;
+        public string AnhNV
+        {
+            get { return anhNV; }
+            set { anhNV = value; }
         }
     }
 
