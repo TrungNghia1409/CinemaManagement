@@ -24,7 +24,7 @@ namespace OGC.LichChieu
             //gán gia trị hiển thị
             this.TenPhim = lc.TenPhim;
             this.TenPhong = lc.TenPhong;
-            this.NgayGio = this.NgayGio = lc.NgayGio != null ? lc.NgayGio.ToString("dd/MM/yyyy hh:mm tt") : "N/A";
+            this.NgayGio = this.NgayGio = lc.NgayGio != null ? lc.NgayGio.ToString("dd/MM/yyyy hh:mm") : "N/A";
             this.GiaVe = lc.GiaVe;
             this.TrangThai = lc.TrangThai;
             
