@@ -36,6 +36,12 @@ namespace OGC.DAO
             foreach (DataRow row in data.Rows)
             {
                 ds.Add(row["TenPhong"].ToString());
+
+                //DTO_LOAIPHONG phong = new DTO_LOAIPHONG();
+                //phong.ID = Convert.ToInt32(row["ID"]);
+                //phong.TenPhong = row["TenPhong"].ToString();
+                //// nếu có các thuộc tính khác thì gán tiếp
+                //ds.Add(phong);
             }
 
             return ds;
