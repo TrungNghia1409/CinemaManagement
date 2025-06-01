@@ -139,12 +139,12 @@ namespace OGC.DAO
             }
         }
         //------Phương thức sửa thông tin nhân tin
-        public bool SuaNhanVien(string username, string hoTen, DateTime ngaySinh, string gioiTinh, string sDT, string email, string diaChi, string tenChucVu)
+        public bool SuaNhanVien(string username, string hoTen, DateTime ngaySinh, string gioiTinh, string sDT, string email, string diaChi, string tenChucVu, string anhNV)
         {
-            string query = "EXEC usp_suaNHANVIEN @Username , @HoTen , @NgaySinh , @GioiTinh , @SDT , @Email , @DiaChi , @TenChucVu";
+            string query = "EXEC usp_suaNHANVIEN @Username , @HoTen , @NgaySinh , @GioiTinh , @SDT , @Email , @DiaChi , @TenChucVu , @AnhNV ";
 
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
-            { username, hoTen, ngaySinh, gioiTinh, sDT, email, diaChi, tenChucVu});
+            { username, hoTen, ngaySinh, gioiTinh, sDT, email, diaChi, tenChucVu, anhNV});
 
             return result > 0;
         }

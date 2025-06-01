@@ -49,7 +49,7 @@ namespace OGC.LichChieu
 
                 uc.TenPhim = lc.TenPhim;
                 uc.TenPhong = lc.TenPhong;
-                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy");
+                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy HH:mm ");
                 uc.GiaVe = lc.GiaVe;
                 uc.DiaDiem = lc.DiaDiem;
                 uc.TrangThai = lc.TrangThai;
@@ -111,11 +111,9 @@ namespace OGC.LichChieu
         //Load tên phòng
         private void LoadTenPhong()
         {
-            List<string> tenPhong = DAO_LOAIPHONG.Instance.DanhSachTenPhong_List();
+            List<DTO_PHONGCHIEU> tenPhong = DAO_PHONGCHIEU.Instance.DanhSachTenPhong_List();
 
-            // Thêm tùy chọn "Tất cả" để hiển thị toàn bộ
-            tenPhong.Insert(0, "Tất cả");
-
+            cbTenPhong.DisplayMember = "TenPhong"; 
             cbTenPhong.DataSource = tenPhong;
         }
         //hiển thị danh sách lịch chiếu
@@ -143,7 +141,7 @@ namespace OGC.LichChieu
 
                 uc.TenPhim = lc.TenPhim;
                 uc.TenPhong = lc.TenPhong;
-                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy");
+                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy hh:mm");
                 uc.GiaVe = lc.GiaVe;
                 uc.DiaDiem = lc.DiaDiem;
                 uc.TrangThai = lc.TrangThai;
@@ -167,12 +165,12 @@ namespace OGC.LichChieu
 
             List<DTO_LICHCHIEU> danhSach = DAO_LICHCHIEU.Instance.DanhSachLichChieu();
 
-            if (tenPhong != "Tất cả")
-            {
-                danhSach = danhSach
-                    .Where(lc => lc.TenPhong == tenPhong)
-                    .ToList();
-            }
+            //if (tenPhong != "Tất cả")
+            //{
+            //    danhSach = danhSach
+            //        .Where(lc => lc.TenPhong == tenPhong)
+            //        .ToList();
+            //}
 
             foreach (DTO_LICHCHIEU lc in danhSach)
             {
@@ -180,7 +178,7 @@ namespace OGC.LichChieu
 
                 uc.TenPhim = lc.TenPhim;
                 uc.TenPhong = lc.TenPhong;
-                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy");
+                uc.NgayGio = lc.NgayGio.ToString("dd/MM/yyyy HH:mm");
                 uc.GiaVe = lc.GiaVe;
                 uc.DiaDiem = lc.DiaDiem;
                 uc.TrangThai = lc.TrangThai;

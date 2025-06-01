@@ -18,11 +18,10 @@ namespace OGC
         {
             InitializeComponent();
 
-            txbTaiKhoan.Text = "admin";
+            txbTaiKhoan.Text = "hnghia"; //Username
             txbTaiKhoan.ForeColor = Color.Gray;
 
-            txbMatKhau.PasswordChar = '\0';
-            txbMatKhau.Text = "admin";
+            txbMatKhau.Text = "hnghia"; //Password
             txbMatKhau.ForeColor = Color.Gray;
         }
 
@@ -35,6 +34,7 @@ namespace OGC
                 txbTaiKhoan.ForeColor = Color.Black; // Đổi màu chữ thành đen
             }
         }
+
         private void txbTaiKhoan_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txbTaiKhoan.Text)) //Kiểm tra ô textbox rỗng
@@ -43,7 +43,6 @@ namespace OGC
                 txbTaiKhoan.ForeColor = Color.Gray; // Đổi màu chữ thành mờ
             }
         }
-
         private void txbMatKhau_Enter(object sender, EventArgs e)
         {
             if (txbMatKhau.Text == "Password")
@@ -53,7 +52,6 @@ namespace OGC
                 txbMatKhau.ForeColor = Color.Black;
             }
         }
-
         private void txbMatKhau_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txbMatKhau.Text)) //Kiểm tra ô textbox rỗng
@@ -62,7 +60,6 @@ namespace OGC
                 txbMatKhau.Text = "Password";
                 txbMatKhau.ForeColor = Color.Gray;
             }
-
         }
         #endregion
 
@@ -117,5 +114,6 @@ namespace OGC
 
 
 
+       
     }
 }
