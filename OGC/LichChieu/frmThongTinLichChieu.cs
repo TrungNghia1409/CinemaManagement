@@ -21,6 +21,9 @@ namespace OGC.LichChieu
         {
             InitializeComponent();
 
+            dtpNgayGio.Format = DateTimePickerFormat.Custom;
+            dtpNgayGio.CustomFormat = "dd/MM/yyyy HH:mm";
+
             // ComboBox tên phim
             cbTenPhim.DataSource = PhimDAO.Instance.GetAllPhim();
             cbTenPhim.DisplayMember = "TenPhim";
@@ -108,9 +111,9 @@ namespace OGC.LichChieu
                     MessageBox.Show("Tên phim hoặc phòng không tồn tại. Vui lòng nhập đúng tên có trong hệ thống.");
                     return;
                 }
-                if (giaVe < 50000)
+                if (giaVe <= 0)
                 {
-                    MessageBox.Show("Giá vé phải lớn hơn 50000 VNĐ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Giá vé phải lớn hơn 0 VNĐ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 // Gọi DAO để cập nhật thông tin
