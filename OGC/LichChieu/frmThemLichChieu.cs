@@ -28,7 +28,7 @@ namespace OGC.LichChieu
             cbTenPhim.DisplayMember = "TenPhim";
 
             // ComboBox tên phòng
-            cbTenPhong.DataSource = DAO_LOAIPHONG.Instance.DanhSachTenPhong_List();
+            cbTenPhong.DataSource = DAO_PHONGCHIEU.Instance.DanhSachTenPhong_List();
             cbTenPhong.DisplayMember = "TenPhong";
 
 
@@ -67,12 +67,13 @@ namespace OGC.LichChieu
         {
             if (cbTenPhong.SelectedItem != null)
             {
-                DTO_LOAIPHONG phong = cbTenPhong.SelectedItem as DTO_LOAIPHONG;
+                DTO_PHONGCHIEU phong = cbTenPhong.SelectedItem as DTO_PHONGCHIEU;
                 try
                 {
                     if (phong != null)
                     {
                         txbIDPhong.Text = phong.ID.ToString();
+                        ptbAnhPhong.Load(phong.AnhPhong);
                     }
                 }
                 catch
@@ -98,7 +99,7 @@ namespace OGC.LichChieu
 
 
                 //Kiểm tra nếu tài khoản rỗng
-                if ((string.IsNullOrWhiteSpace(tenPhim)) || (string.IsNullOrWhiteSpace(tenPhong)) || (ngayGio == DateTime.MinValue) || (giaVe < 50000))
+                if ((string.IsNullOrWhiteSpace(tenPhim)) || (string.IsNullOrWhiteSpace(tenPhong)) || (ngayGio == DateTime.MinValue) )
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ thông tin lịch chiếu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

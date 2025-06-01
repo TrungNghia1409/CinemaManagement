@@ -29,7 +29,7 @@ namespace OGC.LichChieu
             cbTenPhim.DisplayMember = "TenPhim";
 
             // ComboBox tên phòng
-            cbTenPhong.DataSource = DAO_LOAIPHONG.Instance.DanhSachTenPhong_List();
+            cbTenPhong.DataSource = DAO_PHONGCHIEU.Instance.DanhSachTenPhong_List();
             cbTenPhong.DisplayMember = "TenPhong";
 
 
@@ -78,10 +78,20 @@ namespace OGC.LichChieu
         {
             if (cbTenPhong.SelectedItem != null)
             {
-                DTO_LOAIPHONG phong = cbTenPhong.SelectedItem as DTO_LOAIPHONG;
-                if (phong != null)
+                DTO_PHONGCHIEU phong = cbTenPhong.SelectedItem as DTO_PHONGCHIEU;
+                try
                 {
-                    txbIDPhong.Text = phong.ID.ToString();
+                    if (phong != null)
+                    {
+                        txbIDPhong.Text = phong.ID.ToString();
+                        ptbAnhPhong.Load(phong.AnhPhong);
+                        
+                    }
+                }
+                catch
+                {
+                    ptbAnhPhong.Image = null;
+                    MessageBox.Show("Không thể tải ảnh phòng từ đường dẫn.");
                 }
             }
         }
@@ -93,7 +103,7 @@ namespace OGC.LichChieu
             try
             {
                 List<PhimDTO> danhSachPhim = PhimDAO.Instance.GetAllPhim();
-                List<string> danhSachPhong = DAO_LOAIPHONG.Instance.DanhSachTenPhong_List();
+                List<DTO_PHONGCHIEU> danhSachPhong = DAO_PHONGCHIEU.Instance.DanhSachTenPhong_List();
 
                 // Nếu hợp lệ thì mới tiếp tục sửa lịch chiếu
                 int iD = int.Parse(txbID.Text);
@@ -104,7 +114,8 @@ namespace OGC.LichChieu
                 string diaDiem = txbDiaDiem.Text;
 
                 bool phimTonTai = danhSachPhim.Any(p => p.TenPhim == cbTenPhim.Text);
-                bool phongTonTai = danhSachPhong.Contains(cbTenPhong.Text);
+                bool phongTonTai = danhSachPhong.Any(p => p.TenPhong == cbTenPhong.Text); 
+
 
                 if (!phimTonTai || !phongTonTai)
                 {
