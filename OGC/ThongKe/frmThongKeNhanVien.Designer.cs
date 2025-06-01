@@ -253,6 +253,7 @@
             btnXuatExcel.TabIndex = 2;
             btnXuatExcel.Text = "Xuất Excel";
             btnXuatExcel.UseVisualStyleBackColor = true;
+            btnXuatExcel.Click += btnXuatExcel_Click;
             // 
             // btnTaiBieuDo
             // 
