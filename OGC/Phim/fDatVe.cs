@@ -24,44 +24,43 @@ namespace OGC.Phim
             lbTenPhim.Text = tenPhim;
             lbNgayChieu.Text = ngayChieu.ToString("dd/MM/yyyy");
             lbDinhDang.Text = dinhDang;
-            LoadGioChieu(tenPhim, ngayChieu, dinhDang);
+            LoadGioChieuLenFlowLayout(tenPhim, ngayChieu);
         }
 
 
-        public void LoadGioChieu(string tenPhim, DateTime ngayChieu, string dinhDang)
+        private void LoadGioChieuLenFlowLayout(string tenPhim, DateTime ngayChieu)
         {
-            lichChieuList = DAO_LICHCHIEU.Instance.GetLichChieuTheoPhimNgayDinhDang(tenPhim, ngayChieu, dinhDang);
-
             flpGioChieu.Controls.Clear();
 
-            foreach (var lc in lichChieuList)
+            DataTable dt = DAO_LICHCHIEU.Instance.GetGioChieuTheoPhimVaNgay(tenPhim, ngayChieu);
+
+            foreach (DataRow row in dt.Rows)
             {
-                Button btn = new Button();
-                btn.Text = lc.NgayGio.ToString("HH:mm");
-                btn.Tag = lc;
-                btn.Width = 70;
-                btn.Height = 30;
-                btn.Click += BtnGio_Click;
-                flpGioChieu.Controls.Add(btn);
+                string gio = row["GioChieu"].ToString().Substring(0, 5); // Lấy định dạng HH:mm
+
+                Button btnGio = new Button();
+                btnGio.Text = gio;
+                btnGio.Width = 80;
+                btnGio.Height = 40;
+                btnGio.BackColor = Color.LightSteelBlue;
+                btnGio.Margin = new Padding(5);
+                btnGio.Tag = row["ID"]; // Lưu lại ID lịch chiếu nếu cần
+
+                btnGio.Click += BtnGio_Click;
+
+                flpGioChieu.Controls.Add(btnGio);
             }
         }
 
-
+       
         private void BtnGio_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            if (btn != null)
-            {
-                SelectedLichChieu = btn.Tag as DTO_LICHCHIEU;
-                if (SelectedLichChieu != null)
-                {
-                    // Ví dụ: bạn có thể mở form đặt ghế hoặc lưu thông tin giờ chiếu
-                    MessageBox.Show($"Bạn chọn giờ chiếu: {SelectedLichChieu.NgayGio:hh\\:mm} tại phòng {SelectedLichChieu.TenPhong}");
+            string gioChieu = btn.Text;
+            int idLichChieu = (int)btn.Tag;
 
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-            }
+            MessageBox.Show("Bạn đã chọn suất chiếu lúc: " + gioChieu);
+            // Gọi tiếp chức năng hiển thị ghế ở đây nếu muốn
         }
     }
 }
