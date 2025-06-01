@@ -67,7 +67,7 @@
             lblMember.Location = new Point(104, 16);
             lblMember.Name = "lblMember";
             lblMember.Size = new Size(166, 30);
-            lblMember.TabIndex = 0;
+            lblMember.TabIndex = 4;
             lblMember.Text = "Members Login";
             // 
             // panel2
@@ -86,7 +86,7 @@
             label1.Location = new Point(0, 224);
             label1.Name = "label1";
             label1.Size = new Size(239, 15);
-            label1.TabIndex = 2;
+            label1.TabIndex = 5;
             label1.Text = "⦿ 2025 OGC Cinema | Designe by Double2N";
             // 
             // ptbDangNhap
@@ -147,7 +147,7 @@
             btnDangNhap.Location = new Point(144, 144);
             btnDangNhap.Name = "btnDangNhap";
             btnDangNhap.Size = new Size(92, 35);
-            btnDangNhap.TabIndex = 6;
+            btnDangNhap.TabIndex = 3;
             btnDangNhap.Text = "Login";
             btnDangNhap.UseVisualStyleBackColor = true;
             btnDangNhap.Click += btnDangNhap_Click;
@@ -171,7 +171,7 @@
             txbMatKhau.Multiline = true;
             txbMatKhau.Name = "txbMatKhau";
             txbMatKhau.Size = new Size(272, 40);
-            txbMatKhau.TabIndex = 0;
+            txbMatKhau.TabIndex = 2;
             txbMatKhau.Enter += txbMatKhau_Enter;
             txbMatKhau.Leave += txbMatKhau_Leave;
             // 
@@ -193,12 +193,13 @@
             txbTaiKhoan.Multiline = true;
             txbTaiKhoan.Name = "txbTaiKhoan";
             txbTaiKhoan.Size = new Size(272, 40);
-            txbTaiKhoan.TabIndex = 0;
+            txbTaiKhoan.TabIndex = 1;
             txbTaiKhoan.Enter += txbTaiKhoan_Enter;
             txbTaiKhoan.Leave += txbTaiKhoan_Leave;
             // 
             // frmDangNhap
             // 
+            AcceptButton = btnDangNhap;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(584, 261);

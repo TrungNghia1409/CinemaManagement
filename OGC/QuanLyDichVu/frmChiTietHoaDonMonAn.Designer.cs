@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             dgvChiTiet = new DataGridView();
+            btnXuatHoaDon = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvChiTiet).BeginInit();
             SuspendLayout();
             // 
@@ -40,13 +41,25 @@
             dgvChiTiet.Size = new Size(568, 240);
             dgvChiTiet.TabIndex = 0;
             // 
+            // btnXuatHoaDon
+            // 
+            btnXuatHoaDon.Location = new Point(216, 256);
+            btnXuatHoaDon.Name = "btnXuatHoaDon";
+            btnXuatHoaDon.Size = new Size(152, 23);
+            btnXuatHoaDon.TabIndex = 1;
+            btnXuatHoaDon.Text = "Xuất hóa đơn";
+            btnXuatHoaDon.UseVisualStyleBackColor = true;
+            btnXuatHoaDon.Click += btnXuatHoaDon_Click;
+            // 
             // frmChiTietHoaDonMonAn
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(584, 261);
+            ClientSize = new Size(589, 283);
+            Controls.Add(btnXuatHoaDon);
             Controls.Add(dgvChiTiet);
             Name = "frmChiTietHoaDonMonAn";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmChiTietHoaDonMonAn";
             Load += frmChiTietHoaDonMonAn_Load;
             ((System.ComponentModel.ISupportInitialize)dgvChiTiet).EndInit();
@@ -56,5 +69,6 @@
         #endregion
 
         private DataGridView dgvChiTiet;
+        private Button btnXuatHoaDon;
     }
 }
