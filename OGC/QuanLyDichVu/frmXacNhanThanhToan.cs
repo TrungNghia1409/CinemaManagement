@@ -45,6 +45,7 @@ namespace OGC.QuanLyDichVu
             else
             {
                 lblTrangThai.Text = "Không tìm thấy";
+                txbIDKhachHang.Text = string.Empty;
             }
         }
 

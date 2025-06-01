@@ -21,7 +21,7 @@ namespace OGC.DAO
 
         public int LayIDBySDT(string SDT)
         {
-            string query = "EXEC LayIDBySDT SDT = @SDT ";
+            string query = "EXEC LayIDBySDT @SDT ";
 
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { SDT });
 
