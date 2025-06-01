@@ -1,6 +1,6 @@
 ﻿namespace OGC.Phim
 {
-    partial class fDatVe
+    partial class frmChonGioChieu
     {
         /// <summary>
         /// Required designer variable.
