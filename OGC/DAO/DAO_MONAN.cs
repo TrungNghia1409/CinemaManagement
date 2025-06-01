@@ -71,6 +71,28 @@ namespace OGC.DAO
         }
 
 
+        //-----------lấy mã món ăn dựa trên tên món ăn đó
+        public int LayIDMonAnTheoTen(string tenMonAn)
+        {
+            string query = "EXEC usp_LayIDByTenMonAn @TenMonAn ";
+            try
+            {
+                object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenMonAn });
+
+                if (result != null && int.TryParse(result.ToString(), out int idMonAn))
+                    return idMonAn;
+
+                return -1; // Không tìm thấy
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lấy ID món ăn: " + ex.Message);
+                return -1;
+            }
+        }
+
+
+
 
     }
 }
