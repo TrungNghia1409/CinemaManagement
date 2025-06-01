@@ -11,6 +11,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NAudio.Wave; //voice tự động
+using System.Net; //voice tự động
 using static OGC.DTO.DTO_CartItem;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -385,8 +387,36 @@ namespace OGC.QuanLyDichVu
             int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser);
             List<CartItem> gioHang = GetCartItems();
 
+            // Đọc thành tiếng với số tiền thực tế
+            string textToSpeak = $"Đã thanh toán thành công {tongTien} đồng";
+            PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động
+
             frmXacNhanThanhToan frm = new frmXacNhanThanhToan(tongTien, idNhanVien, gioHang);
             frm.ShowDialog(); // hoặc frm.Show()
+        }
+
+        private void PhatTiengNoiTuGoogle(string noiDung)
+        {
+            using (var webClient = new WebClient())
+            {
+                string url = "https://translate.google.com/translate_tts?ie=UTF-8&q=" +
+                             Uri.EscapeDataString(noiDung) +
+                             "&tl=vi&client=tw-ob";
+
+                byte[] voiceData = webClient.DownloadData(url);
+
+                using (var ms = new MemoryStream(voiceData))
+                using (var mp3Reader = new Mp3FileReader(ms))
+                using (var waveOut = new WaveOutEvent())
+                {
+                    waveOut.Init(mp3Reader);
+                    waveOut.Play();
+                    while (waveOut.PlaybackState == PlaybackState.Playing)
+                    {
+                        Thread.Sleep(100); // Chờ phát xong
+                    }
+                }
+            }
         }
     }
 }

@@ -30,20 +30,28 @@
         {
             dgvChiTiet = new DataGridView();
             btnXuatHoaDon = new Button();
+            lblTen = new Label();
+            lblTongTien = new Label();
+            lblTienKhachDua = new Label();
+            lblTienThoi = new Label();
+            lblTongTien_KetQua = new Label();
+            lblTienThoi_KetQua = new Label();
+            lblNgayLap = new Label();
+            txbTienKhachDua = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dgvChiTiet).BeginInit();
             SuspendLayout();
             // 
             // dgvChiTiet
             // 
             dgvChiTiet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvChiTiet.Location = new Point(8, 8);
+            dgvChiTiet.Location = new Point(8, 144);
             dgvChiTiet.Name = "dgvChiTiet";
             dgvChiTiet.Size = new Size(568, 240);
             dgvChiTiet.TabIndex = 0;
             // 
             // btnXuatHoaDon
             // 
-            btnXuatHoaDon.Location = new Point(216, 256);
+            btnXuatHoaDon.Location = new Point(216, 392);
             btnXuatHoaDon.Name = "btnXuatHoaDon";
             btnXuatHoaDon.Size = new Size(152, 23);
             btnXuatHoaDon.TabIndex = 1;
@@ -51,11 +59,98 @@
             btnXuatHoaDon.UseVisualStyleBackColor = true;
             btnXuatHoaDon.Click += btnXuatHoaDon_Click;
             // 
+            // lblTen
+            // 
+            lblTen.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTen.Location = new Point(8, 8);
+            lblTen.Name = "lblTen";
+            lblTen.Size = new Size(376, 23);
+            lblTen.TabIndex = 2;
+            lblTen.Text = "Phiếu thanh toán OGC Cinema";
+            lblTen.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTongTien
+            // 
+            lblTongTien.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTongTien.Location = new Point(16, 48);
+            lblTongTien.Name = "lblTongTien";
+            lblTongTien.Size = new Size(160, 21);
+            lblTongTien.TabIndex = 2;
+            lblTongTien.Text = "Tổng tiền";
+            lblTongTien.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTienKhachDua
+            // 
+            lblTienKhachDua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTienKhachDua.Location = new Point(16, 80);
+            lblTienKhachDua.Name = "lblTienKhachDua";
+            lblTienKhachDua.Size = new Size(160, 21);
+            lblTienKhachDua.TabIndex = 2;
+            lblTienKhachDua.Text = "Tiền khách đưa";
+            lblTienKhachDua.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTienThoi
+            // 
+            lblTienThoi.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTienThoi.Location = new Point(16, 112);
+            lblTienThoi.Name = "lblTienThoi";
+            lblTienThoi.Size = new Size(160, 21);
+            lblTienThoi.TabIndex = 2;
+            lblTienThoi.Text = "Tiền thối lại";
+            lblTienThoi.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTongTien_KetQua
+            // 
+            lblTongTien_KetQua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTongTien_KetQua.Location = new Point(192, 48);
+            lblTongTien_KetQua.Name = "lblTongTien_KetQua";
+            lblTongTien_KetQua.Size = new Size(160, 21);
+            lblTongTien_KetQua.TabIndex = 2;
+            lblTongTien_KetQua.Text = "Tổng tiền";
+            lblTongTien_KetQua.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblTienThoi_KetQua
+            // 
+            lblTienThoi_KetQua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTienThoi_KetQua.Location = new Point(192, 112);
+            lblTienThoi_KetQua.Name = "lblTienThoi_KetQua";
+            lblTienThoi_KetQua.Size = new Size(160, 21);
+            lblTienThoi_KetQua.TabIndex = 2;
+            lblTienThoi_KetQua.Text = "Tiền thối lại";
+            lblTienThoi_KetQua.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblNgayLap
+            // 
+            lblNgayLap.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNgayLap.Location = new Point(408, 8);
+            lblNgayLap.Name = "lblNgayLap";
+            lblNgayLap.Size = new Size(160, 21);
+            lblNgayLap.TabIndex = 2;
+            lblNgayLap.Text = "Ngày lập";
+            lblNgayLap.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // txbTienKhachDua
+            // 
+            txbTienKhachDua.Location = new Point(184, 80);
+            txbTienKhachDua.Name = "txbTienKhachDua";
+            txbTienKhachDua.Size = new Size(168, 23);
+            txbTienKhachDua.TabIndex = 3;
+            txbTienKhachDua.TextChanged += txbTienKhachDua_TextChanged;
+            txbTienKhachDua.Leave += txbTienKhachDua_Leave;
+            // 
             // frmChiTietHoaDonMonAn
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(589, 283);
+            ClientSize = new Size(592, 426);
+            Controls.Add(txbTienKhachDua);
+            Controls.Add(lblTienThoi_KetQua);
+            Controls.Add(lblTienThoi);
+            Controls.Add(lblTienKhachDua);
+            Controls.Add(lblNgayLap);
+            Controls.Add(lblTongTien_KetQua);
+            Controls.Add(lblTongTien);
+            Controls.Add(lblTen);
             Controls.Add(btnXuatHoaDon);
             Controls.Add(dgvChiTiet);
             Name = "frmChiTietHoaDonMonAn";
@@ -64,11 +159,20 @@
             Load += frmChiTietHoaDonMonAn_Load;
             ((System.ComponentModel.ISupportInitialize)dgvChiTiet).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dgvChiTiet;
         private Button btnXuatHoaDon;
+        private Label lblTen;
+        private Label lblTongTien;
+        private Label lblTienKhachDua;
+        private Label lblTienThoi;
+        private Label lblTongTien_KetQua;
+        private Label lblTienThoi_KetQua;
+        private Label lblNgayLap;
+        private TextBox txbTienKhachDua;
     }
 }
