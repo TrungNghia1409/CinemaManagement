@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClosedXML.Excel;
 using System.IO;
+using System.Globalization;
 using static OGC.DTO.DTO_CartItem;
 
 namespace OGC.QuanLyDichVu
@@ -18,12 +19,22 @@ namespace OGC.QuanLyDichVu
     {
         public int iDHoaDon;
         List<CartItem> gioHang;
-        public frmChiTietHoaDonMonAn(int iDHoaDon, List<CartItem> gioHang)
+        public decimal tongTien;
+        public frmChiTietHoaDonMonAn(int iDHoaDon, List<CartItem> gioHang, decimal tongTien)
         {
             InitializeComponent();
 
             this.iDHoaDon = iDHoaDon;
             this.gioHang = gioHang;
+            this.tongTien = tongTien;
+
+            lblTongTien_KetQua.Text = tongTien.ToString("N0", CultureInfo.InvariantCulture);
+            decimal tienKhachDua = string.IsNullOrEmpty(txbTienKhachDua.Text) ? 0 :
+                       decimal.Parse(txbTienKhachDua.Text, CultureInfo.InvariantCulture);
+            decimal tienThoi = tienKhachDua - decimal.Parse(lblTongTien_KetQua.Text, CultureInfo.InvariantCulture);
+            lblTienThoi_KetQua.Text = tienThoi.ToString();
+            lblNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+
         }
 
         private void frmChiTietHoaDonMonAn_Load(object sender, EventArgs e)
@@ -46,29 +57,61 @@ namespace OGC.QuanLyDichVu
             {
                 var worksheet = workbook.Worksheets.Add("ChiTietHoaDon");
 
-                // Ghi tiêu đề cột
+                int currentRow = 1;
+
+                // --- Ghi thông tin các label / textbox ---
+                worksheet.Cell(currentRow, 1).Value = "Tên hóa đơn:";
+                worksheet.Cell(currentRow, 2).Value = lblTen.Text;
+                currentRow++;
+
+                worksheet.Cell(currentRow, 1).Value = "Ngày lập:";
+                worksheet.Cell(currentRow, 2).Value = lblNgayLap.Text;
+                currentRow++;
+
+                worksheet.Cell(currentRow, 1).Value = "Tổng Tiền:";
+                worksheet.Cell(currentRow, 2).Value = lblTongTien.Text;
+                currentRow++;
+
+                worksheet.Cell(currentRow, 1).Value = "Tổng Tiền Kết Quả:";
+                worksheet.Cell(currentRow, 2).Value = lblTongTien_KetQua.Text;
+                currentRow++;
+
+                worksheet.Cell(currentRow, 1).Value = "Tiền Khách Đưa:";
+                worksheet.Cell(currentRow, 2).Value = txbTienKhachDua.Text;
+                currentRow++;
+
+                worksheet.Cell(currentRow, 1).Value = "Tiền Thối:";
+                worksheet.Cell(currentRow, 2).Value = lblTienThoi_KetQua.Text;
+                currentRow++;
+
+                // --- Ghi tiêu đề cột của DataGridView ---
+                int headerRow = currentRow;
                 for (int col = 0; col < dgv.Columns.Count; col++)
                 {
-                    worksheet.Cell(1, col + 1).Value = dgv.Columns[col].HeaderText;
-                    worksheet.Cell(1, col + 1).Style.Font.Bold = true;
-                    worksheet.Cell(1, col + 1).Style.Fill.BackgroundColor = XLColor.LightGray;
+                    worksheet.Cell(headerRow, col + 1).Value = dgv.Columns[col].HeaderText;
+                    worksheet.Cell(headerRow, col + 1).Style.Font.Bold = true;
+                    worksheet.Cell(headerRow, col + 1).Style.Fill.BackgroundColor = XLColor.LightGray;
                 }
+                currentRow++;
 
-                // Ghi dữ liệu từng dòng
+                // --- Ghi dữ liệu từng dòng từ DataGridView ---
                 for (int row = 0; row < dgv.Rows.Count; row++)
                 {
                     for (int col = 0; col < dgv.Columns.Count; col++)
                     {
                         object cellValue = dgv.Rows[row].Cells[col].Value;
-                        worksheet.Cell(row + 2, col + 1).Value = cellValue?.ToString();
+                        worksheet.Cell(currentRow + row, col + 1).Value = cellValue?.ToString();
                     }
                 }
 
-                // Tự động điều chỉnh độ rộng
+                // --- Tự động điều chỉnh độ rộng cột ---
                 worksheet.Columns().AdjustToContents();
 
-                // Lưu file ra Desktop
-                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), tenFile + ".xlsx");
+                // --- Lưu file ra Desktop ---
+                string filePath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                    tenFile + ".xlsx"
+                );
                 workbook.SaveAs(filePath);
 
                 MessageBox.Show("Đã xuất hóa đơn ra Excel tại:\n" + filePath, "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -78,6 +121,64 @@ namespace OGC.QuanLyDichVu
         private void btnXuatHoaDon_Click(object sender, EventArgs e)
         {
             XuatExcelTuDataGridView(dgvChiTiet, "HoaDonMonAn_" + iDHoaDon);
+        }
+
+        private void txbTienKhachDua_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txbTienKhachDua.Text))
+            {
+                try
+                {
+                    decimal tienKhachDua = decimal.Parse(txbTienKhachDua.Text, CultureInfo.InvariantCulture);
+                    decimal tongTien = decimal.Parse(lblTongTien_KetQua.Text, CultureInfo.InvariantCulture);
+                    decimal tienThoi = tienKhachDua - tongTien;
+
+                    lblTienThoi_KetQua.Text = tienThoi.ToString("N0", CultureInfo.InvariantCulture);
+                   
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Vui lòng nhập số tiền hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txbTienKhachDua.Focus();
+                }
+            }
+            else
+            {
+                lblTienThoi_KetQua.Text = "0";
+            }
+        }
+
+        private void txbTienKhachDua_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txbTienKhachDua.Text))
+            {
+                try
+                {
+                    decimal tienKhachDua = decimal.Parse(txbTienKhachDua.Text, CultureInfo.InvariantCulture);
+                    decimal tongTien = decimal.Parse(lblTongTien_KetQua.Text, CultureInfo.InvariantCulture);
+                    decimal tienThoi = tienKhachDua - tongTien;
+
+                    if (tienKhachDua < tongTien)
+                    {
+                        MessageBox.Show("Tiền khách đưa không đủ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        lblTienThoi_KetQua.Text = "0"; // Hoặc hiển thị số âm: tienThoi.ToString("N0")
+                    }
+                    else
+                    {
+                        lblTienThoi_KetQua.Text = tienThoi.ToString("N0", CultureInfo.InvariantCulture);
+                    }
+                    
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Vui lòng nhập số tiền hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txbTienKhachDua.Focus();
+                }
+            }
+            else
+            {
+                lblTienThoi_KetQua.Text = "0";
+            }
         }
     }
 }

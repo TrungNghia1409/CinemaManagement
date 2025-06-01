@@ -53,6 +53,7 @@
     <PackageReference Include="Microsoft.Chart.Controls" Version="4.7.2046" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.5" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
     <PackageReference Include="payOS" Version="1.0.9" />
     <PackageReference Include="PayOS.Lib.Be" Version="1.0.9" />
     <PackageReference Include="payOS.Net5" Version="1.0.7" />

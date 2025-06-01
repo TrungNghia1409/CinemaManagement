@@ -65,7 +65,7 @@ namespace OGC.QuanLyDichVu
                 int idHD = DAO_HD_MONAN.Instance.ThemHoaDonMonAn(idNhanVien, idKhach, tongTien);
 
                 // Hiển thị bill (load từ CTHD_MONAN)
-                frmChiTietHoaDonMonAn frmChiTiet = new frmChiTietHoaDonMonAn(idHD, gioHang);
+                frmChiTietHoaDonMonAn frmChiTiet = new frmChiTietHoaDonMonAn(idHD, gioHang, tongTien);
                 frmChiTiet.ShowDialog();
             }
             catch (Exception ex)
