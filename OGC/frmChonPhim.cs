@@ -244,12 +244,10 @@ namespace OGC
             if (phim != null)
             {
                 string tenPhim = phim.TenPhim;
-                DateTime ngayChieu = dtpChonNgayChieu.Value.Date;
-                string theLoai = cbtheloaiphim.Text;
-                string dinhDang = cbdinhdang.Text;
-
-                fDatVe datVeForm = new fDatVe(tenPhim, ngayChieu, theLoai, dinhDang);
-                datVeForm.ShowDialog();
+                frmChonNgayChieu frm = new frmChonNgayChieu(tenPhim);
+                this.Hide();
+                frm.ShowDialog();
+                this.Show();
             }
         }
 
