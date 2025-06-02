@@ -246,6 +246,69 @@ namespace OGC.DAO
             return list;
         }
 
+        public int LayIDphongDuaTrenIDPhim(int IDPhim)
+        {
+            string query = "SELECT IDPhong FROM LICHCHIEU WHERE IDPhim = @IDPhim ";
+            try
+            {
+                object result = DataProvider.Instance.ExecuteScalar(query, new object[] { IDPhim });
+
+                if (result != null && int.TryParse(result.ToString(), out int idphim))
+                {
+                    return idphim;
+                }
+
+                return -1; // Không thành công
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi lấy id phòng dựa trên id phim: {ex.Message}");
+                return -1;
+            }
+        }
+
+
+        public List<DTO_LICHCHIEU> GetLichChieuByPhimVaNgay(string tenPhim, DateTime ngayChieu)
+        {
+            List<DTO_LICHCHIEU> list = new List<DTO_LICHCHIEU>();
+
+            string query = @"SELECT * FROM LICHCHIEU 
+                         WHERE TenPhim = @tenPhim 
+                         AND CONVERT(DATE, NgayGio) = @ngayChieu";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim, ngayChieu.Date });
+
+            foreach (DataRow row in data.Rows)
+            {
+                DTO_LICHCHIEU lc = new DTO_LICHCHIEU(
+                    (int)row["ID"],
+                    (int)row["IDPhim"],
+                    row["TenPhim"].ToString(),
+                    (int)row["IDPhong"],
+                    row["TenPhong"].ToString(),
+                    (DateTime)row["NgayGio"],
+                    (decimal)row["GiaVe"],
+                    row["DiaDiem"].ToString()
+                );
+                list.Add(lc);
+            }
+
+            return list;
+        }
+
+        // 📌 2. Lấy ID phòng từ lịch chiếu
+        public int GetIDPhong(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu)
+        {
+            string query = @"SELECT IDPhong FROM LICHCHIEU 
+                         WHERE TenPhim = @tenPhim 
+                         AND CONVERT(DATE, NgayGio) = @ngay 
+                         AND CONVERT(TIME, NgayGio) = @gio";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim, ngayChieu.Date, gioChieu });
+
+            return (result != null) ? Convert.ToInt32(result) : -1;
+        }
+
 
     }
 }

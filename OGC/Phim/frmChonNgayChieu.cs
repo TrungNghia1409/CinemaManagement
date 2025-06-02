@@ -11,6 +11,7 @@ namespace OGC.Phim
     {
         private string tenPhim;
         private PhimDTO phim;
+        private int idPhong;
 
         public frmChonNgayChieu(string tenPhim)
         {
@@ -19,6 +20,7 @@ namespace OGC.Phim
 
             // Đăng ký sự kiện Load form
             this.Load += frmChonNgayChieu_Load;
+           
         }
 
         private void frmChonNgayChieu_Load(object sender, EventArgs e)
@@ -97,13 +99,14 @@ namespace OGC.Phim
         private void BtnGioChieu_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
+            int idPhong = this.idPhong; // Lấy id phòng từ biến thành viên
             if (btn == null) return;
 
             DateTime ngayChon = (DateTime)btn.Tag;
 
             // Mở form chọn giờ chiếu truyền theo tên phim và ngày chọn
             frmChonGioChieu frm = new frmChonGioChieu(tenPhim, ngayChon);
-            this.Hide();
+            this.Close();
             frm.ShowDialog();
             this.Show();
         }
