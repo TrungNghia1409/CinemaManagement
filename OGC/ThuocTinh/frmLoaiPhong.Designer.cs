@@ -143,7 +143,7 @@
             btnSuaLoaiPhong.Location = new Point(0, 0);
             btnSuaLoaiPhong.Name = "btnSuaLoaiPhong";
             btnSuaLoaiPhong.Size = new Size(96, 32);
-            btnSuaLoaiPhong.TabIndex = 0;
+            btnSuaLoaiPhong.TabIndex = 4;
             btnSuaLoaiPhong.Text = "Sửa";
             btnSuaLoaiPhong.UseVisualStyleBackColor = false;
             btnSuaLoaiPhong.Click += btnSuaLoaiPhong_Click;
@@ -168,7 +168,7 @@
             btnXoaLoaiPhong.Location = new Point(0, 0);
             btnXoaLoaiPhong.Name = "btnXoaLoaiPhong";
             btnXoaLoaiPhong.Size = new Size(96, 32);
-            btnXoaLoaiPhong.TabIndex = 0;
+            btnXoaLoaiPhong.TabIndex = 3;
             btnXoaLoaiPhong.Text = "Xóa";
             btnXoaLoaiPhong.UseVisualStyleBackColor = false;
             btnXoaLoaiPhong.Click += btnXoaLoaiPhong_Click;
@@ -193,7 +193,7 @@
             btnThemLoaiPhong.Location = new Point(0, 0);
             btnThemLoaiPhong.Name = "btnThemLoaiPhong";
             btnThemLoaiPhong.Size = new Size(96, 32);
-            btnThemLoaiPhong.TabIndex = 0;
+            btnThemLoaiPhong.TabIndex = 2;
             btnThemLoaiPhong.Text = "Thêm";
             btnThemLoaiPhong.UseVisualStyleBackColor = false;
             btnThemLoaiPhong.Click += btnThemLoaiPhong_Click;

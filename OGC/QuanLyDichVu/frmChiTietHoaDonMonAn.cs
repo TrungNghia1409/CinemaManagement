@@ -69,10 +69,6 @@ namespace OGC.QuanLyDichVu
                 currentRow++;
 
                 worksheet.Cell(currentRow, 1).Value = "Tổng Tiền:";
-                worksheet.Cell(currentRow, 2).Value = lblTongTien.Text;
-                currentRow++;
-
-                worksheet.Cell(currentRow, 1).Value = "Tổng Tiền Kết Quả:";
                 worksheet.Cell(currentRow, 2).Value = lblTongTien_KetQua.Text;
                 currentRow++;
 
@@ -120,7 +116,21 @@ namespace OGC.QuanLyDichVu
 
         private void btnXuatHoaDon_Click(object sender, EventArgs e)
         {
-            XuatExcelTuDataGridView(dgvChiTiet, "HoaDonMonAn_" + iDHoaDon);
+            decimal tienKhachDua = string.IsNullOrEmpty(txbTienKhachDua.Text) ? 0 :
+                       decimal.Parse(txbTienKhachDua.Text, CultureInfo.InvariantCulture);
+            decimal tienThoi = tienKhachDua - decimal.Parse(lblTongTien_KetQua.Text, CultureInfo.InvariantCulture);
+            if (!string.IsNullOrEmpty(txbTienKhachDua.Text))
+            {
+                XuatExcelTuDataGridView(dgvChiTiet, "HoaDonMonAn_" + iDHoaDon);
+            }
+            else
+            {
+                MessageBox.Show("Tiền khách đưa rỗng" , "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txbTienKhachDua.Text = string.Empty;
+                lblTienThoi_KetQua.Text = "-" + tongTien.ToString(); // Hoặc hiển thị số âm: tienThoi.ToString("N0")
+            }
+
+           
         }
 
         private void txbTienKhachDua_TextChanged(object sender, EventArgs e)
@@ -144,7 +154,7 @@ namespace OGC.QuanLyDichVu
             }
             else
             {
-                lblTienThoi_KetQua.Text = "0";
+                lblTienThoi_KetQua.Text = "-" + tongTien.ToString();
             }
         }
 
@@ -161,7 +171,8 @@ namespace OGC.QuanLyDichVu
                     if (tienKhachDua < tongTien)
                     {
                         MessageBox.Show("Tiền khách đưa không đủ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        lblTienThoi_KetQua.Text = "0"; // Hoặc hiển thị số âm: tienThoi.ToString("N0")
+                        txbTienKhachDua.Text = string.Empty;
+                        lblTienThoi_KetQua.Text = "-" + tongTien.ToString(); // Hoặc hiển thị số âm: tienThoi.ToString("N0")
                     }
                     else
                     {
