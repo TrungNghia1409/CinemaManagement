@@ -143,7 +143,7 @@
             btnSuaDinhDangPhim.Location = new Point(0, 0);
             btnSuaDinhDangPhim.Name = "btnSuaDinhDangPhim";
             btnSuaDinhDangPhim.Size = new Size(96, 32);
-            btnSuaDinhDangPhim.TabIndex = 0;
+            btnSuaDinhDangPhim.TabIndex = 4;
             btnSuaDinhDangPhim.Text = "Sửa";
             btnSuaDinhDangPhim.UseVisualStyleBackColor = false;
             btnSuaDinhDangPhim.Click += btnSuaDinhDangPhim_Click;
@@ -168,7 +168,7 @@
             btnXoaDinhDangPhim.Location = new Point(0, 0);
             btnXoaDinhDangPhim.Name = "btnXoaDinhDangPhim";
             btnXoaDinhDangPhim.Size = new Size(96, 32);
-            btnXoaDinhDangPhim.TabIndex = 0;
+            btnXoaDinhDangPhim.TabIndex = 3;
             btnXoaDinhDangPhim.Text = "Xóa";
             btnXoaDinhDangPhim.UseVisualStyleBackColor = false;
             btnXoaDinhDangPhim.Click += btnXoaDinhDangPhim_Click;
@@ -193,7 +193,7 @@
             btnThemDinhDangPhim.Location = new Point(0, 0);
             btnThemDinhDangPhim.Name = "btnThemDinhDangPhim";
             btnThemDinhDangPhim.Size = new Size(96, 32);
-            btnThemDinhDangPhim.TabIndex = 0;
+            btnThemDinhDangPhim.TabIndex = 2;
             btnThemDinhDangPhim.Text = "Thêm";
             btnThemDinhDangPhim.UseVisualStyleBackColor = false;
             btnThemDinhDangPhim.Click += btnThemDinhDangPhim_Click;

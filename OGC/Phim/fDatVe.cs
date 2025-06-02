@@ -42,6 +42,7 @@ namespace OGC.Phim
                 btn.Width = 70;
                 btn.Height = 30;
                 btn.Click += BtnGio_Click;
+
                 flpGioChieu.Controls.Add(btn);
             }
         }

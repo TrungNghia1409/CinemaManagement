@@ -165,12 +165,12 @@ namespace OGC.LichChieu
 
             List<DTO_LICHCHIEU> danhSach = DAO_LICHCHIEU.Instance.DanhSachLichChieu();
 
-            //if (tenPhong != "Tất cả")
-            //{
-            //    danhSach = danhSach
-            //        .Where(lc => lc.TenPhong == tenPhong)
-            //        .ToList();
-            //}
+            if (tenPhong != "Tất cả")
+            {
+                danhSach = danhSach
+                    .Where(lc => lc.TenPhong == tenPhong.Trim())
+                    .ToList();
+            }
 
             foreach (DTO_LICHCHIEU lc in danhSach)
             {
@@ -204,8 +204,8 @@ namespace OGC.LichChieu
         //sự kiện lọc lịch chiếu theo tên phòng
         private void cbTenPhong_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string tenPhongChon = cbTenPhong.SelectedItem.ToString();
-            LoadLichChieuTheoTenPhong(tenPhongChon);
+            DTO_PHONGCHIEU phong = cbTenPhong.SelectedItem as DTO_PHONGCHIEU;
+            LoadLichChieuTheoTenPhong(phong.TenPhong);
         }
 
         #endregion
