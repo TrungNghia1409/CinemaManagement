@@ -296,7 +296,7 @@ namespace OGC.QuanLyDichVu
                     if (!string.IsNullOrEmpty(tenMonAn) && !string.IsNullOrEmpty(slText) && !string.IsNullOrEmpty(donGiaText))
                     {
                         int soLuong = int.Parse(slText.Replace("SL: ", ""));
-                        decimal donGia = decimal.Parse(donGiaText.Replace(",", "").Trim());
+                        decimal donGia = long.Parse(donGiaText.Replace(",", "").Trim());
 
                         items.Add(new CartItem
                         {
@@ -356,6 +356,7 @@ namespace OGC.QuanLyDichVu
         {
             // Loại bỏ các dấu phân cách hàng nghìn (ví dụ: , hoặc .) và chuyển đổi sang decimal
             string cleanText = Regex.Replace(txbTongTien.Text, "[,.]", "");
+            List<CartItem> gioHang = GetCartItems();
             if (decimal.TryParse(cleanText, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal tongTien))
             {
                 if (tongTien > long.MaxValue)
@@ -364,7 +365,7 @@ namespace OGC.QuanLyDichVu
                     return;
                 }
 
-                frmPhuongThucThanhToan frm = new frmPhuongThucThanhToan((long)tongTien);
+                frmPhuongThucThanhToan frm = new frmPhuongThucThanhToan((long)tongTien, gioHang);
                 frm.ShowDialog();
             }
             else

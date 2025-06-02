@@ -10,38 +10,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static OGC.DTO.DTO_CartItem;
 
 namespace OGC.QuanLyDichVu
 {
     public partial class frmPhuongThucThanhToan : Form
     {
-        private long tongTien;
+        private decimal tongTien;
         private int orderCode; // Lưu orderCode để kiểm tra trạng thái thủ công
-        public frmPhuongThucThanhToan(long tongTien)
+        List<CartItem> gioHang;
+        public frmPhuongThucThanhToan(long tongTien, List<CartItem> gioHang)
         {
             InitializeComponent();
 
             this.tongTien = tongTien;
+            this.gioHang = gioHang;
         }
 
         private async void btnChuyenKhoan_Click(object sender, EventArgs e)
         {
             try
             {
+                List<Item> items = new List<Item>();
+
+                // Duyệt từng món trong giỏ hàng để thêm vào danh sách thanh toán
+                foreach (var cartItem in gioHang)
+                {
+                    items.Add(new Item
+                    {
+                        name = cartItem.TenMonAn,
+                        quantity = cartItem.SoLuong,
+                        price = cartItem.DonGia  // Tính tổng tiền cho món này
+                    });
+                }
                 PayOSCreatePaymentRequestDTO dto = new PayOSCreatePaymentRequestDTO
                 {
+                    //amount = tongTien,
+                    //orderCode = 0, // Để PayOSDAO tạo
+                    //description = "Thanh toán dịch vụ",
+                    //items = new List<Item>
+                    //{
+                    //    new Item
+                    //    {
+                    //        name = "Tổng hóa đơn",
+                    //        quantity = 1,
+                    //        price = tongTien
+                    //    }
+                    //},
                     amount = tongTien,
                     orderCode = 0, // Để PayOSDAO tạo
                     description = "Thanh toán dịch vụ",
-                    items = new List<Item>
-                    {
-                        new Item
-                        {
-                            name = "Tổng hóa đơn",
-                            quantity = 1,
-                            price = tongTien
-                        }
-                    },
+                    items = items,
                     returnUrl = "https://www.google.com/", // Thay null bằng chuỗi dummy
                     cancelUrl = "https://www.google.com/",   // Thay null bằng chuỗi dummy
                     expiredAt = 0 // Để PayOSDAO tạo

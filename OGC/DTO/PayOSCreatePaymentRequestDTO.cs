@@ -13,7 +13,7 @@ namespace OGC.DTO
         /// <summary>
         /// Số tiền thanh toán (VND), phải lớn hơn 0.
         /// </summary>
-        public long amount { get; set; }
+        public decimal amount { get; set; }
 
         /// <summary>
         /// Mô tả đơn hàng.
@@ -56,6 +56,6 @@ namespace OGC.DTO
         /// <summary>
         /// Giá sản phẩm (VND), phải lớn hơn hoặc bằng 0.
         /// </summary>
-        public long price { get; set; }
+        public decimal price { get; set; }
     }
 }
