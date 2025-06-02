@@ -238,6 +238,7 @@ namespace OGC
 
         private void btnDatVe_Click(object sender, EventArgs e)
         {
+           
             Button btn = sender as Button;
             PhimDTO phim = btn?.Tag as PhimDTO;
 

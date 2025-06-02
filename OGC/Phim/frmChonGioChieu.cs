@@ -81,11 +81,15 @@ namespace OGC.Phim
 
             TimeSpan gioChon = (TimeSpan)btn.Tag;
 
-            // TODO: Xử lý logic khi người dùng chọn giờ chiếu
-            // Ví dụ mở form chọn ghế hoặc lưu lại thông tin chọn giờ chiếu
-            MessageBox.Show($"Bạn đã chọn giờ chiếu: {gioChon:hh\\:mm}", "Giờ chiếu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Giả sử bạn có biến tenPhim và ngayChieu ở form hiện tại (bạn phải khai báo và gán khi mở form này)
+            // Nếu chưa có, bạn cần lấy hoặc truyền vào constructor cho form này
+            string tenPhim = this.tenPhim;      // ví dụ bạn khai báo biến toàn cục tenPhim
+            DateTime ngayChieu = this.ngayChieu; // tương tự
 
-            // Đóng form hoặc tiếp tục xử lý
+            // Mở form chọn ghế với các tham số
+            FrmChonGhe chonGheForm = new FrmChonGhe(tenPhim, ngayChieu, gioChon);
+            chonGheForm.Show();
+            // Đóng form hiện tại
             this.Close();
         }
     }

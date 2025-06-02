@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            panel5 = new Panel();
+            lbTenPhim = new Label();
+            lbDinhDang = new Label();
+            lbTheLoai = new Label();
+            label2 = new Label();
+            lb1 = new Label();
             panel2 = new Panel();
             ptbAnhPhim = new PictureBox();
             panel4 = new Panel();
             flpNgayChieu = new FlowLayoutPanel();
             label4 = new Label();
             btnThoat = new Button();
-            panel5 = new Panel();
-            lb1 = new Label();
-            label2 = new Label();
-            lbTheLoai = new Label();
-            lbDinhDang = new Label();
-            lbTenPhim = new Label();
             panel1.SuspendLayout();
+            panel5.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbAnhPhim).BeginInit();
             panel4.SuspendLayout();
-            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -55,6 +55,64 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(871, 160);
             panel1.TabIndex = 3;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(lbTenPhim);
+            panel5.Controls.Add(lbDinhDang);
+            panel5.Controls.Add(lbTheLoai);
+            panel5.Controls.Add(label2);
+            panel5.Controls.Add(lb1);
+            panel5.Location = new Point(9, 3);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(862, 154);
+            panel5.TabIndex = 0;
+            // 
+            // lbTenPhim
+            // 
+            lbTenPhim.AutoSize = true;
+            lbTenPhim.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lbTenPhim.Location = new Point(6, 9);
+            lbTenPhim.Name = "lbTenPhim";
+            lbTenPhim.Size = new Size(139, 41);
+            lbTenPhim.TabIndex = 0;
+            lbTenPhim.Text = "Tên Phim";
+            // 
+            // lbDinhDang
+            // 
+            lbDinhDang.AutoSize = true;
+            lbDinhDang.Location = new Point(133, 121);
+            lbDinhDang.Name = "lbDinhDang";
+            lbDinhDang.Size = new Size(109, 20);
+            lbDinhDang.TabIndex = 6;
+            lbDinhDang.Text = "labelDinhDang";
+            // 
+            // lbTheLoai
+            // 
+            lbTheLoai.AutoSize = true;
+            lbTheLoai.Location = new Point(101, 70);
+            lbTheLoai.Name = "lbTheLoai";
+            lbTheLoai.Size = new Size(94, 20);
+            lbTheLoai.TabIndex = 6;
+            lbTheLoai.Text = "labelTheLoai";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 121);
+            label2.Name = "label2";
+            label2.Size = new Size(124, 20);
+            label2.TabIndex = 5;
+            label2.Text = "Định Dạng Phim: ";
+            // 
+            // lb1
+            // 
+            lb1.AutoSize = true;
+            lb1.Location = new Point(3, 70);
+            lb1.Name = "lb1";
+            lb1.Size = new Size(72, 20);
+            lb1.TabIndex = 4;
+            lb1.Text = "Thể Loại: ";
             // 
             // panel2
             // 
@@ -68,7 +126,7 @@
             // 
             ptbAnhPhim.Location = new Point(9, 3);
             ptbAnhPhim.Name = "ptbAnhPhim";
-            ptbAnhPhim.Size = new Size(257, 400);
+            ptbAnhPhim.Size = new Size(251, 400);
             ptbAnhPhim.TabIndex = 0;
             ptbAnhPhim.TabStop = false;
             // 
@@ -106,63 +164,6 @@
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
             // 
-            // panel5
-            // 
-            panel5.Controls.Add(lbTenPhim);
-            panel5.Controls.Add(lbDinhDang);
-            panel5.Controls.Add(lbTheLoai);
-            panel5.Controls.Add(label2);
-            panel5.Controls.Add(lb1);
-            panel5.Location = new Point(9, 3);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(862, 154);
-            panel5.TabIndex = 0;
-            // 
-            // lb1
-            // 
-            lb1.AutoSize = true;
-            lb1.Location = new Point(3, 49);
-            lb1.Name = "lb1";
-            lb1.Size = new Size(72, 20);
-            lb1.TabIndex = 4;
-            lb1.Text = "Thể Loại: ";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 121);
-            label2.Name = "label2";
-            label2.Size = new Size(124, 20);
-            label2.TabIndex = 5;
-            label2.Text = "Định Dạng Phim: ";
-            // 
-            // lbTheLoai
-            // 
-            lbTheLoai.AutoSize = true;
-            lbTheLoai.Location = new Point(101, 49);
-            lbTheLoai.Name = "lbTheLoai";
-            lbTheLoai.Size = new Size(94, 20);
-            lbTheLoai.TabIndex = 6;
-            lbTheLoai.Text = "labelTheLoai";
-            // 
-            // lbDinhDang
-            // 
-            lbDinhDang.AutoSize = true;
-            lbDinhDang.Location = new Point(133, 121);
-            lbDinhDang.Name = "lbDinhDang";
-            lbDinhDang.Size = new Size(109, 20);
-            lbDinhDang.TabIndex = 6;
-            lbDinhDang.Text = "labelDinhDang";
-            // 
-            // lbTenPhim
-            // 
-            lbTenPhim.AutoSize = true;
-            lbTenPhim.Location = new Point(6, 9);
-            lbTenPhim.Name = "lbTenPhim";
-            lbTenPhim.Size = new Size(69, 20);
-            lbTenPhim.TabIndex = 0;
-            lbTenPhim.Text = "Tên Phim";
-            // 
             // frmChonNgayChieu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -175,12 +176,12 @@
             Name = "frmChonNgayChieu";
             Text = "frmChonNgayChieu";
             panel1.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ptbAnhPhim).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
             ResumeLayout(false);
         }
 
