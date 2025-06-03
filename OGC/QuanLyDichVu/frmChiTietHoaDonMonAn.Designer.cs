@@ -38,7 +38,9 @@
             lblTienThoi_KetQua = new Label();
             lblNgayLap = new Label();
             txbTienKhachDua = new TextBox();
+            ptbMaQR = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvChiTiet).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ptbMaQR).BeginInit();
             SuspendLayout();
             // 
             // dgvChiTiet
@@ -138,11 +140,21 @@
             txbTienKhachDua.TextChanged += txbTienKhachDua_TextChanged;
             txbTienKhachDua.Leave += txbTienKhachDua_Leave;
             // 
+            // ptbMaQR
+            // 
+            ptbMaQR.Location = new Point(440, 40);
+            ptbMaQR.Name = "ptbMaQR";
+            ptbMaQR.Size = new Size(90, 90);
+            ptbMaQR.SizeMode = PictureBoxSizeMode.Zoom;
+            ptbMaQR.TabIndex = 4;
+            ptbMaQR.TabStop = false;
+            // 
             // frmChiTietHoaDonMonAn
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(592, 426);
+            Controls.Add(ptbMaQR);
             Controls.Add(txbTienKhachDua);
             Controls.Add(lblTienThoi_KetQua);
             Controls.Add(lblTienThoi);
@@ -158,6 +170,7 @@
             Text = "frmChiTietHoaDonMonAn";
             Load += frmChiTietHoaDonMonAn_Load;
             ((System.ComponentModel.ISupportInitialize)dgvChiTiet).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ptbMaQR).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -174,5 +187,6 @@
         private Label lblTienThoi_KetQua;
         private Label lblNgayLap;
         private TextBox txbTienKhachDua;
+        private PictureBox ptbMaQR;
     }
 }

@@ -1,4 +1,5 @@
-﻿using OGC.DTO;
+﻿using OGC.DAO;
+using OGC.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,6 +59,13 @@ namespace OGC.QuanLyDichVu
 
             try
             {
+                int soLuongTon = DAO_KHO.Instance.LaySoLuongTon(food.ID);
+                if (soLuongTon <= 0)
+                {
+                    MessageBox.Show("❌ Món này hiện đã hết hàng trong kho, không thể thêm vào giỏ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var frm = this.FindForm() as frmQuanLyDichVu;
                 frm?.AddToCart(food);
                 frm?.UpdateTotalPrice();

@@ -69,7 +69,7 @@ namespace OGC.KHO
             dgvKho.DataSource = dt;
 
             // Tùy chỉnh để hiển thị đẹp hơn
-            dgvKho.Columns["ID"].HeaderText = "Mã loại phòng";
+            dgvKho.Columns["ID"].HeaderText = "Mã kho";
             dgvKho.Columns["IDMonAn"].HeaderText = "Mã món ăn";
             dgvKho.Columns["TenMonAn"].HeaderText = "Tên món ăn";
             dgvKho.Columns["SoLuongTon"].HeaderText = "Số lượng tồn";
@@ -104,10 +104,6 @@ namespace OGC.KHO
             }
         }
 
-        private void txbTenMonAn_Leave(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -186,7 +182,7 @@ namespace OGC.KHO
             }
 
             // Kiểm tra số lượng thêm
-            if (!int.TryParse(txbSoLuong.Text, out int soLuongThem))
+            if (!int.TryParse(txbSoLuongThem.Text, out int soLuongThem))
             {
                 MessageBox.Show("Vui lòng nhập số lượng hợp lệ để thêm vào kho.");
                 return;
