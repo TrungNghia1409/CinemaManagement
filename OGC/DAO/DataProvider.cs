@@ -25,9 +25,6 @@ namespace OGC.DAO
 
         string connectionSTR = @"Data Source=MSI\SQLEXPRESS;Initial Catalog=OGCCinema1;Integrated Security=True;Trust Server Certificate=True;";
 
-        //Data Source=CAKE;Initial Catalog=CinemaManagement;Integrated Security=True;Trust Server Certificate=True
-
-        //string connectionSTR = @"Data Source=CAKE;Initial Catalog=OGCCinema;Integrated Security=True;Trust Server Certificate=True;";
         //Data Source=CAKE;Initial Catalog=OGCCinema;Integrated Security=True;Trust Server Certificate=True
 
         //Data Source=MSI\SQLEXPRESS;Initial Catalog=CinemaManagement;Integrated Security=True;Trust Server Certificate=True

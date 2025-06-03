@@ -119,5 +119,15 @@ namespace OGC.DAO
                 return false;
             }
         }
+
+        //--lấy sức chứa dựa trên id loại phòng
+        public int LaySucChuaTheoIDLoaiPhong(int idLoaiPhong)
+        {
+            string query = @" SELECT SucChua FROM LOAIPHONG WHERE ID = @ID ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idLoaiPhong });
+
+            return (result != null) ? Convert.ToInt32(result) : -1;
+        }
     }
 }

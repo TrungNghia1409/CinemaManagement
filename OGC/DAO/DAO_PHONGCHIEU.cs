@@ -40,6 +40,7 @@ namespace OGC.DAO
             return ds;
         }
 
+
         public List<DTO_PHONGCHIEU> DanhSachPhongChieu()
         {
             List<DTO_PHONGCHIEU> ds = new List<DTO_PHONGCHIEU>();
@@ -99,6 +100,17 @@ namespace OGC.DAO
             string query = "DELETE FROM PHONGCHIEU WHERE ID = @ID";
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { id });
             return result > 0;
+        }
+
+
+
+
+        //---- lấy id loại phòng từ id phòng
+        public int LayIDLoaiPhongTheoIDPhong(int idPhong)
+        {
+            string query = "SELECT MaLoaiPhong FROM PHONGCHIEU WHERE ID = @ID ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idPhong });
+            return result != null ? Convert.ToInt32(result) : -1;
         }
 
 

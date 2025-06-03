@@ -69,5 +69,18 @@ namespace OGC.DAO
             return result > 0;
         }
 
+        //---- load danh sách số lượng ghế dựa trên loại phòng chiếu
+        public DataTable LoadGheTheoLoaiPhong(int idLoaiPhong)
+        {
+            string query = @"
+        SELECT G.*
+        FROM GHE G
+        INNER JOIN PHONGCHIEU P ON G.IDPhong = P.ID
+        WHERE P.MaLoaiPhong = @idLoaiPhong";
+
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { idLoaiPhong });
+        }
+
+
     }
 }
