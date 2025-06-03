@@ -22,7 +22,7 @@ namespace OGC.DAO
         //---- load danh sách món ăn hiện có trong kho
         public DataTable LoadKho()
         {
-            string query = @" EXEC usp_danhsachKHO";
+            string query = @" EXEC usp_danhsachKHO ";
             return DataProvider.Instance.ExecuteQuery(query);
         }
 

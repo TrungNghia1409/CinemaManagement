@@ -49,7 +49,6 @@ namespace OGC.DAO
             string query = @"SELECT 
                          ID, 
                          TenPhong, 
-                         SucChua, 
                          TrangThai, 
                          MaLoaiPhong, 
                          AnhPhong 
