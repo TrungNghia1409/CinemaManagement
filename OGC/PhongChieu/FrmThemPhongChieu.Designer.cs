@@ -33,6 +33,7 @@
             btnTaiAnh = new Button();
             btnXoa = new Button();
             btnThem = new Button();
+            cbLoaiPhong = new ComboBox();
             cbTrangThai = new ComboBox();
             tbMaLoaiPhong = new TextBox();
             tbSucChua = new TextBox();
@@ -40,11 +41,10 @@
             tbID = new TextBox();
             label3 = new Label();
             label5 = new Label();
+            bl1 = new Label();
             label4 = new Label();
             label2 = new Label();
             label1 = new Label();
-            cbLoaiPhong = new ComboBox();
-            bl1 = new Label();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tbAnhPhong).BeginInit();
             SuspendLayout();
@@ -106,12 +106,21 @@
             btnThem.TabIndex = 3;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
-            
+            btnThem.Click += btnThem_Click;
+            // 
+            // cbLoaiPhong
+            // 
+            cbLoaiPhong.FormattingEnabled = true;
+            cbLoaiPhong.Location = new Point(485, 106);
+            cbLoaiPhong.Name = "cbLoaiPhong";
+            cbLoaiPhong.Size = new Size(151, 28);
+            cbLoaiPhong.TabIndex = 2;
+            cbLoaiPhong.SelectedIndexChanged += cbLoaiPhong_SelectedIndexChanged;
             // 
             // cbTrangThai
             // 
             cbTrangThai.FormattingEnabled = true;
-            cbTrangThai.Location = new Point(485, 147);
+            cbTrangThai.Location = new Point(485, 203);
             cbTrangThai.Name = "cbTrangThai";
             cbTrangThai.Size = new Size(151, 28);
             cbTrangThai.TabIndex = 2;
@@ -125,7 +134,7 @@
             // 
             // tbSucChua
             // 
-            tbSucChua.Location = new Point(485, 102);
+            tbSucChua.Location = new Point(485, 158);
             tbSucChua.Name = "tbSucChua";
             tbSucChua.Size = new Size(151, 27);
             tbSucChua.TabIndex = 1;
@@ -147,7 +156,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(342, 98);
+            label3.Location = new Point(342, 154);
             label3.Name = "label3";
             label3.Size = new Size(71, 20);
             label3.TabIndex = 0;
@@ -162,10 +171,19 @@
             label5.TabIndex = 0;
             label5.Text = "Mã Loại Phòng";
             // 
+            // bl1
+            // 
+            bl1.AutoSize = true;
+            bl1.Location = new Point(342, 109);
+            bl1.Name = "bl1";
+            bl1.Size = new Size(83, 20);
+            bl1.TabIndex = 0;
+            bl1.Text = "Loại Phòng";
+            // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(342, 143);
+            label4.Location = new Point(342, 199);
             label4.Name = "label4";
             label4.Size = new Size(78, 20);
             label4.TabIndex = 0;
@@ -189,23 +207,6 @@
             label1.TabIndex = 0;
             label1.Text = "ID Phòng";
             // 
-            // cbLoaiPhong
-            // 
-            cbLoaiPhong.FormattingEnabled = true;
-            cbLoaiPhong.Location = new Point(485, 195);
-            cbLoaiPhong.Name = "cbLoaiPhong";
-            cbLoaiPhong.Size = new Size(151, 28);
-            cbLoaiPhong.TabIndex = 2;
-            // 
-            // bl1
-            // 
-            bl1.AutoSize = true;
-            bl1.Location = new Point(342, 198);
-            bl1.Name = "bl1";
-            bl1.Size = new Size(83, 20);
-            bl1.TabIndex = 0;
-            bl1.Text = "Loại Phòng";
-            // 
             // FrmThemPhongChieu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -214,6 +215,7 @@
             Controls.Add(panel2);
             Name = "FrmThemPhongChieu";
             Text = "FrmThemPhongChieu";
+            Load += FrmThemPhongChieu_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)tbAnhPhong).EndInit();
@@ -229,15 +231,15 @@
         private Button btnThem;
         private ComboBox cbTrangThai;
         private TextBox tbMaLoaiPhong;
-        private TextBox tbSucChua;
         private TextBox tbTenPhong;
         private TextBox tbID;
-        private Label label3;
         private Label label5;
         private Label label4;
         private Label label2;
         private Label label1;
         private ComboBox cbLoaiPhong;
         private Label bl1;
+        private TextBox tbSucChua;
+        private Label label3;
     }
 }

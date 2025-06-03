@@ -74,11 +74,11 @@ namespace OGC.DAO
 
         
 
-
+        //Nhớ thêm ảnh phòng :>
         public bool ThemPhongChieu(DTO_PHONGCHIEU phong)
         {
-            string query = "INSERT INTO PHONGCHIEU (TenPhong, SucChua, TrangThai, MaLoaiPhong, AnhPhong) " +
-                           "VALUES (@TenPhong, @SucChua, @TrangThai, @MaLoaiPhong, @AnhPhong)";
+            string query = "INSERT INTO PHONGCHIEU (TenPhong,TrangThai, MaLoaiPhong) " +
+                           "VALUES ( @TenPhong , @TrangThai , @MaLoaiPhong )";
             int result = DataProvider.Instance.ExecuteNonQuery(query,
                 new object[] { phong.TenPhong, phong.TrangThai, phong.MaLoaiPhong, phong.AnhPhong });
             return result > 0;
@@ -86,21 +86,36 @@ namespace OGC.DAO
 
         public bool SuaPhongChieu(DTO_PHONGCHIEU phong)
         {
-            string query = "UPDATE PHONGCHIEU SET TenPhong = @TenPhong, SucChua = @SucChua, TrangThai = @TrangThai, " +
-                           "MaLoaiPhong = @MaLoaiPhong, AnhPhong = @AnhPhong WHERE ID = @ID";
+            string query = "UPDATE PHONGCHIEU SET TenPhong = @TenPhong , TrangThai = @TrangThai , " +
+                           "MaLoaiPhong = @MaLoaiPhong WHERE ID = @ID ";
             int result = DataProvider.Instance.ExecuteNonQuery(query,
-                new object[] { phong.TenPhong, phong.TrangThai, phong.MaLoaiPhong, phong.AnhPhong, phong.ID });
+                new object[] { phong.TenPhong, phong.TrangThai, phong.MaLoaiPhong, phong.ID });
             return result > 0;
         }
 
         public bool XoaPhongChieu(int id)
         {
-            string query = "DELETE FROM PHONGCHIEU WHERE ID = @ID";
+            string query = "DELETE FROM PHONGCHIEU WHERE ID = @ID ";
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { id });
             return result > 0;
         }
 
 
+        public int? GetIDPhongByTenPhong(string tenPhong)
+        {
+            string query = "SELECT ID FROM PHONGCHIEU WHERE TenPhong = @TenPhong ";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhong });
+
+            if (data.Rows.Count > 0)
+            {
+                return Convert.ToInt32(data.Rows[0]["ID"]);
+            }
+            else
+            {
+                return null; // Không tìm thấy phòng
+            }
+        }
 
 
 
@@ -110,6 +125,23 @@ namespace OGC.DAO
             string query = "SELECT MaLoaiPhong FROM PHONGCHIEU WHERE ID = @ID ";
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idPhong });
             return result != null ? Convert.ToInt32(result) : -1;
+        }
+
+
+        public string GetTenLoaiPhongByIDPhong(int? idPhong)
+        {
+            string query = @"
+        SELECT LP.TenLoaiPhong 
+        FROM PHONGCHIEU PC
+        JOIN LOAIPHONG LP ON PC.MaLoaiPhong = LP.ID
+        WHERE PC.ID = @ID ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idPhong });
+
+            if (result != null && result != DBNull.Value)
+                return result.ToString();
+            else
+                return string.Empty;
         }
 
 
