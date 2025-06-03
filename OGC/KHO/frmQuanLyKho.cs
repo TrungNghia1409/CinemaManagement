@@ -210,6 +210,17 @@ namespace OGC.KHO
         }
 
         //---- xóa món khỏi KHO
+        private void ClearForm()
+        {
+            txbIDKho.Clear();
+            txbIDMonAn.Clear();
+            txbTenMonAn.Clear();
+            txbSoLuong.Clear();
+            txbSoLuongThem.Clear();
+            cbNgayCapNhat.SelectedIndex = -1;
+            cbThangCapNhat.SelectedIndex = -1;
+            cbNamCapNhat.SelectedIndex = -1;
+        }
         private void btnXoa_Click(object sender, EventArgs e)
         {
             string tenMonAn = txbTenMonAn.Text.Trim();

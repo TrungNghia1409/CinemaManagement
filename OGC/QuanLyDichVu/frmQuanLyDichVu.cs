@@ -93,6 +93,7 @@ namespace OGC.QuanLyDichVu
         //--------Phương thức thêm sp vào giỏ hàng
         public void AddToCart(DTO_MONAN food)
         {
+            int soLuongTon = DAO_KHO.Instance.LaySoLuongTon(food.ID);
             foreach (Control control in flpCart.Controls)
             {
                 if (control is Panel existingPanel)
@@ -105,6 +106,12 @@ namespace OGC.QuanLyDichVu
                     if (lblFoodName != null && lblFoodName.Text == food.TenMonAn)
                     {
                         int currentQuantity = int.Parse(lblQuantity.Text.Replace("SL: ", ""));
+                        // Kiểm tra số lượng tồn trước khi cho tăng
+                        if (currentQuantity >= soLuongTon)
+                        {
+                            MessageBox.Show($"Số lượng trong kho không đủ! Chỉ còn {soLuongTon}", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         currentQuantity++;
                         lblQuantity.Text = "SL: " + currentQuantity;
 

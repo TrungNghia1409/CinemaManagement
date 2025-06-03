@@ -48,7 +48,8 @@ namespace OGC.QuanLyDichVu
             foreach (var item in gioHang)
             {
                 int idMonAn = DAO_MONAN.Instance.LayIDMonAnTheoTen(item.TenMonAn); // bạn cần phương thức này
-                DAO_CTHD_MONAN.Instance.ThemChiTietHoaDonMonAn(iDHoaDon, idMonAn, item.SoLuong, item.DonGia);
+                decimal gia = DAO_MONAN.Instance.GetGiaMonAnByID(idMonAn);
+                DAO_CTHD_MONAN.Instance.ThemChiTietHoaDonMonAn(iDHoaDon, idMonAn, item.SoLuong, gia);
             }
 
             dgvChiTiet.DataSource = DAO_CTHD_MONAN.Instance.LayDSByIDHoaDon(iDHoaDon);
@@ -138,7 +139,7 @@ namespace OGC.QuanLyDichVu
                 );
                 workbook.SaveAs(filePath);
 
-                DAO_CTHD_MONAN.Instance.CapNhatTrangThai(iDHoaDon, "Đã in");
+                DAO_CTHD_MONAN.Instance.CapNhatTrangThai("Đã in", iDHoaDon);
                 MessageBox.Show("Đã xuất hóa đơn ra Excel tại:\n" + filePath, "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

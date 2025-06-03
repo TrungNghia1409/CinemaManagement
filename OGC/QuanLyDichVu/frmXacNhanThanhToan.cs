@@ -61,6 +61,7 @@ namespace OGC.QuanLyDichVu
                     MessageBox.Show("Không tìm thấy khách hàng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                //giả sử khách hàng không có sđt, thì lấy sđt của nhân viên :)
 
                 int idHD = DAO_HD_MONAN.Instance.ThemHoaDonMonAn(idNhanVien, idKhach, tongTien);
 
