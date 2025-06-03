@@ -387,9 +387,9 @@
             label6.AutoSize = true;
             label6.Location = new Point(3, 15);
             label6.Name = "label6";
-            label6.Size = new Size(83, 20);
+            label6.Size = new Size(80, 20);
             label6.TabIndex = 0;
-            label6.Text = "Loại Phòng";
+            label6.Text = "Định Dạng";
             // 
             // panel5
             // 

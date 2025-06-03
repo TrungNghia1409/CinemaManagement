@@ -40,5 +40,68 @@ namespace OGC.DAO
             return ds;
         }
 
+        public List<DTO_PHONGCHIEU> DanhSachPhongChieu()
+        {
+            List<DTO_PHONGCHIEU> ds = new List<DTO_PHONGCHIEU>();
+
+            // Chỉ chọn những cột thực sự cần thiết
+            string query = @"SELECT 
+                         ID, 
+                         TenPhong, 
+                         SucChua, 
+                         TrangThai, 
+                         MaLoaiPhong, 
+                         AnhPhong 
+                     FROM PHONGCHIEU";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in data.Rows)
+            {
+                DTO_PHONGCHIEU phong = new DTO_PHONGCHIEU
+                {
+                    ID = Convert.ToInt32(row["ID"]),
+                    TenPhong = row["TenPhong"].ToString(),
+                    SucChua = Convert.ToInt32(row["SucChua"]),
+                    TrangThai = Convert.ToInt32(row["TrangThai"]),
+                    MaLoaiPhong = Convert.ToInt32(row["MaLoaiPhong"]),
+                    AnhPhong = row["AnhPhong"] != DBNull.Value ? row["AnhPhong"].ToString() : string.Empty
+                };
+                ds.Add(phong);
+            }
+
+            return ds;
+        }
+
+        
+
+
+        public bool ThemPhongChieu(DTO_PHONGCHIEU phong)
+        {
+            string query = "INSERT INTO PHONGCHIEU (TenPhong, SucChua, TrangThai, MaLoaiPhong, AnhPhong) " +
+                           "VALUES (@TenPhong, @SucChua, @TrangThai, @MaLoaiPhong, @AnhPhong)";
+            int result = DataProvider.Instance.ExecuteNonQuery(query,
+                new object[] { phong.TenPhong, phong.SucChua, phong.TrangThai, phong.MaLoaiPhong, phong.AnhPhong });
+            return result > 0;
+        }
+
+        public bool SuaPhongChieu(DTO_PHONGCHIEU phong)
+        {
+            string query = "UPDATE PHONGCHIEU SET TenPhong = @TenPhong, SucChua = @SucChua, TrangThai = @TrangThai, " +
+                           "MaLoaiPhong = @MaLoaiPhong, AnhPhong = @AnhPhong WHERE ID = @ID";
+            int result = DataProvider.Instance.ExecuteNonQuery(query,
+                new object[] { phong.TenPhong, phong.SucChua, phong.TrangThai, phong.MaLoaiPhong, phong.AnhPhong, phong.ID });
+            return result > 0;
+        }
+
+        public bool XoaPhongChieu(int id)
+        {
+            string query = "DELETE FROM PHONGCHIEU WHERE ID = @ID";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { id });
+            return result > 0;
+        }
+
+
+
     }
 }
