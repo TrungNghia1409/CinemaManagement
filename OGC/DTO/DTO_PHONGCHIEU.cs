@@ -29,6 +29,7 @@ namespace OGC.DTO
             this.MaLoaiPhong = (int)row["MaLoaiPhong"];
             this.AnhPhong = row["AnhPhong"].ToString();
         }
+        private int SucChua { get; set; }
 
         private int iD;
         public int ID
@@ -43,12 +44,7 @@ namespace OGC.DTO
             get { return tenPhong; }
             set { tenPhong = value; }
         }
-        private int sucChua;
-        public int SucChua
-        {
-            get { return sucChua; }
-            set { sucChua = value; }
-        }
+
         private int trangThai;
         public int TrangThai
         {

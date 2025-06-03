@@ -241,6 +241,15 @@ public class PhimDAO
         return list;
     }
 
+    //----- lấy id phim dựa trên tên phim
+    public int LayIDPhimTheoTen(string tenPhim)
+    {
+        string query = "SELECT ID FROM PHIM WHERE TenPhim = @TenPhim ";
+        object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim });
+        return result != null ? Convert.ToInt32(result) : -1;
+    }
+
+
 
     // Hàm ánh xạ từ DataRow sang DTO
     private PhimDTO MapPhim(DataRow row)

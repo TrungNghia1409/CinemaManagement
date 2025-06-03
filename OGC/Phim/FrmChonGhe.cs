@@ -30,27 +30,35 @@ namespace OGC.Phim
             this.gioChieu = gioChieu;
 
             int idPhong = DAO_LICHCHIEU.Instance.GetIDPhong(tenPhim, ngayChieu, gioChieu);
+            int idLoaiPhong = DAO_PHONGCHIEU.Instance.LayIDLoaiPhongTheoIDPhong(idPhong);
+            int sucChua = DAO_LOAIPHONG.Instance.LaySucChuaTheoIDLoaiPhong(idLoaiPhong);
 
-            if (idPhong != -1)
+            if (sucChua > 0)
             {
-                List<GheDTO> danhSachGhe = DAO_Ghe.Instance.GetListGheByIDPhong(idPhong);
+                flpGhe.Controls.Clear();
+                int gheMoiMotHang = 10; // bạn có thể cho tuỳ chỉnh
+                int soHang = (int)Math.Ceiling((double)sucChua / gheMoiMotHang);
 
-                // Load lên flpGhe bằng button
-                foreach (GheDTO ghe in danhSachGhe)
+                int soThuTu = 1;
+                for (int i = 0; i < soHang; i++)
                 {
-                    Button btnGhe = new Button();
-                    btnGhe.Text = ghe.MaGhe;
-                    btnGhe.Width = 50;
-                    btnGhe.Height = 50;
+                    char hang = (char)('A' + i);
+                    for (int j = 1; j <= gheMoiMotHang && soThuTu <= sucChua; j++, soThuTu++)
+                    {
+                        string maGhe = $"{hang}{j}";
+                        Button btnGhe = new Button();
+                        btnGhe.Text = maGhe;
+                        btnGhe.Width = 50;
+                        btnGhe.Height = 50;
+                        btnGhe.BackColor = Color.LightGreen; // tất cả ghế trống
 
-                    btnGhe.BackColor = (ghe.TrangThai == 1) ? Color.Red : Color.LightGreen;
-
-                    flpGhe.Controls.Add(btnGhe);
+                        flpGhe.Controls.Add(btnGhe);
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("Không tìm thấy ID phòng chiếu.");
+                MessageBox.Show("Không tìm thấy sức chứa cho loại phòng này.");
             }
 
             //this.Load += FrmChonGhe_Load;

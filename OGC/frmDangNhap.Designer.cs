@@ -186,6 +186,7 @@
             // 
             // txbTaiKhoan
             // 
+            txbTaiKhoan.BackColor = Color.White;
             txbTaiKhoan.BorderStyle = BorderStyle.None;
             txbTaiKhoan.Dock = DockStyle.Fill;
             txbTaiKhoan.Font = new Font("Segoe UI", 14.25F);
