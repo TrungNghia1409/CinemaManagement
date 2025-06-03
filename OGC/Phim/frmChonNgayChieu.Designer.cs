@@ -101,9 +101,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(3, 121);
             label2.Name = "label2";
-            label2.Size = new Size(124, 20);
+            label2.Size = new Size(133, 20);
             label2.TabIndex = 5;
-            label2.Text = "Định Dạng Phim: ";
+            label2.Text = "Định Dạng Phòng: ";
             // 
             // lb1
             // 

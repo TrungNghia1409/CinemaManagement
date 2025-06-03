@@ -2,6 +2,7 @@
 using OGC.KHO;
 using OGC.LichChieu;
 using OGC.Phim;
+using OGC.PhongChieu;
 using OGC.QuanLyDichVu;
 using OGC.ThuocTinh;
 using System;
@@ -82,7 +83,8 @@ namespace OGC.QuanLyChung
         }
         private void btnPhongChieu_Click(object sender, EventArgs e)
         {
-
+            FrmQuanLyPhongChieu f = new FrmQuanLyPhongChieu();
+            f.ShowDialog();
         }
 
         private void btnLichChieu_Click(object sender, EventArgs e)

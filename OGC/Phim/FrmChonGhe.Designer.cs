@@ -36,11 +36,7 @@
             lbNgayChieu = new Label();
             lbGioChieu = new Label();
             lbTenPhim = new Label();
-            label3 = new Label();
             label9 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label2 = new Label();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
@@ -86,11 +82,7 @@
             panel2.Controls.Add(lbNgayChieu);
             panel2.Controls.Add(lbGioChieu);
             panel2.Controls.Add(lbTenPhim);
-            panel2.Controls.Add(label3);
             panel2.Controls.Add(label9);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(label4);
-            panel2.Controls.Add(label2);
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(907, 125);
@@ -99,7 +91,7 @@
             // lbDinhDang
             // 
             lbDinhDang.AutoSize = true;
-            lbDinhDang.Location = new Point(461, 86);
+            lbDinhDang.Location = new Point(387, 86);
             lbDinhDang.Name = "lbDinhDang";
             lbDinhDang.Size = new Size(80, 20);
             lbDinhDang.TabIndex = 1;
@@ -108,7 +100,7 @@
             // lbNgayChieu
             // 
             lbNgayChieu.AutoSize = true;
-            lbNgayChieu.Location = new Point(461, 48);
+            lbNgayChieu.Location = new Point(387, 48);
             lbNgayChieu.Name = "lbNgayChieu";
             lbNgayChieu.Size = new Size(85, 20);
             lbNgayChieu.TabIndex = 1;
@@ -117,7 +109,7 @@
             // lbGioChieu
             // 
             lbGioChieu.AutoSize = true;
-            lbGioChieu.Location = new Point(63, 86);
+            lbGioChieu.Location = new Point(8, 86);
             lbGioChieu.Name = "lbGioChieu";
             lbGioChieu.Size = new Size(73, 20);
             lbGioChieu.TabIndex = 1;
@@ -126,20 +118,11 @@
             // lbTenPhim
             // 
             lbTenPhim.AutoSize = true;
-            lbTenPhim.Location = new Point(63, 48);
+            lbTenPhim.Location = new Point(8, 48);
             lbTenPhim.Name = "lbTenPhim";
             lbTenPhim.Size = new Size(69, 20);
             lbTenPhim.TabIndex = 1;
             lbTenPhim.Text = "Tên Phim";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(8, 86);
-            label3.Name = "label3";
-            label3.Size = new Size(35, 20);
-            label3.TabIndex = 0;
-            label3.Text = "Giờ:";
             // 
             // label9
             // 
@@ -149,33 +132,6 @@
             label9.Size = new Size(73, 20);
             label9.TabIndex = 0;
             label9.Text = "Chọn Ghế";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(378, 86);
-            label5.Name = "label5";
-            label5.Size = new Size(85, 20);
-            label5.TabIndex = 0;
-            label5.Text = "Định dạng: ";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(378, 48);
-            label4.Name = "label4";
-            label4.Size = new Size(51, 20);
-            label4.TabIndex = 0;
-            label4.Text = "Ngày: ";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(8, 48);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 20);
-            label2.TabIndex = 0;
-            label2.Text = "Phim: ";
             // 
             // label8
             // 
@@ -257,10 +213,6 @@
         private Panel panel2;
         private Label lbTenPhim;
         private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
         private Label lbDinhDang;
         private Label lbNgayChieu;
         private Label lbGioChieu;

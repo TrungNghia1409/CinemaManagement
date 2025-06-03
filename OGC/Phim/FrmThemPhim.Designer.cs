@@ -32,6 +32,7 @@
             btnThoat = new Button();
             btnThemPhim = new Button();
             panel15 = new Panel();
+            btnTaiAnh = new Button();
             panel13 = new Panel();
             tbMoTa = new TextBox();
             label11 = new Label();
@@ -67,7 +68,6 @@
             btnXemTrailer = new Button();
             tbTrailer = new TextBox();
             label9 = new Label();
-            btnTaiAnh = new Button();
             ((System.ComponentModel.ISupportInitialize)AnhPhim).BeginInit();
             panel15.SuspendLayout();
             panel13.SuspendLayout();
@@ -119,6 +119,16 @@
             panel15.Name = "panel15";
             panel15.Size = new Size(263, 35);
             panel15.TabIndex = 3;
+            // 
+            // btnTaiAnh
+            // 
+            btnTaiAnh.Location = new Point(75, 3);
+            btnTaiAnh.Name = "btnTaiAnh";
+            btnTaiAnh.Size = new Size(94, 29);
+            btnTaiAnh.TabIndex = 1;
+            btnTaiAnh.Text = "Tải Ảnh";
+            btnTaiAnh.UseVisualStyleBackColor = true;
+            btnTaiAnh.Click += btnTaiAnh_Click;
             // 
             // panel13
             // 
@@ -295,9 +305,9 @@
             label6.AutoSize = true;
             label6.Location = new Point(3, 15);
             label6.Name = "label6";
-            label6.Size = new Size(83, 20);
+            label6.Size = new Size(80, 20);
             label6.TabIndex = 0;
-            label6.Text = "Loại Phòng";
+            label6.Text = "Định Dạng";
             // 
             // panel5
             // 
@@ -422,16 +432,6 @@
             label9.Size = new Size(93, 20);
             label9.TabIndex = 0;
             label9.Text = "Video Trailer";
-            // 
-            // btnTaiAnh
-            // 
-            btnTaiAnh.Location = new Point(75, 3);
-            btnTaiAnh.Name = "btnTaiAnh";
-            btnTaiAnh.Size = new Size(94, 29);
-            btnTaiAnh.TabIndex = 1;
-            btnTaiAnh.Text = "Tải Ảnh";
-            btnTaiAnh.UseVisualStyleBackColor = true;
-            btnTaiAnh.Click += btnTaiAnh_Click;
             // 
             // FrmThemPhim
             // 

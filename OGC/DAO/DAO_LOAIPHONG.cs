@@ -42,7 +42,13 @@ namespace OGC.DAO
             return ds;
         }
         #endregion
+        public string LayTenLoaiPhongTheoID(int id)
+        {
+            string query = "SELECT TenLoaiPhong FROM LOAIPHONG WHERE ID = @ID ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { id });
 
+            return result != null ? result.ToString() : string.Empty;
+        }
 
         //PHƯƠNG THỨC THÊM loại phòng
         public bool ThemLoaiPhong(string tenLoaiPhong)
