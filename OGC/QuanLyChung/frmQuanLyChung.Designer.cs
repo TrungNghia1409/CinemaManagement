@@ -39,11 +39,14 @@
             btnPhim = new Button();
             btnDoAn = new Button();
             pnlDichVu = new Panel();
+            pnlKho = new Panel();
+            btnKho = new Button();
             pnlLichChieu.SuspendLayout();
             pnlThuocTinh.SuspendLayout();
             pnlPhongChieu.SuspendLayout();
             pnlPhim.SuspendLayout();
             pnlDichVu.SuspendLayout();
+            pnlKho.SuspendLayout();
             SuspendLayout();
             // 
             // pnlLichChieu
@@ -97,7 +100,7 @@
             btnThuocTinh.ImageAlign = ContentAlignment.TopCenter;
             btnThuocTinh.Location = new Point(0, 0);
             btnThuocTinh.Name = "btnThuocTinh";
-            btnThuocTinh.Padding = new Padding(0, 15, 0, 0);
+            btnThuocTinh.Padding = new Padding(0, 10, 0, 0);
             btnThuocTinh.Size = new Size(264, 152);
             btnThuocTinh.TabIndex = 0;
             btnThuocTinh.Text = "THUỘC TÍNH";
@@ -201,9 +204,39 @@
             pnlDichVu.TabIndex = 14;
             pnlDichVu.Paint += pnlDichVu_Paint;
             // 
+            // pnlKho
+            // 
+            pnlKho.Controls.Add(btnKho);
+            pnlKho.Location = new Point(744, 232);
+            pnlKho.Name = "pnlKho";
+            pnlKho.Size = new Size(264, 152);
+            pnlKho.TabIndex = 14;
+            pnlKho.Paint += pnlKho_Paint;
+            // 
+            // btnKho
+            // 
+            btnKho.BackColor = SystemColors.ControlLight;
+            btnKho.Dock = DockStyle.Fill;
+            btnKho.FlatAppearance.BorderSize = 0;
+            btnKho.FlatStyle = FlatStyle.Flat;
+            btnKho.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnKho.ForeColor = SystemColors.GrayText;
+            btnKho.Image = Properties.Resources.work;
+            btnKho.ImageAlign = ContentAlignment.TopCenter;
+            btnKho.Location = new Point(0, 0);
+            btnKho.Name = "btnKho";
+            btnKho.Padding = new Padding(0, 30, 0, 0);
+            btnKho.Size = new Size(264, 152);
+            btnKho.TabIndex = 13;
+            btnKho.Text = "KHO";
+            btnKho.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnKho.UseVisualStyleBackColor = false;
+            btnKho.Click += btnKho_Click;
+            // 
             // frmQuanLyChung
             // 
             ClientSize = new Size(1072, 447);
+            Controls.Add(pnlKho);
             Controls.Add(pnlDichVu);
             Controls.Add(pnlLichChieu);
             Controls.Add(pnlThuocTinh);
@@ -216,6 +249,7 @@
             pnlPhongChieu.ResumeLayout(false);
             pnlPhim.ResumeLayout(false);
             pnlDichVu.ResumeLayout(false);
+            pnlKho.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -236,5 +270,7 @@
         private Button btnPhim;
         private Button btnDoAn;
         private Panel pnlDichVu;
+        private Panel pnlKho;
+        private Button btnKho;
     }
 }

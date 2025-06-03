@@ -38,7 +38,6 @@
             lblLoaiThongKe = new Label();
             pnlDoanhThu_ThoiGian = new Panel();
             btnThongKe = new Button();
-            lblngayChon = new Label();
             txbKetQua = new TextBox();
             cbNam = new ComboBox();
             cbThang = new ComboBox();
@@ -142,7 +141,6 @@
             // pnlDoanhThu_ThoiGian
             // 
             pnlDoanhThu_ThoiGian.Controls.Add(btnThongKe);
-            pnlDoanhThu_ThoiGian.Controls.Add(lblngayChon);
             pnlDoanhThu_ThoiGian.Controls.Add(txbKetQua);
             pnlDoanhThu_ThoiGian.Controls.Add(cbNam);
             pnlDoanhThu_ThoiGian.Controls.Add(cbThang);
@@ -158,7 +156,7 @@
             // 
             // btnThongKe
             // 
-            btnThongKe.Location = new Point(144, 216);
+            btnThongKe.Location = new Point(96, 216);
             btnThongKe.Name = "btnThongKe";
             btnThongKe.Size = new Size(75, 23);
             btnThongKe.TabIndex = 30;
@@ -166,20 +164,11 @@
             btnThongKe.UseVisualStyleBackColor = true;
             btnThongKe.Click += btnThongKe_Click;
             // 
-            // lblngayChon
-            // 
-            lblngayChon.AutoSize = true;
-            lblngayChon.Location = new Point(24, 179);
-            lblngayChon.Name = "lblngayChon";
-            lblngayChon.Size = new Size(38, 15);
-            lblngayChon.TabIndex = 29;
-            lblngayChon.Text = "label1";
-            // 
             // txbKetQua
             // 
-            txbKetQua.Location = new Point(96, 176);
+            txbKetQua.Location = new Point(8, 176);
             txbKetQua.Name = "txbKetQua";
-            txbKetQua.Size = new Size(172, 23);
+            txbKetQua.Size = new Size(260, 23);
             txbKetQua.TabIndex = 28;
             // 
             // cbNam
@@ -360,7 +349,6 @@
         private Label lblThongKe;
         private Panel pnlTren;
         private Button btnThongKe;
-        private Label lblngayChon;
         private TextBox txbKetQua;
         private ComboBox cbNam;
         private ComboBox cbThang;
