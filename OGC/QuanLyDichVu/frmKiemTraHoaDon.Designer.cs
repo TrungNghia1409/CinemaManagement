@@ -138,6 +138,7 @@
             Controls.Add(label3);
             Controls.Add(label1);
             Name = "frmKiemTraHoaDon";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmKiemTraHoaDon";
             FormClosing += frmKiemTraHoaDon_FormClosing;
             Load += frmKiemTraHoaDon_Load;

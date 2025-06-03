@@ -384,16 +384,25 @@ namespace OGC.QuanLyDichVu
 
         private void btnXacNhanThanhToanThanhCong_Click(object sender, EventArgs e)
         {
-            decimal tongTien = decimal.Parse(txbTongTien.Text.Replace(",", ""));
-            int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser);
-            List<CartItem> gioHang = GetCartItems();
+            if (txbTongTien.Text == "")
+            {
+                MessageBox.Show("Không thể tính tiền do tổng tiền rỗng!");
+            }
+            else
+            {
+                decimal tongTien = decimal.Parse(txbTongTien.Text.Replace(",", ""));
 
-            // Đọc thành tiếng với số tiền thực tế
-            string textToSpeak = $"Đã thanh toán thành công {tongTien} đồng";
-            PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động
+                int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser);
+                List<CartItem> gioHang = GetCartItems();
 
-            frmXacNhanThanhToan frm = new frmXacNhanThanhToan(tongTien, idNhanVien, gioHang);
-            frm.ShowDialog(); // hoặc frm.Show()
+                // Đọc thành tiếng với số tiền thực tế
+                string textToSpeak = $"Đã thanh toán thành công {tongTien} đồng";
+                PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động
+
+                frmXacNhanThanhToan frm = new frmXacNhanThanhToan(tongTien, idNhanVien, gioHang);
+                frm.ShowDialog(); // hoặc frm.Show()
+            }
+           
         }
 
         private void PhatTiengNoiTuGoogle(string noiDung)
