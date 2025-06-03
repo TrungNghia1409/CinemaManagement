@@ -40,5 +40,15 @@ namespace OGC.DAO
             return ds;
         }
 
+
+        //---- lấy id loại phòng từ id phòng
+        public int LayIDLoaiPhongTheoIDPhong(int idPhong)
+        {
+            string query = "SELECT MaLoaiPhong FROM PHONGCHIEU WHERE ID = @ID ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idPhong });
+            return result != null ? Convert.ToInt32(result) : -1;
+        }
+
+
     }
 }

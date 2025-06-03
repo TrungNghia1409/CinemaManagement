@@ -9,10 +9,11 @@ namespace OGC.DTO
 {
     public class DTO_LOAIPHONG
     {
-        public DTO_LOAIPHONG(int ID, string TenLoaiPhong)
+        public DTO_LOAIPHONG(int ID, string TenLoaiPhong, int SucChua)
         {
             this.ID = ID;
             this.TenLoaiPhong = TenLoaiPhong;
+            this.SucChua = SucChua;
         }
         public DTO_LOAIPHONG() { }
 
@@ -20,6 +21,7 @@ namespace OGC.DTO
         {
             this.ID = (int)row["ID"];
             this.TenLoaiPhong = row["TenLoaiPhong"].ToString();
+            this.SucChua = (int)row["SucChua"];
         }
 
         private int iD;
@@ -34,6 +36,12 @@ namespace OGC.DTO
         {
             get { return tenLoaiPhong; }
             set { tenLoaiPhong = value; }
+        }
+        private int sucChua;
+        public int SucChua
+        {
+            get { return sucChua; }
+            set { sucChua = value; }
         }
     }
 }

@@ -310,5 +310,31 @@ namespace OGC.DAO
         }
 
 
+        //----- lấy id lịch chiếu dựa trên id phim
+        public List<int> LayIDLichChieuTheoIDPhim(int idPhim)
+        {
+            List<int> list = new List<int>();
+            string query = "SELECT ID FROM LICHCHIEU WHERE IDPhim = @IDPhim ";
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { idPhim });
+
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(Convert.ToInt32(row["ID"]));
+            }
+
+            return list;
+        }
+
+        //---- lấy id phòng chiếu dựa trên id lịch chiếu
+        public int LayIDPhongTheoIDLichChieu(int idLichChieu)
+        {
+            string query = "SELECT IDPhong FROM LICHCHIEU WHERE ID = @ID ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idLichChieu });
+            return result != null ? Convert.ToInt32(result) : -1;
+        }
+
+
+
+
     }
 }

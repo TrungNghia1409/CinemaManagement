@@ -39,7 +39,6 @@
             pnlTop = new Panel();
             cbLoaiMonAn = new ComboBox();
             txbTimKiem = new TextBox();
-            btnThemSanPham = new Button();
             btnReset = new Button();
             flpDichVu = new FlowLayoutPanel();
             pnlPhai.SuspendLayout();
@@ -63,7 +62,7 @@
             // 
             // btnXacNhanThanhToanThanhCong
             // 
-            btnXacNhanThanhToanThanhCong.Location = new Point(120, 408);
+            btnXacNhanThanhToanThanhCong.Location = new Point(120, 416);
             btnXacNhanThanhToanThanhCong.Name = "btnXacNhanThanhToanThanhCong";
             btnXacNhanThanhToanThanhCong.Size = new Size(75, 23);
             btnXacNhanThanhToanThanhCong.TabIndex = 4;
@@ -134,7 +133,6 @@
             // 
             pnlTop.Controls.Add(cbLoaiMonAn);
             pnlTop.Controls.Add(txbTimKiem);
-            pnlTop.Controls.Add(btnThemSanPham);
             pnlTop.Controls.Add(btnReset);
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
@@ -165,21 +163,6 @@
             txbTimKiem.TabIndex = 1;
             txbTimKiem.TextAlign = HorizontalAlignment.Center;
             txbTimKiem.TextChanged += txbTimKiem_TextChanged;
-            // 
-            // btnThemSanPham
-            // 
-            btnThemSanPham.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnThemSanPham.Image = Properties.Resources.add___Copy1;
-            btnThemSanPham.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThemSanPham.Location = new Point(672, 16);
-            btnThemSanPham.Name = "btnThemSanPham";
-            btnThemSanPham.Size = new Size(83, 40);
-            btnThemSanPham.TabIndex = 0;
-            btnThemSanPham.Text = "Thêm ";
-            btnThemSanPham.TextAlign = ContentAlignment.MiddleLeft;
-            btnThemSanPham.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnThemSanPham.UseVisualStyleBackColor = true;
-            btnThemSanPham.Click += btnThemSanPham_Click;
             // 
             // btnReset
             // 
@@ -227,7 +210,6 @@
         private Panel pnlTop;
         private ComboBox cbLoaiMonAn;
         private TextBox txbTimKiem;
-        private Button btnThemSanPham;
         private Button btnReset;
         private TextBox txbTongTien;
         private Label lblTongTien;

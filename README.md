@@ -1,1 +1,1 @@
-Them chuc nang LoadGhe
+load ghế

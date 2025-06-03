@@ -1,4 +1,5 @@
 ﻿using OGC.frmThuocTinh;
+using OGC.KHO;
 using OGC.LichChieu;
 using OGC.Phim;
 using OGC.QuanLyDichVu;
@@ -54,6 +55,11 @@ namespace OGC.QuanLyChung
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             UIHelper.RoundPanelCorners(pnlDichVu, 30);
         }
+        private void pnlKho_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            UIHelper.RoundPanelCorners(pnlKho, 30);
+        }
         #endregion
 
 
@@ -69,7 +75,11 @@ namespace OGC.QuanLyChung
             frmQuanLyPhim f = new frmQuanLyPhim();
             f.ShowDialog();
         }
-
+        private void btnKho_Click(object sender, EventArgs e)
+        {
+            frmQuanLyKho frm = new frmQuanLyKho();
+            frm.ShowDialog();
+        }
         private void btnPhongChieu_Click(object sender, EventArgs e)
         {
 
@@ -104,6 +114,8 @@ namespace OGC.QuanLyChung
 
 
 
-      
+
+
+        
     }
 }
