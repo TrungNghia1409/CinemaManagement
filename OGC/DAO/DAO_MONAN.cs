@@ -91,6 +91,19 @@ namespace OGC.DAO
             }
         }
 
+        //---- lấy giá dựa trên id
+        public decimal GetGiaMonAnByID(int idMonAn)
+        {
+            string query = "SELECT Gia FROM MONAN WHERE ID = @ID ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idMonAn });
+
+            if (result != null && result != DBNull.Value)
+                return Convert.ToDecimal(result);
+
+            return 0; // hoặc bạn có thể throw exception nếu cần
+        }
+
+
 
 
 
