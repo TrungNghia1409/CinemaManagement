@@ -42,13 +42,31 @@ namespace OGC.DAO
             return ds;
         }
         #endregion
-        public string LayTenLoaiPhongTheoID(int id)
-        {
-            string query = "SELECT TenLoaiPhong FROM LOAIPHONG WHERE ID = @ID ";
-            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { id });
 
-            return result != null ? result.ToString() : string.Empty;
+        public List<DTO_LOAIPHONG> LoadAllTenLoaiPhong()
+        {
+            List<DTO_LOAIPHONG> list = new List<DTO_LOAIPHONG>();
+
+            string query = "SELECT ID, TenLoaiPhong, SucChua FROM LOAIPHONG ";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in data.Rows)
+            {
+                DTO_LOAIPHONG loaiPhong = new DTO_LOAIPHONG
+                {
+                    ID = Convert.ToInt32(row["ID"]),
+                    TenLoaiPhong = row["TenLoaiPhong"].ToString(),
+                    SucChua = Convert.ToInt32(row["SucChua"])
+                };
+
+                list.Add(loaiPhong);
+            }
+
+            return list;
         }
+
+
 
         //PHƯƠNG THỨC THÊM loại phòng
         public bool ThemLoaiPhong(string tenLoaiPhong)
@@ -129,5 +147,7 @@ namespace OGC.DAO
 
             return (result != null) ? Convert.ToInt32(result) : -1;
         }
+
+
     }
 }

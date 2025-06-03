@@ -166,15 +166,6 @@ namespace OGC.Phim
                 if (row.Cells["Trailer_Url"].Value != null)
                     tbTrailer.Text = row.Cells["Trailer_Url"].Value.ToString();
 
-                //// Poster và ảnh nếu có
-                //if (row.Cells["Poster_Url"].Value != null)
-                //    tbPoster.Text = row.Cells["Poster_Url"].Value.ToString();
-
-                //if (row.Cells["Anh"].Value != null)
-                //    tbAnh.Text = row.Cells["Anh"].Value.ToString();
-
-
-
                 // Hiển thị ảnh
                 try
                 {
