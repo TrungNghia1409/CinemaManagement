@@ -381,7 +381,7 @@ namespace OGC.QuanLyDichVu
         {
 
         }
-       
+
         private void btnXacNhanThanhToanThanhCong_Click(object sender, EventArgs e)
         {
             decimal tongTien = decimal.Parse(txbTongTien.Text.Replace(",", ""));
@@ -418,6 +418,12 @@ namespace OGC.QuanLyDichVu
                     }
                 }
             }
+        }
+
+        private void btnKiemTra_Click(object sender, EventArgs e)
+        {
+            frmKiemTraHoaDon f = new frmKiemTraHoaDon();
+            f.ShowDialog();
         }
     }
 }

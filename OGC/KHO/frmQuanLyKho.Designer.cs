@@ -39,6 +39,9 @@
             cbNamCapNhat = new ComboBox();
             cbNgayCapNhat = new ComboBox();
             lblNgayCapNhat = new Label();
+            panel6 = new Panel();
+            txbSoLuongThem = new TextBox();
+            lblSoLuongThem = new Label();
             panel4 = new Panel();
             txbSoLuong = new TextBox();
             label1 = new Label();
@@ -55,6 +58,7 @@
             dgvKho = new DataGridView();
             panel1.SuspendLayout();
             panel16.SuspendLayout();
+            panel6.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel7.SuspendLayout();
@@ -65,7 +69,7 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(176, 240);
+            btnXoa.Location = new Point(176, 288);
             btnXoa.Margin = new Padding(3, 2, 3, 2);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(112, 22);
@@ -76,7 +80,7 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(16, 272);
+            btnSua.Location = new Point(8, 320);
             btnSua.Margin = new Padding(3, 2, 3, 2);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(112, 22);
@@ -87,7 +91,7 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(16, 240);
+            btnThem.Location = new Point(8, 288);
             btnThem.Margin = new Padding(3, 2, 3, 2);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(112, 22);
@@ -104,6 +108,7 @@
             panel1.Controls.Add(btnSua);
             panel1.Controls.Add(btnThem);
             panel1.Controls.Add(panel16);
+            panel1.Controls.Add(panel6);
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel7);
@@ -111,22 +116,22 @@
             panel1.Location = new Point(440, 3);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(472, 317);
+            panel1.Size = new Size(472, 357);
             panel1.TabIndex = 1;
             // 
             // lblTrangThai
             // 
             lblTrangThai.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTrangThai.Location = new Point(304, 104);
+            lblTrangThai.Location = new Point(304, 96);
             lblTrangThai.Name = "lblTrangThai";
-            lblTrangThai.Size = new Size(100, 23);
+            lblTrangThai.Size = new Size(160, 40);
             lblTrangThai.TabIndex = 3;
             lblTrangThai.Text = "label1";
             lblTrangThai.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnReset
             // 
-            btnReset.Location = new Point(176, 272);
+            btnReset.Location = new Point(176, 320);
             btnReset.Margin = new Padding(3, 2, 3, 2);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(112, 22);
@@ -141,7 +146,7 @@
             panel16.Controls.Add(cbNamCapNhat);
             panel16.Controls.Add(cbNgayCapNhat);
             panel16.Controls.Add(lblNgayCapNhat);
-            panel16.Location = new Point(3, 185);
+            panel16.Location = new Point(3, 233);
             panel16.Name = "panel16";
             panel16.Size = new Size(295, 42);
             panel16.TabIndex = 0;
@@ -181,6 +186,33 @@
             lblNgayCapNhat.TabIndex = 0;
             lblNgayCapNhat.Text = "Ngày cập nhật";
             // 
+            // panel6
+            // 
+            panel6.Controls.Add(txbSoLuongThem);
+            panel6.Controls.Add(lblSoLuongThem);
+            panel6.Location = new Point(3, 186);
+            panel6.Margin = new Padding(3, 2, 3, 2);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(295, 42);
+            panel6.TabIndex = 0;
+            // 
+            // txbSoLuongThem
+            // 
+            txbSoLuongThem.Location = new Point(96, 10);
+            txbSoLuongThem.Margin = new Padding(3, 2, 3, 2);
+            txbSoLuongThem.Name = "txbSoLuongThem";
+            txbSoLuongThem.Size = new Size(195, 23);
+            txbSoLuongThem.TabIndex = 1;
+            // 
+            // lblSoLuongThem
+            // 
+            lblSoLuongThem.AutoSize = true;
+            lblSoLuongThem.Location = new Point(6, 13);
+            lblSoLuongThem.Name = "lblSoLuongThem";
+            lblSoLuongThem.Size = new Size(85, 15);
+            lblSoLuongThem.TabIndex = 0;
+            lblSoLuongThem.Text = "Số lượng thêm";
+            // 
             // panel4
             // 
             panel4.Controls.Add(txbSoLuong);
@@ -198,12 +230,11 @@
             txbSoLuong.Name = "txbSoLuong";
             txbSoLuong.Size = new Size(195, 23);
             txbSoLuong.TabIndex = 1;
-            txbSoLuong.Leave += txbTenMonAn_Leave;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 11);
+            label1.Location = new Point(6, 13);
             label1.Name = "label1";
             label1.Size = new Size(54, 15);
             label1.TabIndex = 0;
@@ -226,12 +257,11 @@
             txbTenMonAn.Name = "txbTenMonAn";
             txbTenMonAn.Size = new Size(195, 23);
             txbTenMonAn.TabIndex = 1;
-            txbTenMonAn.Leave += txbTenMonAn_Leave;
             // 
             // lblTenMonAn
             // 
             lblTenMonAn.AutoSize = true;
-            lblTenMonAn.Location = new Point(6, 11);
+            lblTenMonAn.Location = new Point(6, 13);
             lblTenMonAn.Name = "lblTenMonAn";
             lblTenMonAn.Size = new Size(69, 15);
             lblTenMonAn.TabIndex = 0;
@@ -259,7 +289,7 @@
             // lblIDMonAn
             // 
             lblIDMonAn.AutoSize = true;
-            lblIDMonAn.Location = new Point(6, 14);
+            lblIDMonAn.Location = new Point(6, 13);
             lblIDMonAn.Name = "lblIDMonAn";
             lblIDMonAn.Size = new Size(68, 15);
             lblIDMonAn.TabIndex = 0;
@@ -287,7 +317,7 @@
             // lblIDKho
             // 
             lblIDKho.AutoSize = true;
-            lblIDKho.Location = new Point(9, 14);
+            lblIDKho.Location = new Point(9, 13);
             lblIDKho.Name = "lblIDKho";
             lblIDKho.Size = new Size(47, 15);
             lblIDKho.TabIndex = 0;
@@ -300,7 +330,7 @@
             panel2.Location = new Point(0, 0);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(920, 336);
+            panel2.Size = new Size(920, 376);
             panel2.TabIndex = 2;
             // 
             // dgvKho
@@ -311,7 +341,7 @@
             dgvKho.Margin = new Padding(3, 2, 3, 2);
             dgvKho.Name = "dgvKho";
             dgvKho.RowHeadersWidth = 51;
-            dgvKho.Size = new Size(431, 317);
+            dgvKho.Size = new Size(431, 357);
             dgvKho.TabIndex = 0;
             dgvKho.CellClick += dgvKho_CellClick;
             // 
@@ -319,7 +349,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(925, 348);
+            ClientSize = new Size(925, 387);
             Controls.Add(panel2);
             Name = "frmQuanLyKho";
             StartPosition = FormStartPosition.CenterScreen;
@@ -327,6 +357,8 @@
             panel1.ResumeLayout(false);
             panel16.ResumeLayout(false);
             panel16.PerformLayout();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
@@ -369,5 +401,8 @@
         private TextBox txbSoLuong;
         private Label label1;
         private Button btnReset;
+        private Panel panel6;
+        private TextBox txbSoLuongThem;
+        private Label lblSoLuongThem;
     }
 }

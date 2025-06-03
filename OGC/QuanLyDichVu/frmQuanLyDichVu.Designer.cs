@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             pnlPhai = new Panel();
+            btnKiemTra = new Button();
             btnXacNhanThanhToanThanhCong = new Button();
             btnResetGioHang = new Button();
             btnThanhToan = new Button();
@@ -48,6 +49,7 @@
             // 
             // pnlPhai
             // 
+            pnlPhai.Controls.Add(btnKiemTra);
             pnlPhai.Controls.Add(btnXacNhanThanhToanThanhCong);
             pnlPhai.Controls.Add(btnResetGioHang);
             pnlPhai.Controls.Add(btnThanhToan);
@@ -60,9 +62,19 @@
             pnlPhai.Size = new Size(304, 447);
             pnlPhai.TabIndex = 1;
             // 
+            // btnKiemTra
+            // 
+            btnKiemTra.Location = new Point(195, 416);
+            btnKiemTra.Name = "btnKiemTra";
+            btnKiemTra.Size = new Size(75, 23);
+            btnKiemTra.TabIndex = 5;
+            btnKiemTra.Text = "Kiểm tra";
+            btnKiemTra.UseVisualStyleBackColor = true;
+            btnKiemTra.Click += btnKiemTra_Click;
+            // 
             // btnXacNhanThanhToanThanhCong
             // 
-            btnXacNhanThanhToanThanhCong.Location = new Point(120, 416);
+            btnXacNhanThanhToanThanhCong.Location = new Point(35, 416);
             btnXacNhanThanhToanThanhCong.Name = "btnXacNhanThanhToanThanhCong";
             btnXacNhanThanhToanThanhCong.Size = new Size(75, 23);
             btnXacNhanThanhToanThanhCong.TabIndex = 4;
@@ -217,5 +229,6 @@
         private Button btnThanhToan;
         public FlowLayoutPanel flpCart;
         private Button btnXacNhanThanhToanThanhCong;
+        private Button btnKiemTra;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -40,6 +41,34 @@ namespace OGC.DAO
             string query = "EXEC usp_DanhSachCTHD_MONAN @IDHoaDon ";
             return DataProvider.Instance.ExecuteQuery(query, new object[] { idHoaDon });
         }
+
+        //-----kiểm tra chi tiết hóa đơn tồn tại
+        public bool KiemTraTonTaiID(int idCTHD_MonAn)
+        {
+            string query = "SELECT COUNT(*) FROM CTHD_MONAN WHERE ID = @ID ";
+            int result = (int)DataProvider.Instance.ExecuteScalar(query, new object[] { idCTHD_MonAn });
+            return result > 0;
+        }
+
+        //---- cập nhật trạng thái cho hóa đơn, nếu xuất thành công thì hiện "đã in"
+        public bool CapNhatTrangThai(int idCTHD, string trangThai)
+        {
+            string query = "UPDATE CTHD_MONAN SET TrangThai = @TrangThai WHERE ID = @ID ";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { trangThai, idCTHD });
+            return result > 0;
+        }
+
+        //-- hàm trả về trạng thái dựa trên id
+        public string LayTrangThaiTheoID(int id)
+        {
+            string query = "SELECT TrangThai FROM CTHD_MONAN WHERE ID = @ID";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { id });
+            return result?.ToString() ?? ""; // Trả về chuỗi rỗng nếu không có dữ liệu
+        }
+
+
+
+
 
 
 

@@ -82,6 +82,19 @@ namespace OGC.DAO
             return count > 0;
         }
 
+        //---- lấy số lượng tồn
+        public int LaySoLuongTon(int idMonAn)
+        {
+            string query = "SELECT SoLuongTon FROM KHO WHERE IDMonAn = @IDMonAn ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idMonAn });
+
+            if (result != null && int.TryParse(result.ToString(), out int soLuongTon))
+                return soLuongTon;
+
+            return -1; // Không tìm thấy hoặc lỗi
+        }
+
+
 
 
 
