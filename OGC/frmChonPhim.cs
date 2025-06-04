@@ -44,7 +44,7 @@ namespace OGC
         {
             fplHienThiPhim.Controls.Clear();
 
-            DateTime ngayChieu = dtpChonNgayChieu.Value.Date;
+            DateTime ngayChieu = chbTatCaNgay.Checked ? DateTime.MinValue : dtpChonNgayChieu.Value.Date;
 
             int idTheLoai = (cbtheloaiphim.SelectedItem as DTO_THELOAIPHIM)?.ID ?? 0;
             int idDinhDang = (cbdinhdang.SelectedItem as DTO_DINHDANGPHIM)?.ID ?? 0;
@@ -238,7 +238,7 @@ namespace OGC
 
         private void btnDatVe_Click(object sender, EventArgs e)
         {
-           
+
             Button btn = sender as Button;
             PhimDTO phim = btn?.Tag as PhimDTO;
 
@@ -285,6 +285,11 @@ namespace OGC
         }
 
         private void cbtheloaiphim_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            LoadPhimTheoBoLoc();
+        }
+
+        private void chbTatCaNgay_CheckedChanged(object sender, EventArgs e)
         {
             LoadPhimTheoBoLoc();
         }

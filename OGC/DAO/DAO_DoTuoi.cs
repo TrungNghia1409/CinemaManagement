@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OGC.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -52,6 +53,26 @@ namespace OGC.DAO
                 return result.ToString();
 
             return null; // hoặc trả về string.Empty tùy bạn
+        }
+
+        public DTO_DOTUOI GetDoTuoiTheoTenPhim(string tenPhim)
+        {
+            string query = @"
+                SELECT DT.* 
+                FROM DOTUOI DT
+                JOIN PHIM P ON P.IDDoTuoi = DT.ID
+                WHERE P.TenPhim = @TenPhim";
+
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim });
+
+            if (dt.Rows.Count > 0)
+            {
+                return new DTO_DOTUOI(dt.Rows[0]);
+            }
+            else
+            {
+                return null;
+            }
         }
 
 

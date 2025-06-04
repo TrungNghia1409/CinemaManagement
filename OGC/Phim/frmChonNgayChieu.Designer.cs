@@ -30,10 +30,14 @@
         {
             panel1 = new Panel();
             panel5 = new Panel();
+            lbDoTuoi = new Label();
+            label3 = new Label();
             lbTenPhim = new Label();
             lbDinhDang = new Label();
+            lbTenPhong = new Label();
             lbTheLoai = new Label();
             label2 = new Label();
+            label1 = new Label();
             lb1 = new Label();
             panel2 = new Panel();
             ptbAnhPhim = new PictureBox();
@@ -53,20 +57,42 @@
             panel1.Controls.Add(panel5);
             panel1.Location = new Point(3, 10);
             panel1.Name = "panel1";
-            panel1.Size = new Size(871, 160);
+            panel1.Size = new Size(775, 160);
             panel1.TabIndex = 3;
             // 
             // panel5
             // 
+            panel5.Controls.Add(lbDoTuoi);
+            panel5.Controls.Add(label3);
             panel5.Controls.Add(lbTenPhim);
             panel5.Controls.Add(lbDinhDang);
+            panel5.Controls.Add(lbTenPhong);
             panel5.Controls.Add(lbTheLoai);
             panel5.Controls.Add(label2);
+            panel5.Controls.Add(label1);
             panel5.Controls.Add(lb1);
-            panel5.Location = new Point(9, 3);
+            panel5.Location = new Point(3, 3);
             panel5.Name = "panel5";
-            panel5.Size = new Size(862, 154);
+            panel5.Size = new Size(763, 154);
             panel5.TabIndex = 0;
+            // 
+            // lbDoTuoi
+            // 
+            lbDoTuoi.AutoSize = true;
+            lbDoTuoi.Location = new Point(104, 112);
+            lbDoTuoi.Name = "lbDoTuoi";
+            lbDoTuoi.Size = new Size(91, 20);
+            lbDoTuoi.TabIndex = 8;
+            lbDoTuoi.Text = "labelDoTuoi";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 112);
+            label3.Name = "label3";
+            label3.Size = new Size(69, 20);
+            label3.TabIndex = 7;
+            label3.Text = "Độ Tuổi: ";
             // 
             // lbTenPhim
             // 
@@ -81,11 +107,20 @@
             // lbDinhDang
             // 
             lbDinhDang.AutoSize = true;
-            lbDinhDang.Location = new Point(133, 121);
+            lbDinhDang.Location = new Point(576, 112);
             lbDinhDang.Name = "lbDinhDang";
             lbDinhDang.Size = new Size(109, 20);
             lbDinhDang.TabIndex = 6;
             lbDinhDang.Text = "labelDinhDang";
+            // 
+            // lbTenPhong
+            // 
+            lbTenPhong.AutoSize = true;
+            lbTenPhong.Location = new Point(510, 70);
+            lbTenPhong.Name = "lbTenPhong";
+            lbTenPhong.Size = new Size(94, 20);
+            lbTenPhong.TabIndex = 6;
+            lbTenPhong.Text = "labelTheLoai";
             // 
             // lbTheLoai
             // 
@@ -99,11 +134,20 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 121);
+            label2.Location = new Point(446, 112);
             label2.Name = "label2";
-            label2.Size = new Size(133, 20);
+            label2.Size = new Size(124, 20);
             label2.TabIndex = 5;
-            label2.Text = "Định Dạng Phòng: ";
+            label2.Text = "Định Dạng Phim: ";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(446, 70);
+            label1.Name = "label1";
+            label1.Size = new Size(58, 20);
+            label1.TabIndex = 4;
+            label1.Text = "Phòng: ";
             // 
             // lb1
             // 
@@ -124,9 +168,9 @@
             // 
             // ptbAnhPhim
             // 
-            ptbAnhPhim.Location = new Point(9, 3);
+            ptbAnhPhim.Location = new Point(3, 3);
             ptbAnhPhim.Name = "ptbAnhPhim";
-            ptbAnhPhim.Size = new Size(251, 400);
+            ptbAnhPhim.Size = new Size(257, 400);
             ptbAnhPhim.TabIndex = 0;
             ptbAnhPhim.TabStop = false;
             // 
@@ -136,14 +180,14 @@
             panel4.Controls.Add(label4);
             panel4.Location = new Point(272, 176);
             panel4.Name = "panel4";
-            panel4.Size = new Size(602, 412);
+            panel4.Size = new Size(506, 412);
             panel4.TabIndex = 5;
             // 
             // flpNgayChieu
             // 
             flpNgayChieu.Location = new Point(3, 26);
             flpNgayChieu.Name = "flpNgayChieu";
-            flpNgayChieu.Size = new Size(596, 380);
+            flpNgayChieu.Size = new Size(494, 380);
             flpNgayChieu.TabIndex = 0;
             // 
             // label4
@@ -168,7 +212,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(876, 639);
+            ClientSize = new Size(782, 670);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Controls.Add(panel4);
@@ -200,5 +244,9 @@
         private Label lbTheLoai;
         private Label label2;
         private Label lb1;
+        private Label lbTenPhong;
+        private Label lbDoTuoi;
+        private Label label3;
+        private Label label1;
     }
 }

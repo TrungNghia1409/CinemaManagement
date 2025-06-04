@@ -11,6 +11,8 @@ namespace OGC.Phim
     {
         private string tenPhim;
         private DateTime ngayChieu;
+        private int idPhong;
+
 
         public frmChonGioChieu(string tenPhim, DateTime ngayChieu)
         {
@@ -29,6 +31,10 @@ namespace OGC.Phim
         private void LoadThongTinPhim()
         {
             lbTenPhim.Text = tenPhim;
+            lbNgayChieu.Text = ngayChieu.ToString("dd/MM/yyyy");
+
+            // Lấy idPhong dựa trên tenPhim
+            idPhong = DAO_PHONGCHIEU.Instance.GetIDPhongTheoTenPhim(tenPhim) ?? 0;
 
             // Gọi stored procedure lấy định dạng phim theo tên phim
             var dinhDang = DAO_DINHDANGPHIM.Instance.GetDinhDangPhimTheoTenPhim(tenPhim);
@@ -41,6 +47,30 @@ namespace OGC.Phim
             {
                 lbDinhDang.Text = "Không rõ";
             }
+
+
+            // Lấy độ tuổi phim
+            var doTuoi = DAO_DoTuoi.Instance.GetDoTuoiTheoTenPhim(tenPhim);
+            lbDoTuoi.Text = doTuoi != null ? doTuoi.TenDoTuoi : "Không rõ";
+
+
+            // Lấy thông tin thể loại phim
+            var theLoai = DAO_THELOAIPHIM.Instance.GetTheLoaiPhimTheoTenPhim(tenPhim);
+            lbTheLoai.Text = theLoai != null ? theLoai.TenTheLoai : "Không rõ";
+
+
+            // Lấy thông tin phòng chiếu
+            if (idPhong != 0)
+            {
+                var tenLoaiPhong = DAO_PHONGCHIEU.Instance.GetTenLoaiPhongByIDPhong(idPhong);
+                lbTenPhong.Text = !string.IsNullOrEmpty(tenLoaiPhong) ? tenLoaiPhong : "Không rõ";
+            }
+            else
+            {
+                lbTenPhong.Text = "Chưa chọn phòng";
+            }
+
+
         }
         private void LoadGioChieu()
         {

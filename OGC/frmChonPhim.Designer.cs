@@ -29,13 +29,16 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            chbTatCaNgay = new CheckBox();
             btnTimPhim = new Button();
             txbTimKiem = new TextBox();
             label2 = new Label();
             cbtheloaiphim = new ComboBox();
             cbdinhdang = new ComboBox();
             dtpChonNgayChieu = new DateTimePicker();
-            label1 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
             panel2 = new Panel();
             fplHienThiPhim = new FlowLayoutPanel();
             panel1.SuspendLayout();
@@ -44,21 +47,35 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(chbTatCaNgay);
             panel1.Controls.Add(btnTimPhim);
             panel1.Controls.Add(txbTimKiem);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(cbtheloaiphim);
             panel1.Controls.Add(cbdinhdang);
             panel1.Controls.Add(dtpChonNgayChieu);
-            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(label3);
             panel1.Location = new Point(3, 6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1103, 80);
+            panel1.Size = new Size(1103, 101);
             panel1.TabIndex = 0;
+            // 
+            // chbTatCaNgay
+            // 
+            chbTatCaNgay.AutoSize = true;
+            chbTatCaNgay.Location = new Point(281, 43);
+            chbTatCaNgay.Name = "chbTatCaNgay";
+            chbTatCaNgay.Size = new Size(71, 24);
+            chbTatCaNgay.TabIndex = 6;
+            chbTatCaNgay.Text = "Tất cả";
+            chbTatCaNgay.UseVisualStyleBackColor = true;
+            chbTatCaNgay.CheckedChanged += chbTatCaNgay_CheckedChanged;
             // 
             // btnTimPhim
             // 
-            btnTimPhim.Location = new Point(1045, 18);
+            btnTimPhim.Location = new Point(1045, 41);
             btnTimPhim.Name = "btnTimPhim";
             btnTimPhim.Size = new Size(49, 28);
             btnTimPhim.TabIndex = 5;
@@ -67,7 +84,7 @@
             // 
             // txbTimKiem
             // 
-            txbTimKiem.Location = new Point(825, 19);
+            txbTimKiem.Location = new Point(825, 42);
             txbTimKiem.Name = "txbTimKiem";
             txbTimKiem.Size = new Size(214, 27);
             txbTimKiem.TabIndex = 4;
@@ -76,7 +93,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(750, 25);
+            label2.Location = new Point(825, 3);
             label2.Name = "label2";
             label2.Size = new Size(69, 20);
             label2.TabIndex = 3;
@@ -85,7 +102,7 @@
             // cbtheloaiphim
             // 
             cbtheloaiphim.FormattingEnabled = true;
-            cbtheloaiphim.Location = new Point(535, 18);
+            cbtheloaiphim.Location = new Point(583, 41);
             cbtheloaiphim.Name = "cbtheloaiphim";
             cbtheloaiphim.Size = new Size(151, 28);
             cbtheloaiphim.TabIndex = 2;
@@ -94,7 +111,7 @@
             // cbdinhdang
             // 
             cbdinhdang.FormattingEnabled = true;
-            cbdinhdang.Location = new Point(378, 18);
+            cbdinhdang.Location = new Point(426, 41);
             cbdinhdang.Name = "cbdinhdang";
             cbdinhdang.Size = new Size(151, 28);
             cbdinhdang.TabIndex = 2;
@@ -102,41 +119,59 @@
             // 
             // dtpChonNgayChieu
             // 
-            dtpChonNgayChieu.Location = new Point(122, 18);
+            dtpChonNgayChieu.Location = new Point(25, 41);
             dtpChonNgayChieu.Name = "dtpChonNgayChieu";
             dtpChonNgayChieu.Size = new Size(250, 27);
             dtpChonNgayChieu.TabIndex = 1;
             dtpChonNgayChieu.ValueChanged += dtpChonNgayChieu_ValueChanged;
             // 
-            // label1
+            // label5
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(16, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(100, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Đặt Vé Nhanh";
+            label5.AutoSize = true;
+            label5.Location = new Point(583, 3);
+            label5.Name = "label5";
+            label5.Size = new Size(102, 20);
+            label5.TabIndex = 0;
+            label5.Text = "Thể Loại Phim";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(426, 3);
+            label4.Name = "label4";
+            label4.Size = new Size(121, 20);
+            label4.TabIndex = 0;
+            label4.Text = "Định Dạng Phim ";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(25, 3);
+            label3.Name = "label3";
+            label3.Size = new Size(124, 20);
+            label3.TabIndex = 0;
+            label3.Text = "Ngày Công Chiếu";
             // 
             // panel2
             // 
             panel2.Controls.Add(fplHienThiPhim);
-            panel2.Location = new Point(3, 92);
+            panel2.Location = new Point(3, 110);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1103, 513);
+            panel2.Size = new Size(1103, 514);
             panel2.TabIndex = 1;
             // 
             // fplHienThiPhim
             // 
-            fplHienThiPhim.Location = new Point(2, 5);
+            fplHienThiPhim.Location = new Point(2, 3);
             fplHienThiPhim.Name = "fplHienThiPhim";
-            fplHienThiPhim.Size = new Size(1098, 505);
+            fplHienThiPhim.Size = new Size(1098, 526);
             fplHienThiPhim.TabIndex = 0;
             // 
             // frmChonPhim
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1107, 608);
+            ClientSize = new Size(1107, 627);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmChonPhim";
@@ -155,9 +190,12 @@
         private ComboBox cbtheloaiphim;
         private ComboBox cbdinhdang;
         private DateTimePicker dtpChonNgayChieu;
-        private Label label1;
         private Button btnTimPhim;
         private TextBox txbTimKiem;
         private Label label2;
+        private CheckBox chbTatCaNgay;
+        private Label label5;
+        private Label label4;
+        private Label label3;
     }
 }

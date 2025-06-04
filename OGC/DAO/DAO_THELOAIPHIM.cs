@@ -112,5 +112,26 @@ namespace OGC.DAO
 
             return list;
         }
+
+        public DTO_THELOAIPHIM GetTheLoaiPhimTheoTenPhim(string tenPhim)
+        {
+            string query = @"
+            SELECT TL.* 
+            FROM THELOAIPHIM TL
+            JOIN PHIM P ON P.IDTheLoaiPhim = TL.ID
+            WHERE P.TenPhim = @TenPhim ";
+
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim });
+
+            if (dt.Rows.Count > 0)
+            {
+                return new DTO_THELOAIPHIM(dt.Rows[0]);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
     }
 }
