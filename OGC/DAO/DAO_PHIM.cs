@@ -61,6 +61,12 @@ public class PhimDAO
         return list;
     }
 
+
+
+
+
+
+
     // Hàm chuyển DataRow sang PhimDTO
     private PhimDTO DataRowToPhimDTO(DataRow row)
     {

@@ -128,6 +128,25 @@ namespace OGC.DAO
         }
 
 
+        public int? GetIDPhongTheoTenPhim(string tenPhim)
+        {
+            string query = @"
+        SELECT TOP 1 LC.IDPhong
+        FROM LICHCHIEU LC
+        JOIN PHIM P ON LC.IDPhim = P.ID
+        WHERE P.TenPhim = @TenPhim ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim });
+
+            if (result != null && result != DBNull.Value)
+                return Convert.ToInt32(result);
+            else
+                return null; // Không tìm thấy phòng chiếu cho phim
+        }
+
+
+
+
         public string GetTenLoaiPhongByIDPhong(int? idPhong)
         {
             string query = @"
