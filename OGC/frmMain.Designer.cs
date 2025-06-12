@@ -34,31 +34,31 @@
             pnlUser = new Panel();
             lblUser = new Label();
             label1 = new Label();
-            panel3 = new Panel();
-            panel9 = new Panel();
+            pnlQuanLyPhim = new Panel();
             btnQuanLyPhim = new Button();
-            panel7 = new Panel();
+            pnlDichVu = new Panel();
             btnDichVu = new Button();
-            panel5 = new Panel();
+            pnlQuanLyChung = new Panel();
             btnQuanLyChung = new Button();
-            panel8 = new Panel();
+            pnlThongKe = new Panel();
             btnThongKe = new Button();
-            panel6 = new Panel();
+            pnlDatVe = new Panel();
             btnDatVe = new Button();
-            panel4 = new Panel();
+            pnlTrangChu = new Panel();
             btnTrangChu = new Button();
             panel_Body = new Panel();
+            flơThanhDieuHuong = new FlowLayoutPanel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             panel2.SuspendLayout();
             pnlUser.SuspendLayout();
-            panel3.SuspendLayout();
-            panel9.SuspendLayout();
-            panel7.SuspendLayout();
-            panel5.SuspendLayout();
-            panel8.SuspendLayout();
-            panel6.SuspendLayout();
-            panel4.SuspendLayout();
+            pnlQuanLyPhim.SuspendLayout();
+            pnlDichVu.SuspendLayout();
+            pnlQuanLyChung.SuspendLayout();
+            pnlThongKe.SuspendLayout();
+            pnlDatVe.SuspendLayout();
+            pnlTrangChu.SuspendLayout();
+            flơThanhDieuHuong.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -122,155 +122,159 @@
             label1.TabIndex = 0;
             label1.Text = "Home";
             // 
-            // panel3
+            // pnlQuanLyPhim
             // 
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(panel9);
-            panel3.Controls.Add(panel7);
-            panel3.Controls.Add(panel5);
-            panel3.Controls.Add(panel8);
-            panel3.Controls.Add(panel6);
-            panel3.Controls.Add(panel4);
-            panel3.Location = new Point(1, 76);
-            panel3.Margin = new Padding(3, 2, 3, 2);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(202, 486);
-            panel3.TabIndex = 0;
-            // 
-            // panel9
-            // 
-            panel9.Controls.Add(btnQuanLyPhim);
-            panel9.Location = new Point(3, 381);
-            panel9.Margin = new Padding(3, 2, 3, 2);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(196, 71);
-            panel9.TabIndex = 0;
+            pnlQuanLyPhim.Controls.Add(btnQuanLyPhim);
+            pnlQuanLyPhim.Location = new Point(3, 377);
+            pnlQuanLyPhim.Margin = new Padding(3, 2, 3, 2);
+            pnlQuanLyPhim.Name = "pnlQuanLyPhim";
+            pnlQuanLyPhim.Size = new Size(184, 71);
+            pnlQuanLyPhim.TabIndex = 0;
             // 
             // btnQuanLyPhim
             // 
-            btnQuanLyPhim.Location = new Point(0, 2);
+            btnQuanLyPhim.Dock = DockStyle.Fill;
+            btnQuanLyPhim.Location = new Point(0, 0);
             btnQuanLyPhim.Margin = new Padding(3, 2, 3, 2);
             btnQuanLyPhim.Name = "btnQuanLyPhim";
-            btnQuanLyPhim.Size = new Size(193, 67);
+            btnQuanLyPhim.Size = new Size(184, 71);
             btnQuanLyPhim.TabIndex = 0;
             btnQuanLyPhim.Text = "Quản Lý Phim";
             btnQuanLyPhim.UseVisualStyleBackColor = true;
             btnQuanLyPhim.Click += btnQuanLyPhim_Click;
             // 
-            // panel7
+            // pnlDichVu
             // 
-            panel7.Controls.Add(btnDichVu);
-            panel7.Location = new Point(3, 230);
-            panel7.Margin = new Padding(3, 2, 3, 2);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(196, 71);
-            panel7.TabIndex = 0;
+            pnlDichVu.Controls.Add(btnDichVu);
+            pnlDichVu.Location = new Point(3, 227);
+            pnlDichVu.Margin = new Padding(3, 2, 3, 2);
+            pnlDichVu.Name = "pnlDichVu";
+            pnlDichVu.Size = new Size(184, 71);
+            pnlDichVu.TabIndex = 0;
             // 
             // btnDichVu
             // 
-            btnDichVu.Location = new Point(0, 2);
+            btnDichVu.Dock = DockStyle.Fill;
+            btnDichVu.Location = new Point(0, 0);
             btnDichVu.Margin = new Padding(3, 2, 3, 2);
             btnDichVu.Name = "btnDichVu";
-            btnDichVu.Size = new Size(193, 67);
+            btnDichVu.Size = new Size(184, 71);
             btnDichVu.TabIndex = 0;
             btnDichVu.Text = "Dịch Vụ";
             btnDichVu.UseVisualStyleBackColor = true;
             btnDichVu.Click += btnDichVu_Click;
             // 
-            // panel5
+            // pnlQuanLyChung
             // 
-            panel5.Controls.Add(btnQuanLyChung);
-            panel5.Location = new Point(3, 78);
-            panel5.Margin = new Padding(3, 2, 3, 2);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(196, 71);
-            panel5.TabIndex = 0;
+            pnlQuanLyChung.Controls.Add(btnQuanLyChung);
+            pnlQuanLyChung.Location = new Point(3, 77);
+            pnlQuanLyChung.Margin = new Padding(3, 2, 3, 2);
+            pnlQuanLyChung.Name = "pnlQuanLyChung";
+            pnlQuanLyChung.Size = new Size(184, 71);
+            pnlQuanLyChung.TabIndex = 0;
             // 
             // btnQuanLyChung
             // 
-            btnQuanLyChung.Location = new Point(0, 2);
+            btnQuanLyChung.Dock = DockStyle.Fill;
+            btnQuanLyChung.Location = new Point(0, 0);
             btnQuanLyChung.Margin = new Padding(3, 2, 3, 2);
             btnQuanLyChung.Name = "btnQuanLyChung";
-            btnQuanLyChung.Size = new Size(193, 67);
+            btnQuanLyChung.Size = new Size(184, 71);
             btnQuanLyChung.TabIndex = 0;
             btnQuanLyChung.Text = "Quản Lý Chung";
             btnQuanLyChung.UseVisualStyleBackColor = true;
             btnQuanLyChung.Click += btnQuanLyChung_Click;
             // 
-            // panel8
+            // pnlThongKe
             // 
-            panel8.Controls.Add(btnThongKe);
-            panel8.Location = new Point(3, 305);
-            panel8.Margin = new Padding(3, 2, 3, 2);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(196, 71);
-            panel8.TabIndex = 0;
+            pnlThongKe.Controls.Add(btnThongKe);
+            pnlThongKe.Location = new Point(3, 302);
+            pnlThongKe.Margin = new Padding(3, 2, 3, 2);
+            pnlThongKe.Name = "pnlThongKe";
+            pnlThongKe.Size = new Size(184, 71);
+            pnlThongKe.TabIndex = 0;
             // 
             // btnThongKe
             // 
-            btnThongKe.Location = new Point(0, 2);
+            btnThongKe.Dock = DockStyle.Fill;
+            btnThongKe.Location = new Point(0, 0);
             btnThongKe.Margin = new Padding(3, 2, 3, 2);
             btnThongKe.Name = "btnThongKe";
-            btnThongKe.Size = new Size(193, 67);
+            btnThongKe.Size = new Size(184, 71);
             btnThongKe.TabIndex = 0;
             btnThongKe.Text = "Thống Kê";
             btnThongKe.UseVisualStyleBackColor = true;
             btnThongKe.Click += btnThongKe_Click;
             // 
-            // panel6
+            // pnlDatVe
             // 
-            panel6.Controls.Add(btnDatVe);
-            panel6.Location = new Point(3, 154);
-            panel6.Margin = new Padding(3, 2, 3, 2);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(196, 71);
-            panel6.TabIndex = 0;
+            pnlDatVe.Controls.Add(btnDatVe);
+            pnlDatVe.Location = new Point(3, 152);
+            pnlDatVe.Margin = new Padding(3, 2, 3, 2);
+            pnlDatVe.Name = "pnlDatVe";
+            pnlDatVe.Size = new Size(184, 71);
+            pnlDatVe.TabIndex = 0;
             // 
             // btnDatVe
             // 
-            btnDatVe.Location = new Point(0, 2);
+            btnDatVe.Dock = DockStyle.Fill;
+            btnDatVe.Location = new Point(0, 0);
             btnDatVe.Margin = new Padding(3, 2, 3, 2);
             btnDatVe.Name = "btnDatVe";
-            btnDatVe.Size = new Size(193, 67);
+            btnDatVe.Size = new Size(184, 71);
             btnDatVe.TabIndex = 0;
             btnDatVe.Text = "Đặt Vé";
             btnDatVe.UseVisualStyleBackColor = true;
             btnDatVe.Click += btnDatVe_Click;
             // 
-            // panel4
+            // pnlTrangChu
             // 
-            panel4.Controls.Add(btnTrangChu);
-            panel4.Location = new Point(3, 2);
-            panel4.Margin = new Padding(3, 2, 3, 2);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(196, 71);
-            panel4.TabIndex = 0;
+            pnlTrangChu.Controls.Add(btnTrangChu);
+            pnlTrangChu.Location = new Point(3, 2);
+            pnlTrangChu.Margin = new Padding(3, 2, 3, 2);
+            pnlTrangChu.Name = "pnlTrangChu";
+            pnlTrangChu.Size = new Size(184, 71);
+            pnlTrangChu.TabIndex = 0;
             // 
             // btnTrangChu
             // 
-            btnTrangChu.Location = new Point(0, 2);
+            btnTrangChu.Dock = DockStyle.Fill;
+            btnTrangChu.Location = new Point(0, 0);
             btnTrangChu.Margin = new Padding(3, 2, 3, 2);
             btnTrangChu.Name = "btnTrangChu";
-            btnTrangChu.Size = new Size(193, 67);
+            btnTrangChu.Size = new Size(184, 71);
             btnTrangChu.TabIndex = 0;
             btnTrangChu.Text = "Trang Chủ";
             btnTrangChu.UseVisualStyleBackColor = true;
             // 
             // panel_Body
             // 
-            panel_Body.Location = new Point(206, 76);
+            panel_Body.Location = new Point(208, 76);
             panel_Body.Margin = new Padding(3, 2, 3, 2);
             panel_Body.Name = "panel_Body";
-            panel_Body.Size = new Size(1088, 486);
+            panel_Body.Size = new Size(1086, 486);
             panel_Body.TabIndex = 1;
+            // 
+            // flơThanhDieuHuong
+            // 
+            flơThanhDieuHuong.Controls.Add(pnlTrangChu);
+            flơThanhDieuHuong.Controls.Add(pnlQuanLyChung);
+            flơThanhDieuHuong.Controls.Add(pnlDatVe);
+            flơThanhDieuHuong.Controls.Add(pnlDichVu);
+            flơThanhDieuHuong.Controls.Add(pnlThongKe);
+            flơThanhDieuHuong.Controls.Add(pnlQuanLyPhim);
+            flơThanhDieuHuong.Location = new Point(6, 76);
+            flơThanhDieuHuong.Name = "flơThanhDieuHuong";
+            flơThanhDieuHuong.Size = new Size(194, 486);
+            flơThanhDieuHuong.TabIndex = 1;
             // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1297, 565);
+            Controls.Add(flơThanhDieuHuong);
             Controls.Add(panel_Body);
-            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Margin = new Padding(3, 2, 3, 2);
@@ -282,13 +286,13 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             pnlUser.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel9.ResumeLayout(false);
-            panel7.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel8.ResumeLayout(false);
-            panel6.ResumeLayout(false);
-            panel4.ResumeLayout(false);
+            pnlQuanLyPhim.ResumeLayout(false);
+            pnlDichVu.ResumeLayout(false);
+            pnlQuanLyChung.ResumeLayout(false);
+            pnlThongKe.ResumeLayout(false);
+            pnlDatVe.ResumeLayout(false);
+            pnlTrangChu.ResumeLayout(false);
+            flơThanhDieuHuong.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -298,13 +302,12 @@
         private Panel panel1;
         private Panel panel2;
         private Label label1;
-        private Panel panel3;
-        private Panel panel9;
-        private Panel panel7;
-        private Panel panel5;
-        private Panel panel8;
-        private Panel panel6;
-        private Panel panel4;
+        private Panel pnlQuanLyPhim;
+        private Panel pnlDichVu;
+        private Panel pnlQuanLyChung;
+        private Panel pnlThongKe;
+        private Panel pnlDatVe;
+        private Panel pnlTrangChu;
         private Button btnDichVu;
         private Button btnQuanLyChung;
         private Button btnThongKe;
@@ -315,5 +318,6 @@
         private Panel panel_Body;
         private Panel pnlUser;
         private Label lblUser;
+        private FlowLayoutPanel flơThanhDieuHuong;
     }
 }

@@ -148,5 +148,19 @@ namespace OGC.DAO
 
             return result > 0;
         }
+
+        //-------- lấy thong tin chức vụ dựa vào tài khoản nhân viên
+        public string GetTenChucVuByUsername(string username)
+        {
+            string query = @"
+                        SELECT CV.TenChucVu
+                        FROM NHANVIEN NV
+                        JOIN CHUCVU CV ON NV.IDChucVu = CV.ID
+                        WHERE NV.Username = @Username ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { username });
+
+            return result?.ToString() ?? ""; // Trả về "" nếu không có kết quả
+        }
     }
 }
