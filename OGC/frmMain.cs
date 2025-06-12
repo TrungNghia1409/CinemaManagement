@@ -7,6 +7,7 @@ using System;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using OGC.QuanLyChung;
 using OGC.ThongKe;
+using OGC.DAO;
 
 namespace OGC
 {
@@ -18,6 +19,10 @@ namespace OGC
         {
             InitializeComponent();
             currentUser = username; // Lưu tài khoản nhân viên đang đăng nhập
+
+            string tenChucVu = DAO_NHANVIEN.Instance.GetTenChucVuByUsername(currentUser);
+
+            PhanQuyenTheoTenChucVu(tenChucVu); //gọi hàm phân quyền
 
             LoadlblUser(); //hiển thị tên tài khoản của nhân viên đăng nhập
         }
@@ -103,6 +108,45 @@ namespace OGC
         {
             OpenChildForm(new frmThongKe());
         }
+
+        //-------phân quyền chức năng dựa trên chức vụ của nhân viên
+        private void PhanQuyenTheoTenChucVu(string tenChucVu)
+        {
+            // Đặt tất cả button ẩn trước
+            btnQuanLyChung.Visible = false;
+            btnDatVe.Visible = false;
+            btnDichVu.Visible = false;
+            btnThongKe.Visible = false;
+
+            switch (tenChucVu)
+            {
+                case "Chủ rạp":
+                case "Quản lý":
+                    // Mở toàn bộ chức năng
+                    btnQuanLyChung.Visible = true;
+                    btnDatVe.Visible = true;
+                    btnDichVu.Visible = true;
+                    btnThongKe.Visible = true;
+                    break;
+
+                case "Nhân viên bán vé":
+                    btnDatVe.Visible = true;
+                    break;
+
+                case "Nhân viên dịch vụ":
+                    btnDichVu.Visible = true;
+                    break;
+
+                case "Kế toán":
+                    btnThongKe.Visible = true;
+                    break;
+
+                default:
+                    // Không rõ chức vụ => khóa toàn bộ
+                    break;
+            }
+        }
+
 
 
         #endregion
