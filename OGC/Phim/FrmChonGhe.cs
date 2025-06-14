@@ -15,12 +15,42 @@ namespace OGC.Phim
     public partial class FrmChonGhe : Form
     {
 
+        // ánh xạ giữa Button và mã ghế (VD: Button A1 → "A1")
+        private Dictionary<Button, string> gheVaMa = new Dictionary<Button, string>();
+
+        // danh sách các button ghế đang được chọn
+        private List<Button> gheDangChon = new List<Button>();
+
+        // danh sách mã ghế đã đặt (bị disable)
+        private List<string> gheDaDat = new List<string>();
+
+        private int giaVe = 50000; // có thể tùy chỉnh theo loại phòng
+
+        // ánh xạ mã ghế → đối tượng GheDTO (để lấy ID khi đặt)
+        private Dictionary<string, GheDTO> dictGhe = new Dictionary<string, GheDTO>();
+
+
+
         private string tenPhim;
         private DateTime ngayChieu;
         private TimeSpan gioChieu;
         private string dinhDang;
         private int idPhong;
         private List<Button> selectedSeats = new List<Button>();
+
+
+
+        private void CapNhatThongTinGheDangChon()
+        {
+            var danhSach = gheDangChon
+                .Select(btn => btn.Text)
+                .OrderBy(g => g[0]) // theo hàng A, B, C,...
+                .ThenBy(g => int.Parse(g.Substring(1))) // theo số thứ tự
+                .ToList();
+
+            lbGheDaChon.Text = "Ghế đã chọn: " + string.Join(", ", danhSach);
+            lbGiaGhe.Text = "Tổng tiền: " + (danhSach.Count * giaVe).ToString("N0") + " đ";
+        }
 
         public FrmChonGhe(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu)
         {
@@ -29,46 +59,109 @@ namespace OGC.Phim
             this.ngayChieu = ngayChieu;
             this.gioChieu = gioChieu;
 
-            int idPhong = DAO_LICHCHIEU.Instance.GetIDPhong(tenPhim, ngayChieu, gioChieu);
+            LoadDinhDangPhong(); // giữ nguyên dòng này nếu cần
+
+            LoadGhe();
+        }
+
+        private void LoadGhe()
+        {
+            idPhong = DAO_LICHCHIEU.Instance.GetIDPhong(tenPhim, ngayChieu, gioChieu);
             int idLoaiPhong = DAO_PHONGCHIEU.Instance.LayIDLoaiPhongTheoIDPhong(idPhong);
             int sucChua = DAO_LOAIPHONG.Instance.LaySucChuaTheoIDLoaiPhong(idLoaiPhong);
 
-            if (sucChua > 0)
-            {
-                flpGhe.Controls.Clear();
-                int gheMoiMotHang = 10; // bạn có thể cho tuỳ chỉnh
-                int soHang = (int)Math.Ceiling((double)sucChua / gheMoiMotHang);
+            gheDaDat.Clear();
+            dictGhe.Clear();
+            gheVaMa.Clear();
+            gheDangChon.Clear();
 
-                int soThuTu = 1;
-                for (int i = 0; i < soHang; i++)
+            var gheList = DAO_Ghe.Instance.GetListGheByIDPhong(idPhong);
+            foreach (var ghe in gheList)
+            {
+                int trangThai = DAO_Ghe.Instance.GetTrangThaiGhe(idPhong, ghe.MaGhe, ngayChieu, gioChieu);
+                if (trangThai == 1)
+                    gheDaDat.Add(ghe.MaGhe);
+                dictGhe[ghe.MaGhe] = ghe;
+            }
+
+            flpGhe.Controls.Clear();
+            int gheMoiMotHang = 10;
+            int soHang = (int)Math.Ceiling((double)sucChua / gheMoiMotHang);
+            int soThuTu = 1;
+
+            for (int i = 0; i < soHang; i++)
+            {
+                char hang = (char)('A' + i);
+
+                FlowLayoutPanel rowPanel = new FlowLayoutPanel
                 {
-                    char hang = (char)('A' + i);
-                    for (int j = 1; j <= gheMoiMotHang && soThuTu <= sucChua; j++, soThuTu++)
+                    Width = flpGhe.Width - 25,
+                    Height = 60,
+                    Margin = new Padding(0, 5, 0, 5),
+                    FlowDirection = FlowDirection.LeftToRight,
+                    WrapContents = false,
+                    AutoSize = false,
+                    Anchor = AnchorStyles.None
+                };
+
+                int soLuongTrongHang = Math.Min(gheMoiMotHang, sucChua - soThuTu + 1);
+                int tongWidth = soLuongTrongHang * 55;
+                int khoangTrong = (rowPanel.Width - tongWidth) / 2;
+                if (khoangTrong > 0)
+                    rowPanel.Padding = new Padding(khoangTrong, 0, 0, 0);
+
+                for (int j = 1; j <= gheMoiMotHang && soThuTu <= sucChua; j++, soThuTu++)
+                {
+                    string maGhe = $"{hang}{j}";
+
+                    Button btnGhe = new Button
                     {
-                        string maGhe = $"{hang}{j}";
-                        Button btnGhe = new Button();
-                        btnGhe.Text = maGhe;
-                        btnGhe.Width = 50;
-                        btnGhe.Height = 50;
-                        btnGhe.BackColor = Color.LightGreen; // tất cả ghế trống
+                        Text = maGhe,
+                        Width = 50,
+                        Height = 50,
+                        Margin = new Padding(2)
+                    };
 
-                        flpGhe.Controls.Add(btnGhe);
+                    if (gheDaDat.Contains(maGhe))
+                    {
+                        btnGhe.BackColor = Color.Red;
+                        btnGhe.Enabled = false;
                     }
+                    else
+                    {
+                        btnGhe.BackColor = Color.LightGreen;
+                        btnGhe.Click += BtnGhe_Click;
+                    }
+
+                    gheVaMa[btnGhe] = maGhe;
+                    rowPanel.Controls.Add(btnGhe);
                 }
+
+                flpGhe.Controls.Add(rowPanel);
             }
-            else
+        }
+
+        private void BtnGhe_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+
+            if (btn.BackColor == Color.LightGreen)
             {
-                MessageBox.Show("Không tìm thấy sức chứa cho loại phòng này.");
+                btn.BackColor = Color.Gold;
+                gheDangChon.Add(btn);
+            }
+            else if (btn.BackColor == Color.Gold)
+            {
+                btn.BackColor = Color.LightGreen;
+                gheDangChon.Remove(btn);
             }
 
-            //this.Load += FrmChonGhe_Load;
+            CapNhatThongTinGheDangChon();
         }
 
         private void FrmChonGhe_Load(object sender, EventArgs e)
         {
             LoadDinhDangPhong();
-            //LoadPhong();
-           // LoadGhe();
         }
 
 
@@ -89,63 +182,48 @@ namespace OGC.Phim
             lbGioChieu.Text = $"Giờ chiếu: {gioChieu:hh\\:mm}";
         }
 
-        //private void LoadPhong()
-        //{
-        //    var phongList = DAO_PHONGCHIEU.Instance.GetPhongTheoDinhDang(dinhDang);
-        //    if (phongList == null || phongList.Count == 0)
-        //    {
-        //        MessageBox.Show($"Không có phòng chiếu cho định dạng {dinhDang}.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        this.Close();
-        //        return;
-        //    }
-
-        //    idPhong = phongList[0].ID;
-        //    // Nếu bạn có label tên phòng thì gán ở đây, ví dụ lbPhong.Text = ...
-        //}
-
-        private void LoadGhe()
+        private void btnXacNhan_Click(object sender, EventArgs e)
         {
-            flpGhe.Controls.Clear();
-            selectedSeats.Clear();
-
-            DataTable dtGhe = DAO_Ghe.Instance.GetGheTheoPhong(idPhong);
-            if (dtGhe == null || dtGhe.Rows.Count == 0)
+            if (gheDangChon.Count == 0)
             {
-                MessageBox.Show("Không có ghế trong phòng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Bạn chưa chọn ghế nào.");
                 return;
             }
 
-            foreach (DataRow row in dtGhe.Rows)
+            bool datThatBai = false;
+
+            foreach (var btn in gheDangChon.ToList())
             {
-                int idGhe = Convert.ToInt32(row["ID"]);
-                string maGhe = row["MaGhe"].ToString();
-
-                int trangThai = DAO_Ghe.Instance.GetTrangThaiGhe(idPhong, maGhe, ngayChieu, gioChieu);
-
-                Button btnGhe = new Button
+                string maGhe = btn.Text;
+                if (dictGhe.TryGetValue(maGhe, out var ghe))
                 {
-                    Text = maGhe,
-                    Width = 50,
-                    Height = 50,
-                    Margin = new Padding(5),
-                    Tag = new { ID = idGhe, MaGhe = maGhe, TrangThai = trangThai }
-                };
+                    bool ok = DAO_Ghe.Instance.DatGhe(ghe.ID, ngayChieu, gioChieu);
 
-                if (trangThai == 1)
-                {
-                    btnGhe.BackColor = Color.Red;
-                    btnGhe.Enabled = false;
+                    if (ok)
+                    {
+                        // thành công → để yên, load lại sau
+                    }
+                    else
+                    {
+                        datThatBai = true;
+                        break;
+                    }
                 }
-                else
-                {
-                    btnGhe.BackColor = Color.LightGreen;
-                    btnGhe.Enabled = true;
-                    //btnGhe.Click += BtnGhe_Click;
-                }
+            }
 
-                flpGhe.Controls.Add(btnGhe);
+            LoadGhe(); // luôn load lại toàn bộ trạng thái sau xác nhận
+
+            gheDangChon.Clear();
+            CapNhatThongTinGheDangChon();
+
+            if (datThatBai)
+            {
+                MessageBox.Show("Có lỗi khi đặt một số ghế. Vui lòng thử lại.");
+            }
+            else
+            {
+                MessageBox.Show("Đặt ghế thành công!");
             }
         }
-
     }
 }
