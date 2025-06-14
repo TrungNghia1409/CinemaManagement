@@ -252,23 +252,30 @@ namespace OGC.QuanLyDichVu
 
         private void btnXoaMonAn_Click(object sender, EventArgs e)
         {
-            if (dtgvMonAn.CurrentRow != null)
+            try
             {
-                int id = (int)dtgvMonAn.CurrentRow.Cells["ID"].Value;
-
-                if (MessageBox.Show("Bạn có chắc muốn xóa món ăn này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (dtgvMonAn.CurrentRow != null)
                 {
-                    if (DAO_MONAN.Instance.XoaMonAn(id))
+                    int id = (int)dtgvMonAn.CurrentRow.Cells["ID"].Value;
+
+                    if (MessageBox.Show("Bạn có chắc muốn xóa món ăn này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        MessageBox.Show("Xóa món ăn thành công!");
-                        LoadDanhSachMonAn();
-                        HienThiMonAn();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Xóa món ăn thất bại!");
+                        if (DAO_MONAN.Instance.XoaMonAn(id))
+                        {
+                            MessageBox.Show("Xóa món ăn thành công!");
+                            LoadDanhSachMonAn();
+                            HienThiMonAn();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xóa món ăn thất bại!");
+                        }
                     }
                 }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 

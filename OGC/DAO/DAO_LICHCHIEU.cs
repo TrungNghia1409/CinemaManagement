@@ -333,6 +333,22 @@ namespace OGC.DAO
             return result != null ? Convert.ToInt32(result) : -1;
         }
 
+        //------ hàm trả về ngày giờ lịch chiếu dựa trên id phòng
+        public List<DateTime> GetNgayGioTrongNgay(int idPhong, DateTime ngay)
+        {
+            string query = @"SELECT NgayGio FROM LICHCHIEU
+                            WHERE IDPhong = @IDPhong 
+                            AND CONVERT(date, NgayGio) = CONVERT(date, @NgayGio ) ";
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { idPhong, ngay });
+
+            List<DateTime> result = new List<DateTime>();
+            foreach (DataRow row in dt.Rows)
+            {
+                result.Add(Convert.ToDateTime(row["NgayGio"]));
+            }
+
+            return result;
+        }
 
 
 

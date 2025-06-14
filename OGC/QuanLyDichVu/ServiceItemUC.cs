@@ -26,7 +26,7 @@ namespace OGC.QuanLyDichVu
             LoadData();
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             if (monAn == null) return;
 

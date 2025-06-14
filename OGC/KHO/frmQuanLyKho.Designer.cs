@@ -32,7 +32,6 @@
             btnSua = new Button();
             btnThem = new Button();
             panel1 = new Panel();
-            lblTrangThai = new Label();
             btnReset = new Button();
             panel16 = new Panel();
             cbThangCapNhat = new ComboBox();
@@ -102,7 +101,6 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(lblTrangThai);
             panel1.Controls.Add(btnReset);
             panel1.Controls.Add(btnXoa);
             panel1.Controls.Add(btnSua);
@@ -116,18 +114,8 @@
             panel1.Location = new Point(440, 3);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(472, 357);
+            panel1.Size = new Size(304, 357);
             panel1.TabIndex = 1;
-            // 
-            // lblTrangThai
-            // 
-            lblTrangThai.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTrangThai.Location = new Point(304, 96);
-            lblTrangThai.Name = "lblTrangThai";
-            lblTrangThai.Size = new Size(160, 40);
-            lblTrangThai.TabIndex = 3;
-            lblTrangThai.Text = "label1";
-            lblTrangThai.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnReset
             // 
@@ -330,7 +318,7 @@
             panel2.Location = new Point(0, 0);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(920, 376);
+            panel2.Size = new Size(752, 376);
             panel2.TabIndex = 2;
             // 
             // dgvKho
@@ -349,7 +337,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(925, 387);
+            ClientSize = new Size(755, 377);
             Controls.Add(panel2);
             Name = "frmQuanLyKho";
             StartPosition = FormStartPosition.CenterScreen;
@@ -396,7 +384,6 @@
         private ComboBox cbNgayCapNhat;
         private Label lblNgayCapNhat;
         private TextBox txbIDMonAn;
-        private Label lblTrangThai;
         private Panel panel4;
         private TextBox txbSoLuong;
         private Label label1;

@@ -21,6 +21,40 @@ namespace OGC.DAO
 
         private DAO_MONAN() { }
 
+        //---- hiển thị danh sách món ăn
+        public List<DTO_MONAN> DanhSachMonAn()
+        {
+            List<DTO_MONAN> danhSach = new List<DTO_MONAN>();
+
+            string query = @"
+        SELECT 
+            m.ID, m.TenMonAn, m.IDLoaiMonAn,
+            m.Gia, m.Anh, m.MoTa
+        FROM 
+            MONAN m
+        JOIN 
+            LOAIMONAN l ON m.IDLoaiMonAn = l.ID";
+
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow row in data.Rows)
+            {
+                DTO_MONAN mon = new DTO_MONAN
+                {
+                    ID = Convert.ToInt32(row["ID"]),
+                    TenMonAn = row["TenMonAn"].ToString(),
+                    IDLoaiMonAn = Convert.ToInt32(row["IDLoaiMonAn"]),
+                    Gia = Convert.ToDecimal(row["Gia"]),
+                    MoTa = row["MoTa"].ToString(),
+                    Anh = row["Anh"].ToString()
+                };
+
+                danhSach.Add(mon);
+            }
+
+            return danhSach;
+        }
+
 
         public Dictionary<string, List<DTO_MONAN>> LayTatCaMonAnTheoLoai()
         {

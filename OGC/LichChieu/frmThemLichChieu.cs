@@ -90,12 +90,27 @@ namespace OGC.LichChieu
         {
             try
             {
-                // Nếu hợp lệ thì mới tiếp tục sửa nhân viên
+                string maPhong = txbIDPhong.Text;
+                int iDPhong = int.Parse(maPhong);
+
                 string tenPhim = cbTenPhim.Text;
                 string tenPhong = cbTenPhong.Text;
                 DateTime ngayGio = dtpNgayGio.Value;
                 decimal giaVe = decimal.Parse(txbGiaVe.Text);
                 string diaDiem = txbDiaDiem.Text;
+
+                //------ kiểm tra cùng 1 ngày có tồn tại lịch chiếu trùng nhau (yêu cầu giữa 2 lịch chiếu cách nhau ít nhất 2 tiếng)
+                List<DateTime> lichChieuTrongNgay = DAO_LICHCHIEU.Instance.GetNgayGioTrongNgay(iDPhong, ngayGio);
+
+                foreach (DateTime thoiDiem in lichChieuTrongNgay)
+                {
+                    TimeSpan khoangCach = ngayGio - thoiDiem;
+                    if (Math.Abs(khoangCach.TotalHours) < 2)
+                    {
+                        MessageBox.Show("Lịch chiếu này cách lịch hiện có dưới 2 giờ. \n Vui lòng chọn thời gian khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
 
 
                 //Kiểm tra nếu tài khoản rỗng

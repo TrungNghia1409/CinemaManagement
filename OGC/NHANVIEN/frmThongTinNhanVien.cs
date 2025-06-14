@@ -20,6 +20,8 @@ namespace OGC.NHANVIEN
         {
             InitializeComponent();
 
+            dtpNgaySinh.Format = DateTimePickerFormat.Custom;
+            dtpNgaySinh.CustomFormat = "dd/MM/yyyy HH:mm";
 
             // Hiển thị thông tin ra các control
             txbID.Text = nhanVien.ID.ToString();
@@ -32,7 +34,21 @@ namespace OGC.NHANVIEN
             txbEmail.Text = nhanVien.Email;
             txbDiaChi.Text = nhanVien.DiaChi;
 
+            int id = nhanVien.ID;
+            duongDanAnh = DAO_NHANVIEN.Instance.LayAnhNhanVien(id);
 
+            if (!string.IsNullOrEmpty(duongDanAnh) && File.Exists(duongDanAnh))
+            {
+                using (var imgTemp = Image.FromFile(duongDanAnh))
+                {
+                    ptbAnhNV.Image = new Bitmap(imgTemp);
+                }
+                ptbAnhNV.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else
+            {
+                ptbAnhNV.Image = null;
+            }
         }
 
         #region Methods
@@ -66,7 +82,7 @@ namespace OGC.NHANVIEN
                 }
 
                 // Kiểm tra ngày sinh
-                DateTime ngaySinh = DateTime.Parse(dtpNgaySinh.Text);
+                DateTime ngaySinh = dtpNgaySinh.Value;
                 if (ngaySinh.Year > 2005)
                 {
                     MessageBox.Show("Ngày sinh phải từ năm 2005 trở về trước.");
@@ -88,6 +104,7 @@ namespace OGC.NHANVIEN
                 if (isUpdated)
                 {
                     MessageBox.Show("Cập nhật thông tin nhân viên thành công!");
+                   
                     frmNhanVien.Instance?.LoadNhanVien();
 
                     this.Close();
@@ -192,6 +209,17 @@ namespace OGC.NHANVIEN
                     ptbAnhNV.SizeMode = PictureBoxSizeMode.StretchImage; // Co giãn ảnh vừa với khung
 
                     duongDanAnh = selectedFilePath; // Gán vào biến toàn cục
+
+                    // Hiển thị ảnh nếu có và tồn tại file
+                    if (!string.IsNullOrEmpty(duongDanAnh) && File.Exists(duongDanAnh))
+                    {
+                        ptbAnhNV.Image = Image.FromFile(duongDanAnh);
+                        ptbAnhNV.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    else
+                    {
+                        ptbAnhNV.Image = null; // Hoặc hiển thị ảnh mặc định nếu muốn
+                    }
                 }
             }
             catch (Exception ex)
