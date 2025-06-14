@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            lbGheDaChon = new Label();
+            lbGiaGhe = new Label();
             panel3 = new Panel();
             flpGhe = new FlowLayoutPanel();
             panel2 = new Panel();
@@ -41,7 +43,7 @@
             label7 = new Label();
             label6 = new Label();
             label1 = new Label();
-            button1 = new Button();
+            btnXacNhan = new Button();
             button2 = new Button();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -50,6 +52,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(lbGheDaChon);
+            panel1.Controls.Add(lbGiaGhe);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(label8);
@@ -58,8 +62,26 @@
             panel1.Controls.Add(label1);
             panel1.Location = new Point(1, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(913, 600);
+            panel1.Size = new Size(913, 595);
             panel1.TabIndex = 0;
+            // 
+            // lbGheDaChon
+            // 
+            lbGheDaChon.AutoSize = true;
+            lbGheDaChon.Location = new Point(28, 518);
+            lbGheDaChon.Name = "lbGheDaChon";
+            lbGheDaChon.Size = new Size(96, 20);
+            lbGheDaChon.TabIndex = 1;
+            lbGheDaChon.Text = "Ghế Đã Chọn";
+            // 
+            // lbGiaGhe
+            // 
+            lbGiaGhe.AutoSize = true;
+            lbGiaGhe.Location = new Point(28, 560);
+            lbGiaGhe.Name = "lbGiaGhe";
+            lbGiaGhe.Size = new Size(61, 20);
+            lbGiaGhe.TabIndex = 1;
+            lbGiaGhe.Text = "Giá Ghế";
             // 
             // panel3
             // 
@@ -136,7 +158,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(555, 540);
+            label8.Location = new Point(734, 560);
             label8.Name = "label8";
             label8.Size = new Size(145, 20);
             label8.TabIndex = 0;
@@ -145,7 +167,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(349, 540);
+            label7.Location = new Point(528, 560);
             label7.Name = "label7";
             label7.Size = new Size(126, 20);
             label7.TabIndex = 0;
@@ -154,7 +176,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(171, 540);
+            label6.Location = new Point(350, 560);
             label6.Name = "label6";
             label6.Size = new Size(105, 20);
             label6.TabIndex = 0;
@@ -163,24 +185,25 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(11, 507);
+            label1.Location = new Point(350, 518);
             label1.Name = "label1";
             label1.Size = new Size(60, 20);
             label1.TabIndex = 0;
             label1.Text = "Ghi Chú";
             // 
-            // button1
+            // btnXacNhan
             // 
-            button1.Location = new Point(706, 617);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 1;
-            button1.Text = "Xác Nhận";
-            button1.UseVisualStyleBackColor = true;
+            btnXacNhan.Location = new Point(706, 603);
+            btnXacNhan.Name = "btnXacNhan";
+            btnXacNhan.Size = new Size(94, 29);
+            btnXacNhan.TabIndex = 1;
+            btnXacNhan.Text = "Xác Nhận";
+            btnXacNhan.UseVisualStyleBackColor = true;
+            btnXacNhan.Click += btnXacNhan_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(820, 617);
+            button2.Location = new Point(820, 603);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 1;
@@ -191,9 +214,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(922, 658);
+            ClientSize = new Size(922, 639);
             Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnXacNhan);
             Controls.Add(panel1);
             Name = "FrmChonGhe";
             Text = "FrmChonGhe";
@@ -220,8 +243,10 @@
         private Label label8;
         private Label label7;
         private Label label6;
-        private Button button1;
+        private Button btnXacNhan;
         private Button button2;
         private Label label9;
+        private Label lbGheDaChon;
+        private Label lbGiaGhe;
     }
 }
