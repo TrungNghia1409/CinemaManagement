@@ -92,7 +92,7 @@ namespace OGC.KHO
                 txbIDMonAn.Text = row.Cells["IDMonAn"].Value.ToString();
                 txbTenMonAn.Text = row.Cells["TenMonAn"].Value.ToString();
                 txbSoLuong.Text = row.Cells["SoLuongTon"].Value.ToString();
-                lblTrangThai.Text = "Đã chọn";
+                //lblTrangThai.Text = $"Đã chọn {txbTenMonAn.Text}";
 
                 // Lấy NgayCapNhat từ DataGridView
                 DateTime ngayCapNhat = Convert.ToDateTime(row.Cells["NgayCapNhat"].Value);
@@ -107,66 +107,67 @@ namespace OGC.KHO
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string tenMonAn = txbTenMonAn.Text.Trim();
+            //string tenMonAn = txbTenMonAn.Text.Trim();
 
-            if (string.IsNullOrEmpty(tenMonAn))
-            {
-                MessageBox.Show("Vui lòng nhập tên món ăn.");
-                return;
-            }
+            //if (string.IsNullOrEmpty(tenMonAn))
+            //{
+            //    MessageBox.Show("Vui lòng nhập tên món ăn.");
+            //    return;
+            //}
 
-            // Lấy IDMonAn từ bảng MONAN
-            int idMonAn = DAO_MONAN.Instance.LayIDMonAnTheoTen(tenMonAn);
+            //// Lấy IDMonAn từ bảng MONAN
+            //int idMonAn = DAO_MONAN.Instance.LayIDMonAnTheoTen(tenMonAn);
 
-            if (idMonAn == -1)
-            {
-                // Không tồn tại trong MONAN
-                MessageBox.Show("Tên món ăn không tồn tại trong hệ thống (MONAN). \n Không thể thêm vào kho.");
-                return;
-            }
+            //if (idMonAn == -1)
+            //{
+            //    // Không tồn tại trong MONAN
+            //    MessageBox.Show("Tên món ăn không tồn tại trong hệ thống (MONAN). \n Không thể thêm vào kho.");
+            //    return;
+            //}
 
-            // Gán IDMonAn vào textbox
-            txbIDMonAn.Text = idMonAn.ToString();
+            //// Gán IDMonAn vào textbox
+            //txbIDMonAn.Text = idMonAn.ToString();
 
-            // Kiểm tra xem món ăn đã có trong kho chưa
-            if (DAO_KHO.Instance.KiemTraMonAnTrongKho(idMonAn))
-            {
-                lblTrangThai.Text = "Đã tồn tại trong kho";
-                MessageBox.Show("Món ăn đã tồn tại trong kho. Không thể thêm lại.");
-                return;
-            }
+            //// Kiểm tra xem món ăn đã có trong kho chưa
+            //if (DAO_KHO.Instance.KiemTraMonAnTrongKho(idMonAn))
+            //{
+            //    lblTrangThai.Text = "Đã tồn tại trong kho";
+            //    MessageBox.Show("Món ăn đã tồn tại trong kho. Không thể thêm lại.");
+            //    return;
+            //}
 
-            // Gán trạng thái là chưa tồn tại trong kho
-            lblTrangThai.Text = "Chưa có trong kho";
+            //// Gán trạng thái là chưa tồn tại trong kho
+            //lblTrangThai.Text = "Chưa có trong kho";
 
-            // Lấy IDKho tiếp theo
-            int newIDKho = DAO_KHO.Instance.LayMaxIDKho() + 1;
-            txbIDKho.Text = newIDKho.ToString();
+            //// Lấy IDKho tiếp theo
+            //int newIDKho = DAO_KHO.Instance.LayMaxIDKho() + 1;
+            //txbIDKho.Text = newIDKho.ToString();
 
-            // Lấy ngày cập nhật từ 3 ComboBox
-            if (cbNgayCapNhat.SelectedItem == null || cbThangCapNhat.SelectedItem == null || cbNamCapNhat.SelectedItem == null)
-            {
-                MessageBox.Show("Vui lòng chọn ngày cập nhật.");
-                return;
-            }
+            //// Lấy ngày cập nhật từ 3 ComboBox
+            //if (cbNgayCapNhat.SelectedItem == null || cbThangCapNhat.SelectedItem == null || cbNamCapNhat.SelectedItem == null)
+            //{
+            //    MessageBox.Show("Vui lòng chọn ngày cập nhật.");
+            //    return;
+            //}
 
-            int ngay = int.Parse(cbNgayCapNhat.SelectedItem.ToString());
-            int thang = int.Parse(cbThangCapNhat.SelectedItem.ToString());
-            int nam = int.Parse(cbNamCapNhat.SelectedItem.ToString());
-            DateTime ngayCapNhat = new DateTime(nam, thang, ngay);
+            //int ngay = int.Parse(cbNgayCapNhat.SelectedItem.ToString());
+            //int thang = int.Parse(cbThangCapNhat.SelectedItem.ToString());
+            //int nam = int.Parse(cbNamCapNhat.SelectedItem.ToString());
+            //DateTime ngayCapNhat = new DateTime(nam, thang, ngay);
 
-            // Thêm vào kho (số lượng mặc định là 0)
-            bool result = DAO_KHO.Instance.ThemKho(idMonAn,tenMonAn, 0, ngayCapNhat);
+            //// Thêm vào kho (số lượng mặc định là 0)
+            //bool result = DAO_KHO.Instance.ThemKho(idMonAn,tenMonAn, 0, ngayCapNhat);
 
-            if (result)
-            {
-                MessageBox.Show("Thêm món vào kho thành công.");
-                LoadKho(); // Load lại danh sách
-            }
-            else
-            {
-                MessageBox.Show("Thêm món vào kho thất bại.");
-            }
+            //if (result)
+            //{
+            //    MessageBox.Show("Thêm món vào kho thành công.");
+            //    LoadKho(); // Load lại danh sách
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Thêm món vào kho thất bại.");
+            //}
+            MessageBox.Show("Chức năng thêm món ăn vào kho hiện không hoạt động!!!");
         }
 
 
@@ -185,6 +186,11 @@ namespace OGC.KHO
             if (!int.TryParse(txbSoLuongThem.Text, out int soLuongThem))
             {
                 MessageBox.Show("Vui lòng nhập số lượng hợp lệ để thêm vào kho.");
+                return;
+            }
+            if (soLuongThem<=0)
+            {
+                MessageBox.Show("Số lượng tồn cần nhập lớn hơn 0.");
                 return;
             }
 
@@ -223,35 +229,38 @@ namespace OGC.KHO
         }
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string tenMonAn = txbTenMonAn.Text.Trim();
+            //string tenMonAn = txbTenMonAn.Text.Trim();
 
-            if (string.IsNullOrEmpty(tenMonAn))
-            {
-                MessageBox.Show("Vui lòng nhập tên món ăn cần xóa.");
-                return;
-            }
+            //if (string.IsNullOrEmpty(tenMonAn))
+            //{
+            //    MessageBox.Show("Vui lòng nhập tên món ăn cần xóa.");
+            //    return;
+            //}
 
-            DialogResult result = MessageBox.Show(
-                $"Bạn có chắc muốn xóa món '{tenMonAn}' khỏi kho?",
-                "Xác nhận xóa",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
+            //DialogResult result = MessageBox.Show(
+            //    $"Bạn có chắc muốn xóa món '{tenMonAn}' khỏi kho?",
+            //    "Xác nhận xóa",
+            //    MessageBoxButtons.YesNo,
+            //    MessageBoxIcon.Warning
+            //);
 
-            if (result == DialogResult.Yes)
-            {
-                bool isDeleted = DAO_KHO.Instance.XoaKho(tenMonAn);
+            //if (result == DialogResult.Yes)
+            //{
+            //    int idMonAn = DAO_MONAN.Instance.LayIDMonAnTheoTen(tenMonAn);
+            //    bool isDeleted = DAO_MONAN.Instance.XoaMonAn(idMonAn);
+            //    bool isDeleted1 = DAO_KHO.Instance.XoaKho(tenMonAn);
 
-                if (isDeleted)
-                {
-                    MessageBox.Show("Xóa kho thành công.");
-                    LoadKho(); // Reload lại DataGridView
-                }
-                else
-                {
-                    MessageBox.Show("Xóa kho thất bại. Kiểm tra lại tên món ăn.");
-                }
-            }
+            //    if (isDeleted)
+            //    {
+            //        MessageBox.Show("Xóa kho thành công.");
+            //        LoadKho(); // Reload lại DataGridView
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Xóa kho thất bại. Kiểm tra lại tên món ăn.");
+            //    }
+            //}
+            MessageBox.Show("Chức năng xóa món ăn khỏi kho hiện không hoạt động!!!");
         }
         #endregion
 

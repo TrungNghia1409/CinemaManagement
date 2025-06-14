@@ -225,11 +225,17 @@ namespace OGC.QuanLyDichVu
         }
         #endregion
 
-
+        //------ Tìm kiếm bằng text không dấu
+        public static string RemoveDiacritics(string text)
+        {
+            var normalized = text.Normalize(NormalizationForm.FormD);
+            var chars = normalized.Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark);
+            return new string(chars.ToArray()).Normalize(NormalizationForm.FormC);
+        }
         //--------- Phương thức tìm kiếm món ăn theo tên
         private void txbTimKiem_TextChanged(object sender, EventArgs e)
         {
-            string searchText = txbTimKiem.Text.Trim().ToLower();
+            string searchText = RemoveDiacritics(txbTimKiem.Text.Trim().ToLower());
 
             for (int i = 0; i < flpDichVu.Controls.Count - 1; i++)
             {
@@ -254,7 +260,10 @@ namespace OGC.QuanLyDichVu
                     lblLoai.Visible = flpLoai.Visible = hasVisibleItem;
                 }
             }
+
         }
+
+
 
         //---------- Phương thức xóa dữ liệu hiện tại của giỏ hàng
         private void btnResetGioHang_Click(object sender, EventArgs e)
@@ -384,21 +393,17 @@ namespace OGC.QuanLyDichVu
         #endregion
 
 
-        private void btnThemSanPham_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnXacNhanThanhToanThanhCong_Click(object sender, EventArgs e)
         {
-            if (txbTongTien.Text == "")
+            string rawText = txbTongTien.Text.Replace(",", "").Trim();
+            if ((string.IsNullOrWhiteSpace(rawText)) || !decimal.TryParse(rawText, out decimal tongTien))
             {
-                MessageBox.Show("Không thể tính tiền do tổng tiền rỗng!");
+                MessageBox.Show("Không thể tính tiền do tổng tiền rỗng hoặc không đúng định dạng!");
+                return;
             }
-            else
+            else if (tongTien > 0)
             {
-                decimal tongTien = decimal.Parse(txbTongTien.Text.Replace(",", ""));
-
                 int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser);
                 List<CartItem> gioHang = GetCartItems();
 
@@ -409,7 +414,12 @@ namespace OGC.QuanLyDichVu
                 frmXacNhanThanhToan frm = new frmXacNhanThanhToan(tongTien, idNhanVien, gioHang);
                 frm.ShowDialog(); // hoặc frm.Show()
             }
-           
+            else
+            {
+                MessageBox.Show("Số tiền phải lớn hơn 0!");
+                return;
+            }
+
         }
 
         private void PhatTiengNoiTuGoogle(string noiDung)

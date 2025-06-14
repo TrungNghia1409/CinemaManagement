@@ -9,7 +9,7 @@ namespace OGC.DTO
 {
     public class DTO_MONAN
     {
-        public DTO_MONAN(int ID, string TenMonAn, int IDLoaiMonAn, decimal Gia, string MoTa , string Anh)
+        public DTO_MONAN(int ID, string TenMonAn, int IDLoaiMonAn, decimal Gia, string MoTa , string Anh, string TenLoaiMonAn)
         {
             this.ID = ID;
             this.TenMonAn = TenMonAn;
@@ -17,6 +17,7 @@ namespace OGC.DTO
             this.Gia = Gia;
             this.Anh = Anh;
             this.MoTa = MoTa;
+            this.TenLoaiMonAn = TenLoaiMonAn;
         }
         public DTO_MONAN() { }
 
@@ -29,6 +30,8 @@ namespace OGC.DTO
             this.MoTa = row["MoTa"].ToString();
             this.Anh = row["Anh"].ToString();
         }
+
+        public string TenLoaiMonAn {  get; set; } 
 
         private int iD;
         public int ID

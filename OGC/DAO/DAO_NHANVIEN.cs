@@ -162,5 +162,15 @@ namespace OGC.DAO
 
             return result?.ToString() ?? ""; // Trả về "" nếu không có kết quả
         }
+
+        //--hàm lấy ảnh từ mã nhân viên
+        public string LayAnhNhanVien(int idNhanVien)
+        {
+            string query = "SELECT AnhNV FROM NHANVIEN WHERE ID = @ID ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idNhanVien });
+
+            return result != null ? result.ToString() : null;
+        }
+
     }
 }

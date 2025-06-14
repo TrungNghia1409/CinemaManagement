@@ -117,6 +117,7 @@ namespace OGC
             btnDatVe.Visible = false;
             btnDichVu.Visible = false;
             btnThongKe.Visible = false;
+            btnQuanLyPhim.Visible = false;
 
             switch (tenChucVu)
             {
@@ -127,6 +128,7 @@ namespace OGC
                     btnDatVe.Visible = true;
                     btnDichVu.Visible = true;
                     btnThongKe.Visible = true;
+                    btnQuanLyPhim.Visible = true;
                     break;
 
                 case "Nhân viên bán vé":

@@ -30,17 +30,11 @@
         {
             pnlContainer = new Panel();
             ptbGioHang = new PictureBox();
-            flpButton_SanPham = new FlowLayoutPanel();
-            ptbSua = new PictureBox();
-            ptbXoa = new PictureBox();
             lblGia = new Label();
             lblTen = new Label();
             ptbAnh = new PictureBox();
             pnlContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbGioHang).BeginInit();
-            flpButton_SanPham.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ptbSua).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ptbXoa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ptbAnh).BeginInit();
             SuspendLayout();
             // 
@@ -48,14 +42,13 @@
             // 
             pnlContainer.BackColor = Color.WhiteSmoke;
             pnlContainer.Controls.Add(ptbGioHang);
-            pnlContainer.Controls.Add(flpButton_SanPham);
             pnlContainer.Controls.Add(lblGia);
             pnlContainer.Controls.Add(lblTen);
             pnlContainer.Controls.Add(ptbAnh);
             pnlContainer.Location = new Point(0, 0);
             pnlContainer.Name = "pnlContainer";
             pnlContainer.Padding = new Padding(5);
-            pnlContainer.Size = new Size(184, 336);
+            pnlContainer.Size = new Size(184, 288);
             pnlContainer.TabIndex = 0;
             // 
             // ptbGioHang
@@ -68,35 +61,6 @@
             ptbGioHang.TabIndex = 3;
             ptbGioHang.TabStop = false;
             ptbGioHang.Click += ptbGioHang_Click;
-            // 
-            // flpButton_SanPham
-            // 
-            flpButton_SanPham.Controls.Add(ptbSua);
-            flpButton_SanPham.Controls.Add(ptbXoa);
-            flpButton_SanPham.Location = new Point(40, 288);
-            flpButton_SanPham.Name = "flpButton_SanPham";
-            flpButton_SanPham.Size = new Size(104, 36);
-            flpButton_SanPham.TabIndex = 4;
-            // 
-            // ptbSua
-            // 
-            ptbSua.Image = Properties.Resources.edit;
-            ptbSua.Location = new Point(3, 3);
-            ptbSua.Name = "ptbSua";
-            ptbSua.Size = new Size(45, 32);
-            ptbSua.SizeMode = PictureBoxSizeMode.Zoom;
-            ptbSua.TabIndex = 3;
-            ptbSua.TabStop = false;
-            // 
-            // ptbXoa
-            // 
-            ptbXoa.Image = Properties.Resources.Xoa;
-            ptbXoa.Location = new Point(54, 3);
-            ptbXoa.Name = "ptbXoa";
-            ptbXoa.Size = new Size(45, 32);
-            ptbXoa.SizeMode = PictureBoxSizeMode.Zoom;
-            ptbXoa.TabIndex = 3;
-            ptbXoa.TabStop = false;
             // 
             // lblGia
             // 
@@ -133,12 +97,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(pnlContainer);
             Name = "ServiceItemUC";
-            Size = new Size(184, 330);
+            Size = new Size(184, 291);
             pnlContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ptbGioHang).EndInit();
-            flpButton_SanPham.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ptbSua).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ptbXoa).EndInit();
             ((System.ComponentModel.ISupportInitialize)ptbAnh).EndInit();
             ResumeLayout(false);
         }
@@ -149,9 +110,6 @@
         private Label lblGia;
         private Label lblTen;
         private PictureBox ptbAnh;
-        private PictureBox ptbSua;
-        private FlowLayoutPanel flpButton_SanPham;
-        private PictureBox ptbXoa;
         private PictureBox ptbGioHang;
     }
 }

@@ -98,6 +98,7 @@
             // 
             // dtpNgayGio
             // 
+            dtpNgayGio.CustomFormat = "dd/MM/yyyy";
             dtpNgayGio.Location = new Point(128, 232);
             dtpNgayGio.Name = "dtpNgayGio";
             dtpNgayGio.Size = new Size(200, 23);

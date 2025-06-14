@@ -109,12 +109,27 @@ namespace OGC.LichChieu
                 int iD = int.Parse(txbID.Text);
                 string tenPhim = cbTenPhim.Text;
                 string tenPhong = cbTenPhong.Text;
-                DateTime ngayGio = DateTime.Parse(dtpNgayGio.Text);
+                int iDPhong = int.Parse(txbIDPhong.Text);
+                DateTime ngayGio = dtpNgayGio.Value;
                 decimal giaVe = decimal.Parse(txbGiaVe.Text);
                 string diaDiem = txbDiaDiem.Text;
 
                 bool phimTonTai = danhSachPhim.Any(p => p.TenPhim == cbTenPhim.Text);
-                bool phongTonTai = danhSachPhong.Any(p => p.TenPhong == cbTenPhong.Text); 
+                bool phongTonTai = danhSachPhong.Any(p => p.TenPhong == cbTenPhong.Text);
+
+
+                //------ kiểm tra cùng 1 ngày có tồn tại lịch chiếu trùng nhau (yêu cầu giữa 2 lịch chiếu cách nhau ít nhất 2 tiếng)
+                List<DateTime> lichChieuTrongNgay = DAO_LICHCHIEU.Instance.GetNgayGioTrongNgay(iDPhong, ngayGio);
+
+                foreach (DateTime thoiDiem in lichChieuTrongNgay)
+                {
+                    TimeSpan khoangCach = ngayGio - thoiDiem;
+                    if (Math.Abs(khoangCach.TotalHours) < 2)
+                    {
+                        MessageBox.Show("Lịch chiếu này cách lịch hiện có dưới 2 giờ. \n Vui lòng chọn thời gian khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
 
 
                 if (!phimTonTai || !phongTonTai)
