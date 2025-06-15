@@ -211,7 +211,7 @@ namespace OGC.DAO
 
         public DataTable GetGioChieuTheoPhimVaNgay(string tenPhim, DateTime ngayChieu)
         {
-            string query = "EXEC usp_GetGioChieuTheoPhimVaNgay @TenPhim , @NgayChieu";
+            string query = " EXEC usp_GetGioChieuTheoPhimVaNgay @TenPhim , @NgayGio ";
             return DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim, ngayChieu });
         }
 
@@ -235,12 +235,12 @@ namespace OGC.DAO
         public List<DateTime> GetNgayChieuTheoPhim(string tenPhim)
         {
             List<DateTime> list = new List<DateTime>();
-            string query = "EXEC usp_GetNgayChieuTheoPhim @TenPhim";
+            string query = "EXEC usp_GetNgayChieuTheoPhim @TenPhim ";
             DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim });
 
             foreach (DataRow row in dt.Rows)
             {
-                list.Add(Convert.ToDateTime(row["NgayChieu"]));
+                list.Add(Convert.ToDateTime(row["NgayGio"]));
             }
 
             return list;
@@ -297,14 +297,18 @@ namespace OGC.DAO
         }
 
         // 📌 2. Lấy ID phòng từ lịch chiếu
-        public int GetIDPhong(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu)
+        public int GetIDPhong(string tenPhim, DateTime ngayChieu)
         {
-            string query = @"SELECT IDPhong FROM LICHCHIEU 
-                         WHERE TenPhim = @tenPhim 
-                         AND CONVERT(DATE, NgayGio) = @ngay 
-                         AND CONVERT(TIME, NgayGio) = @gio";
+            string query = @"
+                            SELECT LC.IDPhong 
+                            FROM LICHCHIEU LC
+                            INNER JOIN PHIM P ON LC.IDPhim = P.ID
+                            WHERE 
+                            P.TenPhim = @TenPhim AND 
+                            CONVERT(DATE, LC.NgayGio) = CONVERT(DATE, @NgayGio ) AND 
+                            CONVERT(TIME, LC.NgayGio) = CONVERT(TIME, @NgayGio ) ";
 
-            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim, ngayChieu.Date, gioChieu });
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim, ngayChieu });
 
             return (result != null) ? Convert.ToInt32(result) : -1;
         }

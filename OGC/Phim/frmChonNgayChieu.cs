@@ -128,7 +128,7 @@ namespace OGC.Phim
             int idPhong = this.idPhong; // Lấy id phòng từ biến thành viên
             if (btn == null) return;
 
-            DateTime ngayChon = (DateTime)btn.Tag;
+            DateTime ngayChon = ((DateTime)btn.Tag).Date;
 
             // Mở form chọn giờ chiếu truyền theo tên phim và ngày chọn
             frmChonGioChieu frm = new frmChonGioChieu(tenPhim, ngayChon);

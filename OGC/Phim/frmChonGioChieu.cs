@@ -18,7 +18,7 @@ namespace OGC.Phim
         {
             InitializeComponent();
             this.tenPhim = tenPhim;
-            this.ngayChieu = ngayChieu;
+            this.ngayChieu = ngayChieu.Date;
 
             this.Load += FrmChonGioChieu_Load;
         }
@@ -87,19 +87,19 @@ namespace OGC.Phim
 
             foreach (DataRow row in dt.Rows)
             {
-                if (TimeSpan.TryParse(row["GioChieu"].ToString(), out TimeSpan gio))
-                {
-                    Button btn = new Button();
-                    btn.Text = gio.ToString(@"hh\:mm");
-                    btn.Tag = gio;
-                    btn.Width = 80;
-                    btn.Height = 40;
-                    btn.BackColor = Color.LightGreen;
+                DateTime ngayGio = Convert.ToDateTime(row["NgayGio"]);
+                TimeSpan gio = ngayGio.TimeOfDay;
 
-                    btn.Click += BtnGioChieu_Click;
+                Button btn = new Button();
+                btn.Text = gio.ToString(@"hh\:mm");
+                btn.Tag = ngayGio; // giữ cả ngày và giờ để dùng sau
+                btn.Width = 80;
+                btn.Height = 40;
+                btn.BackColor = Color.LightGreen;
 
-                    flpGioChieu.Controls.Add(btn);
-                }
+                btn.Click += BtnGioChieu_Click;
+
+                flpGioChieu.Controls.Add(btn);
             }
         }
 
@@ -109,17 +109,14 @@ namespace OGC.Phim
             Button btn = sender as Button;
             if (btn == null) return;
 
-            TimeSpan gioChon = (TimeSpan)btn.Tag;
+            DateTime ngayGio = (DateTime)btn.Tag;      // btn.Tag là DateTime
+            TimeSpan gioChon = ngayGio.TimeOfDay;      // Lấy phần giờ
 
-            // Giả sử bạn có biến tenPhim và ngayChieu ở form hiện tại (bạn phải khai báo và gán khi mở form này)
-            // Nếu chưa có, bạn cần lấy hoặc truyền vào constructor cho form này
-            string tenPhim = this.tenPhim;      // ví dụ bạn khai báo biến toàn cục tenPhim
-            DateTime ngayChieu = this.ngayChieu; // tương tự
+            string tenPhim = this.tenPhim;
+            DateTime ngayChieu = this.ngayChieu;
 
-            // Mở form chọn ghế với các tham số
             FrmChonGhe chonGheForm = new FrmChonGhe(tenPhim, ngayChieu, gioChon);
             chonGheForm.Show();
-            // Đóng form hiện tại
             this.Close();
         }
     }
