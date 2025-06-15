@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace OGC.QuanLyDichVu
         public decimal tongTien;
         public int idNhanVien;
         private List<CartItem> gioHang;
+        public int mucGiam;
         public frmXacNhanThanhToan(decimal tongTien, int idNhanVien, List<CartItem> gioHang)
         {
             InitializeComponent();
@@ -49,10 +51,50 @@ namespace OGC.QuanLyDichVu
             }
         }
 
+        private void txbMaKhuyenMai_Leave(object sender, EventArgs e)
+        {
+            string maKM = txbMaKhuyenMai.Text.Trim();
+            
+            string loaiApDung = DAO_KHUYENMAI.Instance.GetLoaiApDungByMaKM(maKM);
+
+            if (string.IsNullOrEmpty(loaiApDung) || loaiApDung != "Dịch vụ")
+            {
+                lblKhuyenMai.Text = "❌ Không hợp lệ";
+                return;
+            }
+            else
+            {
+                lblKhuyenMai.Text = "✔ Hợp lệ";
+            }
+
+            //bool isValid = DAO_KHUYENMAI.Instance.KiemTraKhuyenMaiHopLe(maKM, loaiApDung);
+            //if (isValid)
+            //{
+            //    lblKhuyenMai.Text = "✔ Hợp lệ";
+            //}
+            //else
+            //{
+            //    lblKhuyenMai.Text = "❌ Không hợp lệ";
+            //}
+           
+        }
+
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
             try
             {
+                string maKM = txbMaKhuyenMai.Text.Trim();
+                //truy vấn mức giảm dựa trên maKM
+                int? mucGiam = DAO_KHUYENMAI.Instance.GetMucGiamByMaKM(maKM);
+                if (mucGiam.HasValue)
+                {
+                    lblKhuyenMai.Text = mucGiam.Value + " %";
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy mức giảm cho mã khuyến mãi!");
+                }
+
                 string sdt = txbSDT.Text.Trim();
                 int idKhach = DAO_KHACHHANG.Instance.LayIDBySDT(sdt);
 
@@ -61,12 +103,9 @@ namespace OGC.QuanLyDichVu
                     MessageBox.Show("Không tìm thấy khách hàng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                //giả sử khách hàng không có sđt, thì lấy sđt của nhân viên :)
-
-                int idHD = DAO_HD_MONAN.Instance.ThemHoaDonMonAn(idNhanVien, idKhach, tongTien);
-
+                
                 // Hiển thị bill (load từ CTHD_MONAN)
-                frmChiTietHoaDonMonAn frmChiTiet = new frmChiTietHoaDonMonAn(idHD, gioHang, tongTien);
+                frmChiTietHoaDonMonAn frmChiTiet = new frmChiTietHoaDonMonAn(idNhanVien, idKhach, gioHang, tongTien, mucGiam.Value);
                 frmChiTiet.ShowDialog();
             }
             catch (Exception ex)
@@ -74,5 +113,7 @@ namespace OGC.QuanLyDichVu
                 MessageBox.Show($"Xảy ra lỗi khi xác nhận thanh toán: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+       
     }
 }

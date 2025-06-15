@@ -370,6 +370,7 @@ namespace OGC.QuanLyDichVu
         //-------- sự kiện mở form phương thức thanh toán
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
+            int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser);
             // Loại bỏ các dấu phân cách hàng nghìn (ví dụ: , hoặc .) và chuyển đổi sang decimal
             string cleanText = Regex.Replace(txbTongTien.Text, "[,.]", "");
             List<CartItem> gioHang = GetCartItems();
@@ -381,7 +382,7 @@ namespace OGC.QuanLyDichVu
                     return;
                 }
 
-                frmPhuongThucThanhToan frm = new frmPhuongThucThanhToan((long)tongTien, gioHang);
+                frmPhuongThucThanhToan frm = new frmPhuongThucThanhToan((long)tongTien, currentUser, idNhanVien, gioHang);
                 frm.ShowDialog();
             }
             else

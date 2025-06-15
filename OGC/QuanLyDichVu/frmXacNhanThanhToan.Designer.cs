@@ -42,6 +42,7 @@
             txbMaKhuyenMai = new TextBox();
             btnXacNhan = new Button();
             lblTrangThai = new Label();
+            lblKhuyenMai = new Label();
             SuspendLayout();
             // 
             // lblIDKhachHang
@@ -145,10 +146,10 @@
             // txbMaKhuyenMai
             // 
             txbMaKhuyenMai.Location = new Point(168, 224);
-            txbMaKhuyenMai.Multiline = true;
             txbMaKhuyenMai.Name = "txbMaKhuyenMai";
             txbMaKhuyenMai.Size = new Size(232, 23);
             txbMaKhuyenMai.TabIndex = 1;
+            txbMaKhuyenMai.Leave += txbMaKhuyenMai_Leave;
             // 
             // btnXacNhan
             // 
@@ -168,11 +169,21 @@
             lblTrangThai.Size = new Size(0, 15);
             lblTrangThai.TabIndex = 3;
             // 
+            // lblKhuyenMai
+            // 
+            lblKhuyenMai.AutoSize = true;
+            lblKhuyenMai.Location = new Point(408, 232);
+            lblKhuyenMai.Name = "lblKhuyenMai";
+            lblKhuyenMai.Size = new Size(38, 15);
+            lblKhuyenMai.TabIndex = 4;
+            lblKhuyenMai.Text = "label1";
+            // 
             // frmXacNhanThanhToan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(584, 291);
+            Controls.Add(lblKhuyenMai);
             Controls.Add(lblTrangThai);
             Controls.Add(btnXacNhan);
             Controls.Add(txbMaKhuyenMai);
@@ -210,5 +221,6 @@
         private TextBox txbMaKhuyenMai;
         private Button btnXacNhan;
         private Label lblTrangThai;
+        private Label lblKhuyenMai;
     }
 }

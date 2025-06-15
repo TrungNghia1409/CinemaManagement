@@ -20,35 +20,49 @@ namespace OGC.QuanLyDichVu
     public partial class frmChiTietHoaDonMonAn : Form
     {
         public int iDHoaDon;
+        public int iDNhanVien;
+        public int iDKhach;
+        public int mucGiam;
         List<CartItem> gioHang;
         public decimal tongTien;
-        public frmChiTietHoaDonMonAn(int iDHoaDon, List<CartItem> gioHang, decimal tongTien)
+        public frmChiTietHoaDonMonAn(int iDNhanVien, int iDKhach, List<CartItem> gioHang, decimal tongTien, int mucGiam)
         {
             InitializeComponent();
 
-            this.iDHoaDon = iDHoaDon;
+            this.iDNhanVien = iDNhanVien;
+            this.iDKhach = iDKhach;
             this.gioHang = gioHang;
             this.tongTien = tongTien;
+            this.mucGiam = mucGiam;
 
-            lblTongTien_KetQua.Text = tongTien.ToString("N0", CultureInfo.InvariantCulture);
+            // Lấy tiền khách đưa
             decimal tienKhachDua = string.IsNullOrEmpty(txbTienKhachDua.Text) ? 0 :
                        decimal.Parse(txbTienKhachDua.Text, CultureInfo.InvariantCulture);
-            decimal tienThoi = tienKhachDua - decimal.Parse(lblTongTien_KetQua.Text, CultureInfo.InvariantCulture);
+
+            // Lấy tổng tiền từ biến tongTien (tránh Parse lại từ label)
+            decimal tienGiam = tongTien * mucGiam / 100;
+            decimal tienPhaiTra = tongTien - tienGiam;
+            decimal tienThoi = tienKhachDua - tienPhaiTra;
+
+            lblTongTien_KetQua.Text = tienPhaiTra.ToString("N0", CultureInfo.InvariantCulture);
             lblTienThoi_KetQua.Text = tienThoi.ToString();
             lblNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            lblMucGiam_KetQua.Text = mucGiam.ToString() + "%";
 
-            ptbMaQR.Image = GenerateQRCode(iDHoaDon.ToString());
 
         }
 
         private void frmChiTietHoaDonMonAn_Load(object sender, EventArgs e)
         {
-
+            iDHoaDon = DAO_HD_MONAN.Instance.ThemHoaDonMonAn(iDNhanVien, iDKhach, tongTien);
 
             foreach (var item in gioHang)
             {
                 int idMonAn = DAO_MONAN.Instance.LayIDMonAnTheoTen(item.TenMonAn); // bạn cần phương thức này
                 decimal gia = DAO_MONAN.Instance.GetGiaMonAnByID(idMonAn);
+
+
+                ptbMaQR.Image = GenerateQRCode(iDHoaDon.ToString());
                 DAO_CTHD_MONAN.Instance.ThemChiTietHoaDonMonAn(iDHoaDon, idMonAn, item.SoLuong, gia);
             }
 
@@ -155,12 +169,35 @@ namespace OGC.QuanLyDichVu
             }
             else
             {
-                MessageBox.Show("Tiền khách đưa rỗng" , "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Tiền khách đưa rỗng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txbTienKhachDua.Text = string.Empty;
                 lblTienThoi_KetQua.Text = "-" + tongTien.ToString(); // Hoặc hiển thị số âm: tienThoi.ToString("N0")
             }
 
-           
+
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn hủy hóa đơn này không?",
+                                          "Xác nhận hủy",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                bool xoaChiTiet = DAO_CTHD_MONAN.Instance.XoaCTHDMonAnTheoIDHoaDon(iDHoaDon);
+                bool xoaHoaDon = DAO_HD_MONAN.Instance.XoaHDMonAnTheoID(iDHoaDon);
+
+                if (xoaChiTiet && xoaHoaDon)
+                {
+                    MessageBox.Show("Hóa đơn đã được hủy thành công!", "Thông báo");
+                    this.Close(); // hoặc Reset form
+                }
+                else
+                {
+                    MessageBox.Show("Hủy hóa đơn thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void txbTienKhachDua_TextChanged(object sender, EventArgs e)
@@ -174,7 +211,7 @@ namespace OGC.QuanLyDichVu
                     decimal tienThoi = tienKhachDua - tongTien;
 
                     lblTienThoi_KetQua.Text = tienThoi.ToString("N0", CultureInfo.InvariantCulture);
-                   
+
                 }
                 catch (FormatException)
                 {
@@ -208,7 +245,7 @@ namespace OGC.QuanLyDichVu
                     {
                         lblTienThoi_KetQua.Text = tienThoi.ToString("N0", CultureInfo.InvariantCulture);
                     }
-                    
+
                 }
                 catch (FormatException)
                 {
@@ -230,5 +267,7 @@ namespace OGC.QuanLyDichVu
             QRCode qrCode = new QRCode(qrCodeData);
             return qrCode.GetGraphic(20); // 20 là độ phân giải
         }
+
+       
     }
 }

@@ -72,5 +72,22 @@ namespace OGC.DAO
             }
         }
 
+        //------ xóa hd khi khách yêu cầu đổi món
+        public bool XoaHDMonAnTheoID(int idHoaDon)
+        {
+            try
+            {
+                string query = "DELETE FROM HD_MONAN WHERE ID = @ID ";
+                int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { idHoaDon });
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa HD_MONAN: " + ex.Message);
+                return false;
+            }
+        }
+
+
     }
 }
