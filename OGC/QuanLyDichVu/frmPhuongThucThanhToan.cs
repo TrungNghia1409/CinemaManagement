@@ -17,13 +17,17 @@ namespace OGC.QuanLyDichVu
     public partial class frmPhuongThucThanhToan : Form
     {
         private decimal tongTien;
+        public string currentUser;
+        public int idNhanVien;
         private int orderCode; // Lưu orderCode để kiểm tra trạng thái thủ công
         List<CartItem> gioHang;
-        public frmPhuongThucThanhToan(long tongTien, List<CartItem> gioHang)
+        public frmPhuongThucThanhToan(long tongTien, string username, int idNhanVien, List<CartItem> gioHang)
         {
             InitializeComponent();
 
             this.tongTien = tongTien;
+            this.currentUser = username;
+            this.idNhanVien = idNhanVien;
             this.gioHang = gioHang;
         }
 
@@ -81,5 +85,23 @@ namespace OGC.QuanLyDichVu
                 MessageBox.Show($"Lỗi khi tạo thanh toán: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnTienMat_Click(object sender, EventArgs e)
+        {
+            if (tongTien > 0)
+            {
+                int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser);
+
+                frmXacNhanThanhToan frm = new frmXacNhanThanhToan(tongTien, idNhanVien, gioHang);
+                frm.ShowDialog(); // hoặc frm.Show()
+            }
+            else
+            {
+                MessageBox.Show("Số tiền phải lớn hơn 0!");
+                return;
+            }
+        }
     }
 }
+
+

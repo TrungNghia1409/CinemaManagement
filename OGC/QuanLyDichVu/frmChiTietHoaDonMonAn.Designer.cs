@@ -39,6 +39,9 @@
             lblNgayLap = new Label();
             txbTienKhachDua = new TextBox();
             ptbMaQR = new PictureBox();
+            lblMucGiam = new Label();
+            lblMucGiam_KetQua = new Label();
+            btnHuy = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvChiTiet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ptbMaQR).BeginInit();
             SuspendLayout();
@@ -46,14 +49,14 @@
             // dgvChiTiet
             // 
             dgvChiTiet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvChiTiet.Location = new Point(8, 144);
+            dgvChiTiet.Location = new Point(8, 176);
             dgvChiTiet.Name = "dgvChiTiet";
-            dgvChiTiet.Size = new Size(568, 240);
+            dgvChiTiet.Size = new Size(568, 208);
             dgvChiTiet.TabIndex = 0;
             // 
             // btnXuatHoaDon
             // 
-            btnXuatHoaDon.Location = new Point(216, 392);
+            btnXuatHoaDon.Location = new Point(112, 392);
             btnXuatHoaDon.Name = "btnXuatHoaDon";
             btnXuatHoaDon.Size = new Size(152, 23);
             btnXuatHoaDon.TabIndex = 1;
@@ -94,7 +97,7 @@
             // lblTienThoi
             // 
             lblTienThoi.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTienThoi.Location = new Point(16, 112);
+            lblTienThoi.Location = new Point(16, 144);
             lblTienThoi.Name = "lblTienThoi";
             lblTienThoi.Size = new Size(160, 21);
             lblTienThoi.TabIndex = 2;
@@ -114,7 +117,7 @@
             // lblTienThoi_KetQua
             // 
             lblTienThoi_KetQua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTienThoi_KetQua.Location = new Point(192, 112);
+            lblTienThoi_KetQua.Location = new Point(192, 144);
             lblTienThoi_KetQua.Name = "lblTienThoi_KetQua";
             lblTienThoi_KetQua.Size = new Size(160, 21);
             lblTienThoi_KetQua.TabIndex = 2;
@@ -149,6 +152,37 @@
             ptbMaQR.TabIndex = 4;
             ptbMaQR.TabStop = false;
             // 
+            // lblMucGiam
+            // 
+            lblMucGiam.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMucGiam.Location = new Point(16, 112);
+            lblMucGiam.Name = "lblMucGiam";
+            lblMucGiam.Size = new Size(160, 21);
+            lblMucGiam.TabIndex = 2;
+            lblMucGiam.Text = "Giảm giá";
+            lblMucGiam.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblMucGiam_KetQua
+            // 
+            lblMucGiam_KetQua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMucGiam_KetQua.ForeColor = Color.Red;
+            lblMucGiam_KetQua.Location = new Point(192, 112);
+            lblMucGiam_KetQua.Name = "lblMucGiam_KetQua";
+            lblMucGiam_KetQua.Size = new Size(160, 21);
+            lblMucGiam_KetQua.TabIndex = 2;
+            lblMucGiam_KetQua.Text = "Giảm giá";
+            lblMucGiam_KetQua.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnHuy
+            // 
+            btnHuy.Location = new Point(312, 392);
+            btnHuy.Name = "btnHuy";
+            btnHuy.Size = new Size(152, 23);
+            btnHuy.TabIndex = 1;
+            btnHuy.Text = "Hủy hóa đơn";
+            btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuy_Click;
+            // 
             // frmChiTietHoaDonMonAn
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -156,13 +190,16 @@
             ClientSize = new Size(592, 426);
             Controls.Add(ptbMaQR);
             Controls.Add(txbTienKhachDua);
+            Controls.Add(lblMucGiam_KetQua);
             Controls.Add(lblTienThoi_KetQua);
+            Controls.Add(lblMucGiam);
             Controls.Add(lblTienThoi);
             Controls.Add(lblTienKhachDua);
             Controls.Add(lblNgayLap);
             Controls.Add(lblTongTien_KetQua);
             Controls.Add(lblTongTien);
             Controls.Add(lblTen);
+            Controls.Add(btnHuy);
             Controls.Add(btnXuatHoaDon);
             Controls.Add(dgvChiTiet);
             Name = "frmChiTietHoaDonMonAn";
@@ -188,5 +225,8 @@
         private Label lblNgayLap;
         private TextBox txbTienKhachDua;
         private PictureBox ptbMaQR;
+        private Label lblMucGiam;
+        private Label lblMucGiam_KetQua;
+        private Button btnHuy;
     }
 }

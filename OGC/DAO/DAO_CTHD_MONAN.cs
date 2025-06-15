@@ -77,6 +77,23 @@ namespace OGC.DAO
             return 0;
         }
 
+        //----xóa cthd khi khách đổi món
+        public bool XoaCTHDMonAnTheoIDHoaDon(int idHoaDon)
+        {
+            try
+            {
+                string query = "DELETE FROM CTHD_MONAN WHERE IDHoaDon = @IDHoaDon ";
+                int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { idHoaDon });
+                return result >= 0; // Có thể = 0 nếu chưa có dòng nào
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa CTHD_MONAN: " + ex.Message);
+                return false;
+            }
+        }
+
+
 
 
 
