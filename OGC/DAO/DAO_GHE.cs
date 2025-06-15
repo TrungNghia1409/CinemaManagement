@@ -65,7 +65,7 @@ namespace OGC.DAO
         public bool DatGhe(int idGhe, DateTime ngayChieu, TimeSpan gioChieu)
         {
             string query = "EXEC usp_DatGhe @IDGhe , @NgayChieu , @GioChieu ";
-            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { idGhe, ngayChieu, gioChieu });
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { idGhe, ngayChieu.Date, gioChieu });
             return result > 0;
         }
 
@@ -79,6 +79,13 @@ namespace OGC.DAO
         WHERE P.MaLoaiPhong = @idLoaiPhong";
 
             return DataProvider.Instance.ExecuteQuery(query, new object[] { idLoaiPhong });
+        }
+
+        public int GetTrangThaiGheTheoID(int idGhe, DateTime ngayChieu, TimeSpan gioChieu)
+        {
+            string query = "SELECT TrangThai FROM TRANGTHAIGHE WHERE IDGhe = @idGhe AND NgayChieu = @ngayChieu AND GioChieu = @gioChieu ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idGhe, ngayChieu, gioChieu });
+            return (result == null) ? 0 : Convert.ToInt32(result);
         }
 
 

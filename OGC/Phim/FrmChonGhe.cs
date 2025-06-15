@@ -78,7 +78,7 @@ namespace OGC.Phim
             var gheList = DAO_Ghe.Instance.GetListGheByIDPhong(idPhong);
             foreach (var ghe in gheList)
             {
-                int trangThai = DAO_Ghe.Instance.GetTrangThaiGhe(idPhong, ghe.MaGhe, ngayChieu, gioChieu);
+                int trangThai = DAO_Ghe.Instance.GetTrangThaiGheTheoID(ghe.ID, ngayChieu, gioChieu);
                 if (trangThai == 1)
                     gheDaDat.Add(ghe.MaGhe);
                 dictGhe[ghe.MaGhe] = ghe;

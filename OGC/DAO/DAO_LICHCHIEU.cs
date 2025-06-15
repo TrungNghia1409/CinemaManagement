@@ -211,7 +211,7 @@ namespace OGC.DAO
 
         public DataTable GetGioChieuTheoPhimVaNgay(string tenPhim, DateTime ngayChieu)
         {
-            string query = "EXEC usp_GetGioChieuTheoPhimVaNgay @TenPhim , @NgayChieu";
+            string query = "EXEC usp_GetGioChieuTheoPhimVaNgay @TenPhim , @NgayGio ";
             return DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim, ngayChieu });
         }
 
@@ -235,12 +235,12 @@ namespace OGC.DAO
         public List<DateTime> GetNgayChieuTheoPhim(string tenPhim)
         {
             List<DateTime> list = new List<DateTime>();
-            string query = "EXEC usp_GetNgayChieuTheoPhim @TenPhim";
+            string query = "EXEC usp_GetNgayChieuTheoPhim @TenPhim ";
             DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim });
 
             foreach (DataRow row in dt.Rows)
             {
-                list.Add(Convert.ToDateTime(row["NgayChieu"]));
+                list.Add(Convert.ToDateTime(row["NgayGio"]));
             }
 
             return list;
