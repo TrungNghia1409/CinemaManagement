@@ -211,7 +211,7 @@ namespace OGC.DAO
 
         public DataTable GetGioChieuTheoPhimVaNgay(string tenPhim, DateTime ngayChieu)
         {
-            string query = " EXEC usp_GetGioChieuTheoPhimVaNgay @TenPhim , @NgayGio ";
+            string query = "EXEC usp_GetGioChieuTheoPhimVaNgay @TenPhim , @NgayGio ";
             return DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim, ngayChieu });
         }
 

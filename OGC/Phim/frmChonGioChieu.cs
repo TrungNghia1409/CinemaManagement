@@ -92,7 +92,7 @@ namespace OGC.Phim
 
                 Button btn = new Button();
                 btn.Text = gio.ToString(@"hh\:mm");
-                btn.Tag = ngayGio; // giữ cả ngày và giờ để dùng sau
+                btn.Tag = gio;
                 btn.Width = 80;
                 btn.Height = 40;
                 btn.BackColor = Color.LightGreen;
@@ -109,11 +109,9 @@ namespace OGC.Phim
             Button btn = sender as Button;
             if (btn == null) return;
 
-            DateTime ngayGio = (DateTime)btn.Tag;      // btn.Tag là DateTime
-            TimeSpan gioChon = ngayGio.TimeOfDay;      // Lấy phần giờ
-
-            string tenPhim = this.tenPhim;
-            DateTime ngayChieu = this.ngayChieu;
+            TimeSpan gioChon = (TimeSpan)btn.Tag;
+            string tenPhim = this.tenPhim;    
+            DateTime ngayChieu = this.ngayChieu; 
 
             FrmChonGhe chonGheForm = new FrmChonGhe(tenPhim, ngayChieu, gioChon);
             chonGheForm.Show();
