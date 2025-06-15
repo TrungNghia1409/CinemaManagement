@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,16 @@ namespace OGC.DTO
             this.MaGhe = maGhe;
             this.TrangThai = trangThai;
         }
+        public GheDTO(DataRow row)
+        {
+            this.ID = Convert.ToInt32(row["ID"]);
+            this.IDPhong = Convert.ToInt32(row["IDPhong"]);
+            this.MaGhe = row["MaGhe"].ToString();
+            this.TrangThai = row.Table.Columns.Contains("TrangThai") && row["TrangThai"] != DBNull.Value
+                ? Convert.ToInt32(row["TrangThai"]) : 0;
+        }
+
+
     }
 }
 

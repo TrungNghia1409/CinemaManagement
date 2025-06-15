@@ -87,19 +87,19 @@ namespace OGC.Phim
 
             foreach (DataRow row in dt.Rows)
             {
-                if (TimeSpan.TryParse(row["GioChieu"].ToString(), out TimeSpan gio))
-                {
-                    Button btn = new Button();
-                    btn.Text = gio.ToString(@"hh\:mm");
-                    btn.Tag = gio;
-                    btn.Width = 80;
-                    btn.Height = 40;
-                    btn.BackColor = Color.LightGreen;
+                DateTime ngayGio = Convert.ToDateTime(row["NgayGio"]);
+                TimeSpan gio = ngayGio.TimeOfDay;
 
-                    btn.Click += BtnGioChieu_Click;
+                Button btn = new Button();
+                btn.Text = gio.ToString(@"hh\:mm");
+                btn.Tag = gio;
+                btn.Width = 80;
+                btn.Height = 40;
+                btn.BackColor = Color.LightGreen;
 
-                    flpGioChieu.Controls.Add(btn);
-                }
+                btn.Click += BtnGioChieu_Click;
+
+                flpGioChieu.Controls.Add(btn);
             }
         }
 
@@ -110,11 +110,8 @@ namespace OGC.Phim
             if (btn == null) return;
 
             TimeSpan gioChon = (TimeSpan)btn.Tag;
-
-            // Giả sử bạn có biến tenPhim và ngayChieu ở form hiện tại (bạn phải khai báo và gán khi mở form này)
-            // Nếu chưa có, bạn cần lấy hoặc truyền vào constructor cho form này
-            string tenPhim = this.tenPhim;      // ví dụ bạn khai báo biến toàn cục tenPhim
-            DateTime ngayChieu = this.ngayChieu; // tương tự
+            string tenPhim = this.tenPhim;    
+            DateTime ngayChieu = this.ngayChieu; 
 
             // Mở form chọn ghế với các tham số
             FrmChonGhe chonGheForm = new FrmChonGhe(tenPhim, ngayChieu, gioChon);
