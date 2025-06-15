@@ -66,12 +66,9 @@ namespace OGC.Phim
 
         private void LoadGhe()
         {
-            int idPhong = DAO_LICHCHIEU.Instance.GetIDPhong(tenPhim, ngayChieu);
+            idPhong = DAO_LICHCHIEU.Instance.GetIDPhong(tenPhim, ngayChieu, gioChieu);
             int idLoaiPhong = DAO_PHONGCHIEU.Instance.LayIDLoaiPhongTheoIDPhong(idPhong);
             int sucChua = DAO_LOAIPHONG.Instance.LaySucChuaTheoIDLoaiPhong(idLoaiPhong);
-            MessageBox.Show($"idPhong: {idPhong}");
-            MessageBox.Show($"idLoaiPhong: {idLoaiPhong}");
-            MessageBox.Show($"sucChua: {sucChua}");
 
             gheDaDat.Clear();
             dictGhe.Clear();
