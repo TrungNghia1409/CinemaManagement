@@ -37,6 +37,7 @@ namespace OGC.DTO
             this.DiaDiem = row["DiaDiem"].ToString();
             this.Anh = row["Anh"] != DBNull.Value ? row["Anh"].ToString() : string.Empty;
             this.AnhPhong = row["AnhPhong"] != DBNull.Value ? row["AnhPhong"].ToString() : string.Empty;
+
         }
         public string Anh { get; set; }
         public string AnhPhong { get; set; }
