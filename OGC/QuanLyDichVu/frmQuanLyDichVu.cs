@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using NAudio.Wave; //voice tự động
 using System.Net; //voice tự động
 using static OGC.DTO.DTO_CartItem;
+using DocumentFormat.OpenXml.Bibliography;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OGC.QuanLyDichVu
@@ -312,7 +313,8 @@ namespace OGC.QuanLyDichVu
                     if (!string.IsNullOrEmpty(tenMonAn) && !string.IsNullOrEmpty(slText) && !string.IsNullOrEmpty(donGiaText))
                     {
                         int soLuong = int.Parse(slText.Replace("SL: ", ""));
-                        decimal donGia = long.Parse(donGiaText.Replace(",", "").Trim());
+                        decimal donGia = long.Parse(donGiaText.Replace(".", "").Trim());
+                       // decimal donGia = long.Parse(donGiaText.Replace(",", "").Trim());
 
                         items.Add(new CartItem
                         {

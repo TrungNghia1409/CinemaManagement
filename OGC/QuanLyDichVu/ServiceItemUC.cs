@@ -35,6 +35,7 @@ namespace OGC.QuanLyDichVu
 
             try
             {
+
                 // Load ảnh từ đường dẫn (dùng / thay cho \)
                 ptbAnh.Image = Image.FromFile(monAn.Anh);
                 ptbAnh.SizeMode = PictureBoxSizeMode.StretchImage;
