@@ -56,10 +56,12 @@ namespace OGC.QuanLyDichVu
             decimal tienPhaiTra = tongTien - tienGiam;
             decimal tienThoi = tienKhachDua - tienPhaiTra;
 
-            lblTongTien_KetQua.Text = tienPhaiTra.ToString("N0", CultureInfo.InvariantCulture);
+            lblTongTien_KetQua.Text = tongTien.ToString("N0", CultureInfo.InvariantCulture);
+            lblKetQua_TienPhaiTra.Text = tienPhaiTra.ToString("N0", CultureInfo.InvariantCulture);
             lblTienThoi_KetQua.Text = tienThoi.ToString();
             lblNgayLap.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            lblMucGiam_KetQua.Text = mucGiam.ToString() + "%";
+            //lblMucGiam_KetQua.Text = mucGiam.ToString() + $"% - {tienGiam} đ";
+            lblMucGiam_KetQua.Text =  $"{tienGiam} đ";
 
 
         }
@@ -67,7 +69,7 @@ namespace OGC.QuanLyDichVu
         private void frmChiTietHoaDonMonAn_Load(object sender, EventArgs e)
         {
             iDHoaDon = DAO_HD_MONAN.Instance.ThemHoaDonMonAn(iDNhanVien, iDKhach, tongTien);
-            lblMaHoaDon.Text = "HD2025" + iDHoaDon.ToString();
+            lblMaHoaDon.Text = "HD1412" + iDHoaDon.ToString();
 
             foreach (var item in gioHang)
             {
@@ -121,11 +123,11 @@ namespace OGC.QuanLyDichVu
                         col.Item().Row(row =>
                         {
                             // Trái: địa chỉ căn giữa
-                            row.RelativeItem().Column(left =>
+                            row.RelativeItem().Column(center =>
                             {
-                                left.Item().AlignCenter().Text("🎬 OGC Cinema").FontSize(16).Bold();
-                                left.Item().AlignCenter().Text("123 Lê Lợi, Q.1, TP.HCM");
-                                left.Item().AlignCenter().Text("Hotline: 1900.0000");
+                                center.Item().AlignCenter().Text("🎬 OGC Cinema").FontSize(16).Bold();
+                                center.Item().AlignCenter().Text("123 Lê Lợi, Q.1, TP.HCM");
+                                center.Item().AlignCenter().Text("Hotline: 1900.0000");
                             });
 
                             // Phải: QR Code
@@ -145,9 +147,9 @@ namespace OGC.QuanLyDichVu
                         col.Item().PaddingVertical(10).AlignCenter().Text("HÓA ĐƠN DỊCH VỤ").FontSize(14).Bold();
 
                         // Thông tin hóa đơn
-                        col.Item().Text($"Mã hóa đơn: {tenHD}");
-                        col.Item().Text($"Ngày lập: {ngayLap}");
-                        col.Item().Text($"Nhân viên: {nhanVien}");
+                        col.Item().Text($"Mã hóa đơn:      {tenHD}");
+                        col.Item().Text($"Ngày lập:        {ngayLap}");
+                        col.Item().Text($"Nhân viên:       {nhanVien}");
 
                         // Bảng dữ liệu
                         col.Item().PaddingVertical(10).Table(table =>
@@ -190,9 +192,28 @@ namespace OGC.QuanLyDichVu
 
                         // Tổng kết
                         col.Item().PaddingTop(15).AlignRight().Text($"Tổng tiền: {tongTien} đ");
+                       
+
+                        decimal mucGiamDecimal = 0;
+                        if (giamGia.EndsWith(" đ"))
+                        {
+                            string mucGiamText = giamGia.Replace(" đ", "");
+                            if (decimal.TryParse(mucGiamText, out var parsed))
+                            {
+                                mucGiamDecimal = parsed;
+                            }
+                        }
+                        // Tính tiền giảm
+                        decimal tongTienSo = decimal.Parse(tongTien.Replace(".", ""));
+
+                        decimal tienGiam = mucGiamDecimal;
+                        decimal tienPhaiTra = tongTienSo - tienGiam;
+                        // Hiển thị
+                        col.Item().AlignRight().Text($"Giảm giá:  {tienGiam.ToString("N0")} đ");
+                        col.Item().AlignRight().Text($"Tiền phải trả: {tienPhaiTra.ToString("N0")} đ");
                         col.Item().AlignRight().Text($"Tiền khách đưa: {tienKhach} đ");
-                        col.Item().AlignRight().Text($"Giảm giá: {giamGia}");
-                        col.Item().AlignRight().Text($"Tiền thối lại: {tienThoi} đ").Bold();
+
+                        col.Item().AlignRight().Text($"Tiền trả lại: {tienThoi} đ").Bold();
                     });
                 });
             }).GeneratePdf(filePath);
@@ -208,29 +229,39 @@ namespace OGC.QuanLyDichVu
             {
                 MessageBox.Show("Tiền khách đưa rỗng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txbTienKhachDua.Text = string.Empty;
-                lblTienThoi_KetQua.Text = "-" + tongTien.ToString();
+                lblTienThoi_KetQua.Text = "0";
                 return;
             }
 
             decimal tienKhachDua = decimal.Parse(txbTienKhachDua.Text, CultureInfo.InvariantCulture);
             decimal tongTienValue = decimal.Parse(lblTongTien_KetQua.Text, CultureInfo.InvariantCulture);
-            decimal tienThoi = tienKhachDua - tongTienValue;
+            decimal tienGiam = tongTienValue * mucGiam / 100;
+            decimal tienPhaiTra = tongTienValue - tienGiam;
+
+            decimal tienThoi = tienKhachDua - tienPhaiTra;
 
             // Gọi xuất PDF
-            frmChiTietHoaDonMonAn.XuatPDF(
-                dgvChiTiet,
-                "HoaDonMonAn_" + iDHoaDon,
-                lblTen.Text,
-                lblNgayLap.Text,
-                lblTenNhanVien.Text,
-                tongTienValue.ToString("N0"),
-                tienKhachDua.ToString("N0"),
-                tienThoi.ToString("N0"),
-                lblMucGiam_KetQua.Text,
-                ptbMaQR.Image
-            );
+            try
+            {
+                frmChiTietHoaDonMonAn.XuatPDF(
+                    dgvChiTiet,
+                    "HoaDonDichVu_" + iDHoaDon,
+                    "HD1412" + iDHoaDon,
+                    lblNgayLap.Text,
+                    lblTenNhanVien.Text,
+                    tongTienValue.ToString("N0"),
+                    tienKhachDua.ToString("N0"),
+                    tienThoi.ToString("N0"),
+                    lblMucGiam_KetQua.Text,
+                    ptbMaQR.Image
+                );
 
-            DAO_CTHD_MONAN.Instance.CapNhatTrangThai("Đã in", iDHoaDon);
+                DAO_CTHD_MONAN.Instance.CapNhatTrangThai("Đã in", iDHoaDon);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
@@ -260,12 +291,13 @@ namespace OGC.QuanLyDichVu
         {
             if (!string.IsNullOrEmpty(txbTienKhachDua.Text))
             {
+                decimal tienKhachDua = decimal.Parse(txbTienKhachDua.Text, CultureInfo.InvariantCulture);
+                decimal tongTien = decimal.Parse(lblTongTien_KetQua.Text, CultureInfo.InvariantCulture);
+                decimal tienGiam = tongTien * mucGiam / 100;
+                decimal tienPhaiTra = tongTien - tienGiam;
+                decimal tienThoi = tienKhachDua - tienPhaiTra;
                 try
                 {
-                    decimal tienKhachDua = decimal.Parse(txbTienKhachDua.Text, CultureInfo.InvariantCulture);
-                    decimal tongTien = decimal.Parse(lblTongTien_KetQua.Text, CultureInfo.InvariantCulture);
-                    decimal tienThoi = tienKhachDua - tongTien;
-
                     lblTienThoi_KetQua.Text = tienThoi.ToString("N0", CultureInfo.InvariantCulture);
 
                 }
@@ -277,7 +309,7 @@ namespace OGC.QuanLyDichVu
             }
             else
             {
-                lblTienThoi_KetQua.Text = "-" + tongTien.ToString();
+                lblTienThoi_KetQua.Text = "0";
             }
         }
 
@@ -285,17 +317,18 @@ namespace OGC.QuanLyDichVu
         {
             if (!string.IsNullOrEmpty(txbTienKhachDua.Text))
             {
+                decimal tienKhachDua = decimal.Parse(txbTienKhachDua.Text, CultureInfo.InvariantCulture);
+                decimal tongTien = decimal.Parse(lblTongTien_KetQua.Text, CultureInfo.InvariantCulture);
+                decimal tienGiam = tongTien * mucGiam / 100;
+                decimal tienPhaiTra = tongTien - tienGiam;
+                decimal tienThoi = tienKhachDua - tienPhaiTra;
                 try
-                {
-                    decimal tienKhachDua = decimal.Parse(txbTienKhachDua.Text, CultureInfo.InvariantCulture);
-                    decimal tongTien = decimal.Parse(lblTongTien_KetQua.Text, CultureInfo.InvariantCulture);
-                    decimal tienThoi = tienKhachDua - tongTien;
-
-                    if (tienKhachDua < tongTien)
+                { 
+                    if (tienThoi<0)
                     {
-                        MessageBox.Show("Tiền khách đưa không đủ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Tiền khách đưa không đủ! Số tiền phải tra: {tienPhaiTra} ", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txbTienKhachDua.Text = string.Empty;
-                        lblTienThoi_KetQua.Text = "-" + tongTien.ToString(); // Hoặc hiển thị số âm: tienThoi.ToString("N0")
+                        lblTienThoi_KetQua.Text = "0"; // Hoặc hiển thị số âm: tienThoi.ToString("N0")
                     }
                     else
                     {

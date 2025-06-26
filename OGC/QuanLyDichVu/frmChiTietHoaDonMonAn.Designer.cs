@@ -50,6 +50,8 @@
             label1 = new Label();
             label3 = new Label();
             label4 = new Label();
+            lblTienPhaiTra = new Label();
+            lblKetQua_TienPhaiTra = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvChiTiet).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ptbMaQR).BeginInit();
             SuspendLayout();
@@ -59,7 +61,7 @@
             dgvChiTiet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvChiTiet.Location = new Point(8, 256);
             dgvChiTiet.Name = "dgvChiTiet";
-            dgvChiTiet.Size = new Size(320, 208);
+            dgvChiTiet.Size = new Size(320, 176);
             dgvChiTiet.TabIndex = 0;
             // 
             // btnXuatHoaDon
@@ -87,7 +89,7 @@
             // lblTongTien
             // 
             lblTongTien.Font = new Font("Microsoft Sans Serif", 8.25F);
-            lblTongTien.Location = new Point(40, 480);
+            lblTongTien.Location = new Point(40, 448);
             lblTongTien.Name = "lblTongTien";
             lblTongTien.Size = new Size(80, 21);
             lblTongTien.TabIndex = 2;
@@ -97,7 +99,7 @@
             // lblTienKhachDua
             // 
             lblTienKhachDua.Font = new Font("Microsoft Sans Serif", 8.25F);
-            lblTienKhachDua.Location = new Point(40, 512);
+            lblTienKhachDua.Location = new Point(40, 544);
             lblTienKhachDua.Name = "lblTienKhachDua";
             lblTienKhachDua.Size = new Size(88, 21);
             lblTienKhachDua.TabIndex = 2;
@@ -111,13 +113,13 @@
             lblTienThoi.Name = "lblTienThoi";
             lblTienThoi.Size = new Size(80, 21);
             lblTienThoi.TabIndex = 2;
-            lblTienThoi.Text = "Tiền thối lại";
+            lblTienThoi.Text = "Tiền trả lại";
             lblTienThoi.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblTongTien_KetQua
             // 
             lblTongTien_KetQua.Font = new Font("Microsoft Sans Serif", 8.25F);
-            lblTongTien_KetQua.Location = new Point(216, 480);
+            lblTongTien_KetQua.Location = new Point(216, 448);
             lblTongTien_KetQua.Name = "lblTongTien_KetQua";
             lblTongTien_KetQua.Size = new Size(80, 21);
             lblTongTien_KetQua.TabIndex = 2;
@@ -147,7 +149,7 @@
             // txbTienKhachDua
             // 
             txbTienKhachDua.Font = new Font("Microsoft Sans Serif", 8.25F);
-            txbTienKhachDua.Location = new Point(208, 512);
+            txbTienKhachDua.Location = new Point(208, 544);
             txbTienKhachDua.Name = "txbTienKhachDua";
             txbTienKhachDua.Size = new Size(88, 20);
             txbTienKhachDua.TabIndex = 3;
@@ -166,7 +168,7 @@
             // lblMucGiam
             // 
             lblMucGiam.Font = new Font("Microsoft Sans Serif", 8.25F);
-            lblMucGiam.Location = new Point(40, 544);
+            lblMucGiam.Location = new Point(40, 480);
             lblMucGiam.Name = "lblMucGiam";
             lblMucGiam.Size = new Size(80, 21);
             lblMucGiam.TabIndex = 2;
@@ -177,7 +179,7 @@
             // 
             lblMucGiam_KetQua.Font = new Font("Microsoft Sans Serif", 8.25F);
             lblMucGiam_KetQua.ForeColor = Color.Red;
-            lblMucGiam_KetQua.Location = new Point(216, 544);
+            lblMucGiam_KetQua.Location = new Point(216, 480);
             lblMucGiam_KetQua.Name = "lblMucGiam_KetQua";
             lblMucGiam_KetQua.Size = new Size(80, 21);
             lblMucGiam_KetQua.TabIndex = 2;
@@ -274,6 +276,26 @@
             label4.Text = " Hotline: 1900.0000      ";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // lblTienPhaiTra
+            // 
+            lblTienPhaiTra.Font = new Font("Microsoft Sans Serif", 8.25F);
+            lblTienPhaiTra.Location = new Point(40, 512);
+            lblTienPhaiTra.Name = "lblTienPhaiTra";
+            lblTienPhaiTra.Size = new Size(80, 21);
+            lblTienPhaiTra.TabIndex = 2;
+            lblTienPhaiTra.Text = "Tiền phải trả";
+            lblTienPhaiTra.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblKetQua_TienPhaiTra
+            // 
+            lblKetQua_TienPhaiTra.Font = new Font("Microsoft Sans Serif", 8.25F);
+            lblKetQua_TienPhaiTra.Location = new Point(216, 512);
+            lblKetQua_TienPhaiTra.Name = "lblKetQua_TienPhaiTra";
+            lblKetQua_TienPhaiTra.Size = new Size(80, 21);
+            lblKetQua_TienPhaiTra.TabIndex = 2;
+            lblKetQua_TienPhaiTra.Text = "Tiền phải trả";
+            lblKetQua_TienPhaiTra.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // frmChiTietHoaDonMonAn
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -292,7 +314,9 @@
             Controls.Add(MaHoaDon);
             Controls.Add(NgayLap);
             Controls.Add(lblNgayLap);
+            Controls.Add(lblKetQua_TienPhaiTra);
             Controls.Add(lblTongTien_KetQua);
+            Controls.Add(lblTienPhaiTra);
             Controls.Add(lblTongTien);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -335,5 +359,7 @@
         private Label label1;
         private Label label3;
         private Label label4;
+        private Label lblTienPhaiTra;
+        private Label lblKetQua_TienPhaiTra;
     }
 }
