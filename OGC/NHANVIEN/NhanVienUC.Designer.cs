@@ -39,12 +39,8 @@
             lblSDT = new Label();
             lblEmail = new Label();
             lblDiaChi = new Label();
-            ptbXoa = new PictureBox();
-            ptbSua = new PictureBox();
             pnlNhanVien.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ptbXoa).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ptbSua).BeginInit();
             SuspendLayout();
             // 
             // pnlNhanVien
@@ -54,7 +50,7 @@
             pnlNhanVien.Dock = DockStyle.Fill;
             pnlNhanVien.Location = new Point(0, 0);
             pnlNhanVien.Name = "pnlNhanVien";
-            pnlNhanVien.Size = new Size(1750, 50);
+            pnlNhanVien.Size = new Size(1616, 50);
             pnlNhanVien.TabIndex = 0;
             pnlNhanVien.Click += pnlNhanVien_Click;
             pnlNhanVien.Paint += pnlNhanVien_Paint;
@@ -63,16 +59,16 @@
             // 
             tableLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             tableLayoutPanel1.BackColor = SystemColors.ControlLight;
-            tableLayoutPanel1.ColumnCount = 11;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.5229359F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72.477066F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 199F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 229F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 168F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 149F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 157F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 262F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 274F));
+            tableLayoutPanel1.ColumnCount = 9;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29.2957745F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70.70422F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 215F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 214F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 158F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 95F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 136F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 232F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 210F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 48F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
             tableLayoutPanel1.Controls.Add(lblID, 0, 0);
@@ -84,16 +80,13 @@
             tableLayoutPanel1.Controls.Add(lblSDT, 6, 0);
             tableLayoutPanel1.Controls.Add(lblEmail, 7, 0);
             tableLayoutPanel1.Controls.Add(lblDiaChi, 8, 0);
-            tableLayoutPanel1.Controls.Add(ptbXoa, 10, 0);
-            tableLayoutPanel1.Controls.Add(ptbSua, 9, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Margin = new Padding(4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 55.68182F));
-            tableLayoutPanel1.Size = new Size(1750, 50);
+            tableLayoutPanel1.Size = new Size(1616, 50);
             tableLayoutPanel1.TabIndex = 10;
             // 
             // lblID
@@ -103,7 +96,7 @@
             lblID.Location = new Point(4, 0);
             lblID.Margin = new Padding(4, 0, 4, 0);
             lblID.Name = "lblID";
-            lblID.Size = new Size(52, 50);
+            lblID.Size = new Size(96, 50);
             lblID.TabIndex = 0;
             lblID.Text = "ID";
             lblID.TextAlign = ContentAlignment.MiddleCenter;
@@ -112,10 +105,10 @@
             // 
             lblTaiKhoan.AutoSize = true;
             lblTaiKhoan.Dock = DockStyle.Fill;
-            lblTaiKhoan.Location = new Point(64, 0);
+            lblTaiKhoan.Location = new Point(108, 0);
             lblTaiKhoan.Margin = new Padding(4, 0, 4, 0);
             lblTaiKhoan.Name = "lblTaiKhoan";
-            lblTaiKhoan.Size = new Size(150, 50);
+            lblTaiKhoan.Size = new Size(243, 50);
             lblTaiKhoan.TabIndex = 0;
             lblTaiKhoan.Text = "Tài khoản";
             lblTaiKhoan.TextAlign = ContentAlignment.MiddleCenter;
@@ -124,10 +117,10 @@
             // 
             lblChucVu.AutoSize = true;
             lblChucVu.Dock = DockStyle.Fill;
-            lblChucVu.Location = new Point(222, 0);
+            lblChucVu.Location = new Point(359, 0);
             lblChucVu.Margin = new Padding(4, 0, 4, 0);
             lblChucVu.Name = "lblChucVu";
-            lblChucVu.Size = new Size(191, 50);
+            lblChucVu.Size = new Size(207, 50);
             lblChucVu.TabIndex = 0;
             lblChucVu.Text = "Chức vụ";
             lblChucVu.TextAlign = ContentAlignment.MiddleCenter;
@@ -136,10 +129,10 @@
             // 
             lblHoTen.AutoSize = true;
             lblHoTen.Dock = DockStyle.Fill;
-            lblHoTen.Location = new Point(421, 0);
+            lblHoTen.Location = new Point(574, 0);
             lblHoTen.Margin = new Padding(4, 0, 4, 0);
             lblHoTen.Name = "lblHoTen";
-            lblHoTen.Size = new Size(221, 50);
+            lblHoTen.Size = new Size(206, 50);
             lblHoTen.TabIndex = 0;
             lblHoTen.Text = "Họ tên";
             lblHoTen.TextAlign = ContentAlignment.MiddleCenter;
@@ -148,10 +141,10 @@
             // 
             lblNgaySinh.AutoSize = true;
             lblNgaySinh.Dock = DockStyle.Fill;
-            lblNgaySinh.Location = new Point(650, 0);
+            lblNgaySinh.Location = new Point(788, 0);
             lblNgaySinh.Margin = new Padding(4, 0, 4, 0);
             lblNgaySinh.Name = "lblNgaySinh";
-            lblNgaySinh.Size = new Size(160, 50);
+            lblNgaySinh.Size = new Size(150, 50);
             lblNgaySinh.TabIndex = 0;
             lblNgaySinh.Text = "Ngày sinh";
             lblNgaySinh.TextAlign = ContentAlignment.MiddleCenter;
@@ -160,10 +153,10 @@
             // 
             lblGioiTinh.AutoSize = true;
             lblGioiTinh.Dock = DockStyle.Fill;
-            lblGioiTinh.Location = new Point(818, 0);
+            lblGioiTinh.Location = new Point(946, 0);
             lblGioiTinh.Margin = new Padding(4, 0, 4, 0);
             lblGioiTinh.Name = "lblGioiTinh";
-            lblGioiTinh.Size = new Size(141, 50);
+            lblGioiTinh.Size = new Size(87, 50);
             lblGioiTinh.TabIndex = 0;
             lblGioiTinh.Text = "Giới tính";
             lblGioiTinh.TextAlign = ContentAlignment.MiddleCenter;
@@ -172,10 +165,10 @@
             // 
             lblSDT.AutoSize = true;
             lblSDT.Dock = DockStyle.Fill;
-            lblSDT.Location = new Point(967, 0);
+            lblSDT.Location = new Point(1041, 0);
             lblSDT.Margin = new Padding(4, 0, 4, 0);
             lblSDT.Name = "lblSDT";
-            lblSDT.Size = new Size(149, 50);
+            lblSDT.Size = new Size(128, 50);
             lblSDT.TabIndex = 0;
             lblSDT.Text = "Số điện thoại";
             lblSDT.TextAlign = ContentAlignment.MiddleCenter;
@@ -184,10 +177,10 @@
             // 
             lblEmail.AutoSize = true;
             lblEmail.Dock = DockStyle.Fill;
-            lblEmail.Location = new Point(1124, 0);
+            lblEmail.Location = new Point(1177, 0);
             lblEmail.Margin = new Padding(4, 0, 4, 0);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(254, 50);
+            lblEmail.Size = new Size(224, 50);
             lblEmail.TabIndex = 0;
             lblEmail.Text = "Email";
             lblEmail.TextAlign = ContentAlignment.MiddleCenter;
@@ -196,35 +189,13 @@
             // 
             lblDiaChi.AutoSize = true;
             lblDiaChi.Dock = DockStyle.Fill;
-            lblDiaChi.Location = new Point(1386, 0);
+            lblDiaChi.Location = new Point(1409, 0);
             lblDiaChi.Margin = new Padding(4, 0, 4, 0);
             lblDiaChi.Name = "lblDiaChi";
-            lblDiaChi.Size = new Size(266, 50);
+            lblDiaChi.Size = new Size(203, 50);
             lblDiaChi.TabIndex = 0;
             lblDiaChi.Text = "Địa chỉ";
             lblDiaChi.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // ptbXoa
-            // 
-            ptbXoa.Image = Properties.Resources.Xoa1;
-            ptbXoa.Location = new Point(1714, 10);
-            ptbXoa.Margin = new Padding(10, 10, 4, 4);
-            ptbXoa.Name = "ptbXoa";
-            ptbXoa.Size = new Size(30, 30);
-            ptbXoa.SizeMode = PictureBoxSizeMode.Zoom;
-            ptbXoa.TabIndex = 1;
-            ptbXoa.TabStop = false;
-            // 
-            // ptbSua
-            // 
-            ptbSua.Image = Properties.Resources.edit1;
-            ptbSua.Location = new Point(1666, 10);
-            ptbSua.Margin = new Padding(10, 10, 4, 4);
-            ptbSua.Name = "ptbSua";
-            ptbSua.Size = new Size(30, 30);
-            ptbSua.SizeMode = PictureBoxSizeMode.Zoom;
-            ptbSua.TabIndex = 1;
-            ptbSua.TabStop = false;
             // 
             // NhanVienUC
             // 
@@ -235,12 +206,10 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
             Name = "NhanVienUC";
-            Size = new Size(1750, 50);
+            Size = new Size(1616, 50);
             pnlNhanVien.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ptbXoa).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ptbSua).EndInit();
             ResumeLayout(false);
         }
 
@@ -257,7 +226,5 @@
         private Label lblSDT;
         private Label lblEmail;
         private Label lblDiaChi;
-        private PictureBox ptbSua;
-        private PictureBox ptbXoa;
     }
 }

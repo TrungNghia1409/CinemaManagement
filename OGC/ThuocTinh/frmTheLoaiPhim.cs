@@ -20,6 +20,9 @@ namespace OGC.ThuocTinh
             InitializeComponent();
 
             LoadLoaiPhim();
+
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
         }
 
         //Thay đổi viền panel

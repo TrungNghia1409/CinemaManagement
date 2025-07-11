@@ -22,6 +22,9 @@ namespace OGC.QuanLyDichVu
             LoadLoaiMonAn();
             dtgvMonAn.CellClick += dtgvMonAn_CellClick;
 
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
+
         }
 
         private void LoadDanhSachMonAn()

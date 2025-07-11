@@ -157,5 +157,36 @@ namespace OGC.DAO
                 return false;
             }
         }
+
+        //----- Cập nhật trạng thái của tài khoản 
+        public bool SetTrangThaiDangDangNhap(string username)
+        {
+            string query = "UPDATE TKNHANVIEN SET TrangThai = N'Đang đăng nhập' WHERE Username = @Username ";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { username });
+            return result > 0;
+        }
+
+        //lấy tài khoản đang đăng nhập dựa trên trạng thái "Đang đăng nhập"
+        public string LayUsernameDangDangNhap()
+        {
+            string query = "SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap";
+            object result = DataProvider.Instance.ExecuteScalar(query);
+            return result != null ? result.ToString() : null;
+        }
+
+        public bool ResetTrangThaiDangNhap()
+        {
+            string query = "UPDATE TKNHANVIEN SET TrangThai = NULL WHERE TrangThai = N'Đang đăng nhập' ";
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public void XoaUsernameDangNhap()
+        {
+            string query = "DELETE FROM LuuTruTam_TKNhanVien_DangDangNhap";
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
+
+
     }
 }

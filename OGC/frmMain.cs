@@ -20,6 +20,10 @@ namespace OGC
             InitializeComponent();
             currentUser = username; // Lưu tài khoản nhân viên đang đăng nhập
 
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUser);
+
+            DAO_TKNHANVIEN.Instance.SetTrangThaiDangDangNhap(currentUser);
+
             string tenChucVu = DAO_NHANVIEN.Instance.GetTenChucVuByUsername(currentUser);
 
             PhanQuyenTheoTenChucVu(tenChucVu); //gọi hàm phân quyền
@@ -147,6 +151,23 @@ namespace OGC
                     // Không rõ chức vụ => khóa toàn bộ
                     break;
             }
+        }
+
+        private void lblDangXuat_Click(object sender, EventArgs e)
+        {
+            // Xóa username đang đăng nhập trong bảng tạm
+            DAO_TKNHANVIEN.Instance.ResetTrangThaiDangNhap();
+            DAO_TKNHANVIEN.Instance.XoaUsernameDangNhap();
+
+            //Quay về form login
+            this.Close();
+
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DAO_TKNHANVIEN.Instance.ResetTrangThaiDangNhap();
+            DAO_TKNHANVIEN.Instance.XoaUsernameDangNhap();
         }
 
 

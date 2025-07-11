@@ -45,6 +45,9 @@ namespace OGC.LichChieu
             ptbAnh.Image = Image.FromFile(lichChieu.Anh);
             ptbAnhPhong.Image = Image.FromFile(lichChieu.AnhPhong);
 
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
+
         }
 
 

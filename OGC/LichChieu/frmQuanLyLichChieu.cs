@@ -30,6 +30,9 @@ namespace OGC.LichChieu
             //LoadLichChieuTheoNgay(dtpBatDau.Value.Date, dtpKetThuc.Value.Date.AddDays(1).AddTicks(-1));
             LoadTenPhong();
 
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
+
         }
 
         private void LoadLichChieuTheoNgay(DateTime tuNgay, DateTime denNgay)
