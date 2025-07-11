@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             pnlTren = new Panel();
             cbChucVu = new ComboBox();
             lblUserLogin = new Label();
@@ -37,8 +38,11 @@
             pnlDuoi = new Panel();
             flpTieuDeNhanVien = new FlowLayoutPanel();
             flpNhanVien = new FlowLayoutPanel();
+            cmsNhanVien = new ContextMenuStrip(components);
+            cmsNhanVien_LogNV = new ToolStripMenuItem();
             pnlTren.SuspendLayout();
             pnlDuoi.SuspendLayout();
+            cmsNhanVien.SuspendLayout();
             SuspendLayout();
             // 
             // pnlTren
@@ -48,10 +52,9 @@
             pnlTren.Controls.Add(btnReset);
             pnlTren.Controls.Add(lblBackHome);
             pnlTren.Controls.Add(txbTimKiem);
-            pnlTren.Dock = DockStyle.Top;
             pnlTren.Location = new Point(0, 0);
             pnlTren.Name = "pnlTren";
-            pnlTren.Size = new Size(1784, 80);
+            pnlTren.Size = new Size(1664, 80);
             pnlTren.TabIndex = 0;
             // 
             // cbChucVu
@@ -66,7 +69,7 @@
             // lblUserLogin
             // 
             lblUserLogin.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblUserLogin.Location = new Point(1576, 24);
+            lblUserLogin.Location = new Point(1448, 24);
             lblUserLogin.Name = "lblUserLogin";
             lblUserLogin.Size = new Size(204, 40);
             lblUserLogin.TabIndex = 3;
@@ -109,39 +112,54 @@
             // 
             pnlDuoi.Controls.Add(flpTieuDeNhanVien);
             pnlDuoi.Controls.Add(flpNhanVien);
-            pnlDuoi.Dock = DockStyle.Bottom;
             pnlDuoi.Location = new Point(0, 81);
             pnlDuoi.Name = "pnlDuoi";
-            pnlDuoi.Size = new Size(1784, 680);
+            pnlDuoi.Size = new Size(1664, 680);
             pnlDuoi.TabIndex = 1;
             // 
             // flpTieuDeNhanVien
             // 
             flpTieuDeNhanVien.Location = new Point(8, 8);
             flpTieuDeNhanVien.Name = "flpTieuDeNhanVien";
-            flpTieuDeNhanVien.Size = new Size(1768, 48);
+            flpTieuDeNhanVien.Size = new Size(1648, 48);
             flpTieuDeNhanVien.TabIndex = 1;
             // 
             // flpNhanVien
             // 
             flpNhanVien.Location = new Point(8, 64);
             flpNhanVien.Name = "flpNhanVien";
-            flpNhanVien.Size = new Size(1768, 608);
+            flpNhanVien.Size = new Size(1648, 608);
             flpNhanVien.TabIndex = 0;
+            // 
+            // cmsNhanVien
+            // 
+            cmsNhanVien.Items.AddRange(new ToolStripItem[] { cmsNhanVien_LogNV });
+            cmsNhanVien.Name = "cmsNhanVien";
+            cmsNhanVien.Size = new Size(199, 26);
+            // 
+            // cmsNhanVien_LogNV
+            // 
+            cmsNhanVien_LogNV.Name = "cmsNhanVien_LogNV";
+            cmsNhanVien_LogNV.Size = new Size(198, 22);
+            cmsNhanVien_LogNV.Text = "Xem nhật ký hoạt động";
+            cmsNhanVien_LogNV.Click += cmsNhanVien_LogNV_Click;
             // 
             // frmNhanVien
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1784, 761);
+            ClientSize = new Size(1664, 761);
             Controls.Add(pnlDuoi);
             Controls.Add(pnlTren);
+            KeyPreview = true;
             Name = "frmNhanVien";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmNhanVien";
+            KeyDown += frmNhanVien_KeyDown;
             pnlTren.ResumeLayout(false);
             pnlTren.PerformLayout();
             pnlDuoi.ResumeLayout(false);
+            cmsNhanVien.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -156,5 +174,7 @@
         private Button btnReset;
         private Label lblUserLogin;
         private ComboBox cbChucVu;
+        private ContextMenuStrip cmsNhanVien;
+        private ToolStripMenuItem cmsNhanVien_LogNV;
     }
 }

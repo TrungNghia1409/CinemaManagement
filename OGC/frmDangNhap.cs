@@ -99,6 +99,9 @@ namespace OGC
 
             else if (DAO_TKNHANVIEN.Instance.Login(username, password))
             {
+                string query = "DELETE FROM LuuTruTam_TKNhanVien_DangDangNhap; INSERT INTO LuuTruTam_TKNhanVien_DangDangNhap (Username) VALUES ( @Username )";
+                DataProvider.Instance.ExecuteNonQuery(query, new object[] { username });
+
                 this.Hide();
                 frmMain mainForm = new frmMain(username); // Truyền tài khoản nhân viên vào frmMain
                 mainForm.ShowDialog();

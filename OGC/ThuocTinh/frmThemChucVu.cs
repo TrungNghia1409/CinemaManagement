@@ -25,6 +25,8 @@ namespace OGC.frmThuocTinh
 
             LoadChucVu(); //Load danh sách chức vụ
 
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
         }
 
         //Thay đổi viền panel
