@@ -31,7 +31,8 @@ namespace OGC.LichChieu
             cbTenPhong.DataSource = DAO_PHONGCHIEU.Instance.DanhSachTenPhong_List();
             cbTenPhong.DisplayMember = "TenPhong";
 
-
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
         }
         #region Events
 

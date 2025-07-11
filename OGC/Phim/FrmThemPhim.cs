@@ -15,6 +15,9 @@ namespace OGC.Phim
         {
             InitializeComponent();
             LoadComboBoxData();
+
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
         }
 
         // Lưu ảnh vào thư mục Images trong dự án

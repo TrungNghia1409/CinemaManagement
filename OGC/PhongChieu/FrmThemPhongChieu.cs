@@ -17,6 +17,9 @@ namespace OGC.PhongChieu
         public FrmThemPhongChieu()
         {
             InitializeComponent();
+
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
         }
 
 

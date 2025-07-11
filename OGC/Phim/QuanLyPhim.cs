@@ -38,7 +38,8 @@ namespace OGC.Phim
 
             LoadDinhDangPhimToComboBox();
 
-
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
 
         }
 

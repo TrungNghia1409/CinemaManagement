@@ -49,7 +49,7 @@
             pnlTieuDe.Dock = DockStyle.Fill;
             pnlTieuDe.Location = new Point(0, 0);
             pnlTieuDe.Name = "pnlTieuDe";
-            pnlTieuDe.Size = new Size(1750, 50);
+            pnlTieuDe.Size = new Size(1616, 50);
             pnlTieuDe.TabIndex = 0;
             pnlTieuDe.Paint += pnlTieuDe_Paint;
             // 
@@ -57,16 +57,16 @@
             // 
             tableLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             tableLayoutPanel1.BackColor = SystemColors.GradientInactiveCaption;
-            tableLayoutPanel1.ColumnCount = 11;
+            tableLayoutPanel1.ColumnCount = 9;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28.3653851F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 71.63461F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 199F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 229F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 168F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 153F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 149F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 266F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 274F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 186F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 217F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 173F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 94F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 125F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 214F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 231F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 48F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
             tableLayoutPanel1.Controls.Add(lblTieuDeID, 0, 0);
@@ -85,7 +85,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 55.68182F));
-            tableLayoutPanel1.Size = new Size(1750, 50);
+            tableLayoutPanel1.Size = new Size(1616, 50);
             tableLayoutPanel1.TabIndex = 12;
             // 
             // lblTieuDeID
@@ -97,7 +97,7 @@
             lblTieuDeID.Location = new Point(4, 0);
             lblTieuDeID.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeID.Name = "lblTieuDeID";
-            lblTieuDeID.Size = new Size(54, 50);
+            lblTieuDeID.Size = new Size(98, 50);
             lblTieuDeID.TabIndex = 0;
             lblTieuDeID.Text = "ID";
             lblTieuDeID.TextAlign = ContentAlignment.MiddleCenter;
@@ -107,10 +107,10 @@
             lblTieuDeTaiKhoan.AutoSize = true;
             lblTieuDeTaiKhoan.Dock = DockStyle.Fill;
             lblTieuDeTaiKhoan.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTieuDeTaiKhoan.Location = new Point(66, 0);
+            lblTieuDeTaiKhoan.Location = new Point(110, 0);
             lblTieuDeTaiKhoan.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeTaiKhoan.Name = "lblTieuDeTaiKhoan";
-            lblTieuDeTaiKhoan.Size = new Size(148, 50);
+            lblTieuDeTaiKhoan.Size = new Size(261, 50);
             lblTieuDeTaiKhoan.TabIndex = 0;
             lblTieuDeTaiKhoan.Text = "Tài khoản";
             lblTieuDeTaiKhoan.TextAlign = ContentAlignment.MiddleCenter;
@@ -120,10 +120,10 @@
             lblTieuDeChucVu.AutoSize = true;
             lblTieuDeChucVu.Dock = DockStyle.Fill;
             lblTieuDeChucVu.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTieuDeChucVu.Location = new Point(222, 0);
+            lblTieuDeChucVu.Location = new Point(379, 0);
             lblTieuDeChucVu.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeChucVu.Name = "lblTieuDeChucVu";
-            lblTieuDeChucVu.Size = new Size(191, 50);
+            lblTieuDeChucVu.Size = new Size(178, 50);
             lblTieuDeChucVu.TabIndex = 0;
             lblTieuDeChucVu.Text = "Chức vụ";
             lblTieuDeChucVu.TextAlign = ContentAlignment.MiddleCenter;
@@ -133,10 +133,10 @@
             lblTieuDeHoTen.AutoSize = true;
             lblTieuDeHoTen.Dock = DockStyle.Fill;
             lblTieuDeHoTen.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTieuDeHoTen.Location = new Point(421, 0);
+            lblTieuDeHoTen.Location = new Point(565, 0);
             lblTieuDeHoTen.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeHoTen.Name = "lblTieuDeHoTen";
-            lblTieuDeHoTen.Size = new Size(221, 50);
+            lblTieuDeHoTen.Size = new Size(209, 50);
             lblTieuDeHoTen.TabIndex = 0;
             lblTieuDeHoTen.Text = "Họ tên";
             lblTieuDeHoTen.TextAlign = ContentAlignment.MiddleCenter;
@@ -146,10 +146,10 @@
             lblTieuDeNgaySinh.AutoSize = true;
             lblTieuDeNgaySinh.Dock = DockStyle.Fill;
             lblTieuDeNgaySinh.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTieuDeNgaySinh.Location = new Point(650, 0);
+            lblTieuDeNgaySinh.Location = new Point(782, 0);
             lblTieuDeNgaySinh.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeNgaySinh.Name = "lblTieuDeNgaySinh";
-            lblTieuDeNgaySinh.Size = new Size(160, 50);
+            lblTieuDeNgaySinh.Size = new Size(165, 50);
             lblTieuDeNgaySinh.TabIndex = 0;
             lblTieuDeNgaySinh.Text = "Ngày sinh";
             lblTieuDeNgaySinh.TextAlign = ContentAlignment.MiddleCenter;
@@ -159,10 +159,10 @@
             lblTieuDeGioiTinh.AutoSize = true;
             lblTieuDeGioiTinh.Dock = DockStyle.Fill;
             lblTieuDeGioiTinh.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTieuDeGioiTinh.Location = new Point(818, 0);
+            lblTieuDeGioiTinh.Location = new Point(955, 0);
             lblTieuDeGioiTinh.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeGioiTinh.Name = "lblTieuDeGioiTinh";
-            lblTieuDeGioiTinh.Size = new Size(145, 50);
+            lblTieuDeGioiTinh.Size = new Size(86, 50);
             lblTieuDeGioiTinh.TabIndex = 0;
             lblTieuDeGioiTinh.Text = "Giới tính";
             lblTieuDeGioiTinh.TextAlign = ContentAlignment.MiddleCenter;
@@ -172,10 +172,10 @@
             lblTieuDeSDT.AutoSize = true;
             lblTieuDeSDT.Dock = DockStyle.Fill;
             lblTieuDeSDT.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTieuDeSDT.Location = new Point(971, 0);
+            lblTieuDeSDT.Location = new Point(1049, 0);
             lblTieuDeSDT.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeSDT.Name = "lblTieuDeSDT";
-            lblTieuDeSDT.Size = new Size(141, 50);
+            lblTieuDeSDT.Size = new Size(117, 50);
             lblTieuDeSDT.TabIndex = 0;
             lblTieuDeSDT.Text = "Số điện thoại";
             lblTieuDeSDT.TextAlign = ContentAlignment.MiddleCenter;
@@ -185,10 +185,10 @@
             lblTieuDeEmail.AutoSize = true;
             lblTieuDeEmail.Dock = DockStyle.Fill;
             lblTieuDeEmail.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTieuDeEmail.Location = new Point(1120, 0);
+            lblTieuDeEmail.Location = new Point(1174, 0);
             lblTieuDeEmail.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeEmail.Name = "lblTieuDeEmail";
-            lblTieuDeEmail.Size = new Size(258, 50);
+            lblTieuDeEmail.Size = new Size(206, 50);
             lblTieuDeEmail.TabIndex = 0;
             lblTieuDeEmail.Text = "Email";
             lblTieuDeEmail.TextAlign = ContentAlignment.MiddleCenter;
@@ -198,10 +198,10 @@
             lblTieuDeDiaChi.AutoSize = true;
             lblTieuDeDiaChi.Dock = DockStyle.Fill;
             lblTieuDeDiaChi.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTieuDeDiaChi.Location = new Point(1386, 0);
+            lblTieuDeDiaChi.Location = new Point(1388, 0);
             lblTieuDeDiaChi.Margin = new Padding(4, 0, 4, 0);
             lblTieuDeDiaChi.Name = "lblTieuDeDiaChi";
-            lblTieuDeDiaChi.Size = new Size(266, 50);
+            lblTieuDeDiaChi.Size = new Size(224, 50);
             lblTieuDeDiaChi.TabIndex = 0;
             lblTieuDeDiaChi.Text = "Địa chỉ";
             lblTieuDeDiaChi.TextAlign = ContentAlignment.MiddleCenter;
@@ -212,7 +212,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(pnlTieuDe);
             Name = "TieuDeNhanVienUC";
-            Size = new Size(1750, 50);
+            Size = new Size(1616, 50);
             pnlTieuDe.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();

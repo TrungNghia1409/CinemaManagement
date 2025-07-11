@@ -92,7 +92,7 @@ namespace OGC.QuanLyDichVu
                 }
                 else
                 {
-                    MessageBox.Show("Không tìm thấy mức giảm cho mã khuyến mãi!");
+                    mucGiam = 0;
                 }
 
                 string sdt = txbSDT.Text.Trim();
