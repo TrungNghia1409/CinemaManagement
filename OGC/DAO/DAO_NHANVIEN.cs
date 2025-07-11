@@ -183,5 +183,13 @@ namespace OGC.DAO
             return result != null ? result.ToString() : null;
         }
 
+        //lấy email dựa trên username
+        public string GetEmailByUsername(string username)
+        {
+            string query = "SELECT Email FROM NHANVIEN WHERE Username = @username";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { username });
+
+            return result != null ? result.ToString() : string.Empty;
+        }
     }
 }

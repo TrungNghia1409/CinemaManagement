@@ -8,6 +8,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using OGC.QuanLyChung;
 using OGC.ThongKe;
 using OGC.DAO;
+using OGC.OTP_XACNHAN;
 
 namespace OGC
 {
@@ -159,7 +160,7 @@ namespace OGC
             DAO_TKNHANVIEN.Instance.ResetTrangThaiDangNhap();
             DAO_TKNHANVIEN.Instance.XoaUsernameDangNhap();
 
-            //Quay về form login
+            // Đóng để quay lại login
             this.Close();
 
         }

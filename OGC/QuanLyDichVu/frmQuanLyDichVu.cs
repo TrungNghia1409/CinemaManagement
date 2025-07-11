@@ -313,8 +313,8 @@ namespace OGC.QuanLyDichVu
                     if (!string.IsNullOrEmpty(tenMonAn) && !string.IsNullOrEmpty(slText) && !string.IsNullOrEmpty(donGiaText))
                     {
                         int soLuong = int.Parse(slText.Replace("SL: ", ""));
-                        decimal donGia = long.Parse(donGiaText.Replace(".", "").Trim());
-                       // decimal donGia = long.Parse(donGiaText.Replace(",", "").Trim());
+                        //decimal donGia = long.Parse(donGiaText.Replace(".", "").Trim());
+                       decimal donGia = long.Parse(donGiaText.Replace(",", "").Trim());
 
                         items.Add(new CartItem
                         {
@@ -411,7 +411,7 @@ namespace OGC.QuanLyDichVu
                 List<CartItem> gioHang = GetCartItems();
 
                 // Đọc thành tiếng với số tiền thực tế
-                string textToSpeak = $"Đã thanh toán thành công {tongTien} đồng";
+                string textToSpeak = $"Đã nhận {tongTien} đồng";
                 PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động
 
                 frmXacNhanThanhToan frm = new frmXacNhanThanhToan(tongTien, idNhanVien, gioHang);
