@@ -299,7 +299,10 @@ namespace OGC.DAO
         // 📌 2. Lấy ID phòng từ lịch chiếu
         public int GetIDPhong(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu)
         {
+<<<<<<< HEAD
+=======
 
+>>>>>>> 88b0f22d6850ccd01018871a5c38a3014a0a426f
             string query = @"  SELECT LC.IDPhong 
         FROM LICHCHIEU LC
         INNER JOIN PHIM P ON LC.IDPhim = P.ID
@@ -307,6 +310,10 @@ namespace OGC.DAO
             P.TenPhim = @tenPhim AND 
             CONVERT(DATE, LC.NgayGio) = @ngay AND 
             CONVERT(TIME, LC.NgayGio) = @gio ";
+<<<<<<< HEAD
+
+=======
+>>>>>>> 88b0f22d6850ccd01018871a5c38a3014a0a426f
 
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim, ngayChieu.Date, gioChieu });
 
