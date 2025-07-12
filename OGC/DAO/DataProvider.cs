@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -134,22 +135,22 @@ namespace OGC.DAO
         public int NHN_ExecuteNonQuery(string query, object[] parameter = null)
         {
             int data = 0;
-            using (SqlConnection connection = new SqlConnection(connectionSTR))// kết nối từ client xuống server,
-                                                                               // sử dụng using để khi kết thúc khối lệnh thì
-                                                                               // auto ngắt kết nối tránh lỗi
+            using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
 
-                connection.Open();// phải mở connection để có thể thực hiện tác vụ
-
-                SqlCommand command = new SqlCommand(query, connection);// câu truy vấn sẽ thực thi 
-
-                if (parameter != null)
+                // Kiểm tra xem có parameter và query có chứa @Username không
+                if (parameter != null && parameter.Length > 0 && query.Contains("@Username"))
                 {
-                    command.Parameters.AddWithValue("@Username", parameter[0]);
+                    command.Parameters.Add(new SqlParameter("@Username", SqlDbType.NVarChar)
+                    {
+                        Value = parameter[0] ?? DBNull.Value // Xử lý null value
+                    });
                 }
 
                 data = command.ExecuteNonQuery();
-                connection.Close(); // mở ra phải đóng lại để tránh nhiều dữ liệu đổ vào bị lỗi
+                connection.Close();
             }
             return data;
         }

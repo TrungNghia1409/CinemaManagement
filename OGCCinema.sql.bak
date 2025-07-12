@@ -2237,7 +2237,7 @@ AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
     -- Lấy username từ phiên làm việc (do C# truyền vào)
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập' );
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
 
     -- Khai báo nội dung log
@@ -2262,7 +2262,7 @@ ON TKNHANVIEN
 AFTER INSERT, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý TKNV ';
@@ -2284,7 +2284,7 @@ ON NHANVIEN
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý nhân viên';
@@ -2306,7 +2306,7 @@ ON THELOAIPHIM
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý tl phim';
@@ -2328,7 +2328,7 @@ ON DINHDANGPHIM
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý dd phim';
@@ -2350,7 +2350,7 @@ ON PHIM
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý phim';
@@ -2372,7 +2372,7 @@ ON LOAIPHONG
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý loại phòng';
@@ -2394,7 +2394,7 @@ ON PHONGCHIEU
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý phòng chiếu';
@@ -2416,7 +2416,7 @@ ON LICHCHIEU
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý lịch chiếu';
@@ -2438,7 +2438,7 @@ ON KHUYENMAI
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý khuyến mãi';
@@ -2460,7 +2460,7 @@ ON LOAIMONAN
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý loại món ăn';
@@ -2482,7 +2482,7 @@ ON MONAN
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý món ăn';
@@ -2504,7 +2504,7 @@ ON KHO
 AFTER INSERT, UPDATE, DELETE
 AS
 BEGIN
-    DECLARE @username NVARCHAR(50) = (SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập');
+    DECLARE @username NVARCHAR(50) = (SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap);
     DECLARE @idChucVu INT = (SELECT IDChucVu FROM NHANVIEN WHERE Username = @username);
     DECLARE @thaoTac NVARCHAR(200);
     DECLARE @chucNang NVARCHAR(100) = N'Quản lý kho';
