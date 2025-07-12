@@ -107,8 +107,16 @@ namespace OGC.DAO
 
         public void SetContext_Username(string username)
         {
-            string query = @" DECLARE @context VARBINARY(128) = CAST( @Username AS VARBINARY(128));
-                              SET CONTEXT_INFO @context ;";
+            string query = @"
+        DECLARE @context VARBINARY(128) = CAST(@Username AS VARBINARY(128));
+        SET CONTEXT_INFO @context;
+    ";
+
+            // Đảm bảo username không null
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentException("Username không thể null hoặc rỗng");
+            }
 
             DataProvider.Instance.NHN_ExecuteNonQuery(query, new object[] { username });
         }

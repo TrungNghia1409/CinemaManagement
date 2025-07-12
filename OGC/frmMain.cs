@@ -30,6 +30,8 @@ namespace OGC
             PhanQuyenTheoTenChucVu(tenChucVu); //gọi hàm phân quyền
 
             LoadlblUser(); //hiển thị tên tài khoản của nhân viên đăng nhập
+
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
         }
 
 

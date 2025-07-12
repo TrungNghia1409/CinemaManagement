@@ -186,10 +186,17 @@ namespace OGC.DAO
         //lấy email dựa trên username
         public string GetEmailByUsername(string username)
         {
-            string query = "SELECT Email FROM NHANVIEN WHERE Username = @username";
+            string query = "SELECT Email FROM NHANVIEN WHERE Username = @username ";
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { username });
 
             return result != null ? result.ToString() : string.Empty;
+        }
+
+        //--lấy thông tin: Họ tên, sđt, email phục vụ cho việc xác nhận thông tin đổi mật khẩu
+        public DataTable LayThongTinNhanVien(string username)
+        {
+            string query = "SELECT HoTen, Email, SDT FROM NHANVIEN WHERE Username = @Username ";
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { username });
         }
     }
 }

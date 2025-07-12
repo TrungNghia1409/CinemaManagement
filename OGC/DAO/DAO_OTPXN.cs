@@ -19,6 +19,13 @@ namespace OGC.DAO
 
             private DAO_OTPXN() { }
 
+        // Hàm tạo mã ngẫu nhiên 6 số
+        private string TaoMaOTP_NgauNhien()
+        {
+            Random rand = new Random();
+            return rand.Next(100000, 999999).ToString(); // 6 chữ số
+        }
+
         // Tạo OTP mới (xoá cái cũ nếu có)
         public void TaoOTP(string username)
         {
@@ -46,12 +53,7 @@ namespace OGC.DAO
             DataProvider.Instance.ExecuteNonQuery(query, new object[] { username });
         }
 
-        // Hàm tạo mã ngẫu nhiên 6 số
-        private string TaoMaOTP_NgauNhien()
-        {
-            Random rand = new Random();
-            return rand.Next(100000, 999999).ToString(); // 6 chữ số
-        }
+        
 
         //hàm kiểm tra mã otp
         public bool KiemTraOTP(string username, string maOTP)

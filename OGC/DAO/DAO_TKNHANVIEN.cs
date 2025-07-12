@@ -169,7 +169,7 @@ namespace OGC.DAO
         //lấy tài khoản đang đăng nhập dựa trên trạng thái "Đang đăng nhập"
         public string LayUsernameDangDangNhap()
         {
-            string query = "SELECT TOP 1 Username FROM LuuTruTam_TKNhanVien_DangDangNhap";
+            string query = "SELECT Username FROM TKNHANVIEN WHERE TrangThai = N'Đang đăng nhập' ";
             object result = DataProvider.Instance.ExecuteScalar(query);
             return result != null ? result.ToString() : null;
         }

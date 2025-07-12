@@ -1,4 +1,5 @@
 ﻿using OGC.DAO;
+using OGC.DoiMatKhau;
 using OGC.OTP_XACNHAN;
 using System;
 using System.Collections.Generic;
@@ -131,10 +132,26 @@ namespace OGC
             }
         }
 
+        //--đổi mật khẩu tài khoản adminX
+        private void lblQuenMatKhau_Click(object sender, EventArgs e)
+        {
+            if (!txbTaiKhoan.Text.ToLower().StartsWith("admin"))
+            {
+                MessageBox.Show("Chỉ tài khoản quản lý (admin) mới sử dụng chức năng này.");
+                return;
+            }
+            else
+            {
+                frmNhapThongTin f = new frmNhapThongTin(txbTaiKhoan.Text);
+                f.ShowDialog();
+            }
+        }
+
         #endregion
 
 
 
-       
+
+
     }
 }
