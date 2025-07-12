@@ -302,7 +302,7 @@ namespace OGC.DAO
             string query = @"SELECT IDPhong FROM LICHCHIEU 
                          WHERE TenPhim = @tenPhim 
                          AND CONVERT(DATE, NgayGio) = @ngay 
-                         AND CONVERT(TIME, NgayGio) = @gio";
+                         AND CONVERT(TIME, NgayGio) = @gio ";
 
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim, ngayChieu.Date, gioChieu });
 
