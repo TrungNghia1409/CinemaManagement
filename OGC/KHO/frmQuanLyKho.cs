@@ -31,6 +31,9 @@ namespace OGC.KHO
             }
 
             LoadKho();
+
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
         }
         #region đổ dữ liệu ngày tháng vào combobox
 

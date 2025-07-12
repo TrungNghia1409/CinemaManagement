@@ -299,10 +299,14 @@ namespace OGC.DAO
         // 📌 2. Lấy ID phòng từ lịch chiếu
         public int GetIDPhong(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu)
         {
-            string query = @"SELECT IDPhong FROM LICHCHIEU 
-                         WHERE TenPhim = @tenPhim 
-                         AND CONVERT(DATE, NgayGio) = @ngay 
-                         AND CONVERT(TIME, NgayGio) = @gio ";
+
+            string query = @"  SELECT LC.IDPhong 
+        FROM LICHCHIEU LC
+        INNER JOIN PHIM P ON LC.IDPhim = P.ID
+        WHERE 
+            P.TenPhim = @tenPhim AND 
+            CONVERT(DATE, LC.NgayGio) = @ngay AND 
+            CONVERT(TIME, LC.NgayGio) = @gio ";
 
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim, ngayChieu.Date, gioChieu });
 

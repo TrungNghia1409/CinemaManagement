@@ -1,3 +1,5 @@
+using OGC.Log_NhanVien;
+
 namespace OGC
 {
     internal static class Program

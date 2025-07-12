@@ -9,10 +9,11 @@ namespace OGC.DTO
 {
     public class DTO_TKNHANVIEN
     {
-        public DTO_TKNHANVIEN(string Username, string Password)
+        public DTO_TKNHANVIEN(string Username, string Password, string TrangThai)
         {
             this.Username = Username;
             this.Password = Password;
+            this.TrangThai = Password;
         }
         public DTO_TKNHANVIEN() { }
 
@@ -20,6 +21,7 @@ namespace OGC.DTO
         {
             this.Username = row["Username"].ToString();
             this.Password = row["Password"].ToString();
+            this.TrangThai = row["TrangThai"].ToString();
         }
 
         private string username;
@@ -34,6 +36,12 @@ namespace OGC.DTO
         {
             get { return password; }
             set { password = value; }
+        }
+        private string trangThai;
+        public string TrangThai
+        {
+            get { return trangThai; }
+            set { trangThai = value; }
         }
     }
 }

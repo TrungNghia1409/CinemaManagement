@@ -32,6 +32,7 @@
             Logo = new PictureBox();
             panel2 = new Panel();
             pnlUser = new Panel();
+            lblDangXuat = new Label();
             lblUser = new Label();
             label1 = new Label();
             pnlQuanLyPhim = new Panel();
@@ -97,21 +98,32 @@
             // 
             // pnlUser
             // 
+            pnlUser.Controls.Add(lblDangXuat);
             pnlUser.Controls.Add(lblUser);
-            pnlUser.Location = new Point(992, 8);
+            pnlUser.Location = new Point(920, 8);
             pnlUser.Name = "pnlUser";
-            pnlUser.Size = new Size(200, 48);
+            pnlUser.Size = new Size(272, 48);
             pnlUser.TabIndex = 2;
+            // 
+            // lblDangXuat
+            // 
+            lblDangXuat.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblDangXuat.Location = new Point(200, 13);
+            lblDangXuat.Name = "lblDangXuat";
+            lblDangXuat.Size = new Size(64, 24);
+            lblDangXuat.TabIndex = 1;
+            lblDangXuat.Text = "Đăng xuất";
+            lblDangXuat.TextAlign = ContentAlignment.MiddleCenter;
+            lblDangXuat.Click += lblDangXuat_Click;
             // 
             // lblUser
             // 
-            lblUser.Dock = DockStyle.Fill;
             lblUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblUser.Location = new Point(0, 0);
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(200, 48);
             lblUser.TabIndex = 1;
-            lblUser.TextAlign = ContentAlignment.MiddleCenter;
+            lblUser.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label1
             // 
@@ -281,6 +293,7 @@
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chào mừng bạn đến với OGC";
+            FormClosed += frmMain_FormClosed;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             panel2.ResumeLayout(false);
@@ -319,5 +332,6 @@
         private Panel pnlUser;
         private Label lblUser;
         private FlowLayoutPanel flơThanhDieuHuong;
+        private Label lblDangXuat;
     }
 }

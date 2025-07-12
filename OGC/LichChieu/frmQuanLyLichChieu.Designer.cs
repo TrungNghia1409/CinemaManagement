@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            pnlBottom = new Panel();
             pnlMid = new Panel();
-            pnlLichChieu = new Panel();
             flpLichChieu = new FlowLayoutPanel();
             pnlTieuDe = new Panel();
             pnlTop = new Panel();
@@ -46,53 +44,34 @@
             txbTimKiem = new TextBox();
             panel1.SuspendLayout();
             pnlMid.SuspendLayout();
-            pnlLichChieu.SuspendLayout();
             pnlTop.SuspendLayout();
             pnlDate.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(pnlBottom);
             panel1.Controls.Add(pnlMid);
             panel1.Controls.Add(pnlTop);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1072, 448);
+            panel1.Size = new Size(1096, 416);
             panel1.TabIndex = 0;
-            // 
-            // pnlBottom
-            // 
-            pnlBottom.Location = new Point(0, 400);
-            pnlBottom.Name = "pnlBottom";
-            pnlBottom.Size = new Size(1072, 52);
-            pnlBottom.TabIndex = 2;
             // 
             // pnlMid
             // 
-            pnlMid.Controls.Add(pnlLichChieu);
+            pnlMid.Controls.Add(flpLichChieu);
             pnlMid.Controls.Add(pnlTieuDe);
-            pnlMid.Dock = DockStyle.Top;
             pnlMid.Location = new Point(0, 60);
             pnlMid.Name = "pnlMid";
-            pnlMid.Size = new Size(1072, 328);
+            pnlMid.Size = new Size(1096, 348);
             pnlMid.TabIndex = 1;
-            // 
-            // pnlLichChieu
-            // 
-            pnlLichChieu.Controls.Add(flpLichChieu);
-            pnlLichChieu.Dock = DockStyle.Top;
-            pnlLichChieu.Location = new Point(0, 48);
-            pnlLichChieu.Name = "pnlLichChieu";
-            pnlLichChieu.Size = new Size(1072, 296);
-            pnlLichChieu.TabIndex = 1;
             // 
             // flpLichChieu
             // 
-            flpLichChieu.Dock = DockStyle.Top;
-            flpLichChieu.Location = new Point(0, 0);
+            flpLichChieu.AutoScroll = true;
+            flpLichChieu.Location = new Point(0, 48);
             flpLichChieu.Name = "flpLichChieu";
-            flpLichChieu.Size = new Size(1072, 288);
+            flpLichChieu.Size = new Size(1096, 300);
             flpLichChieu.TabIndex = 1;
             // 
             // pnlTieuDe
@@ -100,7 +79,7 @@
             pnlTieuDe.Dock = DockStyle.Top;
             pnlTieuDe.Location = new Point(0, 0);
             pnlTieuDe.Name = "pnlTieuDe";
-            pnlTieuDe.Size = new Size(1072, 48);
+            pnlTieuDe.Size = new Size(1096, 48);
             pnlTieuDe.TabIndex = 0;
             // 
             // pnlTop
@@ -113,17 +92,17 @@
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(0, 0);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(1072, 60);
+            pnlTop.Size = new Size(1096, 60);
             pnlTop.TabIndex = 0;
             // 
             // btnThemLC
             // 
-            btnThemLC.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnThemLC.Location = new Point(1024, 12);
+            btnThemLC.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnThemLC.Location = new Point(992, 12);
             btnThemLC.Name = "btnThemLC";
-            btnThemLC.Size = new Size(35, 35);
+            btnThemLC.Size = new Size(80, 32);
             btnThemLC.TabIndex = 4;
-            btnThemLC.Text = "✚";
+            btnThemLC.Text = "✚ Thêm";
             btnThemLC.UseVisualStyleBackColor = true;
             btnThemLC.Click += btnThemLC_Click;
             // 
@@ -133,9 +112,9 @@
             pnlDate.Controls.Add(label1);
             pnlDate.Controls.Add(dtpKetThuc);
             pnlDate.Controls.Add(dtpBatDau);
-            pnlDate.Location = new Point(432, 8);
+            pnlDate.Location = new Point(440, 8);
             pnlDate.Name = "pnlDate";
-            pnlDate.Size = new Size(576, 40);
+            pnlDate.Size = new Size(544, 40);
             pnlDate.TabIndex = 3;
             // 
             // chbBoLoc
@@ -181,7 +160,7 @@
             // 
             btnReset.Location = new Point(224, 16);
             btnReset.Name = "btnReset";
-            btnReset.Size = new Size(75, 23);
+            btnReset.Size = new Size(96, 23);
             btnReset.TabIndex = 2;
             btnReset.Text = "Reset";
             btnReset.UseVisualStyleBackColor = true;
@@ -190,7 +169,7 @@
             // cbTenPhong
             // 
             cbTenPhong.FormattingEnabled = true;
-            cbTenPhong.Location = new Point(312, 16);
+            cbTenPhong.Location = new Point(328, 16);
             cbTenPhong.Name = "cbTenPhong";
             cbTenPhong.Size = new Size(96, 23);
             cbTenPhong.TabIndex = 1;
@@ -209,14 +188,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1073, 447);
+            ClientSize = new Size(1100, 416);
             Controls.Add(panel1);
             Name = "frmQuanLyLichChieu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmQuanLyLichChieu";
             panel1.ResumeLayout(false);
             pnlMid.ResumeLayout(false);
-            pnlLichChieu.ResumeLayout(false);
             pnlTop.ResumeLayout(false);
             pnlTop.PerformLayout();
             pnlDate.ResumeLayout(false);
@@ -227,7 +205,6 @@
         #endregion
 
         private Panel panel1;
-        private Panel pnlBottom;
         private Panel pnlMid;
         private Panel pnlTop;
         private Panel pnlDate;
@@ -237,10 +214,9 @@
         private Label label1;
         private DateTimePicker dtpKetThuc;
         private DateTimePicker dtpBatDau;
-        private Panel pnlLichChieu;
         private Panel pnlTieuDe;
-        private FlowLayoutPanel flpLichChieu;
         private Button btnThemLC;
         private CheckBox chbBoLoc;
+        private FlowLayoutPanel flpLichChieu;
     }
 }

@@ -51,6 +51,7 @@
             btnTienMat.TabIndex = 1;
             btnTienMat.Text = "Tiền mặt";
             btnTienMat.UseVisualStyleBackColor = true;
+            btnTienMat.Click += btnTienMat_Click;
             // 
             // btnChuyenKhoan
             // 
