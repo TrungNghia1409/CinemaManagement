@@ -299,6 +299,7 @@ namespace OGC.DAO
         // 📌 2. Lấy ID phòng từ lịch chiếu
         public int GetIDPhong(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu)
         {
+
             string query = @"  SELECT LC.IDPhong 
         FROM LICHCHIEU LC
         INNER JOIN PHIM P ON LC.IDPhim = P.ID
