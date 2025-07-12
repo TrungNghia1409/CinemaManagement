@@ -1,4 +1,5 @@
 ﻿using OGC.DAO;
+using OGC.OTP_XACNHAN;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -97,16 +98,36 @@ namespace OGC
                 return;
             }
 
-            else if (DAO_TKNHANVIEN.Instance.Login(username, password))
-            {
-                this.Hide();
-                frmMain mainForm = new frmMain(username); // Truyền tài khoản nhân viên vào frmMain
-                mainForm.ShowDialog();
-                this.Show();
-            }
-            else
+            // Kiểm tra đăng nhập trước
+            if (!DAO_TKNHANVIEN.Instance.Login(username, password))
             {
                 MessageBox.Show("Sai tài khoản hoặc mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Nếu tài khoản là quản lý (bắt đầu bằng "admin")
+            if (username.StartsWith("admin", StringComparison.OrdinalIgnoreCase))
+            {
+                this.Hide();
+                using (frmOTPXacNhanAdmin frmOTP = new frmOTPXacNhanAdmin(username))
+                {
+                    frmOTP.ShowDialog(); // form OTP sẽ điều khiển việc mở Main
+                }
+                this.Show(); // Khi frmOTP đóng (sau khi Main logout), quay lại
+            }
+
+            else
+            {
+                // Nhân viên thường → đăng nhập luôn
+                string query = "DELETE FROM LuuTruTam_TKNhanVien_DangDangNhap; INSERT INTO LuuTruTam_TKNhanVien_DangDangNhap (Username) VALUES ( @Username )";
+                DataProvider.Instance.ExecuteNonQuery(query, new object[] { username });
+
+                this.Hide();
+                using (frmMain mainForm = new frmMain(username))
+                {
+                    mainForm.ShowDialog();
+                }
+                this.Show(); // Quay lại login sau khi main đóng
             }
         }
 

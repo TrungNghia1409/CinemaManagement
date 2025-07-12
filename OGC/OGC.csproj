@@ -50,6 +50,7 @@
     <PackageReference Include="LiveCharts" Version="0.9.7" />
     <PackageReference Include="LiveCharts.Core" Version="0.9.8" />
     <PackageReference Include="LiveCharts.WinForms" Version="0.9.7.1" />
+    <PackageReference Include="MailKit" Version="4.13.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Microsoft.Chart.Controls" Version="4.7.2046" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
@@ -59,6 +60,7 @@
     <PackageReference Include="PayOS.Lib.Be" Version="1.0.9" />
     <PackageReference Include="payOS.Net5" Version="1.0.7" />
     <PackageReference Include="QRCoder" Version="1.6.0" />
+    <PackageReference Include="QuestPDF" Version="2025.5.1" />
     <PackageReference Include="RestSharp" Version="112.1.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="ZXing.Net" Version="0.14.0" />

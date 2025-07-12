@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.WebRequestMethods;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using OGC.Log_NhanVien;
 
 namespace OGC.NHANVIEN
 {
@@ -31,6 +32,11 @@ namespace OGC.NHANVIEN
 
             LoadNhanVien();
             LoadChucVu();
+
+            this.ContextMenuStrip = cmsNhanVien;
+
+            string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
         }
 
         private void lblBackHome_Click(object sender, EventArgs e)
@@ -93,7 +99,7 @@ namespace OGC.NHANVIEN
                 uc.DiaChi = nv.DiaChi;
 
                 flpNhanVien.Controls.Add(uc);
-               
+
 
 
             }
@@ -151,5 +157,22 @@ namespace OGC.NHANVIEN
             }
         }
 
+        //mở form Log_NhanVien khi click vào cmsNhanVien_LogNV
+        private void cmsNhanVien_LogNV_Click(object sender, EventArgs e)
+        {
+            frmLog_NhanVien frm = new frmLog_NhanVien(currentUser);
+            frm.ShowDialog(); //
+        }
+
+        //Tổng hợp các phím tắt
+        private void frmNhanVien_KeyDown(object sender, KeyEventArgs e)
+        {
+            //hoặc mở frmLog_NhanVien bằng phím tắt Ctrl + L
+            if (e.Control && e.KeyCode == Keys.L)
+            {
+                frmLog_NhanVien frm = new frmLog_NhanVien(currentUser);
+                frm.ShowDialog();
+            }
+        }
     }
 }

@@ -163,6 +163,17 @@ namespace OGC.DAO
             return result?.ToString() ?? ""; // Trả về "" nếu không có kết quả
         }
 
+        //------ lấy tên nhân viên dựa vào mã nhân viên
+        public string GetTenByID(int iDNhanVien)
+        {
+            string query = @" SELECT HoTen FROM NHANVIEN
+                        WHERE ID = @ID ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { iDNhanVien });
+
+            return result?.ToString() ?? ""; // Trả về "" nếu không có kết quả
+        }
+
         //--hàm lấy ảnh từ mã nhân viên
         public string LayAnhNhanVien(int idNhanVien)
         {
@@ -172,5 +183,13 @@ namespace OGC.DAO
             return result != null ? result.ToString() : null;
         }
 
+        //lấy email dựa trên username
+        public string GetEmailByUsername(string username)
+        {
+            string query = "SELECT Email FROM NHANVIEN WHERE Username = @username";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { username });
+
+            return result != null ? result.ToString() : string.Empty;
+        }
     }
 }

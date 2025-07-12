@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using NAudio.Wave; //voice tự động
 using System.Net; //voice tự động
 using static OGC.DTO.DTO_CartItem;
+using DocumentFormat.OpenXml.Bibliography;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OGC.QuanLyDichVu
@@ -312,7 +313,8 @@ namespace OGC.QuanLyDichVu
                     if (!string.IsNullOrEmpty(tenMonAn) && !string.IsNullOrEmpty(slText) && !string.IsNullOrEmpty(donGiaText))
                     {
                         int soLuong = int.Parse(slText.Replace("SL: ", ""));
-                        decimal donGia = long.Parse(donGiaText.Replace(",", "").Trim());
+                        //decimal donGia = long.Parse(donGiaText.Replace(".", "").Trim());
+                       decimal donGia = long.Parse(donGiaText.Replace(",", "").Trim());
 
                         items.Add(new CartItem
                         {
@@ -370,6 +372,7 @@ namespace OGC.QuanLyDichVu
         //-------- sự kiện mở form phương thức thanh toán
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
+            int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser);
             // Loại bỏ các dấu phân cách hàng nghìn (ví dụ: , hoặc .) và chuyển đổi sang decimal
             string cleanText = Regex.Replace(txbTongTien.Text, "[,.]", "");
             List<CartItem> gioHang = GetCartItems();
@@ -381,7 +384,7 @@ namespace OGC.QuanLyDichVu
                     return;
                 }
 
-                frmPhuongThucThanhToan frm = new frmPhuongThucThanhToan((long)tongTien, gioHang);
+                frmPhuongThucThanhToan frm = new frmPhuongThucThanhToan((long)tongTien, currentUser, idNhanVien, gioHang);
                 frm.ShowDialog();
             }
             else
@@ -408,7 +411,7 @@ namespace OGC.QuanLyDichVu
                 List<CartItem> gioHang = GetCartItems();
 
                 // Đọc thành tiếng với số tiền thực tế
-                string textToSpeak = $"Đã thanh toán thành công {tongTien} đồng";
+                string textToSpeak = $"Đã nhận {tongTien} đồng";
                 PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động
 
                 frmXacNhanThanhToan frm = new frmXacNhanThanhToan(tongTien, idNhanVien, gioHang);

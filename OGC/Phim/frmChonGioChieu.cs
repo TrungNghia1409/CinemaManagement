@@ -18,7 +18,7 @@ namespace OGC.Phim
         {
             InitializeComponent();
             this.tenPhim = tenPhim;
-            this.ngayChieu = ngayChieu;
+            this.ngayChieu = ngayChieu.Date;
 
             this.Load += FrmChonGioChieu_Load;
         }
@@ -113,10 +113,8 @@ namespace OGC.Phim
             string tenPhim = this.tenPhim;    
             DateTime ngayChieu = this.ngayChieu; 
 
-            // Mở form chọn ghế với các tham số
             FrmChonGhe chonGheForm = new FrmChonGhe(tenPhim, ngayChieu, gioChon);
             chonGheForm.Show();
-            // Đóng form hiện tại
             this.Close();
         }
     }
