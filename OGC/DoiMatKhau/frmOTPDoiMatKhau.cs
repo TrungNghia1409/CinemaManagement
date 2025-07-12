@@ -8,14 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
-namespace OGC.OTP_XACNHAN
+namespace OGC.DoiMatKhau
 {
-    public partial class frmOTPXacNhanAdmin : Form
+    public partial class frmOTPDoiMatKhau : Form
     {
-        public string currentUser; // Biến lưu tài khoản nhân viên đăng nhập
-        public frmOTPXacNhanAdmin(string username)
+        public string currentUser;
+        public frmOTPDoiMatKhau(string username)
         {
             InitializeComponent();
 
@@ -29,14 +28,12 @@ namespace OGC.OTP_XACNHAN
         }
 
         #region Events
-
-        //sự kiện di chuyển khi nhập xong 1 kí tự trong mã otp
-
         private void txbOTP1_TextChanged(object sender, EventArgs e)
         {
             if (txbOTP1.Text.Length == 1)
                 txbOTP2.Focus();
         }
+
         private void txbOTP2_TextChanged(object sender, EventArgs e)
         {
             if (txbOTP2.Text.Length == 1)
@@ -88,7 +85,6 @@ namespace OGC.OTP_XACNHAN
         #endregion
 
         #region Methods
-        //Hàm kiểm tra mã otp
         private void KiemTraOTP(string maOTP)
         {
             bool hopLe = DAO_OTPXN.Instance.KiemTraOTP(currentUser, maOTP);
@@ -96,10 +92,10 @@ namespace OGC.OTP_XACNHAN
             if (hopLe)
             {
                 MessageBox.Show("Xác thực thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                using (frmMain mainForm = new frmMain(currentUser))
+                using (frmDoiMatKhau f = new frmDoiMatKhau(currentUser))
                 {
                     this.Hide();
-                    mainForm.ShowDialog();
+                    f.ShowDialog();
                 }
 
                 this.Close(); // Đóng OTP sau khi main đóng
@@ -135,9 +131,6 @@ namespace OGC.OTP_XACNHAN
 
             return prefix + stars + domain;
         }
-
         #endregion
-
-       
     }
 }

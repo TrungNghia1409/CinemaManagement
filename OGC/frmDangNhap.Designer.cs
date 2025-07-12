@@ -42,6 +42,7 @@
             txbMatKhau = new TextBox();
             pnlTaiKhoan = new Panel();
             txbTaiKhoan = new TextBox();
+            lblQuenMatKhau = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbDangNhap).BeginInit();
@@ -77,15 +78,14 @@
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(248, 264);
+            panel2.Size = new Size(240, 264);
             panel2.TabIndex = 0;
             // 
             // label1
             // 
-            label1.AutoSize = true;
             label1.Location = new Point(0, 224);
             label1.Name = "label1";
-            label1.Size = new Size(239, 15);
+            label1.Size = new Size(240, 16);
             label1.TabIndex = 5;
             label1.Text = "⦿ 2025 OGC Cinema | Designe by Double2N";
             // 
@@ -108,6 +108,7 @@
             // 
             // pnlDangNhap_Phai
             // 
+            pnlDangNhap_Phai.Controls.Add(lblQuenMatKhau);
             pnlDangNhap_Phai.Controls.Add(pictureBox2);
             pnlDangNhap_Phai.Controls.Add(pictureBox1);
             pnlDangNhap_Phai.Controls.Add(btnDangNhap);
@@ -144,7 +145,7 @@
             btnDangNhap.FlatAppearance.BorderSize = 0;
             btnDangNhap.FlatStyle = FlatStyle.Flat;
             btnDangNhap.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDangNhap.Location = new Point(144, 144);
+            btnDangNhap.Location = new Point(128, 144);
             btnDangNhap.Name = "btnDangNhap";
             btnDangNhap.Size = new Size(92, 35);
             btnDangNhap.TabIndex = 3;
@@ -198,6 +199,18 @@
             txbTaiKhoan.Enter += txbTaiKhoan_Enter;
             txbTaiKhoan.Leave += txbTaiKhoan_Leave;
             // 
+            // lblQuenMatKhau
+            // 
+            lblQuenMatKhau.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblQuenMatKhau.ForeColor = Color.DodgerBlue;
+            lblQuenMatKhau.Location = new Point(232, 155);
+            lblQuenMatKhau.Name = "lblQuenMatKhau";
+            lblQuenMatKhau.Size = new Size(96, 16);
+            lblQuenMatKhau.TabIndex = 9;
+            lblQuenMatKhau.Text = "Quên mật khẩu";
+            lblQuenMatKhau.TextAlign = ContentAlignment.MiddleCenter;
+            lblQuenMatKhau.Click += lblQuenMatKhau_Click;
+            // 
             // frmDangNhap
             // 
             AcceptButton = btnDangNhap;
@@ -213,7 +226,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ptbDangNhap).EndInit();
             pnlDangNhap_Phai.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -241,5 +253,7 @@
         private TextBox txbMatKhau;
         private Panel pnlTaiKhoan;
         private TextBox txbTaiKhoan;
+        private Label label3;
+        private Label lblQuenMatKhau;
     }
 }

@@ -35,6 +35,7 @@
             txbOTP4 = new TextBox();
             txbOTP5 = new TextBox();
             txbOTP6 = new TextBox();
+            lblGuiLaiMaOTP = new Label();
             SuspendLayout();
             // 
             // lblEmail
@@ -94,11 +95,23 @@
             txbOTP6.TabIndex = 6;
             txbOTP6.TextChanged += txbOTP6_TextChanged;
             // 
+            // lblGuiLaiMaOTP
+            // 
+            lblGuiLaiMaOTP.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblGuiLaiMaOTP.ForeColor = Color.DodgerBlue;
+            lblGuiLaiMaOTP.Location = new Point(8, 72);
+            lblGuiLaiMaOTP.Name = "lblGuiLaiMaOTP";
+            lblGuiLaiMaOTP.Size = new Size(64, 16);
+            lblGuiLaiMaOTP.TabIndex = 7;
+            lblGuiLaiMaOTP.Text = "Gửi lại mã";
+            lblGuiLaiMaOTP.Click += lblGuiLaiMaOTP_Click;
+            // 
             // frmOTPXacNhanAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(345, 75);
+            ClientSize = new Size(347, 93);
+            Controls.Add(lblGuiLaiMaOTP);
             Controls.Add(txbOTP6);
             Controls.Add(txbOTP5);
             Controls.Add(txbOTP4);
@@ -122,5 +135,6 @@
         private TextBox txbOTP4;
         private TextBox txbOTP5;
         private TextBox txbOTP6;
+        private Label lblGuiLaiMaOTP;
     }
 }

@@ -225,14 +225,21 @@ namespace OGC.ThuocTinh
             string matkhau = txbMKNhanVien.Text.Trim();
 
             // Lấy dòng đang chọn
+            if (dgvTKNhanVien.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một tài khoản để sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Lấy dòng đang chọn
             DataGridViewRow selectedRow = dgvTKNhanVien.SelectedRows[0];
             string tenTaiKhoanCanSua = selectedRow.Cells["Username"].Value.ToString();
 
             try
             {
-                if ((txbTKNhanVien.Text == "") || ((txbMKNhanVien.Text == "")) || (dgvTKNhanVien.SelectedRows.Count == 0))
+                if (string.IsNullOrWhiteSpace(taikhoan) || string.IsNullOrWhiteSpace(matkhau))
                 {
-                    MessageBox.Show("Vui lòng nhập tên tài khoản mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vui lòng nhập đầy đủ tên tài khoản và mật khẩu mới.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else if (taikhoan == currentUser)
                 {
@@ -245,6 +252,11 @@ namespace OGC.ThuocTinh
                 else if (DAO_TKNHANVIEN.Instance.IsUsernameExists(taikhoan))
                 {
                     MessageBox.Show($"Tên tài khoản '{taikhoan}' đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if (tenTaiKhoanCanSua.StartsWith("admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("Không thể thay đổi mật khẩu của tài khoản quản trị (admin).", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else if ((DAO_TKNHANVIEN.Instance.SuaTKNhanVien(taikhoan, matkhau)))
