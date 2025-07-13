@@ -23,7 +23,7 @@ namespace OGC.DAO
 
         #region Kiểm tra đăng nhập
         // Hàm băm mật khẩu
-        private byte[] HashPassword(string password)
+        public byte[] HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
@@ -157,6 +157,20 @@ namespace OGC.DAO
                 return false;
             }
         }
+
+        //--hàm đổi mật khẩu admin
+        public bool DoiMatKhau(byte[] hashedPassword, string username)
+        {
+            string query = @"
+        UPDATE TKNHANVIEN 
+        SET Password = @Password 
+        WHERE Username = @Username";
+
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { hashedPassword, username });
+
+            return result > 0;
+        }
+
 
         //----- Cập nhật trạng thái của tài khoản 
         public bool SetTrangThaiDangDangNhap(string username)

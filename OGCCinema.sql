@@ -455,7 +455,7 @@ INSERT INTO NHANVIEN (Username, IDChucVu, HoTen, NgaySinh, GioiTinh, SDT, Email,
 VALUES 
 (N'hnghia', 2, N'Nguyễn Hoàng Nghĩa', '2004-4-21', N'Nam', '0397419555', 'hoangnghia@gmail.com', N'111 Đường A, Q1', N'C:/CinemaManagement/OGC/Image/iconNguoi1.png'),
 (N'tnghia', 1, N'Phan Trung Nghĩa', '2004-9-14', N'Nam', '0333701410', 'trungnghia@gmail.com', N'222 Đường B, Q2', N'C:/CinemaManagement/OGC/Image/iconNguoi1.png'),
-(N'admin', 3, N'Đặng Văn F', '1990-01-15', N'Nam', '0956789012', 'dvf@gmail.com', N'333 Đường C, Q3', N'C:/CinemaManagement/OGC/Image/iconNguoi1.png'),
+(N'admin', 3, N'Đặng Văn F', '1990-01-15', N'Nam', '0956789012', 'nhnghia0501@gmail.com', N'333 Đường C, Q3', N'C:/CinemaManagement/OGC/Image/iconNguoi1.png'),
 (N'ketoan', 5, N'Đặng Văn G', '1990-01-15', N'Nam', '0956789012', 'dvf@gmail.com', N'333 Đường C, Q3', N'C:/CinemaManagement/OGC/Image/iconNguoi1.png');
 GO
 

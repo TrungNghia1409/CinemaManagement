@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace OGC
 {
@@ -135,6 +136,22 @@ namespace OGC
         //--đổi mật khẩu tài khoản adminX
         private void lblQuenMatKhau_Click(object sender, EventArgs e)
         {
+            string username = txbTaiKhoan.Text.Trim();
+
+            // Kiểm tra có nhập tài khoản hay chưa
+            if (string.IsNullOrEmpty(username))
+            {
+                MessageBox.Show("Vui lòng nhập tên tài khoản trước khi tiếp tục.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra tài khoản có tồn tại không
+            if (!DAO_TKNHANVIEN.Instance.IsUsernameExists(username))
+            {
+                MessageBox.Show($"Tài khoản '{username}' không tồn tại trong hệ thống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (!txbTaiKhoan.Text.ToLower().StartsWith("admin"))
             {
                 MessageBox.Show("Chỉ tài khoản quản lý (admin) mới sử dụng chức năng này.");
