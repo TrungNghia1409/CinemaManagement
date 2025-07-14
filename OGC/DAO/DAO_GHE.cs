@@ -19,7 +19,6 @@ namespace OGC.DAO
         public List<GheDTO> GetListGheByIDPhong(int idPhong)
         {
             List<GheDTO> list = new List<GheDTO>();
-
             string query = "SELECT * FROM GHE WHERE IDPhong = @IDPhong ";
 
             DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { idPhong });
@@ -30,7 +29,7 @@ namespace OGC.DAO
                     Convert.ToInt32(row["ID"]),
                     Convert.ToInt32(row["IDPhong"]),
                     row["MaGhe"].ToString(),
-                    Convert.ToInt32(row["TrangThai"])
+                    Convert.ToInt32(row["TrangThai"]) // Có thể không dùng nếu bạn lấy theo TRANGTHAIGHE
                 );
                 list.Add(ghe);
             }
@@ -65,21 +64,16 @@ namespace OGC.DAO
         public bool DatGhe(int idGhe, DateTime ngayChieu, TimeSpan gioChieu)
         {
             string query = "EXEC usp_DatGhe @IDGhe , @NgayChieu , @GioChieu ";
-            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { idGhe, ngayChieu.Date, gioChieu });
-            return result > 0;
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[]
+            {
+        idGhe, ngayChieu.Date, gioChieu
+            });
+
+            return Convert.ToInt32(result) == 1;
         }
 
-        //---- load danh sách số lượng ghế dựa trên loại phòng chiếu
-        public DataTable LoadGheTheoLoaiPhong(int idLoaiPhong)
-        {
-            string query = @"
-        SELECT G.*
-        FROM GHE G
-        INNER JOIN PHONGCHIEU P ON G.IDPhong = P.ID
-        WHERE P.MaLoaiPhong = @idLoaiPhong";
 
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { idLoaiPhong });
-        }
+
 
         public int GetTrangThaiGheTheoID(int idGhe, DateTime ngayChieu, TimeSpan gioChieu)
         {
@@ -88,6 +82,49 @@ namespace OGC.DAO
             return (result == null) ? 0 : Convert.ToInt32(result);
         }
 
+
+        public int GetTrangThaiGheTheoMa(int idPhong, string maGhe, DateTime ngayChieu, TimeSpan gioChieu)
+        {
+            string query = "EXEC usp_GetTrangThaiGheTheoPhongVaSuatChieu @IDPhong , @MaGhe , @NgayChieu , @GioChieu";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[]
+            {
+        idPhong,
+        maGhe,
+        ngayChieu.Date,
+        gioChieu
+            });
+
+            // Nếu không có kết quả thì mặc định là ghế trống (0)
+            return result != null ? Convert.ToInt32(result) : 0;
+        }
+
+        public bool TaoGheTheoPhong(int idPhong)
+        {
+            // Lấy SoHang, SoCot từ loại phòng
+            int idLoaiPhong = DAO_PHONGCHIEU.Instance.LayIDLoaiPhongTheoIDPhong(idPhong);
+            DataTable dt = DataProvider.Instance.ExecuteQuery("SELECT SoHang, SoCot FROM LOAIPHONG WHERE ID = @ID ", new object[] { idLoaiPhong });
+
+            if (dt.Rows.Count == 0)
+                return false;
+
+            int soHang = Convert.ToInt32(dt.Rows[0]["SoHang"]);
+            int soCot = Convert.ToInt32(dt.Rows[0]["SoCot"]);
+
+            string query = "EXEC usp_TaoGheTheoPhong @IDPhong , @SoHang , @SoCot ";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { idPhong, soHang, soCot });
+
+            return result >= 0; // vì luôn có thể insert 0 hoặc nhiều ghế
+        }
+
+
+        public void TaoGheDoiChoPhongCouple(int idPhong, int soHang, int soCot)
+        {
+            string query = "EXEC usp_TaoGheDoi_ChoPhongCouple @IDPhong , @SoHang , @SoCot ";
+            DataProvider.Instance.ExecuteNonQuery(query, new object[] { idPhong, soHang, soCot });
+        }
+
+        
 
     }
 }

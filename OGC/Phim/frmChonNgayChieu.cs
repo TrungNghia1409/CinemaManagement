@@ -97,7 +97,7 @@ namespace OGC.Phim
         {
             flpNgayChieu.Controls.Clear();
 
-            List<DateTime> ngayChieus = DAO_LICHCHIEU.Instance.GetNgayChieuTheoPhim(tenPhim);
+            List<DTO_NGAYCHIEUPHONG> ngayChieus = DAO_LICHCHIEU.Instance.GetNgayChieuTheoPhim(tenPhim);
 
             if (ngayChieus == null || ngayChieus.Count == 0)
             {
@@ -106,16 +106,16 @@ namespace OGC.Phim
                 return;
             }
 
-            foreach (DateTime ngay in ngayChieus)
+            foreach (var item in ngayChieus)
             {
                 Button btn = new Button();
-                btn.Text = ngay.ToString("dd/MM/yyyy");
-                btn.Tag = ngay;
-                btn.Width = 100;
+                btn.Text = item.NgayChieu.ToString("dd/MM/yyyy") + " - " + item.TenPhong;
+                btn.Tag = item; // Gán DTO luôn
+                btn.Width = 160;
                 btn.Height = 40;
                 btn.BackColor = Color.LightSkyBlue;
 
-                //Đăng ký sự kiện click cho nút ngày chiếu
+                // Đăng ký sự kiện click cho nút ngày chiếu
                 btn.Click += BtnGioChieu_Click;
 
                 flpNgayChieu.Controls.Add(btn);
@@ -125,13 +125,13 @@ namespace OGC.Phim
         private void BtnGioChieu_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            int idPhong = this.idPhong; // Lấy id phòng từ biến thành viên
             if (btn == null) return;
 
-            DateTime ngayChon = ((DateTime)btn.Tag).Date;
+            DTO_NGAYCHIEUPHONG item = btn.Tag as DTO_NGAYCHIEUPHONG;
+            if (item == null) return;
 
-            // Mở form chọn giờ chiếu truyền theo tên phim và ngày chọn
-            frmChonGioChieu frm = new frmChonGioChieu(tenPhim, ngayChon);
+            // Mở form chọn giờ chiếu truyền theo tên phim, ngày chiếu và phòng chiếu
+            frmChonGioChieu frm = new frmChonGioChieu(tenPhim, item.NgayChieu, item.IDPhong);
             this.Close();
             frm.ShowDialog();
             this.Show();

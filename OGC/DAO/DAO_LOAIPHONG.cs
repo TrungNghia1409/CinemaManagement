@@ -148,6 +148,13 @@ namespace OGC.DAO
             return (result != null) ? Convert.ToInt32(result) : -1;
         }
 
+        public string GetTenLoaiPhongTheoID(int id)
+        {
+            string query = "SELECT TenLoaiPhong FROM LOAIPHONG WHERE ID = @ID ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { id });
+
+            return result?.ToString();
+        }
 
     }
 }
