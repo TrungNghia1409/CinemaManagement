@@ -162,6 +162,7 @@
             // 
             // fplHienThiPhim
             // 
+            fplHienThiPhim.AutoScroll = true;
             fplHienThiPhim.Location = new Point(2, 3);
             fplHienThiPhim.Name = "fplHienThiPhim";
             fplHienThiPhim.Size = new Size(1098, 526);
