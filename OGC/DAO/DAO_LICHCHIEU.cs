@@ -337,13 +337,7 @@ namespace OGC.DAO
             return list;
         }
 
-        //---- lấy id phòng chiếu dựa trên id lịch chiếu
-        public int LayIDPhongTheoIDLichChieu(int idLichChieu)
-        {
-            string query = "SELECT IDPhong FROM LICHCHIEU WHERE ID = @ID ";
-            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idLichChieu });
-            return result != null ? Convert.ToInt32(result) : -1;
-        }
+      
 
         //------ hàm trả về ngày giờ lịch chiếu dựa trên id phòng
         public List<DateTime> GetNgayGioTrongNgay(int idPhong, DateTime ngay)
@@ -360,6 +354,45 @@ namespace OGC.DAO
             }
 
             return result;
+        }
+
+        public decimal LayGiaVe(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu, int idPhong)
+        {
+            string query = "EXEC usp_LayGiaVe @TenPhim , @NgayChieu , @GioChieu , @IDPhong ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] {
+        tenPhim, ngayChieu.Date, gioChieu, idPhong });
+
+            return result != null ? Convert.ToDecimal(result) : 0;
+        }
+
+        public int GetIDLichChieu(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu, int idPhong)
+        {
+            string query = @"
+            SELECT TOP 1 ID 
+            FROM LICHCHIEU 
+            WHERE TenPhim = @tenPhim 
+              AND CONVERT(DATE, NgayGio) = @ngayChieu 
+              AND CONVERT(TIME, NgayGio) = @gioChieu 
+              AND IDPhong = @idPhong ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim, ngayChieu.Date, gioChieu, idPhong });
+
+            return (result != null && result != DBNull.Value) ? Convert.ToInt32(result) : -1;
+        }
+
+
+
+        public decimal GetGiaVeTheoID(int idLichChieu)
+        {
+            string query = "SELECT GiaVe FROM LICHCHIEU WHERE ID = @id ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idLichChieu });
+
+            if (result != null && result != DBNull.Value)
+            {
+                return Convert.ToDecimal(result);
+            }
+
+            return 0;
         }
 
 

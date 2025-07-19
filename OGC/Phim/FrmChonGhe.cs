@@ -16,15 +16,19 @@ namespace OGC.Phim
         private List<string> gheDaDat = new List<string>();
         private Dictionary<string, GheDTO> dictGhe = new Dictionary<string, GheDTO>();
 
-        private int giaVe = 50000;
+        private decimal giaVe; 
+
 
         private string tenPhim;
         private DateTime ngayChieu;
         private TimeSpan gioChieu;
         private string dinhDang;
         private int idPhong;
+        private int idLichChieu = -1;
+
 
         // Constructor đầy đủ 4 tham số
+
         public FrmChonGhe(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu, int idPhong)
         {
             InitializeComponent();
@@ -34,15 +38,13 @@ namespace OGC.Phim
             this.gioChieu = gioChieu;
             this.idPhong = idPhong;
 
+            this.idLichChieu = DAO_LICHCHIEU.Instance.GetIDLichChieu(tenPhim, ngayChieu, gioChieu, idPhong);
+
             LoadDinhDangPhong();
+            LoadGiaVe();
             LoadGhe();
         }
 
-        // Constructor cũ 3 tham số vẫn dùng được nếu muốn
-        public FrmChonGhe(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu)
-            : this(tenPhim, ngayChieu, gioChieu, DAO_LICHCHIEU.Instance.GetIDPhong(tenPhim, ngayChieu, gioChieu))
-        {
-        }
 
         private void FrmChonGhe_Load(object sender, EventArgs e)
         {
@@ -58,6 +60,29 @@ namespace OGC.Phim
             lbNgayChieu.Text = $"Ngày chiếu: {ngayChieu:dd/MM/yyyy}";
             lbGioChieu.Text = $"Giờ chiếu: {gioChieu:hh\\:mm}";
         }
+        private void LoadGiaVe()
+        {
+            try
+            {
+                if (idLichChieu != -1)
+                {
+                    giaVe = DAO_LICHCHIEU.Instance.GetGiaVeTheoID(idLichChieu);
+                }
+                else
+                {
+                    giaVe = DAO_LICHCHIEU.Instance.LayGiaVe(tenPhim, ngayChieu, gioChieu, idPhong);
+                }
+
+                // 👇 Chỉ gọi cập nhật nếu có ghế được chọn
+                if (gheDangChon.Count > 0)
+                    CapNhatThongTinGheDangChon();
+            }
+            catch
+            {
+                giaVe = 0;
+                lbGiaGhe.Text = "Không lấy được giá vé";
+            }
+        }
 
         private void LoadGhe()
         {
@@ -70,15 +95,8 @@ namespace OGC.Phim
             int soHang = (int)Math.Ceiling((double)sucChua / 10);
             int soCot = 10;
 
-            // 🧱 Tạo ghế theo loại phòng
-            if (tenLoaiPhong == "Couple")
-            {
-                DAO_Ghe.Instance.TaoGheDoiChoPhongCouple(idPhong, soHang, soCot);
-            }
-            else
-            {
-                DAO_Ghe.Instance.TaoGheTheoPhong(idPhong);
-            }
+            // ✅ DÙ LÀ PHÒNG NÀO CŨNG CHỈ DÙNG HÀM NÀY
+            DAO_Ghe.Instance.TaoGheTheoPhong(idPhong);
 
             // 📦 Lấy danh sách ghế
             var gheList = DAO_Ghe.Instance.GetListGheByIDPhong(idPhong);
@@ -97,7 +115,6 @@ namespace OGC.Phim
 
             // 🧱 Vẽ lên giao diện
             flpGhe.Controls.Clear();
-            int soThuTu = 0;
             int gheMoiMotHang = 10;
             int soHangFinal = (int)Math.Ceiling((double)sucChua / gheMoiMotHang);
 
@@ -129,7 +146,7 @@ namespace OGC.Phim
                     Button btnGhe = new Button
                     {
                         Text = ghe.MaGhe,
-                        Width = (ghe.MaGhe.Contains("-") ? 100 : 50), // Ghế đôi to hơn
+                        Width = (tenLoaiPhong == "Couple" ? 100 : 50), // ✅ Ghế đôi nếu là phòng couple
                         Height = 50,
                         Margin = new Padding(2)
                     };
@@ -174,13 +191,23 @@ namespace OGC.Phim
         private void CapNhatThongTinGheDangChon()
         {
             var danhSach = gheDangChon
-       .Select(btn => btn.Text)
-       .OrderBy(g => GetHangGhe(g))
-       .ThenBy(g => GetSoGhe(g))
-       .ToList();
+        .Select(btn => btn.Text)
+        .OrderBy(g => GetHangGhe(g))
+        .ThenBy(g => GetSoGhe(g))
+        .ToList();
+
+            if (danhSach.Count == 0)
+            {
+                lbGheDaChon.Text = "Ghế đã chọn: ";
+                lbGiaGhe.Text = "Tổng tiền: 0 đ";
+                return;
+            }
+
+            decimal tong = danhSach.Count * giaVe;
 
             lbGheDaChon.Text = "Ghế đã chọn: " + string.Join(", ", danhSach);
-            lbGiaGhe.Text = "Tổng tiền: " + (danhSach.Count * giaVe).ToString("N0") + " đ";
+            lbGiaGhe.Text = "Tổng tiền: " + tong.ToString("N0") + " đ";
+
         }
 
         private char GetHangGhe(string maGhe)

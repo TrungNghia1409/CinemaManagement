@@ -118,12 +118,6 @@ namespace OGC.DAO
         }
 
 
-        public void TaoGheDoiChoPhongCouple(int idPhong, int soHang, int soCot)
-        {
-            string query = "EXEC usp_TaoGheDoi_ChoPhongCouple @IDPhong , @SoHang , @SoCot ";
-            DataProvider.Instance.ExecuteNonQuery(query, new object[] { idPhong, soHang, soCot });
-        }
-
         
 
     }
