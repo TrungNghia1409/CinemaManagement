@@ -63,6 +63,8 @@
             lbGiamGia = new Label();
             label11 = new Label();
             label12 = new Label();
+            btnXuatHoaDon = new Button();
+            btnHuyHoaDon = new Button();
             ((System.ComponentModel.ISupportInitialize)ptbQRCode).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -71,9 +73,9 @@
             // 
             // ptbQRCode
             // 
-            ptbQRCode.Location = new Point(272, 12);
+            ptbQRCode.Location = new Point(12, 756);
             ptbQRCode.Name = "ptbQRCode";
-            ptbQRCode.Size = new Size(103, 152);
+            ptbQRCode.Size = new Size(363, 79);
             ptbQRCode.SizeMode = PictureBoxSizeMode.Zoom;
             ptbQRCode.TabIndex = 0;
             ptbQRCode.TabStop = false;
@@ -81,7 +83,7 @@
             // label4
             // 
             label4.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(57, 115);
+            label4.Location = new Point(112, 93);
             label4.Name = "label4";
             label4.Size = new Size(165, 31);
             label4.TabIndex = 6;
@@ -91,7 +93,7 @@
             // label3
             // 
             label3.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(57, 73);
+            label3.Location = new Point(112, 62);
             label3.Name = "label3";
             label3.Size = new Size(165, 31);
             label3.TabIndex = 7;
@@ -101,7 +103,7 @@
             // label1
             // 
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(57, 167);
+            label1.Location = new Point(66, 124);
             label1.Name = "label1";
             label1.Size = new Size(256, 31);
             label1.TabIndex = 8;
@@ -113,7 +115,7 @@
             lblTen.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTen.Image = Properties.Resources.filmsmall;
             lblTen.ImageAlign = ContentAlignment.MiddleLeft;
-            lblTen.Location = new Point(39, 9);
+            lblTen.Location = new Point(94, 9);
             lblTen.Name = "lblTen";
             lblTen.Size = new Size(210, 53);
             lblTen.TabIndex = 9;
@@ -128,9 +130,9 @@
             panel1.Controls.Add(MaHoaDon);
             panel1.Controls.Add(lbNgayLap);
             panel1.Controls.Add(NgayLap);
-            panel1.Location = new Point(12, 203);
+            panel1.Location = new Point(12, 158);
             panel1.Name = "panel1";
-            panel1.Size = new Size(363, 135);
+            panel1.Size = new Size(363, 134);
             panel1.TabIndex = 15;
             // 
             // lbTenNhanVien
@@ -205,7 +207,7 @@
             panel2.Controls.Add(label6);
             panel2.Controls.Add(lbTenPhim);
             panel2.Controls.Add(label5);
-            panel2.Location = new Point(12, 344);
+            panel2.Location = new Point(12, 298);
             panel2.Name = "panel2";
             panel2.Size = new Size(363, 210);
             panel2.TabIndex = 16;
@@ -313,15 +315,15 @@
             panel3.Controls.Add(lbGiamGia);
             panel3.Controls.Add(label11);
             panel3.Controls.Add(label12);
-            panel3.Location = new Point(12, 560);
+            panel3.Location = new Point(12, 514);
             panel3.Name = "panel3";
-            panel3.Size = new Size(363, 269);
+            panel3.Size = new Size(363, 236);
             panel3.TabIndex = 17;
             // 
             // lbTienThoi
             // 
             lbTienThoi.AutoSize = true;
-            lbTienThoi.Location = new Point(226, 223);
+            lbTienThoi.Location = new Point(229, 207);
             lbTienThoi.Name = "lbTienThoi";
             lbTienThoi.Size = new Size(70, 20);
             lbTienThoi.TabIndex = 0;
@@ -330,7 +332,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(18, 223);
+            label15.Location = new Point(21, 207);
             label15.Name = "label15";
             label15.Size = new Size(77, 20);
             label15.TabIndex = 0;
@@ -339,7 +341,7 @@
             // lbTienKhachDua
             // 
             lbTienKhachDua.AutoSize = true;
-            lbTienKhachDua.Location = new Point(226, 181);
+            lbTienKhachDua.Location = new Point(229, 165);
             lbTienKhachDua.Name = "lbTienKhachDua";
             lbTienKhachDua.Size = new Size(113, 20);
             lbTienKhachDua.TabIndex = 0;
@@ -348,7 +350,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(18, 181);
+            label14.Location = new Point(21, 165);
             label14.Name = "label14";
             label14.Size = new Size(120, 20);
             label14.TabIndex = 0;
@@ -357,16 +359,16 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(15, 21);
+            label10.Location = new Point(124, 11);
             label10.Name = "label10";
-            label10.Size = new Size(103, 20);
+            label10.Size = new Size(62, 20);
             label10.TabIndex = 0;
-            label10.Text = "SỐ LƯỢNG VÉ";
+            label10.Text = "Vé Phim";
             // 
             // lbTongTien
             // 
             lbTongTien.AutoSize = true;
-            lbTongTien.Location = new Point(226, 141);
+            lbTongTien.Location = new Point(229, 125);
             lbTongTien.Name = "lbTongTien";
             lbTongTien.Size = new Size(75, 20);
             lbTongTien.TabIndex = 0;
@@ -375,7 +377,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(18, 141);
+            label13.Location = new Point(21, 125);
             label13.Name = "label13";
             label13.Size = new Size(82, 20);
             label13.TabIndex = 0;
@@ -384,7 +386,7 @@
             // lbGiaVe
             // 
             lbGiaVe.AutoSize = true;
-            lbGiaVe.Location = new Point(223, 61);
+            lbGiaVe.Location = new Point(226, 45);
             lbGiaVe.Name = "lbGiaVe";
             lbGiaVe.Size = new Size(51, 20);
             lbGiaVe.TabIndex = 0;
@@ -393,7 +395,7 @@
             // lbGiamGia
             // 
             lbGiamGia.AutoSize = true;
-            lbGiamGia.Location = new Point(223, 101);
+            lbGiamGia.Location = new Point(226, 85);
             lbGiamGia.Name = "lbGiamGia";
             lbGiamGia.Size = new Size(70, 20);
             lbGiamGia.TabIndex = 0;
@@ -402,7 +404,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(15, 61);
+            label11.Location = new Point(18, 45);
             label11.Name = "label11";
             label11.Size = new Size(58, 20);
             label11.TabIndex = 0;
@@ -411,17 +413,41 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(15, 101);
+            label12.Location = new Point(18, 85);
             label12.Name = "label12";
             label12.Size = new Size(77, 20);
             label12.TabIndex = 0;
             label12.Text = "Giảm Giá: ";
             // 
+            // btnXuatHoaDon
+            // 
+            btnXuatHoaDon.Location = new Point(12, 842);
+            btnXuatHoaDon.Margin = new Padding(3, 4, 3, 4);
+            btnXuatHoaDon.Name = "btnXuatHoaDon";
+            btnXuatHoaDon.Size = new Size(174, 31);
+            btnXuatHoaDon.TabIndex = 19;
+            btnXuatHoaDon.Text = "Xuất hóa đơn";
+            btnXuatHoaDon.UseVisualStyleBackColor = true;
+            btnXuatHoaDon.Click += btnXuatHoaDon_Click;
+            // 
+            // btnHuyHoaDon
+            // 
+            btnHuyHoaDon.Location = new Point(199, 842);
+            btnHuyHoaDon.Margin = new Padding(3, 4, 3, 4);
+            btnHuyHoaDon.Name = "btnHuyHoaDon";
+            btnHuyHoaDon.Size = new Size(174, 31);
+            btnHuyHoaDon.TabIndex = 19;
+            btnHuyHoaDon.Text = "Hủy Hóa Đơn";
+            btnHuyHoaDon.UseVisualStyleBackColor = true;
+            btnHuyHoaDon.Click += btnHuyHoaDon_Click;
+            // 
             // FrmChiTietHoaDonVePhim
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(387, 841);
+            ClientSize = new Size(385, 882);
+            Controls.Add(btnHuyHoaDon);
+            Controls.Add(btnXuatHoaDon);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -478,5 +504,7 @@
         private Label lbTongTien;
         private Label lbGiaVe;
         private Label lbGiamGia;
+        private Button btnXuatHoaDon;
+        private Button btnHuyHoaDon;
     }
 }
