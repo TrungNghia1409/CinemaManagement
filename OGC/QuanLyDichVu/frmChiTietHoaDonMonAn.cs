@@ -70,7 +70,7 @@ namespace OGC.QuanLyDichVu
         {
             iDHoaDon = DAO_HD_MONAN.Instance.ThemHoaDonMonAn(iDNhanVien, iDKhach, tongTien);
             lblMaHoaDon.Text = "HD1412" + iDHoaDon.ToString();
-
+             
             foreach (var item in gioHang)
             {
                 int idMonAn = DAO_MONAN.Instance.LayIDMonAnTheoTen(item.TenMonAn); 

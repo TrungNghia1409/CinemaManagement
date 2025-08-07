@@ -11,16 +11,20 @@ namespace OGC.Phim
         private string tenPhim;
         private DateTime ngayChieu;
         private int idPhong;
+        private string currentUser;
 
-        public frmChonGioChieu(string tenPhim, DateTime ngayChieu, int idPhong)
+
+        public frmChonGioChieu(string tenPhim, DateTime ngayChieu, int idPhong, string currentUser)
         {
             InitializeComponent();
             this.tenPhim = tenPhim;
             this.ngayChieu = ngayChieu.Date;
             this.idPhong = idPhong;
+            this.currentUser = currentUser;
 
             this.Load += FrmChonGioChieu_Load;
         }
+
 
         private void FrmChonGioChieu_Load(object sender, EventArgs e)
         {
@@ -85,7 +89,7 @@ namespace OGC.Phim
             TimeSpan gioChon = (TimeSpan)btn.Tag;
 
             // Truyền IDPhòng để lọc ghế theo đúng phòng
-            FrmChonGhe chonGheForm = new FrmChonGhe(tenPhim, ngayChieu, gioChon, idPhong);
+            FrmChonGhe chonGheForm = new FrmChonGhe(tenPhim, ngayChieu, gioChon, idPhong, currentUser);
             chonGheForm.Show();
             this.Close();
         }

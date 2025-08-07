@@ -1,6 +1,8 @@
 ﻿using OGC.DAO;
 using OGC.DTO;
 using System;
+using QRCoder;
+using ZXing;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -15,8 +17,9 @@ namespace OGC.Phim
         private List<Button> gheDangChon = new List<Button>();
         private List<string> gheDaDat = new List<string>();
         private Dictionary<string, GheDTO> dictGhe = new Dictionary<string, GheDTO>();
+        private string currentUser;
 
-        private decimal giaVe; 
+        private decimal giaVe;
 
 
         private string tenPhim;
@@ -29,7 +32,7 @@ namespace OGC.Phim
 
         // Constructor đầy đủ 4 tham số
 
-        public FrmChonGhe(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu, int idPhong)
+        public FrmChonGhe(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu, int idPhong, string currentUser)
         {
             InitializeComponent();
 
@@ -37,6 +40,7 @@ namespace OGC.Phim
             this.ngayChieu = ngayChieu;
             this.gioChieu = gioChieu;
             this.idPhong = idPhong;
+            this.currentUser = currentUser;
 
             this.idLichChieu = DAO_LICHCHIEU.Instance.GetIDLichChieu(tenPhim, ngayChieu, gioChieu, idPhong);
 
@@ -246,6 +250,7 @@ namespace OGC.Phim
             }
 
             bool datThatBai = false;
+            var danhSachGheDaDat = gheDangChon.Select(g => g.Text).ToList();
 
             foreach (var btn in gheDangChon.ToList())
             {
@@ -256,7 +261,6 @@ namespace OGC.Phim
 
                     if (ok)
                     {
-                        // ✅ Cập nhật trạng thái ghế ngay lập tức
                         btn.BackColor = Color.Red;
                         btn.Enabled = false;
                     }
@@ -268,11 +272,9 @@ namespace OGC.Phim
                 }
             }
 
-            // Sau khi xử lý xong thì xoá danh sách và cập nhật thông tin
             gheDangChon.Clear();
             CapNhatThongTinGheDangChon();
 
-            // Hiển thị thông báo và load lại nếu thành công
             if (datThatBai)
             {
                 MessageBox.Show("Có lỗi khi đặt một số ghế. Vui lòng thử lại.");
@@ -280,8 +282,65 @@ namespace OGC.Phim
             else
             {
                 MessageBox.Show("Đặt ghế thành công!");
-                LoadGhe(); // Load lại toàn bộ ghế để cập nhật trạng thái
+                LoadGhe();
+
+                // Tạo nội dung mã vạch, sử dụng LoaiBoDau từ DAO_Ghe
+                string noiDungQR = $"Film: {DAO_Ghe.LoaiBoDau(tenPhim)} - Ngay chieu: {ngayChieu:dd/MM/yyyy} - Gio: {gioChieu} - Ghe: {string.Join(", ", danhSachGheDaDat)}";
+                Console.WriteLine("Nội dung mã vạch: " + noiDungQR);
+
+                string suatChieu = $"{ngayChieu:dd/MM/yyyy} - {gioChieu:hh\\:mm}";
+                string phong = "Phòng " + idPhong.ToString();
+                string ghe = string.Join(", ", danhSachGheDaDat);
+                decimal tongTien = danhSachGheDaDat.Count * giaVe;
+
+                //FrmPhuongThucThanhToanVe frmCT = new FrmPhuongThucThanhToanVe(
+                //    tenPhim,
+                //    suatChieu,
+                //    phong,
+                //    ghe,
+                //    dinhDang,
+                //    giaVe,
+                //    tongTien,
+                //    noiDungQR
+                //);
+                //frmCT.ShowDialog();
+
             }
+        }
+
+        private void btnChonHinhThucThanhToan_Click(object sender, EventArgs e)
+        {
+            if (gheDangChon.Count == 0)
+            {
+                MessageBox.Show("Bạn chưa chọn ghế nào.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(currentUser))
+            {
+                MessageBox.Show("Không tìm thấy tên đăng nhập nhân viên. Vui lòng đăng nhập lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            List<string> danhSachGhe = gheDangChon.Select(btn => btn.Text).ToList();
+            decimal tongTien = danhSachGhe.Count * giaVe;
+            string suatChieu = $"{ngayChieu:dd/MM/yyyy} - {gioChieu:hh\\:mm}";
+            string phong = "Phòng " + idPhong.ToString();
+
+            int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser); // Đảm bảo currentUser != null
+
+            FrmPhuongThucThanhToanVe frm = new FrmPhuongThucThanhToanVe(
+                            danhSachGhe,
+                            tongTien,
+                            idNhanVien,
+                            tenPhim,
+                            suatChieu,
+                            phong,
+                            dinhDang,
+                            giaVe
+                        );
+            frm.ShowDialog();
+
         }
     }
 }

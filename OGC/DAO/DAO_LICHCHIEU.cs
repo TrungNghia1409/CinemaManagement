@@ -148,7 +148,7 @@ namespace OGC.DAO
                              LEFT JOIN PHIM P ON LC.IDPhim = P.ID
                              LEFT JOIN PHONGCHIEU pc ON pc.ID = lc.IDPhong
                              WHERE ( LC.NgayGio >=  @tuNgay  ) AND ( LC.NgayGio <=   @denNgay  )
-                             ORDER BY LC.NgayGio";
+                             ORDER BY LC.NgayGio ";
 
             // CHUẨN HÓA: Bao phủ cả ngày đến 23:59:59
             DateTime tuNgayChuan = tuNgay.Date;

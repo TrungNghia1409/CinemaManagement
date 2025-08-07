@@ -45,6 +45,7 @@
             label1 = new Label();
             btnXacNhan = new Button();
             button2 = new Button();
+            btnChonHinhThucThanhToan = new Button();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -193,11 +194,11 @@
             // 
             // btnXacNhan
             // 
-            btnXacNhan.Location = new Point(706, 603);
+            btnXacNhan.Location = new Point(639, 603);
             btnXacNhan.Name = "btnXacNhan";
-            btnXacNhan.Size = new Size(94, 29);
+            btnXacNhan.Size = new Size(161, 29);
             btnXacNhan.TabIndex = 1;
-            btnXacNhan.Text = "Xác Nhận";
+            btnXacNhan.Text = "Test Xuất Bill";
             btnXacNhan.UseVisualStyleBackColor = true;
             btnXacNhan.Click += btnXacNhan_Click;
             // 
@@ -210,11 +211,22 @@
             button2.Text = "Thoát";
             button2.UseVisualStyleBackColor = true;
             // 
+            // btnChonHinhThucThanhToan
+            // 
+            btnChonHinhThucThanhToan.Location = new Point(639, 638);
+            btnChonHinhThucThanhToan.Name = "btnChonHinhThucThanhToan";
+            btnChonHinhThucThanhToan.Size = new Size(161, 29);
+            btnChonHinhThucThanhToan.TabIndex = 2;
+            btnChonHinhThucThanhToan.Text = "Hình Thức Thanh Toán";
+            btnChonHinhThucThanhToan.UseVisualStyleBackColor = true;
+            btnChonHinhThucThanhToan.Click += btnChonHinhThucThanhToan_Click;
+            // 
             // FrmChonGhe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(922, 639);
+            ClientSize = new Size(922, 678);
+            Controls.Add(btnChonHinhThucThanhToan);
             Controls.Add(button2);
             Controls.Add(btnXacNhan);
             Controls.Add(panel1);
@@ -248,5 +260,6 @@
         private Label label9;
         private Label lbGheDaChon;
         private Label lbGiaGhe;
+        private Button btnChonHinhThucThanhToan;
     }
 }
