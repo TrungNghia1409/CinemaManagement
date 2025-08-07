@@ -71,22 +71,46 @@ namespace OGC.Phim
                 return;
             }
 
-            
-                FrmChiTietHoaDonVePhim frm = new FrmChiTietHoaDonVePhim(
-                    idNhanVien,
-                    idKhach,
-                    tenPhim,
-                    suatChieu,
-                    phong,
-                    gheDaChon,
-                    dinhDang,
-                    giaVe,
-                    tongTien
-                );
-                frm.ShowDialog();
+            string cleaned = new string(tbTienKhachDua.Text.Where(char.IsDigit).ToArray());
+            decimal.TryParse(cleaned, out decimal tienKhachDua);
+            decimal tienThoi = tienKhachDua - tongTien;
+            if (tienThoi < 0) tienThoi = 0;
+
+            FrmChiTietHoaDonVePhim frm = new FrmChiTietHoaDonVePhim(
+                idNhanVien,
+                idKhach,
+                tenPhim,
+                suatChieu,
+                phong,
+                gheDaChon,
+                dinhDang,
+                giaVe,
+                tienKhachDua,  
+                tienThoi,      
+                tongTien
+            );
+            frm.ShowDialog();
 
 
             this.Close();
+        }
+
+        // Nhấn ESC để xóa
+        private void tbTienKhachDua_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                tbTienKhachDua.Clear();
+                tbTienThoi.Clear();
+                e.SuppressKeyPress = true; // Không phát ra tiếng beep
+            }
+        }
+
+        // Double click để xóa
+        private void tbTienKhachDua_DoubleClick(object sender, EventArgs e)
+        {
+            tbTienKhachDua.Clear();
+            tbTienThoi.Clear();
         }
 
         private void FrmXacNhanThanhToanVePhim_Load(object sender, EventArgs e)
@@ -103,8 +127,50 @@ namespace OGC.Phim
             // Ngày thanh toán (hiện tại)
             lbNgayThanhToan.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
-            // Mã nhân viên
-            tbMaNhanVien.Text = idNhanVien.ToString();
+            //Tên Nhân Viên
+            string tenNV = DAO_NHANVIEN.Instance.GetTenByID(idNhanVien);
+            tbTenNhanVien.Text = tenNV;
+
+            tbTienKhachDua.KeyDown += tbTienKhachDua_KeyDown;
+            tbTienKhachDua.DoubleClick += tbTienKhachDua_DoubleClick;
+        }
+
+        private void tbTienKhachDua_TextChanged(object sender, EventArgs e)
+        {
+            if (tbTienKhachDua.Text == "")
+            {
+                tbTienThoi.Text = "";
+                return;
+            }
+
+            // Lưu lại vị trí con trỏ
+            int selectionStart = tbTienKhachDua.SelectionStart;
+            int length = tbTienKhachDua.Text.Length;
+
+            // Bỏ các ký tự không phải số
+            string cleaned = new string(tbTienKhachDua.Text.Where(char.IsDigit).ToArray());
+
+            if (decimal.TryParse(cleaned, out decimal tienKhachDua))
+            {
+                // Hiển thị lại với định dạng hàng nghìn
+                tbTienKhachDua.Text = tienKhachDua.ToString("N0") + " VND";
+                tbTienKhachDua.SelectionStart = Math.Min(tbTienKhachDua.Text.Length, selectionStart + tbTienKhachDua.Text.Length - length);
+
+                // Tính tiền thối
+                decimal tienThoi = tienKhachDua - tongTien; // Sử dụng biến `tongTien` bạn đã có
+                tbTienThoi.Text = tienThoi >= 0 ? tienThoi.ToString("N0") + " VND" : "0 VND";
+            }
+            else
+            {
+                tbTienThoi.Text = "";
+            }
+        }
+
+        private void btnXoaTienKhachDua_Click(object sender, EventArgs e)
+        {
+            tbTienKhachDua.Clear();
+            tbTienThoi.Clear();
+            tbTienKhachDua.Focus();
         }
     }
 }
