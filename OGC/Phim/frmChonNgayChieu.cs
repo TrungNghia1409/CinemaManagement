@@ -12,15 +12,15 @@ namespace OGC.Phim
         private string tenPhim;
         private PhimDTO phim;
         private int idPhong;
+        private string currentUser;
 
-        public frmChonNgayChieu(string tenPhim)
+
+        public frmChonNgayChieu(string tenPhim, string currentUser)
         {
             InitializeComponent();
             this.tenPhim = tenPhim;
-
-            // Đăng ký sự kiện Load form
+            this.currentUser = currentUser;
             this.Load += frmChonNgayChieu_Load;
-           
         }
 
         private void frmChonNgayChieu_Load(object sender, EventArgs e)
@@ -131,7 +131,8 @@ namespace OGC.Phim
             if (item == null) return;
 
             // Mở form chọn giờ chiếu truyền theo tên phim, ngày chiếu và phòng chiếu
-            frmChonGioChieu frm = new frmChonGioChieu(tenPhim, item.NgayChieu, item.IDPhong);
+            frmChonGioChieu frm = new frmChonGioChieu(tenPhim, item.NgayChieu, item.IDPhong, currentUser);
+
             this.Close();
             frm.ShowDialog();
             this.Show();

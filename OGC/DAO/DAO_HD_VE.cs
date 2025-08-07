@@ -119,6 +119,16 @@ namespace OGC.DAO
             return result != DBNull.Value ? Convert.ToInt32(result) : 0;
         }
 
+        public int ThemHoaDonVe(int idNhanVien, int idKhachHang, decimal tongTien)
+        {
+            string query = "EXEC ThemHoaDonVe @IDNhanVien , @IDKhachHang , @TongTien ";
+
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { idNhanVien, idKhachHang, tongTien });
+
+            // Trả về ID của hóa đơn vừa thêm
+            return Convert.ToInt32(result);
+        }
+
 
     }
 }

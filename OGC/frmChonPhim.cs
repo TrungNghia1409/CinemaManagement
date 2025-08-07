@@ -17,9 +17,13 @@ namespace OGC
 {
     public partial class frmChonPhim : Form
     {
-        public frmChonPhim()
+        private string currentUser;
+        public frmChonPhim(string currentUser)
         {
             InitializeComponent();
+
+            this.currentUser = currentUser;
+
             LoadPhimList(); // Gọi hàm LoadPhimList để tải danh sách phim
             LoadPhimTheoNgayChieu(dtpChonNgayChieu.Value.Date);
             LoadDinhDangPhimToComboBox();
@@ -245,7 +249,7 @@ namespace OGC
             if (phim != null)
             {
                 string tenPhim = phim.TenPhim;
-                frmChonNgayChieu frm = new frmChonNgayChieu(tenPhim);
+                frmChonNgayChieu frm = new frmChonNgayChieu(tenPhim, currentUser);
                 this.Hide();
                 frm.ShowDialog();
                 this.Show();
