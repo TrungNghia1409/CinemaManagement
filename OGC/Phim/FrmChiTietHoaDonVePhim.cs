@@ -19,6 +19,7 @@ namespace OGC.Phim
 {
     public partial class FrmChiTietHoaDonVePhim : Form
     {
+        public event Action<List<string>> OnBillExported;
         private int idNhanVien;
         private int idKhach;
         private int idHoaDon;
@@ -157,18 +158,43 @@ namespace OGC.Phim
                         col.Item().Text($"Ngày lập:        {ngayLap}");
                         col.Item().Text($"Tên nhân viên:   {tenNhanVien}");
 
-                        col.Item().PaddingTop(10).Text($"Tên phim:        {tenPhim}");
-                        col.Item().Text($"Suất chiếu:      {suatChieu}");
-                        col.Item().Text($"Phòng:           {phong}");
-                        col.Item().Text($"Ghế:             {ghe}");
-                        col.Item().Text($"Định dạng:       {dinhDang}");
+                        // Làm nổi bật tên phim, ghế, phòng
+                        col.Item().PaddingTop(10).Text(text =>
+                        {
+                            text.Span("Tên phim: ").SemiBold();
+                            text.Span(tenPhim).Bold().FontSize(14);
+                        });
+
+                        col.Item().Text(text =>
+                        {
+                            text.Span("Suất chiếu: ").SemiBold();
+                            text.Span(suatChieu);
+                        });
+
+                        col.Item().Text(text =>
+                        {
+                            text.Span("Phòng: ").SemiBold();
+                            text.Span(phong).Bold();
+                        });
+
+                        col.Item().Text(text =>
+                        {
+                            text.Span("Ghế: ").SemiBold();
+                            text.Span(ghe).Bold();
+                        });
+
+                        col.Item().Text(text =>
+                        {
+                            text.Span("Định dạng: ").SemiBold();
+                            text.Span(dinhDang);
+                        });
 
                         // Dòng kẻ
                         col.Item().PaddingVertical(5).LineHorizontal(1).LineColor(Colors.Grey.Lighten1);
 
                         // Giá trị
                         col.Item().Text($"Giá vé:          {giaVe} đ");
-                        col.Item().Text($"Giảm giá:        {giamGia} đ");
+                        col.Item().Text($"Giảm giá:        {giamGia} %");
                         col.Item().Text($"Tổng tiền:       {tongTien} đ");
                         col.Item().Text($"Tiền khách đưa:  {tienKhach} đ");
                         col.Item().Text($"Tiền thối:       {tienThoi} đ").Bold();
@@ -208,13 +234,17 @@ namespace OGC.Phim
                 string tienKhach = lbTienKhachDua.Text.Replace(" VND", "").Replace(",", "").Trim();
                 string tienThoi = lbTienThoi.Text.Replace(" VND", "").Replace(",", "").Trim();
 
-                // Gọi hàm xuất PDF
-                XuatPDFHoaDonVePhim(
-                    tenHD, ngayLap, tenNhanVien,
-                    tenPhim, suatChieu, phong, ghe, dinhDang,
-                    giaVe, giamGia, tongTien, tienKhach, tienThoi,
-                    ptbQRCode.Image
-                );
+                // Sau khi xuất PDF thành công -> báo về FrmChonGhe
+                List<string> danhSachGhe = ghe.Split(',')
+                                              .Select(x => x.Trim())
+                                              .Where(x => !string.IsNullOrEmpty(x))
+                                              .ToList();
+
+                OnBillExported?.Invoke(danhSachGhe);
+
+                MessageBox.Show("Xuất hóa đơn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -224,7 +254,33 @@ namespace OGC.Phim
 
         private void btnHuyHoaDon_Click(object sender, EventArgs e)
         {
+            // Hộp thoại xác nhận
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn hủy hóa đơn này không?",
+                                                  "Xác nhận hủy",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
 
+            if (result == DialogResult.Yes)
+            {
+                // Xóa chi tiết hóa đơn vé phim trước
+                bool xoaChiTiet = DAO_CTHD_VE.Instance.XoaCTHDVePhimTheoIDHoaDon(idHoaDon);
+
+                // Xóa hóa đơn vé phim
+                bool xoaHoaDon = DAO_HD_VE.Instance.XoaHDVePhimTheoID(idHoaDon);
+
+                if (xoaChiTiet && xoaHoaDon)
+                {
+                    MessageBox.Show("Hóa đơn đã được hủy thành công!", "Thông báo",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Close(); 
+                }
+                else
+                {
+                    MessageBox.Show("Hủy hóa đơn thất bại!", "Lỗi",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
 

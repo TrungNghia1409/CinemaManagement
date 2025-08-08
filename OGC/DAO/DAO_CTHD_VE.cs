@@ -43,5 +43,13 @@ namespace OGC.DAO
 
             return result > 0;
         }
+
+        public bool XoaCTHDVePhimTheoIDHoaDon(int idHoaDon)
+        {
+            string query = "EXEC XoaCTHDVePhimTheoIDHoaDon @IDHoaDon ";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { idHoaDon });
+            return result > 0;
+        }
+
     }
 }
