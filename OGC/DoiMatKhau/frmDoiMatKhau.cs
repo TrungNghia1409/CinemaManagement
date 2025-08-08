@@ -80,8 +80,14 @@ namespace OGC.DoiMatKhau
                 return;
             }
 
+            // Hash mật khẩu mới
+            byte[] hashedPassword = DAO_TKNHANVIEN.Instance.HashPassword(mkMoi); 
+
+            // SET CONTEXT trước khi đổi mật khẩu
+            DAO_LogNhanVien.Instance.SetContext_Username(currentUser);
+
             // Gọi DAO để đổi mật khẩu
-            bool ketQua = DAO_TKNHANVIEN.Instance.SuaTKNhanVien(currentUser, mkMoi);
+            bool ketQua = DAO_TKNHANVIEN.Instance.DoiMatKhau(hashedPassword, currentUser);
             if (ketQua)
             {
                 MessageBox.Show("Đổi mật khẩu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

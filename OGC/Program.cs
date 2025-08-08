@@ -14,7 +14,7 @@ namespace OGC
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             string username = "admin"; // Giả sử bạn đã đăng nhập với tài khoản quản lý
-            Application.Run(new frmMain(username));
+            Application.Run(new frmDangNhap());
         }
     }
 }

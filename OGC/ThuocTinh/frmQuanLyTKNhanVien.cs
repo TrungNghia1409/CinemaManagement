@@ -245,10 +245,10 @@ namespace OGC.ThuocTinh
                 {
                     MessageBox.Show($"Bạn đang đăng nhập bằng tài khoản '{taikhoan}'!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else if (taikhoan == tenTaiKhoanCanSua)
-                {
-                    MessageBox.Show("Tên tài khoản cần cập nhật phải khác tên tài khoản cũ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                //else if (taikhoan == tenTaiKhoanCanSua)
+                //{
+                //    MessageBox.Show("Tên tài khoản cần cập nhật phải khác tên tài khoản cũ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //}
                 else if (DAO_TKNHANVIEN.Instance.IsUsernameExists(taikhoan))
                 {
                     MessageBox.Show($"Tên tài khoản '{taikhoan}' đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);

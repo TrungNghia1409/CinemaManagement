@@ -133,6 +133,9 @@ CREATE TABLE LOAIPHONG(
 	ID INT PRIMARY KEY IDENTITY(1,1), -- Khóa chính, tự động tăng
 	TenLoaiPhong NVARCHAR(20) NOT NULL CHECK (TenLoaiPhong IN (N'Thuờng', N'VIP', N'Couple')) UNIQUE, --Có 3 loại phòng: Thường, VIP, 'Khác'
 	SucChua INT NOT NULL CHECK  (SucChua >= 0) DEFAULT 0       -- Sức chứa phòng chiếu phải >= 0
+
+	SoHang INT NOT NULL DEFAULT 5,   -- mặc định 5 hàng
+    SoCot INT NOT NULL DEFAULT 10;   -- mặc định 10 cột
 )
 GO
 
@@ -455,7 +458,7 @@ INSERT INTO NHANVIEN (Username, IDChucVu, HoTen, NgaySinh, GioiTinh, SDT, Email,
 VALUES 
 (N'hnghia', 2, N'Nguyễn Hoàng Nghĩa', '2004-4-21', N'Nam', '0397419555', 'hoangnghia@gmail.com', N'111 Đường A, Q1', N'C:/CinemaManagement/OGC/Image/iconNguoi1.png'),
 (N'tnghia', 1, N'Phan Trung Nghĩa', '2004-9-14', N'Nam', '0333701410', 'trungnghia@gmail.com', N'222 Đường B, Q2', N'C:/CinemaManagement/OGC/Image/iconNguoi1.png'),
-(N'admin', 3, N'Đặng Văn F', '1990-01-15', N'Nam', '0956789012', 'dvf@gmail.com', N'333 Đường C, Q3', N'C:/CinemaManagement/OGC/Image/iconNguoi1.png'),
+(N'admin', 3, N'Đặng Văn F', '1990-01-15', N'Nam', '0956789012', 'nhnghia0501@gmail.com', N'333 Đường C, Q3', N'C:/CinemaManagement/OGC/Image/iconNguoi1.png'),
 (N'ketoan', 5, N'Đặng Văn G', '1990-01-15', N'Nam', '0956789012', 'dvf@gmail.com', N'333 Đường C, Q3', N'C:/CinemaManagement/OGC/Image/iconNguoi1.png');
 GO
 
@@ -1346,23 +1349,30 @@ CREATE PROCEDURE usp_GetNgayChieuTheoPhim
     @TenPhim NVARCHAR(100)
 AS
 BEGIN
-    SELECT DISTINCT LC.NgayGio
+    SELECT DISTINCT
+        CAST(LC.NgayGio AS DATE) AS NgayChieu,
+        PC.ID AS IDPhong,
+        PC.TenPhong
     FROM LICHCHIEU LC
+    INNER JOIN PHONGCHIEU PC ON LC.IDPhong = PC.ID
     INNER JOIN PHIM P ON LC.IDPhim = P.ID
     WHERE P.TenPhim = @TenPhim
-    ORDER BY LC.NgayGio
+    ORDER BY NgayChieu, PC.TenPhong
 END
 GO
 
 CREATE PROCEDURE usp_GetGioChieuTheoPhimVaNgay
-    @TenPhim NVARCHAR(100),
-    @NgayGio DATE
+     @TenPhim NVARCHAR(100),
+    @NgayGio DATE,
+    @IDPhong INT
 AS
 BEGIN
     SELECT LC.ID, LC.NgayGio, LC.IDPhong
     FROM LICHCHIEU LC
     INNER JOIN PHIM P ON LC.IDPhim = P.ID
-    WHERE P.TenPhim = @TenPhim AND CAST(LC.NgayGio AS DATE) = @NgayGio
+    WHERE P.TenPhim = @TenPhim
+      AND CAST(LC.NgayGio AS DATE) = @NgayGio
+      AND LC.IDPhong = @IDPhong
     ORDER BY LC.NgayGio
 END
 GO
@@ -1376,6 +1386,82 @@ BEGIN
     INNER JOIN DINHDANGPHIM DDP ON P.IDDinhDang = DDP.ID
     WHERE P.TenPhim = @TenPhim
 END;
+GO
+
+CREATE PROCEDURE usp_TaoGheTheoPhong
+    @IDPhong INT,
+    @SoHang INT,
+    @SoCot INT
+AS
+BEGIN
+    DECLARE @i INT = 0, @j INT, @MaGhe NVARCHAR(10);
+
+    WHILE @i < @SoHang
+    BEGIN
+        SET @j = 1;
+        WHILE @j <= @SoCot
+        BEGIN
+            SET @MaGhe = CHAR(65 + @i) + CAST(@j AS NVARCHAR);
+
+            IF NOT EXISTS (
+                SELECT 1 FROM GHE WHERE MaGhe = @MaGhe AND IDPhong = @IDPhong
+            )
+            BEGIN
+                INSERT INTO GHE (IDPhong, MaGhe, TrangThai) VALUES (@IDPhong, @MaGhe, 0);
+            END
+
+            SET @j = @j + 1;
+        END
+        SET @i = @i + 1;
+    END
+END;
+GO
+
+CREATE PROCEDURE usp_TaoGheDoi_ChoPhongCouple ------proc cho ghế đôi
+    @IDPhong INT,
+    @SoHang INT,
+    @SoCot INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Kiểm tra loại phòng
+    DECLARE @LoaiPhong NVARCHAR(20);
+    SELECT @LoaiPhong = LP.TenLoaiPhong
+    FROM PHONGCHIEU PC
+    JOIN LOAIPHONG LP ON PC.MaLoaiPhong = LP.ID
+    WHERE PC.ID = @IDPhong;
+
+    IF @LoaiPhong != N'Couple'
+    BEGIN
+        PRINT N'Phòng không phải Couple - không tạo ghế đôi.';
+        RETURN;
+    END
+
+    -- Nếu là Couple thì xóa toàn bộ ghế cũ
+    DELETE FROM GHE WHERE IDPhong = @IDPhong;
+
+    -- Tạo ghế đôi (cặp 2 ghế một hàng)
+    DECLARE @Hang INT = 0;
+
+    WHILE @Hang < @SoHang
+    BEGIN
+        DECLARE @Cot INT = 1;
+
+        WHILE @Cot < @SoCot
+        BEGIN
+            DECLARE @HangChar NVARCHAR(1) = CHAR(65 + @Hang);
+            DECLARE @GheDoi NVARCHAR(20) = @HangChar + CAST(@Cot AS NVARCHAR) + '-' + @HangChar + CAST(@Cot + 1 AS NVARCHAR);
+
+            INSERT INTO GHE(IDPhong, MaGhe, TrangThai)
+            VALUES (@IDPhong, @GheDoi, 0);
+
+            SET @Cot = @Cot + 2; -- nhảy 2 cột
+        END
+
+        SET @Hang = @Hang + 1;
+    END
+END
 GO
 
 
@@ -2018,29 +2104,210 @@ GO
 
 
 CREATE PROCEDURE usp_DatGhe
-    @IDGhe INT,
+   @IDGhe INT,
     @NgayChieu DATE,
     @GioChieu TIME
 AS
 BEGIN
-    -- Kiểm tra ghế đã được đặt chưa
     IF EXISTS (
         SELECT 1 FROM TRANGTHAIGHE
         WHERE IDGhe = @IDGhe AND NgayChieu = @NgayChieu AND GioChieu = @GioChieu
     )
     BEGIN
-        -- Nếu đã tồn tại thì cập nhật trạng thái
         UPDATE TRANGTHAIGHE
         SET TrangThai = 1
         WHERE IDGhe = @IDGhe AND NgayChieu = @NgayChieu AND GioChieu = @GioChieu;
+
+        SELECT 1; -- Thành công
     END
     ELSE
     BEGIN
-        -- Nếu chưa có thì thêm mới
         INSERT INTO TRANGTHAIGHE (IDGhe, NgayChieu, GioChieu, TrangThai)
         VALUES (@IDGhe, @NgayChieu, @GioChieu, 1);
+
+        SELECT 1; -- Thành công
     END
 END;
+GO
+
+-----------------------------13/7----------------------
+-- Giả sử bạn có các bảng:
+-- LICHCHIEU (ID, TenPhim, NgayGio, IDPhong)
+-- PHONGCHIEU (IDPhong, TenPhong)
+
+ALTER PROCEDURE usp_GetNgayChieuTheoPhim
+    @TenPhim NVARCHAR(100)
+AS
+BEGIN
+    SELECT DISTINCT
+        CAST(LC.NgayGio AS DATE) AS NgayChieu,
+        PC.ID AS IDPhong,
+        PC.TenPhong
+    FROM LICHCHIEU LC
+    INNER JOIN PHONGCHIEU PC ON LC.IDPhong = PC.ID
+    INNER JOIN PHIM P ON LC.IDPhim = P.ID
+    WHERE P.TenPhim = @TenPhim
+    ORDER BY NgayChieu, PC.TenPhong
+END
+GO
+
+
+ALTER PROCEDURE usp_GetGioChieuTheoPhimVaNgay
+    @TenPhim NVARCHAR(100),
+    @NgayGio DATE,
+    @IDPhong INT
+AS
+BEGIN
+    SELECT LC.ID, LC.NgayGio, LC.IDPhong
+    FROM LICHCHIEU LC
+    INNER JOIN PHIM P ON LC.IDPhim = P.ID
+    WHERE P.TenPhim = @TenPhim
+      AND CAST(LC.NgayGio AS DATE) = @NgayGio
+      AND LC.IDPhong = @IDPhong
+    ORDER BY LC.NgayGio
+END
+GO
+
+
+
+CREATE PROCEDURE usp_TaoGheTheoPhong
+    @IDPhong INT,
+    @SoHang INT,
+    @SoCot INT
+AS
+BEGIN
+    DECLARE @Hang INT = 0
+    WHILE @Hang < @SoHang
+    BEGIN
+        DECLARE @Cot INT = 1
+        WHILE @Cot <= @SoCot
+        BEGIN
+            DECLARE @MaGhe NVARCHAR(10) = CHAR(65 + @Hang) + CAST(@Cot AS NVARCHAR)
+            INSERT INTO GHE(IDPhong, MaGhe, TrangThai)
+            VALUES (@IDPhong, @MaGhe, 0)
+            SET @Cot = @Cot + 1
+        END
+        SET @Hang = @Hang + 1
+    END
+END
+GO
+----------------------14/7----------------------
+
+ALTER TABLE LOAIPHONG
+ADD SoHang INT NOT NULL DEFAULT 5,   -- mặc định 5 hàng
+    SoCot INT NOT NULL DEFAULT 10;   -- mặc định 10 cột
+
+-- Ví dụ cập nhật loại phòng cụ thể
+UPDATE LOAIPHONG SET SoHang = 5, SoCot = 10, SucChua = 50 WHERE TenLoaiPhong = N'Thuờng';
+UPDATE LOAIPHONG SET SoHang = 6, SoCot = 12, SucChua = 72 WHERE TenLoaiPhong = N'VIP';
+UPDATE LOAIPHONG SET SoHang = 4, SoCot = 5, SucChua = 20 WHERE TenLoaiPhong = N'Couple';
+
+
+
+ALTER PROCEDURE usp_TaoGheTheoPhong
+    @IDPhong INT,
+    @SoHang INT,
+    @SoCot INT
+AS
+BEGIN
+    DECLARE @i INT = 0, @j INT, @MaGhe NVARCHAR(10);
+
+    WHILE @i < @SoHang
+    BEGIN
+        SET @j = 1;
+        WHILE @j <= @SoCot
+        BEGIN
+            SET @MaGhe = CHAR(65 + @i) + CAST(@j AS NVARCHAR);
+
+            IF NOT EXISTS (
+                SELECT 1 FROM GHE WHERE MaGhe = @MaGhe AND IDPhong = @IDPhong
+            )
+            BEGIN
+                INSERT INTO GHE (IDPhong, MaGhe, TrangThai) VALUES (@IDPhong, @MaGhe, 0);
+            END
+
+            SET @j = @j + 1;
+        END
+        SET @i = @i + 1;
+    END
+END;
+GO
+
+
+EXEC usp_TaoGheTheoPhong @IDPhong = 1, @SoHang = 5, @SoCot = 10; -- OGC1
+GO
+EXEC usp_TaoGheTheoPhong @IDPhong = 3, @SoHang = 4, @SoCot = 5;  -- OGC3
+GO
+EXEC usp_TaoGheTheoPhong @IDPhong = 6, @SoHang = 5, @SoCot = 10; -- OGC4
+GO
+
+------proc cho ghế đôi
+
+CREATE PROCEDURE usp_TaoGheDoi_ChoPhongCouple
+    @IDPhong INT,
+    @SoHang INT,
+    @SoCot INT
+AS
+BEGIN
+
+    -- Kiểm tra loại phòng
+    DECLARE @LoaiPhong NVARCHAR(20);
+    SELECT @LoaiPhong = LP.TenLoaiPhong
+    FROM PHONGCHIEU PC
+    JOIN LOAIPHONG LP ON PC.MaLoaiPhong = LP.ID
+    WHERE PC.ID = @IDPhong;
+
+    IF @LoaiPhong != N'Couple'
+    BEGIN
+        PRINT N'Phòng không phải loại Couple. Không tạo ghế đôi.';
+        RETURN;
+    END
+
+    DECLARE @Hang INT = 0;
+    WHILE @Hang < @SoHang
+    BEGIN
+        DECLARE @Cot INT = 1;
+        WHILE @Cot < @SoCot
+        BEGIN
+            DECLARE @HangChar NVARCHAR(1) = CHAR(65 + @Hang);
+            DECLARE @MaGhe NVARCHAR(20) = @HangChar + CAST(@Cot AS NVARCHAR) + '-' + @HangChar + CAST(@Cot + 1 AS NVARCHAR);
+
+            -- Chỉ thêm nếu chưa tồn tại
+            IF NOT EXISTS (
+                SELECT 1 FROM GHE WHERE MaGhe = @MaGhe AND IDPhong = @IDPhong
+            )
+            BEGIN
+                INSERT INTO GHE(IDPhong, MaGhe, TrangThai)
+                VALUES (@IDPhong, @MaGhe, 0);
+            END
+
+            SET @Cot = @Cot + 2;
+        END
+        SET @Hang = @Hang + 1;
+    END
+END
+GO
+
+----- 18/7 -------------
+DROP PROCEDURE IF EXISTS usp_TaoGheDoi_ChoPhongCouple;
+
+
+
+CREATE PROCEDURE usp_LayGiaVe
+    @TenPhim NVARCHAR(100),
+    @NgayChieu DATE,
+    @GioChieu TIME,
+    @IDPhong INT
+AS
+BEGIN
+    SELECT lc.GiaVe
+    FROM LICHCHIEU lc
+    JOIN PHIM p ON lc.IDPhim = p.ID
+    WHERE p.TenPhim = @TenPhim
+      AND lc.IDPhong = @IDPhong
+      AND CONVERT(DATE, lc.NgayGio) = @NgayChieu
+      AND CONVERT(TIME, lc.NgayGio) = @GioChieu
+END
 GO
 
 

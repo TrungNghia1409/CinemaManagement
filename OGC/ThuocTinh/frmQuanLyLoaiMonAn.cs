@@ -105,17 +105,25 @@ namespace OGC.ThuocTinh
             DialogResult result = MessageBox.Show($"Bạn có chắc muốn xóa '{tenLoaiMonAnCanXoa}' không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                bool xoaThanhCong = DAO_LOAIMONAN.Instance.XoaLoaiMonAn(tenLoaiMonAnCanXoa);
-                if (xoaThanhCong)
+                try
                 {
-                    MessageBox.Show($"Xóa '{tenLoaiMonAnCanXoa}' thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Load lại danh sách tên loại món ăn
-                    frmQuanLyLoaiMonAn? f = Application.OpenForms["frmQuanLyLoaiMonAn"] as frmQuanLyLoaiMonAn;
-                    f?.LoadLoaiMonAn();
+                    bool xoaThanhCong = DAO_LOAIMONAN.Instance.XoaLoaiMonAn(tenLoaiMonAnCanXoa);
+                    if (xoaThanhCong)
+                    {
+                        MessageBox.Show($"Xóa '{tenLoaiMonAnCanXoa}' thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Load lại danh sách tên loại món ăn
+                        frmQuanLyLoaiMonAn? f = Application.OpenForms["frmQuanLyLoaiMonAn"] as frmQuanLyLoaiMonAn;
+                        f?.LoadLoaiMonAn();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xóa! Có thể tên loại đang được sử dụng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể xóa! Có thể tên loại đang được sử dụng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

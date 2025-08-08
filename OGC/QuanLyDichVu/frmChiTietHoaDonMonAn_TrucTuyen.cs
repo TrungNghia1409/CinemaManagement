@@ -1,16 +1,24 @@
-﻿using ClosedXML.Excel;
-using OGC.DAO;
-using QRCoder;
+﻿using OGC.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Globalization;
+using DrawingImage = System.Drawing.Image;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClosedXML.Excel;
+using System.IO;
+using System.Globalization;
+using QRCoder;
+using static OGC.DTO.DTO_CartItem;
+using System.Diagnostics;
+
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QContainer = QuestPDF.Infrastructure.IContainer;
+
 
 namespace OGC.QuanLyDichVu
 {
@@ -34,93 +42,126 @@ namespace OGC.QuanLyDichVu
             dgvChiTiet.DataSource = DAO_CTHD_MONAN.Instance.LayDSByIDHoaDon(iD);
         }
 
-        private void XuatExcelTuDataGridView(DataGridView dgv, string tenFile)
+        private void XuatPdfTuDataGridView(DataGridView dgv, string tenFile)
         {
-            using (var workbook = new XLWorkbook())
+            string tenHoaDon = "HD1412" + iD;
+            string ngayLap = lblNgayLap.Text;
+            string tongTien = lblTongTien_KetQua.Text;
+            string tenNhanVien = "Không rõ"; // Nếu có label tên nhân viên thì lấy từ đó
+
+            QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
+
+            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), tenFile + ".pdf");
+
+            DrawingImage qrImg = ptbMaQR.Image;
+
+            Func<QContainer, QContainer> HeaderCellStyle = container =>
+                container.DefaultTextStyle(x => x.SemiBold()).Padding(5).Background(Colors.Grey.Lighten3);
+
+            Func<QContainer, QContainer> DataCellStyle = container =>
+                container.Padding(5);
+
+            Document.Create(container =>
             {
-                var worksheet = workbook.Worksheets.Add("ChiTietHoaDon");
-
-                int currentRow = 1;
-
-                // --- Ghi thông tin các label / textbox ---
-                worksheet.Cell(currentRow, 1).Value = "Tên hóa đơn:";
-                worksheet.Cell(currentRow, 2).Value = lblTen.Text;
-                currentRow++;
-
-                worksheet.Cell(currentRow, 1).Value = "Ngày lập:";
-                worksheet.Cell(currentRow, 2).Value = lblNgayLap.Text;
-                currentRow++;
-
-                worksheet.Cell(currentRow, 1).Value = "Tổng Tiền:";
-                worksheet.Cell(currentRow, 2).Value = lblTongTien_KetQua.Text;
-                currentRow++;
-
-
-                worksheet.Cell(currentRow, 1).Value = "Mã:";
-                // Chèn hình từ PictureBox vào Excel
-                if (ptbMaQR.Image != null)
+                container.Page(page =>
                 {
-                    using (var ms = new MemoryStream())
+                    page.Size(PageSizes.A5);
+                    page.Margin(30);
+                    page.DefaultTextStyle(x => x.FontSize(12));
+
+                    page.Content().Column(col =>
                     {
-                        ptbMaQR.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                        ms.Position = 0;
+                        // ─────────────────────────────────────────────────────
+                        // Hàng đầu tiên: Địa chỉ ở giữa, QR bên phải
+                        col.Item().Row(row =>
+                        {
+                            row.RelativeItem().Column(center =>
+                            {
+                                center.Item().AlignCenter().Text("🎬 OGC Cinema").FontSize(16).Bold();
+                                center.Item().AlignCenter().Text("123 Lê Lợi, Q.1, TP.HCM");
+                                center.Item().AlignCenter().Text("Hotline: 1900.0000");
+                            });
 
-                        var picture = worksheet.AddPicture(ms)
-                            .MoveTo(worksheet.Cell(currentRow, 2)); // Ô B (cột 2)
+                            if (qrImg != null)
+                            {
+                                using var ms = new MemoryStream();
+                                qrImg.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
 
-                        // Đặt kích thước cố định (width, height) theo pixel
-                        picture.Width = 100;  // Chiều rộng 100px
-                        picture.Height = 100; // Chiều cao 100px
-                    }
-                }
+                                row.ConstantItem(80).AlignRight().Element(qr =>
+                                    qr.Height(80).Image(ms.ToArray())
+                                );
+                            }
+                        });
 
-                // Đặt chiều rộng cột và chiều cao dòng để chứa vừa hình
-                worksheet.Column(2).Width = 15; // Đơn vị: ký tự (~100px)
-                worksheet.Row(currentRow).Height = 50; // Đơn vị: điểm (points, ~100px)
-                currentRow++;
+                        // ─────────────────────────────────────────────────────
+                        col.Item().PaddingVertical(10).AlignCenter().Text("HÓA ĐƠN DỊCH VỤ").FontSize(14).Bold();
+                        col.Item().Text($"Mã hóa đơn:     {tenHoaDon}");
+                        col.Item().Text($"Ngày lập:       {ngayLap}");
 
-                // --- Ghi tiêu đề cột của DataGridView ---
-                int headerRow = currentRow;
-                for (int col = 0; col < dgv.Columns.Count; col++)
-                {
-                    worksheet.Cell(headerRow, col + 1).Value = dgv.Columns[col].HeaderText;
-                    worksheet.Cell(headerRow, col + 1).Style.Font.Bold = true;
-                    worksheet.Cell(headerRow, col + 1).Style.Fill.BackgroundColor = XLColor.LightGray;
-                }
-                currentRow++;
+                        // Bảng dữ liệu
+                        col.Item().PaddingVertical(10).Table(table =>
+                        {
+                            table.ColumnsDefinition(columns =>
+                            {
+                                columns.ConstantColumn(30);   // ID
+                                columns.RelativeColumn(2);    // Tên món ăn
+                                columns.ConstantColumn(30);   // SL
+                                columns.ConstantColumn(60);   // Giá
+                                columns.ConstantColumn(70);   // Thành tiền
+                            });
 
-                // --- Ghi dữ liệu từng dòng từ DataGridView ---
-                for (int row = 0; row < dgv.Rows.Count; row++)
-                {
-                    for (int col = 0; col < dgv.Columns.Count; col++)
-                    {
-                        object cellValue = dgv.Rows[row].Cells[col].Value;
-                        worksheet.Cell(currentRow + row, col + 1).Value = cellValue?.ToString();
-                    }
-                }
+                            table.Header(header =>
+                            {
+                                header.Cell().Element(HeaderCellStyle).Text("ID");
+                                header.Cell().Element(HeaderCellStyle).Text("Tên món ăn");
+                                header.Cell().Element(HeaderCellStyle).AlignCenter().Text("SL");
+                                header.Cell().Element(HeaderCellStyle).AlignRight().Text("Giá");
+                                header.Cell().Element(HeaderCellStyle).AlignRight().Text("Thành tiền");
+                            });
 
-                // --- Tự động điều chỉnh độ rộng cột ---
-                worksheet.Columns().AdjustToContents();
+                            foreach (DataGridViewRow row in dgv.Rows)
+                            {
+                                if (row.IsNewRow) continue;
 
-                // --- Lưu file ra Desktop ---
-                string filePath = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-                    tenFile + ".xlsx"
-                );
-                workbook.SaveAs(filePath);
+                                string id = row.Cells[0].Value?.ToString() ?? "";
+                                string ten = row.Cells[1].Value?.ToString() ?? "";
+                                int sl = int.TryParse(row.Cells[2].Value?.ToString(), out var parsedSL) ? parsedSL : 0;
+                                decimal donGia = decimal.TryParse(row.Cells[3].Value?.ToString(), out var parsedDG) ? parsedDG : 0;
+                                decimal thanhTien = decimal.TryParse(row.Cells[4].Value?.ToString(), out var parsedTT) ? parsedTT : (sl * donGia);
 
-                DAO_CTHD_MONAN.Instance.CapNhatTrangThai("Đã in", iD);
-                MessageBox.Show("Đã xuất hóa đơn ra Excel tại:\n" + filePath, "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                                table.Cell().Element(DataCellStyle).Text(id);
+                                table.Cell().Element(DataCellStyle).Text(ten);
+                                table.Cell().Element(DataCellStyle).AlignCenter().Text(sl.ToString());
+                                table.Cell().Element(DataCellStyle).AlignRight().Text(donGia.ToString("N0"));
+                                table.Cell().Element(DataCellStyle).AlignRight().Text(thanhTien.ToString("N0"));
+                            }
+                        });
+
+                        col.Item().PaddingTop(15).AlignRight().Text($"Tổng tiền: {tongTien} đ").Bold();
+                    });
+                });
+            }).GeneratePdf(filePath);
+
+            DAO_CTHD_MONAN.Instance.CapNhatTrangThai("Đã in", iD);
+            MessageBox.Show("Đã xuất hóa đơn ra PDF tại:\n" + filePath, "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Process.Start("explorer", filePath);
         }
+
 
         private void btnXuatHoaDon_Click(object sender, EventArgs e)
         {
-            XuatExcelTuDataGridView(dgvChiTiet, "HoaDonMonAn_" + iD);
+            try
+            {
+                XuatPdfTuDataGridView(dgvChiTiet, "HoaDonMonAn_" + iD);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xuất PDF: " + ex.Message);
+            }
         }
 
         //----tạo mã QR tự động dựa trên ID của CTHD
-        public Image GenerateQRCode(string content)
+        public DrawingImage GenerateQRCode(string content)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(content, QRCodeGenerator.ECCLevel.Q);

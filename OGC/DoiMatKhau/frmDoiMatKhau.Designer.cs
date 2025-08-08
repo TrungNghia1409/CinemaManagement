@@ -128,6 +128,7 @@
             Controls.Add(lblXacNhanMatKhau);
             Controls.Add(lblMatKhauMoi);
             Name = "frmDoiMatKhau";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmDoiMatKhau";
             ResumeLayout(false);
             PerformLayout();

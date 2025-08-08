@@ -111,6 +111,7 @@
             Controls.Add(lblSDT);
             Controls.Add(lblHoTen);
             Name = "frmNhapThongTin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmNhapThongTin";
             ResumeLayout(false);
             PerformLayout();
