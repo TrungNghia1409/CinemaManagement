@@ -129,6 +129,14 @@ namespace OGC.DAO
             return Convert.ToInt32(result);
         }
 
+        public bool XoaHDVePhimTheoID(int idHoaDon)
+        {
+            string query = "EXEC XoaHDVePhimTheoID @IDHoaDon ";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { idHoaDon });
+            return result > 0;
+        }
+
+
 
     }
 }

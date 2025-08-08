@@ -293,17 +293,6 @@ namespace OGC.Phim
                 string ghe = string.Join(", ", danhSachGheDaDat);
                 decimal tongTien = danhSachGheDaDat.Count * giaVe;
 
-                //FrmPhuongThucThanhToanVe frmCT = new FrmPhuongThucThanhToanVe(
-                //    tenPhim,
-                //    suatChieu,
-                //    phong,
-                //    ghe,
-                //    dinhDang,
-                //    giaVe,
-                //    tongTien,
-                //    noiDungQR
-                //);
-                //frmCT.ShowDialog();
 
             }
         }
@@ -342,5 +331,25 @@ namespace OGC.Phim
             frm.ShowDialog();
 
         }
+
+        // Nhận thông báo từ FrmChiTietHoaDonVePhim khi bill đã xuất
+        public void CapNhatGheSauKhiXuatBill(List<string> gheDaMua)
+        {
+            foreach (var maGhe in gheDaMua)
+            {
+                // Tìm tất cả button ghế trùng tên
+                var btn = this.Controls.Find(maGhe, true)
+                                       .OfType<Button>()
+                                       .FirstOrDefault();
+                if (btn != null)
+                {
+                    btn.BackColor = Color.Red;
+                    btn.Enabled = false;
+                }
+            }
+        }
+
+
+
     }
 }
