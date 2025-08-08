@@ -74,10 +74,16 @@ namespace OGC.DAO
                                                                                                     //tạo nhân viên mới trong DAO_TKNHANVIEN sẽ hợp lý hơn, nhưng mà cũng cần vài trường trong table NhanVien nên phải rườm rà như vậy
             if (!addTaiKhoan) return false;
 
+            // Lấy IDChucVu dòng đầu tiên từ bảng CHUCVU
+            string queryGetChucVu = "SELECT TOP 1 ID FROM CHUCVU ORDER BY ID ASC";
+            object resultChucVu = DataProvider.Instance.ExecuteScalar(queryGetChucVu);
+            if (resultChucVu == null) return false; // Không có dữ liệu trong bảng CHUCVU
+
+            int iDChucVu = Convert.ToInt32(resultChucVu);
+
             // Sau khi thêm tài khoản thành công, thêm thông tin vào bảng NhanVien
             string queryNhanVien = "EXEC usp_themNHANVIEN @Username , @IDChucVu , @HoTen , @NgaySinh , @GioiTinh , @SDT , @Email , @DiaChi ";
 
-            int iDChucVu = 1;
             string hoTen = "Chưa cập nhật";
             DateTime ngaySinh = new DateTime(2025, 1, 1);
             string gioiTinh = "Chưa cập nhật";
