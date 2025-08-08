@@ -21,10 +21,10 @@ namespace OGC
         {
             InitializeComponent();
 
-            txbTaiKhoan.Text = "admin"; //Username
+            txbTaiKhoan.Text = "Username"; //Username
             txbTaiKhoan.ForeColor = Color.Gray;
 
-            txbMatKhau.Text = "admin"; //Password
+            txbMatKhau.Text = "Password"; //Password
             txbMatKhau.ForeColor = Color.Gray;
         }
 

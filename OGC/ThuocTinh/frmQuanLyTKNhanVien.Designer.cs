@@ -126,8 +126,9 @@
             txbMKNhanVien.Location = new Point(0, 0);
             txbMKNhanVien.Multiline = true;
             txbMKNhanVien.Name = "txbMKNhanVien";
+            txbMKNhanVien.PasswordChar = '*';
             txbMKNhanVien.Size = new Size(288, 40);
-            txbMKNhanVien.TabIndex = 1;
+            txbMKNhanVien.TabIndex = 2;
             // 
             // pnlTKNhanVien
             // 
@@ -179,7 +180,7 @@
             btnSuaTKNhanVien.Location = new Point(0, 0);
             btnSuaTKNhanVien.Name = "btnSuaTKNhanVien";
             btnSuaTKNhanVien.Size = new Size(96, 32);
-            btnSuaTKNhanVien.TabIndex = 0;
+            btnSuaTKNhanVien.TabIndex = 5;
             btnSuaTKNhanVien.Text = "Sửa";
             btnSuaTKNhanVien.UseVisualStyleBackColor = false;
             btnSuaTKNhanVien.Click += btnSuaTKNhanVien_Click;
@@ -204,7 +205,7 @@
             btnXoaTKNhanVien.Location = new Point(0, 0);
             btnXoaTKNhanVien.Name = "btnXoaTKNhanVien";
             btnXoaTKNhanVien.Size = new Size(96, 32);
-            btnXoaTKNhanVien.TabIndex = 0;
+            btnXoaTKNhanVien.TabIndex = 4;
             btnXoaTKNhanVien.Text = "Xóa";
             btnXoaTKNhanVien.UseVisualStyleBackColor = false;
             btnXoaTKNhanVien.Click += btnXoaTKNhanVien_Click;
@@ -229,7 +230,7 @@
             btnThemTKNhanVien.Location = new Point(0, 0);
             btnThemTKNhanVien.Name = "btnThemTKNhanVien";
             btnThemTKNhanVien.Size = new Size(96, 32);
-            btnThemTKNhanVien.TabIndex = 0;
+            btnThemTKNhanVien.TabIndex = 3;
             btnThemTKNhanVien.Text = "Thêm";
             btnThemTKNhanVien.UseVisualStyleBackColor = false;
             btnThemTKNhanVien.Click += btnThemTKNhanVien_Click;
