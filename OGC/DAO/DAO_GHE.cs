@@ -117,14 +117,42 @@ namespace OGC.DAO
             return result >= 0; // vì luôn có thể insert 0 hoặc nhiều ghế
         }
 
-
-        public void TaoGheDoiChoPhongCouple(int idPhong, int soHang, int soCot)
+        // Hàm loại bỏ dấu tiếng Việt
+        public static string LoaiBoDau(string input)
         {
-            string query = "EXEC usp_TaoGheDoi_ChoPhongCouple @IDPhong , @SoHang , @SoCot ";
-            DataProvider.Instance.ExecuteNonQuery(query, new object[] { idPhong, soHang, soCot });
+            if (string.IsNullOrEmpty(input))
+                return input;
+
+            string[] vietnameseSigns = new string[]
+            {
+                "aàáâãäåāăą",
+                "eèéêẽëēĕę",
+                "iìíîĩïīĭ",
+                "oòóôõöōŏ",
+                "uùúûũüūŭ",
+                "yỳýŷỹ",
+                "dđ",
+                "AÀÁÂÃÄÅĀĂĄ",
+                "EÈÉÊẼËĒĔĘ",
+                "IÌÍÎĨÏĪĬ",
+                "OÒÓÔÕÖŌŎ",
+                "UÙÚÛŨÜŪŬ",
+                "YỲÝŶỸ",
+                "DĐ"
+            };
+
+            string result = input;
+            for (int i = 0; i < vietnameseSigns.Length; i++)
+            {
+                char replaceChar = vietnameseSigns[i][0];
+                for (int j = 1; j < vietnameseSigns[i].Length; j++)
+                {
+                    result = result.Replace(vietnameseSigns[i][j], replaceChar);
+                }
+            }
+            return result;
         }
 
-        
 
     }
 }

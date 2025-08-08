@@ -68,7 +68,7 @@ namespace OGC
 
         private void btnDatVe_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmChonPhim());
+            OpenChildForm(new frmChonPhim(currentUser));
             label1.Text = btnDatVe.Text;
         }
         private void btnQuanLyPhim_Click(object sender, EventArgs e)
