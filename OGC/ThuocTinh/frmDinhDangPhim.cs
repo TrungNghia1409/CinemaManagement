@@ -127,17 +127,24 @@ namespace OGC.ThuocTinh
             DialogResult result = MessageBox.Show($"Bạn có chắc muốn xóa định dạng '{tenDinhDangCanXoa}' không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                bool xoaThanhCong = DAO_DINHDANGPHIM.Instance.XoaDinhDang(tenDinhDangCanXoa);
-                if (xoaThanhCong)
+                try
                 {
-                    MessageBox.Show("Xóa định dạng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Load lại danh sách định dạng
-                    frmDinhDangPhim? f = Application.OpenForms["frmDinhDangPhim"] as frmDinhDangPhim;
-                    f?.LoadDinhDangPhim();
+                    bool xoaThanhCong = DAO_DINHDANGPHIM.Instance.XoaDinhDang(tenDinhDangCanXoa);
+                    if (xoaThanhCong)
+                    {
+                        MessageBox.Show("Xóa định dạng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Load lại danh sách định dạng
+                        frmDinhDangPhim? f = Application.OpenForms["frmDinhDangPhim"] as frmDinhDangPhim;
+                        f?.LoadDinhDangPhim();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xóa! Có thể định dạng đang được sử dụng bởi nhân viên khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể xóa! Có thể định dạng đang được sử dụng bởi nhân viên khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

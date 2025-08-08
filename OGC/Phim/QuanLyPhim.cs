@@ -219,18 +219,25 @@ namespace OGC.Phim
 
         private void btnXoaPhim_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc muốn xóa phim này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            try
             {
-                bool result = PhimDAO.Instance.DeletePhim(currentPhimID);
-                if (result)
+                if (MessageBox.Show("Bạn có chắc muốn xóa phim này?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Xóa phim thành công");
-                    LoadDanhSachPhim();
+                    bool result = PhimDAO.Instance.DeletePhim(currentPhimID);
+                    if (result)
+                    {
+                        MessageBox.Show("Xóa phim thành công");
+                        LoadDanhSachPhim();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa phim thất bại");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Xóa phim thất bại");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -298,136 +305,139 @@ namespace OGC.Phim
 
         private void btnSuaPhim_Click(object sender, EventArgs e)
         {
-            if (currentPhimID <= 0)
+            try
             {
-                MessageBox.Show("Vui lòng chọn một phim để sửa.");
-                return;
-            }
-
-            // Lấy phim cũ từ DB
-            PhimDTO phimCu = PhimDAO.Instance.GetPhimByID(currentPhimID);
-            if (phimCu == null)
-            {
-                MessageBox.Show("Không tìm thấy thông tin phim cũ.");
-                return;
-            }
-
-            // Lấy thông tin mới từ form
-            string tenPhim = tbTenPhim.Text.Trim();
-            string daoDien = tbDaoDien.Text.Trim();
-            string dienVien = tbDienVien.Text.Trim();
-            string moTa = tbMoTa.Text.Trim();
-            string trailerUrl = tbTrailer.Text.Trim();
-            string anh = AnhPhim.Tag != null ? AnhPhim.Tag.ToString() : "";
-
-            if (!int.TryParse(tbThoiLuong.Text.Trim(), out int thoiLuong))
-            {
-                MessageBox.Show("Thời lượng phải là số.");
-                return;
-            }
-
-            if (thoiLuong <= 60 || thoiLuong > 240)
-            {
-                MessageBox.Show("Thời lượng phim phải trên 60 phút và không vượt quá 240 phút.");
-                return;
-            }
-
-            if (cbTheLoaiPhim.SelectedValue == null || !int.TryParse(cbTheLoaiPhim.SelectedValue.ToString(), out int idTheLoai))
-            {
-                MessageBox.Show("Vui lòng chọn thể loại phim hợp lệ.");
-                return;
-            }
-
-            if (cbDoTuoi.SelectedValue == null)
-            {
-                MessageBox.Show("Vui lòng chọn độ tuổi hợp lệ.");
-                return;
-            }
-
-            string idDoTuoi = cbDoTuoi.SelectedValue.ToString();
-
-            if (cbLoaiphong.SelectedValue == null || !int.TryParse(cbLoaiphong.SelectedValue.ToString(), out int idDinhDang))
-            {
-                MessageBox.Show("Vui lòng chọn định dạng phim hợp lệ.");
-                return;
-            }
-
-            int trangThai = ((KeyValuePair<int, string>)cbTrangThai.SelectedItem).Key;
-            DateTime ngayKhoiChieu = dtpKhoiChieu.Value;
-
-            PhimDTO phimMoi = new PhimDTO
-            {
-                ID = currentPhimID,
-                TenPhim = tenPhim,
-                DaoDien = daoDien,
-                DienVien = dienVien,
-                ThoiLuong = thoiLuong,
-                NgayKhoiChieu = ngayKhoiChieu,
-                IDDoTuoi = idDoTuoi,
-                MoTa = moTa,
-                TrangThai = trangThai,
-                IDTheLoaiPhim = idTheLoai,
-                Trailer_Url = trailerUrl,
-                Anh = anh,
-                IDDinhDang = idDinhDang
-            };
-
-            // So sánh và hiển thị sự thay đổi
-            StringBuilder changes = new StringBuilder("Bạn đã thay đổi:\n");
-
-            void SoSanhVaThem(string tenTruong, object cu, object moi)
-            {
-                if (!Equals(cu?.ToString().Trim(), moi?.ToString().Trim()))
+                if (currentPhimID <= 0)
                 {
-                    changes.AppendLine($"- {tenTruong}: \"{cu}\" → \"{moi}\"");
+                    MessageBox.Show("Vui lòng chọn một phim để sửa.");
+                    return;
+                }
+
+                // Lấy phim cũ từ DB
+                PhimDTO phimCu = PhimDAO.Instance.GetPhimByID(currentPhimID);
+                if (phimCu == null)
+                {
+                    MessageBox.Show("Không tìm thấy thông tin phim cũ.");
+                    return;
+                }
+
+                // Lấy thông tin mới từ form
+                string tenPhim = tbTenPhim.Text.Trim();
+                string daoDien = tbDaoDien.Text.Trim();
+                string dienVien = tbDienVien.Text.Trim();
+                string moTa = tbMoTa.Text.Trim();
+                string trailerUrl = tbTrailer.Text.Trim();
+                string anh = AnhPhim.Tag != null ? AnhPhim.Tag.ToString() : "";
+
+                if (!int.TryParse(tbThoiLuong.Text.Trim(), out int thoiLuong))
+                {
+                    MessageBox.Show("Thời lượng phải là số.");
+                    return;
+                }
+
+                if (thoiLuong <= 60 || thoiLuong > 240)
+                {
+                    MessageBox.Show("Thời lượng phim phải trên 60 phút và không vượt quá 240 phút.");
+                    return;
+                }
+
+                if (cbTheLoaiPhim.SelectedValue == null || !int.TryParse(cbTheLoaiPhim.SelectedValue.ToString(), out int idTheLoai))
+                {
+                    MessageBox.Show("Vui lòng chọn thể loại phim hợp lệ.");
+                    return;
+                }
+
+                if (cbDoTuoi.SelectedValue == null)
+                {
+                    MessageBox.Show("Vui lòng chọn độ tuổi hợp lệ.");
+                    return;
+                }
+
+                string idDoTuoi = cbDoTuoi.SelectedValue.ToString();
+
+                if (cbLoaiphong.SelectedValue == null || !int.TryParse(cbLoaiphong.SelectedValue.ToString(), out int idDinhDang))
+                {
+                    MessageBox.Show("Vui lòng chọn định dạng phim hợp lệ.");
+                    return;
+                }
+
+                int trangThai = ((KeyValuePair<int, string>)cbTrangThai.SelectedItem).Key;
+                DateTime ngayKhoiChieu = dtpKhoiChieu.Value;
+
+                PhimDTO phimMoi = new PhimDTO
+                {
+                    ID = currentPhimID,
+                    TenPhim = tenPhim,
+                    DaoDien = daoDien,
+                    DienVien = dienVien,
+                    ThoiLuong = thoiLuong,
+                    NgayKhoiChieu = ngayKhoiChieu,
+                    IDDoTuoi = idDoTuoi,
+                    MoTa = moTa,
+                    TrangThai = trangThai,
+                    IDTheLoaiPhim = idTheLoai,
+                    Trailer_Url = trailerUrl,
+                    Anh = anh,
+                    IDDinhDang = idDinhDang
+                };
+
+                // So sánh và hiển thị sự thay đổi
+                StringBuilder changes = new StringBuilder("Bạn đã thay đổi:\n");
+
+                void SoSanhVaThem(string tenTruong, object cu, object moi)
+                {
+                    if (!Equals(cu?.ToString().Trim(), moi?.ToString().Trim()))
+                    {
+                        changes.AppendLine($"- {tenTruong}: \"{cu}\" → \"{moi}\"");
+                    }
+                }
+
+                SoSanhVaThem("Tên phim", phimCu.TenPhim, tenPhim);
+                SoSanhVaThem("Đạo diễn", phimCu.DaoDien, daoDien);
+                SoSanhVaThem("Diễn viên", phimCu.DienVien, dienVien);
+                SoSanhVaThem("Thời lượng", phimCu.ThoiLuong, thoiLuong);
+                SoSanhVaThem("Ngày khởi chiếu", phimCu.NgayKhoiChieu.ToShortDateString(), ngayKhoiChieu.ToShortDateString());
+                SoSanhVaThem("Độ tuổi", phimCu.IDDoTuoi, idDoTuoi);
+                SoSanhVaThem("Mô tả", phimCu.MoTa, moTa);
+                SoSanhVaThem("Trạng thái", phimCu.TrangThai, trangThai);
+                SoSanhVaThem("Thể loại", phimCu.IDTheLoaiPhim, idTheLoai);
+                SoSanhVaThem("Trailer", phimCu.Trailer_Url, trailerUrl);
+                SoSanhVaThem("Định dạng", phimCu.IDDinhDang, idDinhDang);
+
+                // Xử lý riêng ảnh: nếu ảnh mới KHÁC ảnh cũ và ảnh mới KHÔNG RỖNG thì mới thêm dòng
+                if (!string.IsNullOrWhiteSpace(anh) && !Equals(phimCu.Anh?.Trim(), anh.Trim()))
+                {
+                    changes.AppendLine($"- Ảnh: \"{phimCu.Anh}\" → \"{anh}\"");
+                }
+
+                if (changes.ToString().Trim() == "Bạn đã thay đổi:")
+                {
+                    MessageBox.Show("Không có thay đổi nào để lưu.");
+                    return;
+                }
+
+                // Hỏi xác nhận trước khi lưu
+                DialogResult confirm = MessageBox.Show(changes.ToString() + "\n\nBạn có muốn lưu thay đổi không?", "Xác nhận cập nhật", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirm != DialogResult.Yes)
+                    return;
+
+                // Lưu thay đổi
+                bool result = PhimDAO.Instance.UpdatePhim(phimMoi);
+
+                if (result)
+                {
+                    MessageBox.Show("Cập nhật phim thành công!");
+                    LoadDanhSachPhim();
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật phim thất bại!");
                 }
             }
-
-            SoSanhVaThem("Tên phim", phimCu.TenPhim, tenPhim);
-            SoSanhVaThem("Đạo diễn", phimCu.DaoDien, daoDien);
-            SoSanhVaThem("Diễn viên", phimCu.DienVien, dienVien);
-            SoSanhVaThem("Thời lượng", phimCu.ThoiLuong, thoiLuong);
-            SoSanhVaThem("Ngày khởi chiếu", phimCu.NgayKhoiChieu.ToShortDateString(), ngayKhoiChieu.ToShortDateString());
-            SoSanhVaThem("Độ tuổi", phimCu.IDDoTuoi, idDoTuoi);
-            SoSanhVaThem("Mô tả", phimCu.MoTa, moTa);
-            SoSanhVaThem("Trạng thái", phimCu.TrangThai, trangThai);
-            SoSanhVaThem("Thể loại", phimCu.IDTheLoaiPhim, idTheLoai);
-            SoSanhVaThem("Trailer", phimCu.Trailer_Url, trailerUrl);
-            SoSanhVaThem("Định dạng", phimCu.IDDinhDang, idDinhDang);
-
-            // Xử lý riêng ảnh: nếu ảnh mới KHÁC ảnh cũ và ảnh mới KHÔNG RỖNG thì mới thêm dòng
-            if (!string.IsNullOrWhiteSpace(anh) && !Equals(phimCu.Anh?.Trim(), anh.Trim()))
+            catch (Exception ex)
             {
-                changes.AppendLine($"- Ảnh: \"{phimCu.Anh}\" → \"{anh}\"");
-            }
-
-            if (changes.ToString().Trim() == "Bạn đã thay đổi:")
-            {
-                MessageBox.Show("Không có thay đổi nào để lưu.");
-                return;
-            }
-
-            // Hỏi xác nhận trước khi lưu
-            DialogResult confirm = MessageBox.Show(changes.ToString() + "\n\nBạn có muốn lưu thay đổi không?", "Xác nhận cập nhật", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm != DialogResult.Yes)
-                return;
-
-            // Lưu thay đổi
-            bool result = PhimDAO.Instance.UpdatePhim(phimMoi);
-
-            if (result)
-            {
-                MessageBox.Show("Cập nhật phim thành công!");
-                LoadDanhSachPhim();
-            }
-            else
-            {
-                MessageBox.Show("Cập nhật phim thất bại!");
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
-
     }
 }

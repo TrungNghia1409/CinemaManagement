@@ -77,7 +77,7 @@ namespace OGC.DAO
             // Sau khi thêm tài khoản thành công, thêm thông tin vào bảng NhanVien
             string queryNhanVien = "EXEC usp_themNHANVIEN @Username , @IDChucVu , @HoTen , @NgaySinh , @GioiTinh , @SDT , @Email , @DiaChi ";
 
-            int iDChucVu = 13;
+            int iDChucVu = 1;
             string hoTen = "Chưa cập nhật";
             DateTime ngaySinh = new DateTime(2025, 1, 1);
             string gioiTinh = "Chưa cập nhật";

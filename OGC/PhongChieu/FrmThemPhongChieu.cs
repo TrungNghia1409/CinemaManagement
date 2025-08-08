@@ -25,36 +25,44 @@ namespace OGC.PhongChieu
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string tenPhong = tbTenPhong.Text.Trim();
-
-            if (cbLoaiPhong.SelectedItem == null || cbTrangThai.SelectedItem == null)
+            try
             {
-                MessageBox.Show("Vui lòng chọn đầy đủ thông tin!");
-                return;
+                string tenPhong = tbTenPhong.Text.Trim();
+
+                if (cbLoaiPhong.SelectedItem == null || cbTrangThai.SelectedItem == null)
+                {
+                    MessageBox.Show("Vui lòng chọn đầy đủ thông tin!");
+                    return;
+                }
+
+                DTO_LOAIPHONG selectedLoai = cbLoaiPhong.SelectedItem as DTO_LOAIPHONG;
+
+                DTO_PHONGCHIEU phong = new DTO_PHONGCHIEU
+                {
+                    TenPhong = tenPhong,
+                    MaLoaiPhong = selectedLoai.ID,
+                    TrangThai = Convert.ToInt32(cbTrangThai.SelectedItem),
+                    AnhPhong = "" // Hoặc gán từ tbAnh nếu có
+                };
+
+                bool result = DAO_PHONGCHIEU.Instance.ThemPhongChieu(phong);
+
+                if (result)
+                {
+                    MessageBox.Show("Thêm phòng chiếu thành công!");
+                    this.DialogResult = DialogResult.OK;  // Quan trọng để báo cho form cha biết
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Thêm phòng chiếu thất bại!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            DTO_LOAIPHONG selectedLoai = cbLoaiPhong.SelectedItem as DTO_LOAIPHONG;
-
-            DTO_PHONGCHIEU phong = new DTO_PHONGCHIEU
-            {
-                TenPhong = tenPhong,
-                MaLoaiPhong = selectedLoai.ID,
-                TrangThai = Convert.ToInt32(cbTrangThai.SelectedItem),
-                AnhPhong = "" // Hoặc gán từ tbAnh nếu có
-            };
-
-            bool result = DAO_PHONGCHIEU.Instance.ThemPhongChieu(phong);
-
-            if (result)
-            {
-                MessageBox.Show("Thêm phòng chiếu thành công!");
-                this.DialogResult = DialogResult.OK;  // Quan trọng để báo cho form cha biết
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Thêm phòng chiếu thất bại!");
-            }
         }
 
         private void FrmThemPhongChieu_Load(object sender, EventArgs e)

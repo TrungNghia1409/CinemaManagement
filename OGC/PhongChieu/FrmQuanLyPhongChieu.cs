@@ -128,46 +128,53 @@ namespace OGC.PhongChieu
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            // Kiểm tra xem đã chọn phòng chiếu nào chưa (có ID chưa)
-            if (string.IsNullOrEmpty(tbID.Text))
+            try
             {
-                MessageBox.Show("Vui lòng chọn phòng chiếu để sửa.");
-                return;
+                // Kiểm tra xem đã chọn phòng chiếu nào chưa (có ID chưa)
+                if (string.IsNullOrEmpty(tbID.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn phòng chiếu để sửa.");
+                    return;
+                }
+
+                // Lấy dữ liệu từ form
+                int id = int.Parse(tbID.Text);
+                string tenPhong = tbTenPhong.Text.Trim();
+                int trangThai = cbTrangThai.SelectedItem != null ? Convert.ToInt32(cbTrangThai.SelectedItem) : 0;
+                int maLoaiPhong = 0;
+                if (!int.TryParse(tbMaLoaiPhong.Text, out maLoaiPhong))
+                {
+                    MessageBox.Show("Mã loại phòng không hợp lệ.");
+                    return;
+                }
+                string anhPhong = ""; // Bạn có thể gán từ textbox ảnh nếu có
+
+                // Tạo đối tượng DTO_PHONGCHIEU để sửa
+                DTO_PHONGCHIEU phong = new DTO_PHONGCHIEU
+                {
+                    ID = id,
+                    TenPhong = tenPhong,
+                    TrangThai = trangThai,
+                    MaLoaiPhong = maLoaiPhong,
+                    AnhPhong = anhPhong
+                };
+
+                // Gọi DAO để sửa
+                bool result = DAO_PHONGCHIEU.Instance.SuaPhongChieu(phong);
+
+                if (result)
+                {
+                    MessageBox.Show("Sửa phòng chiếu thành công!");
+                    ReloadDataGridView(); // Load lại dữ liệu lên DataGridView
+                }
+                else
+                {
+                    MessageBox.Show("Sửa phòng chiếu thất bại!");
+                }
             }
-
-            // Lấy dữ liệu từ form
-            int id = int.Parse(tbID.Text);
-            string tenPhong = tbTenPhong.Text.Trim();
-            int trangThai = cbTrangThai.SelectedItem != null ? Convert.ToInt32(cbTrangThai.SelectedItem) : 0;
-            int maLoaiPhong = 0;
-            if (!int.TryParse(tbMaLoaiPhong.Text, out maLoaiPhong))
+             catch (Exception ex)
             {
-                MessageBox.Show("Mã loại phòng không hợp lệ.");
-                return;
-            }
-            string anhPhong = ""; // Bạn có thể gán từ textbox ảnh nếu có
-
-            // Tạo đối tượng DTO_PHONGCHIEU để sửa
-            DTO_PHONGCHIEU phong = new DTO_PHONGCHIEU
-            {
-                ID = id,
-                TenPhong = tenPhong,
-                TrangThai = trangThai,
-                MaLoaiPhong = maLoaiPhong,
-                AnhPhong = anhPhong
-            };
-
-            // Gọi DAO để sửa
-            bool result = DAO_PHONGCHIEU.Instance.SuaPhongChieu(phong);
-
-            if (result)
-            {
-                MessageBox.Show("Sửa phòng chiếu thành công!");
-                ReloadDataGridView(); // Load lại dữ liệu lên DataGridView
-            }
-            else
-            {
-                MessageBox.Show("Sửa phòng chiếu thất bại!");
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -184,38 +191,45 @@ namespace OGC.PhongChieu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbID.Text))
+            try
             {
-                MessageBox.Show("Vui lòng chọn phòng chiếu để xóa.");
-                return;
-            }
-
-            int id;
-            if (!int.TryParse(tbID.Text, out id))
-            {
-                MessageBox.Show("Mã phòng chiếu không hợp lệ.");
-                return;
-            }
-
-            // Hiển thị hộp thoại xác nhận xóa
-            DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn xóa phòng chiếu này?",
-                                              "Xác nhận xóa",
-                                              MessageBoxButtons.YesNo,
-                                              MessageBoxIcon.Warning);
-
-            if (dr == DialogResult.Yes)
-            {
-                bool result = DAO_PHONGCHIEU.Instance.XoaPhongChieu(id);
-                if (result)
+                if (string.IsNullOrEmpty(tbID.Text))
                 {
-                    MessageBox.Show("Xóa phòng chiếu thành công!");
-                    ReloadDataGridView();
-                    ClearForm(); // Hàm xóa trắng form, bạn có thể tự định nghĩa
+                    MessageBox.Show("Vui lòng chọn phòng chiếu để xóa.");
+                    return;
                 }
-                else
+
+                int id;
+                if (!int.TryParse(tbID.Text, out id))
                 {
-                    MessageBox.Show("Xóa phòng chiếu thất bại!");
+                    MessageBox.Show("Mã phòng chiếu không hợp lệ.");
+                    return;
                 }
+
+                // Hiển thị hộp thoại xác nhận xóa
+                DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn xóa phòng chiếu này?",
+                                                  "Xác nhận xóa",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Warning);
+
+                if (dr == DialogResult.Yes)
+                {
+                    bool result = DAO_PHONGCHIEU.Instance.XoaPhongChieu(id);
+                    if (result)
+                    {
+                        MessageBox.Show("Xóa phòng chiếu thành công!");
+                        ReloadDataGridView();
+                        ClearForm(); // Hàm xóa trắng form, bạn có thể tự định nghĩa
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa phòng chiếu thất bại!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

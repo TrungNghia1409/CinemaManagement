@@ -169,57 +169,61 @@ namespace OGC.LichChieu
 
         private void btnXoaLC_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(txbID.Text);
-            // Lấy đối tượng DTO_LICHCHIEU theo id
-            DTO_LICHCHIEU dto = DAO_LICHCHIEU.Instance.GetLichChieuByID(id);
-
-            if (dto == null)
+            try
             {
-                MessageBox.Show("Lịch chiếu không tồn tại.");
-                return;
-            }
+                int id = int.Parse(txbID.Text);
+                // Lấy đối tượng DTO_LICHCHIEU theo id
+                DTO_LICHCHIEU dto = DAO_LICHCHIEU.Instance.GetLichChieuByID(id);
 
-            if (dto.TrangThai == "Sắp chiếu")
-            {
-                // Xác nhận xóa
-                DialogResult dialogResult = MessageBox.Show(
-                    "Bạn có chắc chắn muốn xóa lịch chiếu này không?",
-                    "Xác nhận xóa",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
-
-                if (dialogResult == DialogResult.Yes)
+                if (dto == null)
                 {
-                    try
-                    {
+                    MessageBox.Show("Lịch chiếu không tồn tại.");
+                    return;
+                }
 
-                        // Gọi DAO để xóa lịch chiếu
-                        bool isDeleted = DAO_LICHCHIEU.Instance.XoaLichChieu(id);
+                if (dto.TrangThai == "Sắp chiếu")
+                {
+                    // Xác nhận xóa
+                    DialogResult dialogResult = MessageBox.Show(
+                        "Bạn có chắc chắn muốn xóa lịch chiếu này không?",
+                        "Xác nhận xóa",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
 
-                        if (isDeleted)
-                        {
-                            MessageBox.Show("Xóa lịch chiếu thành công!");
-                            frmQuanLyLichChieu.Instance?.LoadLichChieu();
-                            this.Close(); // Đóng form thông tin sau khi xóa
-                        }
-                        else
-                        {
-                            MessageBox.Show("Xóa thất bại. Vui lòng thử lại!");
-                        }
-                    }
-                    catch (Exception ex)
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        MessageBox.Show($"Lỗi: {ex.Message}");
+                        try
+                        {
+
+                            // Gọi DAO để xóa lịch chiếu
+                            bool isDeleted = DAO_LICHCHIEU.Instance.XoaLichChieu(id);
+
+                            if (isDeleted)
+                            {
+                                MessageBox.Show("Xóa lịch chiếu thành công!");
+                                frmQuanLyLichChieu.Instance?.LoadLichChieu();
+                                this.Close(); // Đóng form thông tin sau khi xóa
+                            }
+                            else
+                            {
+                                MessageBox.Show("Xóa thất bại. Vui lòng thử lại!");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Lỗi: {ex.Message}");
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Lịch chiếu đã diễn ra, không được xóa.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Lịch chiếu đã diễn ra, không được xóa.");
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
-
         }
         #endregion
 

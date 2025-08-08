@@ -1,4 +1,4 @@
-using OGC.Log_NhanVien;
+﻿using OGC.Log_NhanVien;
 
 namespace OGC
 {
@@ -13,6 +13,7 @@ namespace OGC
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            string username = "admin"; // Giả sử bạn đã đăng nhập với tài khoản quản lý
             Application.Run(new frmDangNhap());
         }
     }

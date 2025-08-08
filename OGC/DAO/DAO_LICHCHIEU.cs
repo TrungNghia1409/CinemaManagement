@@ -209,11 +209,12 @@ namespace OGC.DAO
 
 
 
-        public DataTable GetGioChieuTheoPhimVaNgay(string tenPhim, DateTime ngayChieu)
+        public DataTable GetGioChieuTheoPhimVaNgay(string tenPhim, DateTime ngayChieu, int idPhong)
         {
-            string query = "EXEC usp_GetGioChieuTheoPhimVaNgay @TenPhim , @NgayGio ";
-            return DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim, ngayChieu });
+            string query = "EXEC usp_GetGioChieuTheoPhimVaNgay @TenPhim , @NgayGio , @IDPhong ";
+            return DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim, ngayChieu, idPhong });
         }
+
 
         public DTO_DINHDANGPHIM GetDinhDangPhimTheoTenPhim(string tenPhim)
         {
@@ -232,15 +233,21 @@ namespace OGC.DAO
             return null;
         }
 
-        public List<DateTime> GetNgayChieuTheoPhim(string tenPhim)
+        public List<DTO_NGAYCHIEUPHONG> GetNgayChieuTheoPhim(string tenPhim)
         {
-            List<DateTime> list = new List<DateTime>();
+            List<DTO_NGAYCHIEUPHONG> list = new List<DTO_NGAYCHIEUPHONG>();
             string query = "EXEC usp_GetNgayChieuTheoPhim @TenPhim ";
             DataTable dt = DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim });
 
             foreach (DataRow row in dt.Rows)
             {
-                list.Add(Convert.ToDateTime(row["NgayGio"]));
+                DTO_NGAYCHIEUPHONG item = new DTO_NGAYCHIEUPHONG()
+                {
+                    NgayChieu = Convert.ToDateTime(row["NgayChieu"]),
+                    IDPhong = Convert.ToInt32(row["IDPhong"]),
+                    TenPhong = row["TenPhong"].ToString()
+                };
+                list.Add(item);
             }
 
             return list;
@@ -299,6 +306,7 @@ namespace OGC.DAO
         // 📌 2. Lấy ID phòng từ lịch chiếu
         public int GetIDPhong(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu)
         {
+
             string query = @"  SELECT LC.IDPhong 
         FROM LICHCHIEU LC
         INNER JOIN PHIM P ON LC.IDPhim = P.ID
@@ -306,6 +314,7 @@ namespace OGC.DAO
             P.TenPhim = @tenPhim AND 
             CONVERT(DATE, LC.NgayGio) = @ngay AND 
             CONVERT(TIME, LC.NgayGio) = @gio ";
+
 
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhim, ngayChieu.Date, gioChieu });
 

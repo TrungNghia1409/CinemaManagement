@@ -177,44 +177,51 @@ namespace OGC.KHO
         //-------Sửa thông tin món
         private void btnSua_Click(object sender, EventArgs e)
         {
-            string tenMonAn = txbTenMonAn.Text.Trim();
+            try
+            {
+                string tenMonAn = txbTenMonAn.Text.Trim();
 
-            if (string.IsNullOrEmpty(tenMonAn))
-            {
-                MessageBox.Show("Vui lòng nhập tên món ăn cần sửa.");
-                return;
-            }
+                if (string.IsNullOrEmpty(tenMonAn))
+                {
+                    MessageBox.Show("Vui lòng nhập tên món ăn cần sửa.");
+                    return;
+                }
 
-            // Kiểm tra số lượng thêm
-            if (!int.TryParse(txbSoLuongThem.Text, out int soLuongThem))
-            {
-                MessageBox.Show("Vui lòng nhập số lượng hợp lệ để thêm vào kho.");
-                return;
-            }
-            if (soLuongThem<=0)
-            {
-                MessageBox.Show("Số lượng tồn cần nhập lớn hơn 0.");
-                return;
-            }
+                // Kiểm tra số lượng thêm
+                if (!int.TryParse(txbSoLuongThem.Text, out int soLuongThem))
+                {
+                    MessageBox.Show("Vui lòng nhập số lượng hợp lệ để thêm vào kho.");
+                    return;
+                }
+                if (soLuongThem <= 0)
+                {
+                    MessageBox.Show("Số lượng tồn cần nhập lớn hơn 0.");
+                    return;
+                }
 
-            int idMonAn = DAO_MONAN.Instance.LayIDMonAnTheoTen(tenMonAn);
-            if (idMonAn == -1)
-            {
-                MessageBox.Show("Món ăn không tồn tại.");
-                return;
-            }
+                int idMonAn = DAO_MONAN.Instance.LayIDMonAnTheoTen(tenMonAn);
+                if (idMonAn == -1)
+                {
+                    MessageBox.Show("Món ăn không tồn tại.");
+                    return;
+                }
 
-            // Gọi DAO để sửa kho
-            bool result = DAO_KHO.Instance.SuaKho(tenMonAn, soLuongThem);
+                // Gọi DAO để sửa kho
+                bool result = DAO_KHO.Instance.SuaKho(tenMonAn, soLuongThem);
 
-            if (result)
-            {
-                MessageBox.Show("Cập nhật kho thành công.");
-                LoadKho(); // Tải lại dữ liệu
+                if (result)
+                {
+                    MessageBox.Show("Cập nhật kho thành công.");
+                    LoadKho(); // Tải lại dữ liệu
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật kho thất bại. Vui lòng kiểm tra lại tên món ăn.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Cập nhật kho thất bại. Vui lòng kiểm tra lại tên món ăn.");
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
