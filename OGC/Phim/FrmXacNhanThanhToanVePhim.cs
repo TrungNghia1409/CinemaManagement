@@ -18,7 +18,10 @@ namespace OGC.Phim
         private decimal tongTien;
         private int idNhanVien;
         private decimal giaVe;
-        private string tenPhim, suatChieu, phong, dinhDang, hinhThuc;
+        private string tenPhim, suatChieu, phong, dinhDang;
+        private FrmChonGhe frmChonGhe;
+
+
         public FrmXacNhanThanhToanVePhim(
             List<string> gheDaChon,
             decimal tongTien,
@@ -27,8 +30,11 @@ namespace OGC.Phim
             string suatChieu,
             string phong,
             string dinhDang,
-            decimal giaVe
-            )
+            decimal giaVe,
+            FrmChonGhe frmChonGhe
+ 
+
+        )
         {
             InitializeComponent();
             this.gheDaChon = gheDaChon;
@@ -39,10 +45,9 @@ namespace OGC.Phim
             this.phong = phong;
             this.dinhDang = dinhDang;
             this.giaVe = giaVe;
-            this.hinhThuc = hinhThuc;
+            this.frmChonGhe = frmChonGhe;
+
         }
-
-
 
 
         private void textBox1_Leave(object sender, EventArgs e)
@@ -85,13 +90,13 @@ namespace OGC.Phim
                 gheDaChon,
                 dinhDang,
                 giaVe,
-                tienKhachDua,  
-                tienThoi,      
+                tienKhachDua,
+                tienThoi,
                 tongTien
+
             );
+
             frm.ShowDialog();
-
-
             this.Close();
         }
 

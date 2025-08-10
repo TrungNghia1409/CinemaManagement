@@ -19,7 +19,8 @@ namespace OGC.Phim
 {
     public partial class FrmChiTietHoaDonVePhim : Form
     {
-        public event Action<List<string>> OnBillExported;
+        public string tenPhim;
+  
         private int idNhanVien;
         private int idKhach;
         private int idHoaDon;
@@ -28,6 +29,11 @@ namespace OGC.Phim
         private decimal giaVe;
         private decimal tienKhachDua;
         private decimal tienThoi;
+        private string phong;
+        private DateTime ngayChieu;
+        private TimeSpan gioChieu;
+        private List<string> danhSachGhe;
+
         public FrmChiTietHoaDonVePhim(
             int idNhanVien,
             int idKhach,
@@ -40,16 +46,27 @@ namespace OGC.Phim
             decimal tienKhachDua,
             decimal tienThoi,
             decimal tongTien
-            )
+    
+        )
         {
             InitializeComponent();
 
+            this.tenPhim = tenPhim;
             this.idNhanVien = idNhanVien;
             this.idKhach = idKhach;
             this.giaVe = giaVe;
             this.tongTien = tongTien;
             this.tienKhachDua = tienKhachDua;
             this.tienThoi = tienThoi;
+
+            this.phong = phong;
+            this.danhSachGhe = ghe;
+
+            // Parse suất chiếu: "dd/MM/yyyy HH:mm"
+            DateTime suatChieuDateTime = DateTime.ParseExact(suatChieu, "dd/MM/yyyy - HH:mm", CultureInfo.InvariantCulture);
+            this.ngayChieu = suatChieuDateTime.Date;
+            this.gioChieu = suatChieuDateTime.TimeOfDay;
+
 
             // Gộp danh sách ghế thành chuỗi
             string gheDaChon = string.Join(", ", ghe);
@@ -65,13 +82,12 @@ namespace OGC.Phim
             lbTienKhachDua.Text = tienKhachDua.ToString("N0") + " VND";
             lbTienThoi.Text = tienThoi.ToString("N0") + " VND";
 
-
             // Ngày lập hóa đơn
             DateTime ngayLap = DateTime.Now;
             lbNgayLap.Text = ngayLap.ToString("dd/MM/yyyy HH:mm:ss");
 
             // Mã hóa đơn logic: HD + yyyyMMddHHmmss
-            string maHoaDon = "HD" + ngayLap.ToString("yyyyMMddHHmmss");
+            string maHoaDon = "HD" + ngayLap.ToString("yyyyMMdd");
             lbMaHoaDon.Text = maHoaDon;
 
             // Gán giảm giá mặc định
@@ -98,9 +114,12 @@ namespace OGC.Phim
             );
 
             // Sinh mã vạch
-            string noiDungMaVach = $"HDVE-{idHoaDon}-{idVe}";
+            string noiDungMaVach = $"HDVE-{idHoaDon}";
             HienThiMaVach(noiDungMaVach);
+
+           
         }
+        
 
         private void HienThiMaVach(string noiDung)
         {
@@ -224,7 +243,7 @@ namespace OGC.Phim
                 string ngayLap = lbNgayLap.Text;
                 string tenNhanVien = lbTenNhanVien.Text;
                 string tenPhim = lbTenPhim.Text;
-                string suatChieu = lbSuatChieu.Text;
+                string suatChieu = lbSuatChieu.Text; // "09/08/2025 - 10:52"
                 string phong = lbPhong.Text;
                 string ghe = lbGhe.Text;
                 string dinhDang = lbDinhDang.Text;
@@ -234,17 +253,46 @@ namespace OGC.Phim
                 string tienKhach = lbTienKhachDua.Text.Replace(" VND", "").Replace(",", "").Trim();
                 string tienThoi = lbTienThoi.Text.Replace(" VND", "").Replace(",", "").Trim();
 
-                // Sau khi xuất PDF thành công -> báo về FrmChonGhe
-                List<string> danhSachGhe = ghe.Split(',')
-                                              .Select(x => x.Trim())
-                                              .Where(x => !string.IsNullOrEmpty(x))
-                                              .ToList();
+                // Parse suất chiếu
+                if (!DateTime.TryParseExact(
+                    suatChieu,
+                    "dd/MM/yyyy - HH:mm",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.None,
+                    out DateTime suatChieuDateTime))
+                {
+                    MessageBox.Show("Định dạng suất chiếu không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                OnBillExported?.Invoke(danhSachGhe);
+                DateTime ngayChieu = suatChieuDateTime.Date;
+                TimeSpan gioChieu = suatChieuDateTime.TimeOfDay;
 
-                MessageBox.Show("Xuất hóa đơn thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Xuất PDF
+                XuatPDFHoaDonVePhim(
+                    tenHD, ngayLap, tenNhanVien,
+                    tenPhim, suatChieu, phong, ghe, dinhDang,
+                    giaVe, giamGia, tongTien, tienKhach, tienThoi,
+                    ptbQRCode.Image
+                );
 
-                this.Close();
+                // Lưu trạng thái ghế đã đặt 
+                 foreach (var gheItem in danhSachGhe)
+                {
+                    int idGhe = DAO_Ghe.Instance.GetIDGheByMaGhe(gheItem);
+                    if (idGhe > 0)
+                    {
+                        DAO_Ghe.Instance.DatGhe_New(
+                            idGhe,
+                            ngayChieu,
+                            gioChieu
+                        );
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Không tìm thấy ID cho ghế {gheItem}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
             }
             catch (Exception ex)
             {

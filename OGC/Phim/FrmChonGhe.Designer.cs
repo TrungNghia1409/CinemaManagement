@@ -232,6 +232,7 @@
             Controls.Add(panel1);
             Name = "FrmChonGhe";
             Text = "FrmChonGhe";
+            Activated += FrmChonGhe_Activated;
             Load += FrmChonGhe_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
