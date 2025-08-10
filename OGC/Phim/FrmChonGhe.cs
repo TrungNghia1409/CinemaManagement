@@ -21,7 +21,6 @@ namespace OGC.Phim
 
         private decimal giaVe;
 
-
         private string tenPhim;
         private DateTime ngayChieu;
         private TimeSpan gioChieu;
@@ -29,20 +28,19 @@ namespace OGC.Phim
         private int idPhong;
         private int idLichChieu = -1;
 
-
-        // Constructor đầy đủ 4 tham số
+      
 
         public FrmChonGhe(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu, int idPhong, string currentUser)
         {
             InitializeComponent();
 
             this.tenPhim = tenPhim;
-            this.ngayChieu = ngayChieu;
-            this.gioChieu = gioChieu;
+            this.ngayChieu = ngayChieu.Date;
+            this.gioChieu = new TimeSpan(gioChieu.Hours, gioChieu.Minutes, 0); // chuẩn hóa ở đây, giữ nguyên về sau
             this.idPhong = idPhong;
             this.currentUser = currentUser;
 
-            this.idLichChieu = DAO_LICHCHIEU.Instance.GetIDLichChieu(tenPhim, ngayChieu, gioChieu, idPhong);
+            this.idLichChieu = DAO_LICHCHIEU.Instance.GetIDLichChieu(tenPhim, this.ngayChieu, this.gioChieu, idPhong);
 
             LoadDinhDangPhong();
             LoadGiaVe();
@@ -77,7 +75,7 @@ namespace OGC.Phim
                     giaVe = DAO_LICHCHIEU.Instance.LayGiaVe(tenPhim, ngayChieu, gioChieu, idPhong);
                 }
 
-                // 👇 Chỉ gọi cập nhật nếu có ghế được chọn
+    
                 if (gheDangChon.Count > 0)
                     CapNhatThongTinGheDangChon();
             }
@@ -90,42 +88,31 @@ namespace OGC.Phim
 
         private void LoadGhe()
         {
-
-            // 🔍 Lấy thông tin phòng
+            // Lấy thông tin loại phòng
             int idLoaiPhong = DAO_PHONGCHIEU.Instance.LayIDLoaiPhongTheoIDPhong(idPhong);
             string tenLoaiPhong = DAO_LOAIPHONG.Instance.GetTenLoaiPhongTheoID(idLoaiPhong);
             int sucChua = DAO_LOAIPHONG.Instance.LaySucChuaTheoIDLoaiPhong(idLoaiPhong);
 
-            int soHang = (int)Math.Ceiling((double)sucChua / 10);
-            int soCot = 10;
-
-            // ✅ DÙ LÀ PHÒNG NÀO CŨNG CHỈ DÙNG HÀM NÀY
-            DAO_Ghe.Instance.TaoGheTheoPhong(idPhong);
-
-            // 📦 Lấy danh sách ghế
+            // Lấy danh sách ghế
             var gheList = DAO_Ghe.Instance.GetListGheByIDPhong(idPhong);
+
+            // Xóa dữ liệu cũ
             gheDaDat.Clear();
             dictGhe.Clear();
             gheVaMa.Clear();
             gheDangChon.Clear();
-
-            foreach (var ghe in gheList)
-            {
-                int trangThai = DAO_Ghe.Instance.GetTrangThaiGheTheoMa(idPhong, ghe.MaGhe, ngayChieu, gioChieu);
-                if (trangThai == 1)
-                    gheDaDat.Add(ghe.MaGhe);
-                dictGhe[ghe.MaGhe] = ghe;
-            }
-
-            // 🧱 Vẽ lên giao diện
             flpGhe.Controls.Clear();
+
+            // Số ghế mỗi hàng
             int gheMoiMotHang = 10;
             int soHangFinal = (int)Math.Ceiling((double)sucChua / gheMoiMotHang);
 
+            // Duyệt từng hàng
             for (int i = 0; i < soHangFinal; i++)
             {
                 char hang = (char)('A' + i);
 
+                // Panel cho mỗi hàng
                 FlowLayoutPanel rowPanel = new FlowLayoutPanel
                 {
                     Width = flpGhe.Width - 25,
@@ -135,12 +122,14 @@ namespace OGC.Phim
                     WrapContents = false
                 };
 
+                // Lọc ghế trong hàng
                 var gheTrongHang = gheList
                     .Where(g => g.MaGhe.StartsWith(hang.ToString()))
                     .OrderBy(g => g.MaGhe)
                     .ToList();
 
-                int tongWidth = gheTrongHang.Count * 55;
+                // Canh giữa ghế
+                int tongWidth = gheTrongHang.Count * (tenLoaiPhong == "Couple" ? 105 : 55);
                 int khoangTrong = (rowPanel.Width - tongWidth) / 2;
                 if (khoangTrong > 0)
                     rowPanel.Padding = new Padding(khoangTrong, 0, 0, 0);
@@ -150,28 +139,42 @@ namespace OGC.Phim
                     Button btnGhe = new Button
                     {
                         Text = ghe.MaGhe,
-                        Width = (tenLoaiPhong == "Couple" ? 100 : 50), // ✅ Ghế đôi nếu là phòng couple
+                        Width = (tenLoaiPhong == "Couple" ? 100 : 50),
                         Height = 50,
                         Margin = new Padding(2)
                     };
 
-                    if (gheDaDat.Contains(ghe.MaGhe))
+                   
+
+                    // Lấy trạng thái ghế bằng ID
+                    int trangThai = DAO_Ghe.Instance.GetTrangThaiGheTheoID(
+                        ghe.ID, ngayChieu, gioChieu);
+
+                    if (trangThai == 1) // Ghế đã đặt
                     {
                         btnGhe.BackColor = Color.Red;
                         btnGhe.Enabled = false;
+                        gheDaDat.Add(ghe.MaGhe);
                     }
-                    else
+                    else // Ghế trống
                     {
                         btnGhe.BackColor = Color.LightGreen;
                         btnGhe.Click += BtnGhe_Click;
                     }
 
                     gheVaMa[btnGhe] = ghe.MaGhe;
+                    dictGhe[ghe.MaGhe] = ghe;
+
                     rowPanel.Controls.Add(btnGhe);
                 }
 
                 flpGhe.Controls.Add(rowPanel);
             }
+        }
+
+        private void FrmChonGhe_Activated(object sender, EventArgs e)
+        {
+            LoadGhe();
         }
 
 
@@ -293,6 +296,7 @@ namespace OGC.Phim
                 string ghe = string.Join(", ", danhSachGheDaDat);
                 decimal tongTien = danhSachGheDaDat.Count * giaVe;
 
+                
 
             }
         }
@@ -316,7 +320,7 @@ namespace OGC.Phim
             string suatChieu = $"{ngayChieu:dd/MM/yyyy} - {gioChieu:hh\\:mm}";
             string phong = "Phòng " + idPhong.ToString();
 
-            int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser); // Đảm bảo currentUser != null
+            int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser); 
 
             FrmPhuongThucThanhToanVe frm = new FrmPhuongThucThanhToanVe(
                             danhSachGhe,
@@ -326,30 +330,14 @@ namespace OGC.Phim
                             suatChieu,
                             phong,
                             dinhDang,
-                            giaVe
+                            giaVe,
+                            this
                         );
             frm.ShowDialog();
-
         }
 
-        // Nhận thông báo từ FrmChiTietHoaDonVePhim khi bill đã xuất
-        public void CapNhatGheSauKhiXuatBill(List<string> gheDaMua)
-        {
-            foreach (var maGhe in gheDaMua)
-            {
-                // Tìm tất cả button ghế trùng tên
-                var btn = this.Controls.Find(maGhe, true)
-                                       .OfType<Button>()
-                                       .FirstOrDefault();
-                if (btn != null)
-                {
-                    btn.BackColor = Color.Red;
-                    btn.Enabled = false;
-                }
-            }
-        }
+        
 
-
-
+ 
     }
 }

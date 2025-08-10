@@ -144,7 +144,12 @@ namespace OGC.DAO
                 return null; // Không tìm thấy phòng chiếu cho phim
         }
 
-
+        public int LayIDPhongTheoTen(string tenPhong)
+        {
+            string query = "SELECT ID FROM PHONGCHIEU WHERE TenPhong = @TenPhong ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tenPhong });
+            return result != null ? Convert.ToInt32(result) : -1; // Trả về -1 nếu không tìm thấy
+        }
 
 
         public string GetTenLoaiPhongByIDPhong(int? idPhong)
@@ -163,6 +168,7 @@ namespace OGC.DAO
                 return string.Empty;
         }
 
+        
 
 
     }
