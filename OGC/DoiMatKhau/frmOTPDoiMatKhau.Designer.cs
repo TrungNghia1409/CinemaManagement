@@ -120,6 +120,7 @@
             Controls.Add(txbOTP1);
             Controls.Add(lblEmail);
             Name = "frmOTPDoiMatKhau";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmOTPDoiMatKhau";
             ResumeLayout(false);
             PerformLayout();

@@ -128,17 +128,25 @@ namespace OGC.ThuocTinh
             DialogResult result = MessageBox.Show($"Bạn có chắc muốn xóa loại phim '{tenLoaiPhimCanXoa}' không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                bool xoaThanhCong = DAO_THELOAIPHIM.Instance.XoaTheLoaiPhim(tenLoaiPhimCanXoa);
-                if (xoaThanhCong)
+                try
                 {
-                    MessageBox.Show("Xóa loại phim thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Load lại danh sách loại phim
-                    frmTheLoaiPhim? f = Application.OpenForms["frmTheLoaiPhim"] as frmTheLoaiPhim;
-                    f?.LoadLoaiPhim();
+                    bool xoaThanhCong = DAO_THELOAIPHIM.Instance.XoaTheLoaiPhim(tenLoaiPhimCanXoa);
+                    if (xoaThanhCong)
+                    {
+                        MessageBox.Show("Xóa loại phim thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Load lại danh sách loại phim
+                        frmTheLoaiPhim? f = Application.OpenForms["frmTheLoaiPhim"] as frmTheLoaiPhim;
+                        f?.LoadLoaiPhim();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xóa! Có thể loại phim đang được sử dụng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể xóa! Có thể loại phim đang được sử dụng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

@@ -35,6 +35,7 @@
             ptbDangNhap = new PictureBox();
             panel3 = new Panel();
             pnlDangNhap_Phai = new Panel();
+            lblQuenMatKhau = new Label();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             btnDangNhap = new Button();
@@ -42,7 +43,6 @@
             txbMatKhau = new TextBox();
             pnlTaiKhoan = new Panel();
             txbTaiKhoan = new TextBox();
-            lblQuenMatKhau = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbDangNhap).BeginInit();
@@ -68,7 +68,7 @@
             lblMember.Location = new Point(104, 16);
             lblMember.Name = "lblMember";
             lblMember.Size = new Size(166, 30);
-            lblMember.TabIndex = 4;
+            lblMember.TabIndex = 5;
             lblMember.Text = "Members Login";
             // 
             // panel2
@@ -118,6 +118,18 @@
             pnlDangNhap_Phai.Name = "pnlDangNhap_Phai";
             pnlDangNhap_Phai.Size = new Size(336, 200);
             pnlDangNhap_Phai.TabIndex = 1;
+            // 
+            // lblQuenMatKhau
+            // 
+            lblQuenMatKhau.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblQuenMatKhau.ForeColor = Color.DodgerBlue;
+            lblQuenMatKhau.Location = new Point(232, 155);
+            lblQuenMatKhau.Name = "lblQuenMatKhau";
+            lblQuenMatKhau.Size = new Size(96, 16);
+            lblQuenMatKhau.TabIndex = 4;
+            lblQuenMatKhau.Text = "Quên mật khẩu";
+            lblQuenMatKhau.TextAlign = ContentAlignment.MiddleCenter;
+            lblQuenMatKhau.Click += lblQuenMatKhau_Click;
             // 
             // pictureBox2
             // 
@@ -198,18 +210,6 @@
             txbTaiKhoan.TabIndex = 1;
             txbTaiKhoan.Enter += txbTaiKhoan_Enter;
             txbTaiKhoan.Leave += txbTaiKhoan_Leave;
-            // 
-            // lblQuenMatKhau
-            // 
-            lblQuenMatKhau.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblQuenMatKhau.ForeColor = Color.DodgerBlue;
-            lblQuenMatKhau.Location = new Point(232, 155);
-            lblQuenMatKhau.Name = "lblQuenMatKhau";
-            lblQuenMatKhau.Size = new Size(96, 16);
-            lblQuenMatKhau.TabIndex = 9;
-            lblQuenMatKhau.Text = "Quên mật khẩu";
-            lblQuenMatKhau.TextAlign = ContentAlignment.MiddleCenter;
-            lblQuenMatKhau.Click += lblQuenMatKhau_Click;
             // 
             // frmDangNhap
             // 
