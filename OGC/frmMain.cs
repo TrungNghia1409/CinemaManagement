@@ -100,6 +100,7 @@ namespace OGC
         private void btnDichVu_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmQuanLyDichVu(currentUser));
+            label1.Text = btnDichVu.Text;
         }
         private void btnNhanVien_Click(object sender, EventArgs e)
         {
@@ -109,11 +110,13 @@ namespace OGC
         private void btnQuanLyChung_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmQuanLyChung(currentUser));
+            label1.Text = btnQuanLyChung.Text;
         }
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmThongKe());
+            label1.Text = btnThongKe.Text;
         }
 
         //-------phân quyền chức năng dựa trên chức vụ của nhân viên

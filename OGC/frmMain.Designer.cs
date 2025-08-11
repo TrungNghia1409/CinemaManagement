@@ -66,19 +66,17 @@
             // 
             panel1.Controls.Add(Logo);
             panel1.Location = new Point(1, 1);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(90, 71);
+            panel1.Size = new Size(103, 95);
             panel1.TabIndex = 0;
             // 
             // Logo
             // 
             Logo.BorderStyle = BorderStyle.FixedSingle;
             Logo.Image = Properties.Resources.Logo;
-            Logo.Location = new Point(4, 0);
-            Logo.Margin = new Padding(3, 2, 3, 2);
+            Logo.Location = new Point(5, 0);
             Logo.Name = "Logo";
-            Logo.Size = new Size(84, 72);
+            Logo.Size = new Size(96, 95);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 0;
             Logo.TabStop = false;
@@ -87,30 +85,31 @@
             // panel2
             // 
             panel2.AutoSize = true;
+            panel2.BackColor = SystemColors.Control;
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(pnlUser);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(96, 1);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(110, 1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1198, 72);
+            panel2.Size = new Size(1369, 95);
             panel2.TabIndex = 0;
             // 
             // pnlUser
             // 
             pnlUser.Controls.Add(lblDangXuat);
             pnlUser.Controls.Add(lblUser);
-            pnlUser.Location = new Point(920, 8);
+            pnlUser.Location = new Point(1051, 11);
+            pnlUser.Margin = new Padding(3, 4, 3, 4);
             pnlUser.Name = "pnlUser";
-            pnlUser.Size = new Size(272, 48);
+            pnlUser.Size = new Size(311, 63);
             pnlUser.TabIndex = 2;
             // 
             // lblDangXuat
             // 
             lblDangXuat.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblDangXuat.Location = new Point(200, 13);
+            lblDangXuat.Location = new Point(196, 17);
             lblDangXuat.Name = "lblDangXuat";
-            lblDangXuat.Size = new Size(64, 24);
+            lblDangXuat.Size = new Size(106, 32);
             lblDangXuat.TabIndex = 1;
             lblDangXuat.Text = "Đăng xuất";
             lblDangXuat.TextAlign = ContentAlignment.MiddleCenter;
@@ -119,37 +118,36 @@
             // lblUser
             // 
             lblUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblUser.Location = new Point(0, 0);
+            lblUser.Location = new Point(-51, 0);
             lblUser.Name = "lblUser";
-            lblUser.Size = new Size(200, 48);
+            lblUser.Size = new Size(254, 64);
             lblUser.TabIndex = 1;
             lblUser.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(19, 26);
+            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            label1.Location = new Point(17, 28);
             label1.Name = "label1";
-            label1.Size = new Size(40, 15);
+            label1.Size = new Size(92, 38);
             label1.TabIndex = 0;
             label1.Text = "Home";
             // 
             // pnlQuanLyPhim
             // 
             pnlQuanLyPhim.Controls.Add(btnQuanLyPhim);
-            pnlQuanLyPhim.Location = new Point(3, 377);
-            pnlQuanLyPhim.Margin = new Padding(3, 2, 3, 2);
+            pnlQuanLyPhim.Location = new Point(3, 508);
             pnlQuanLyPhim.Name = "pnlQuanLyPhim";
-            pnlQuanLyPhim.Size = new Size(184, 71);
+            pnlQuanLyPhim.Size = new Size(210, 95);
             pnlQuanLyPhim.TabIndex = 0;
             // 
             // btnQuanLyPhim
             // 
             btnQuanLyPhim.Dock = DockStyle.Fill;
             btnQuanLyPhim.Location = new Point(0, 0);
-            btnQuanLyPhim.Margin = new Padding(3, 2, 3, 2);
             btnQuanLyPhim.Name = "btnQuanLyPhim";
-            btnQuanLyPhim.Size = new Size(184, 71);
+            btnQuanLyPhim.Size = new Size(210, 95);
             btnQuanLyPhim.TabIndex = 0;
             btnQuanLyPhim.Text = "Quản Lý Phim";
             btnQuanLyPhim.UseVisualStyleBackColor = true;
@@ -158,19 +156,17 @@
             // pnlDichVu
             // 
             pnlDichVu.Controls.Add(btnDichVu);
-            pnlDichVu.Location = new Point(3, 227);
-            pnlDichVu.Margin = new Padding(3, 2, 3, 2);
+            pnlDichVu.Location = new Point(3, 306);
             pnlDichVu.Name = "pnlDichVu";
-            pnlDichVu.Size = new Size(184, 71);
+            pnlDichVu.Size = new Size(210, 95);
             pnlDichVu.TabIndex = 0;
             // 
             // btnDichVu
             // 
             btnDichVu.Dock = DockStyle.Fill;
             btnDichVu.Location = new Point(0, 0);
-            btnDichVu.Margin = new Padding(3, 2, 3, 2);
             btnDichVu.Name = "btnDichVu";
-            btnDichVu.Size = new Size(184, 71);
+            btnDichVu.Size = new Size(210, 95);
             btnDichVu.TabIndex = 0;
             btnDichVu.Text = "Dịch Vụ";
             btnDichVu.UseVisualStyleBackColor = true;
@@ -179,19 +175,17 @@
             // pnlQuanLyChung
             // 
             pnlQuanLyChung.Controls.Add(btnQuanLyChung);
-            pnlQuanLyChung.Location = new Point(3, 77);
-            pnlQuanLyChung.Margin = new Padding(3, 2, 3, 2);
+            pnlQuanLyChung.Location = new Point(3, 104);
             pnlQuanLyChung.Name = "pnlQuanLyChung";
-            pnlQuanLyChung.Size = new Size(184, 71);
+            pnlQuanLyChung.Size = new Size(210, 95);
             pnlQuanLyChung.TabIndex = 0;
             // 
             // btnQuanLyChung
             // 
             btnQuanLyChung.Dock = DockStyle.Fill;
             btnQuanLyChung.Location = new Point(0, 0);
-            btnQuanLyChung.Margin = new Padding(3, 2, 3, 2);
             btnQuanLyChung.Name = "btnQuanLyChung";
-            btnQuanLyChung.Size = new Size(184, 71);
+            btnQuanLyChung.Size = new Size(210, 95);
             btnQuanLyChung.TabIndex = 0;
             btnQuanLyChung.Text = "Quản Lý Chung";
             btnQuanLyChung.UseVisualStyleBackColor = true;
@@ -200,19 +194,17 @@
             // pnlThongKe
             // 
             pnlThongKe.Controls.Add(btnThongKe);
-            pnlThongKe.Location = new Point(3, 302);
-            pnlThongKe.Margin = new Padding(3, 2, 3, 2);
+            pnlThongKe.Location = new Point(3, 407);
             pnlThongKe.Name = "pnlThongKe";
-            pnlThongKe.Size = new Size(184, 71);
+            pnlThongKe.Size = new Size(210, 95);
             pnlThongKe.TabIndex = 0;
             // 
             // btnThongKe
             // 
             btnThongKe.Dock = DockStyle.Fill;
             btnThongKe.Location = new Point(0, 0);
-            btnThongKe.Margin = new Padding(3, 2, 3, 2);
             btnThongKe.Name = "btnThongKe";
-            btnThongKe.Size = new Size(184, 71);
+            btnThongKe.Size = new Size(210, 95);
             btnThongKe.TabIndex = 0;
             btnThongKe.Text = "Thống Kê";
             btnThongKe.UseVisualStyleBackColor = true;
@@ -221,19 +213,17 @@
             // pnlDatVe
             // 
             pnlDatVe.Controls.Add(btnDatVe);
-            pnlDatVe.Location = new Point(3, 152);
-            pnlDatVe.Margin = new Padding(3, 2, 3, 2);
+            pnlDatVe.Location = new Point(3, 205);
             pnlDatVe.Name = "pnlDatVe";
-            pnlDatVe.Size = new Size(184, 71);
+            pnlDatVe.Size = new Size(210, 95);
             pnlDatVe.TabIndex = 0;
             // 
             // btnDatVe
             // 
             btnDatVe.Dock = DockStyle.Fill;
             btnDatVe.Location = new Point(0, 0);
-            btnDatVe.Margin = new Padding(3, 2, 3, 2);
             btnDatVe.Name = "btnDatVe";
-            btnDatVe.Size = new Size(184, 71);
+            btnDatVe.Size = new Size(210, 95);
             btnDatVe.TabIndex = 0;
             btnDatVe.Text = "Đặt Vé";
             btnDatVe.UseVisualStyleBackColor = true;
@@ -242,54 +232,52 @@
             // pnlTrangChu
             // 
             pnlTrangChu.Controls.Add(btnTrangChu);
-            pnlTrangChu.Location = new Point(3, 2);
-            pnlTrangChu.Margin = new Padding(3, 2, 3, 2);
+            pnlTrangChu.Location = new Point(3, 3);
             pnlTrangChu.Name = "pnlTrangChu";
-            pnlTrangChu.Size = new Size(184, 71);
+            pnlTrangChu.Size = new Size(210, 95);
             pnlTrangChu.TabIndex = 0;
             // 
             // btnTrangChu
             // 
             btnTrangChu.Dock = DockStyle.Fill;
             btnTrangChu.Location = new Point(0, 0);
-            btnTrangChu.Margin = new Padding(3, 2, 3, 2);
             btnTrangChu.Name = "btnTrangChu";
-            btnTrangChu.Size = new Size(184, 71);
+            btnTrangChu.Size = new Size(210, 95);
             btnTrangChu.TabIndex = 0;
             btnTrangChu.Text = "Trang Chủ";
             btnTrangChu.UseVisualStyleBackColor = true;
             // 
             // panel_Body
             // 
-            panel_Body.Location = new Point(208, 76);
-            panel_Body.Margin = new Padding(3, 2, 3, 2);
+            panel_Body.Location = new Point(226, 101);
             panel_Body.Name = "panel_Body";
-            panel_Body.Size = new Size(1086, 486);
+            panel_Body.Size = new Size(1253, 648);
             panel_Body.TabIndex = 1;
             // 
             // flơThanhDieuHuong
             // 
+            flơThanhDieuHuong.BackColor = SystemColors.Control;
             flơThanhDieuHuong.Controls.Add(pnlTrangChu);
             flơThanhDieuHuong.Controls.Add(pnlQuanLyChung);
             flơThanhDieuHuong.Controls.Add(pnlDatVe);
             flơThanhDieuHuong.Controls.Add(pnlDichVu);
             flơThanhDieuHuong.Controls.Add(pnlThongKe);
             flơThanhDieuHuong.Controls.Add(pnlQuanLyPhim);
-            flơThanhDieuHuong.Location = new Point(6, 76);
+            flơThanhDieuHuong.Location = new Point(6, 101);
+            flơThanhDieuHuong.Margin = new Padding(3, 4, 3, 4);
             flơThanhDieuHuong.Name = "flơThanhDieuHuong";
-            flơThanhDieuHuong.Size = new Size(194, 486);
+            flơThanhDieuHuong.Size = new Size(214, 648);
             flơThanhDieuHuong.TabIndex = 1;
             // 
             // frmMain
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1297, 565);
+            ClientSize = new Size(1482, 753);
             Controls.Add(flơThanhDieuHuong);
             Controls.Add(panel_Body);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chào mừng bạn đến với OGC";

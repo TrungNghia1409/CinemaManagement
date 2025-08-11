@@ -79,7 +79,7 @@
             // lbDoTuoi
             // 
             lbDoTuoi.AutoSize = true;
-            lbDoTuoi.Location = new Point(104, 112);
+            lbDoTuoi.Location = new Point(122, 112);
             lbDoTuoi.Name = "lbDoTuoi";
             lbDoTuoi.Size = new Size(91, 20);
             lbDoTuoi.TabIndex = 8;
@@ -88,7 +88,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 112);
+            label3.Location = new Point(24, 112);
             label3.Name = "label3";
             label3.Size = new Size(69, 20);
             label3.TabIndex = 7;
@@ -97,17 +97,17 @@
             // lbTenPhim
             // 
             lbTenPhim.AutoSize = true;
-            lbTenPhim.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 163);
-            lbTenPhim.Location = new Point(6, 9);
+            lbTenPhim.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lbTenPhim.Location = new Point(24, 9);
             lbTenPhim.Name = "lbTenPhim";
-            lbTenPhim.Size = new Size(139, 41);
+            lbTenPhim.Size = new Size(147, 41);
             lbTenPhim.TabIndex = 0;
             lbTenPhim.Text = "Tên Phim";
             // 
             // lbDinhDang
             // 
             lbDinhDang.AutoSize = true;
-            lbDinhDang.Location = new Point(576, 112);
+            lbDinhDang.Location = new Point(594, 112);
             lbDinhDang.Name = "lbDinhDang";
             lbDinhDang.Size = new Size(109, 20);
             lbDinhDang.TabIndex = 6;
@@ -116,7 +116,7 @@
             // lbTenPhong
             // 
             lbTenPhong.AutoSize = true;
-            lbTenPhong.Location = new Point(510, 70);
+            lbTenPhong.Location = new Point(528, 70);
             lbTenPhong.Name = "lbTenPhong";
             lbTenPhong.Size = new Size(94, 20);
             lbTenPhong.TabIndex = 6;
@@ -125,7 +125,7 @@
             // lbTheLoai
             // 
             lbTheLoai.AutoSize = true;
-            lbTheLoai.Location = new Point(101, 70);
+            lbTheLoai.Location = new Point(119, 70);
             lbTheLoai.Name = "lbTheLoai";
             lbTheLoai.Size = new Size(94, 20);
             lbTheLoai.TabIndex = 6;
@@ -134,7 +134,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(446, 112);
+            label2.Location = new Point(464, 112);
             label2.Name = "label2";
             label2.Size = new Size(124, 20);
             label2.TabIndex = 5;
@@ -143,7 +143,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(446, 70);
+            label1.Location = new Point(464, 70);
             label1.Name = "label1";
             label1.Size = new Size(58, 20);
             label1.TabIndex = 4;
@@ -152,7 +152,7 @@
             // lb1
             // 
             lb1.AutoSize = true;
-            lb1.Location = new Point(3, 70);
+            lb1.Location = new Point(21, 70);
             lb1.Name = "lb1";
             lb1.Size = new Size(72, 20);
             lb1.TabIndex = 4;
@@ -218,7 +218,6 @@
             Controls.Add(panel4);
             Controls.Add(btnThoat);
             Name = "frmChonNgayChieu";
-            Text = "frmChonNgayChieu";
             panel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
