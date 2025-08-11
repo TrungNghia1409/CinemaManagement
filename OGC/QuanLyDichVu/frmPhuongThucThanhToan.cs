@@ -49,18 +49,6 @@ namespace OGC.QuanLyDichVu
                 }
                 PayOSCreatePaymentRequestDTO dto = new PayOSCreatePaymentRequestDTO
                 {
-                    //amount = tongTien,
-                    //orderCode = 0, // Để PayOSDAO tạo
-                    //description = "Thanh toán dịch vụ",
-                    //items = new List<Item>
-                    //{
-                    //    new Item
-                    //    {
-                    //        name = "Tổng hóa đơn",
-                    //        quantity = 1,
-                    //        price = tongTien
-                    //    }
-                    //},
                     amount = tongTien,
                     orderCode = 0, // Để PayOSDAO tạo
                     description = "Thanh toán dịch vụ",
