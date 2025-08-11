@@ -17,6 +17,7 @@ namespace OGC.Phim
 
         public frmChonNgayChieu(string tenPhim, string currentUser)
         {
+
             InitializeComponent();
             this.tenPhim = tenPhim;
             this.currentUser = currentUser;
@@ -25,6 +26,11 @@ namespace OGC.Phim
 
         private void frmChonNgayChieu_Load(object sender, EventArgs e)
         {
+
+            phim = PhimDAO.Instance.GetPhimTheoTen(tenPhim);
+
+
+
             LoadThongTinPhim();
             LoadNgayChieu();
             LoadAnhPhim();

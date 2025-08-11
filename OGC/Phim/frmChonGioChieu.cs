@@ -48,6 +48,27 @@ namespace OGC.Phim
 
             var tenLoaiPhong = DAO_PHONGCHIEU.Instance.GetTenLoaiPhongByIDPhong(idPhong);
             lbTenPhong.Text = !string.IsNullOrEmpty(tenLoaiPhong) ? tenLoaiPhong : "Không rõ";
+
+            // --- Thêm phần load ảnh phim ---
+            var phim = PhimDAO.Instance.GetPhimTheoTen(tenPhim); 
+            if (phim != null && !string.IsNullOrEmpty(phim.Anh))
+            {
+                string fullPath = System.IO.Path.Combine(Application.StartupPath, phim.Anh);
+
+                if (System.IO.File.Exists(fullPath))
+                {
+                    ptbAnhPhim.Image = Image.FromFile(fullPath);
+                    ptbAnhPhim.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    ptbAnhPhim.Image = null;
+                }
+            }
+            else
+            {
+                ptbAnhPhim.Image = null;
+            }
         }
 
         private void LoadGioChieu()
