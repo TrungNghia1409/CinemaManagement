@@ -176,6 +176,11 @@ namespace OGC
             DAO_TKNHANVIEN.Instance.XoaUsernameDangNhap();
         }
 
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
 
         #endregion
