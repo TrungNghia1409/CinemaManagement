@@ -127,17 +127,25 @@ namespace OGC.ThuocTinh
             DialogResult result = MessageBox.Show($"Bạn có chắc muốn xóa loại phòng '{tenLoaiPhongCanXoa}' không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                bool xoaThanhCong = DAO_LOAIPHONG.Instance.XoaLoaiPhong(tenLoaiPhongCanXoa);
-                if (xoaThanhCong)
+                try
                 {
-                    MessageBox.Show("Xóa loại phòng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Load lại danh sách loại phòng
-                    frmLoaiPhong? f = Application.OpenForms["frmLoaiPhong"] as frmLoaiPhong;
-                    f?.LoadLoaiPhong();
+                    bool xoaThanhCong = DAO_LOAIPHONG.Instance.XoaLoaiPhong(tenLoaiPhongCanXoa);
+                    if (xoaThanhCong)
+                    {
+                        MessageBox.Show("Xóa loại phòng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Load lại danh sách loại phòng
+                        frmLoaiPhong? f = Application.OpenForms["frmLoaiPhong"] as frmLoaiPhong;
+                        f?.LoadLoaiPhong();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xóa! Có thể loại phòng đang được sử dụng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể xóa! Có thể loại phòng đang được sử dụng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
