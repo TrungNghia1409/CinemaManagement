@@ -282,6 +282,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chào mừng bạn đến với OGC";
             FormClosed += frmMain_FormClosed;
+            Load += frmMain_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             panel2.ResumeLayout(false);

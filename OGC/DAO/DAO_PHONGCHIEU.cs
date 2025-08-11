@@ -87,9 +87,11 @@ namespace OGC.DAO
         public bool SuaPhongChieu(DTO_PHONGCHIEU phong)
         {
             string query = "UPDATE PHONGCHIEU SET TenPhong = @TenPhong , TrangThai = @TrangThai , " +
-                           "MaLoaiPhong = @MaLoaiPhong WHERE ID = @ID ";
+                  "MaLoaiPhong = @MaLoaiPhong , AnhPhong = @AnhPhong WHERE ID = @ID ";
+
             int result = DataProvider.Instance.ExecuteNonQuery(query,
-                new object[] { phong.TenPhong, phong.TrangThai, phong.MaLoaiPhong, phong.ID });
+                new object[] { phong.TenPhong, phong.TrangThai, phong.MaLoaiPhong, phong.AnhPhong, phong.ID });
+
             return result > 0;
         }
 

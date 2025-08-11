@@ -31,12 +31,12 @@
             panel1 = new Panel();
             dtgPhongChieu = new DataGridView();
             panel2 = new Panel();
-            tbDuongDanAnh = new TextBox();
             picAnhPhong = new PictureBox();
             btnTaiAnh = new Button();
             btnXoa = new Button();
             btnSua = new Button();
             btnThem = new Button();
+            cbLoaiPhong = new ComboBox();
             cbTrangThai = new ComboBox();
             tbMaLoaiPhong = new TextBox();
             tbSucChua = new TextBox();
@@ -44,11 +44,10 @@
             tbID = new TextBox();
             label3 = new Label();
             label5 = new Label();
+            label6 = new Label();
             label4 = new Label();
             label2 = new Label();
             label1 = new Label();
-            label6 = new Label();
-            cbLoaiPhong = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgPhongChieu).BeginInit();
             panel2.SuspendLayout();
@@ -74,7 +73,6 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(tbDuongDanAnh);
             panel2.Controls.Add(picAnhPhong);
             panel2.Controls.Add(btnTaiAnh);
             panel2.Controls.Add(btnXoa);
@@ -97,13 +95,6 @@
             panel2.Size = new Size(636, 376);
             panel2.TabIndex = 0;
             // 
-            // tbDuongDanAnh
-            // 
-            tbDuongDanAnh.Location = new Point(502, 229);
-            tbDuongDanAnh.Name = "tbDuongDanAnh";
-            tbDuongDanAnh.Size = new Size(125, 27);
-            tbDuongDanAnh.TabIndex = 5;
-            // 
             // picAnhPhong
             // 
             picAnhPhong.Location = new Point(381, 10);
@@ -114,7 +105,7 @@
             // 
             // btnTaiAnh
             // 
-            btnTaiAnh.Location = new Point(458, 276);
+            btnTaiAnh.Location = new Point(461, 238);
             btnTaiAnh.Name = "btnTaiAnh";
             btnTaiAnh.Size = new Size(94, 29);
             btnTaiAnh.TabIndex = 3;
@@ -151,6 +142,14 @@
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
             btnThem.Click += btnThem_Click;
+            // 
+            // cbLoaiPhong
+            // 
+            cbLoaiPhong.FormattingEnabled = true;
+            cbLoaiPhong.Location = new Point(132, 203);
+            cbLoaiPhong.Name = "cbLoaiPhong";
+            cbLoaiPhong.Size = new Size(151, 28);
+            cbLoaiPhong.TabIndex = 2;
             // 
             // cbTrangThai
             // 
@@ -206,6 +205,15 @@
             label5.TabIndex = 0;
             label5.Text = "Mã Loại Phòng";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(24, 203);
+            label6.Name = "label6";
+            label6.Size = new Size(83, 20);
+            label6.TabIndex = 0;
+            label6.Text = "Loại Phòng";
+            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -232,23 +240,6 @@
             label1.Size = new Size(70, 20);
             label1.TabIndex = 0;
             label1.Text = "ID Phòng";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(24, 203);
-            label6.Name = "label6";
-            label6.Size = new Size(83, 20);
-            label6.TabIndex = 0;
-            label6.Text = "Loại Phòng";
-            // 
-            // cbLoaiPhong
-            // 
-            cbLoaiPhong.FormattingEnabled = true;
-            cbLoaiPhong.Location = new Point(132, 203);
-            cbLoaiPhong.Name = "cbLoaiPhong";
-            cbLoaiPhong.Size = new Size(151, 28);
-            cbLoaiPhong.TabIndex = 2;
             // 
             // FrmQuanLyPhongChieu
             // 
@@ -287,7 +278,6 @@
         private Button btnThem;
         private DataGridView dtgPhongChieu;
         private PictureBox picAnhPhong;
-        private TextBox tbDuongDanAnh;
         private ComboBox cbLoaiPhong;
         private Label label6;
     }
