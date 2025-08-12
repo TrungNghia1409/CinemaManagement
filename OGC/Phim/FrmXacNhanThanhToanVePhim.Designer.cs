@@ -276,6 +276,7 @@
             ClientSize = new Size(658, 512);
             Controls.Add(panel1);
             Name = "FrmXacNhanThanhToanVePhim";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmXacNhanThanhToanVePhim";
             Load += FrmXacNhanThanhToanVePhim_Load;
             panel1.ResumeLayout(false);

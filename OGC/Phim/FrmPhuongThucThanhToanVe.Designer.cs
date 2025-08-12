@@ -74,6 +74,7 @@
             Controls.Add(btnTienMat);
             Controls.Add(lblPTTT);
             Name = "FrmPhuongThucThanhToanVe";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmPhuongThucThanhToanVe";
             ResumeLayout(false);
         }
