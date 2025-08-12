@@ -309,11 +309,11 @@
             // lbTenPhim
             // 
             lbTenPhim.AutoSize = true;
-            lbTenPhim.Font = new Font("Yu Gothic UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbTenPhim.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             lbTenPhim.ForeColor = Color.Black;
             lbTenPhim.Location = new Point(3, 12);
             lbTenPhim.Name = "lbTenPhim";
-            lbTenPhim.Size = new Size(131, 38);
+            lbTenPhim.Size = new Size(147, 41);
             lbTenPhim.TabIndex = 0;
             lbTenPhim.Text = "Tên Phim";
             // 

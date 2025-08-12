@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
             Logo = new PictureBox();
             panel2 = new Panel();
             pnlUser = new Panel();
@@ -49,7 +48,6 @@
             btnTrangChu = new Button();
             panel_Body = new Panel();
             flơThanhDieuHuong = new FlowLayoutPanel();
-            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             panel2.SuspendLayout();
             pnlUser.SuspendLayout();
@@ -62,19 +60,11 @@
             flơThanhDieuHuong.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
-            // 
-            panel1.Controls.Add(Logo);
-            panel1.Location = new Point(1, 1);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(103, 95);
-            panel1.TabIndex = 0;
-            // 
             // Logo
             // 
             Logo.BorderStyle = BorderStyle.FixedSingle;
             Logo.Image = Properties.Resources.Logo;
-            Logo.Location = new Point(5, 0);
+            Logo.Location = new Point(-1, 1);
             Logo.Name = "Logo";
             Logo.Size = new Size(96, 95);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -85,13 +75,14 @@
             // panel2
             // 
             panel2.AutoSize = true;
-            panel2.BackColor = SystemColors.Control;
+            panel2.BackColor = Color.FromArgb(80, 80, 80);
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(Logo);
             panel2.Controls.Add(pnlUser);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(110, 1);
+            panel2.Location = new Point(6, 1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1369, 95);
+            panel2.Size = new Size(1473, 107);
             panel2.TabIndex = 0;
             // 
             // pnlUser
@@ -107,6 +98,7 @@
             // lblDangXuat
             // 
             lblDangXuat.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblDangXuat.ForeColor = SystemColors.ButtonHighlight;
             lblDangXuat.Location = new Point(196, 17);
             lblDangXuat.Name = "lblDangXuat";
             lblDangXuat.Size = new Size(106, 32);
@@ -117,7 +109,8 @@
             // 
             // lblUser
             // 
-            lblUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUser.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblUser.ForeColor = SystemColors.ButtonHighlight;
             lblUser.Location = new Point(-51, 0);
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(254, 64);
@@ -128,7 +121,8 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
-            label1.Location = new Point(17, 28);
+            label1.ForeColor = SystemColors.ButtonHighlight;
+            label1.Location = new Point(120, 28);
             label1.Name = "label1";
             label1.Size = new Size(92, 38);
             label1.TabIndex = 0;
@@ -145,6 +139,8 @@
             // btnQuanLyPhim
             // 
             btnQuanLyPhim.Dock = DockStyle.Fill;
+            btnQuanLyPhim.FlatStyle = FlatStyle.Flat;
+            btnQuanLyPhim.ForeColor = SystemColors.ButtonHighlight;
             btnQuanLyPhim.Location = new Point(0, 0);
             btnQuanLyPhim.Name = "btnQuanLyPhim";
             btnQuanLyPhim.Size = new Size(210, 95);
@@ -164,11 +160,14 @@
             // btnDichVu
             // 
             btnDichVu.Dock = DockStyle.Fill;
+            btnDichVu.FlatStyle = FlatStyle.Flat;
+            btnDichVu.ForeColor = SystemColors.ButtonHighlight;
             btnDichVu.Location = new Point(0, 0);
             btnDichVu.Name = "btnDichVu";
             btnDichVu.Size = new Size(210, 95);
             btnDichVu.TabIndex = 0;
             btnDichVu.Text = "Dịch Vụ";
+            btnDichVu.TextImageRelation = TextImageRelation.ImageAboveText;
             btnDichVu.UseVisualStyleBackColor = true;
             btnDichVu.Click += btnDichVu_Click;
             // 
@@ -183,6 +182,8 @@
             // btnQuanLyChung
             // 
             btnQuanLyChung.Dock = DockStyle.Fill;
+            btnQuanLyChung.FlatStyle = FlatStyle.Flat;
+            btnQuanLyChung.ForeColor = SystemColors.ButtonHighlight;
             btnQuanLyChung.Location = new Point(0, 0);
             btnQuanLyChung.Name = "btnQuanLyChung";
             btnQuanLyChung.Size = new Size(210, 95);
@@ -202,6 +203,8 @@
             // btnThongKe
             // 
             btnThongKe.Dock = DockStyle.Fill;
+            btnThongKe.FlatStyle = FlatStyle.Flat;
+            btnThongKe.ForeColor = SystemColors.ButtonHighlight;
             btnThongKe.Location = new Point(0, 0);
             btnThongKe.Name = "btnThongKe";
             btnThongKe.Size = new Size(210, 95);
@@ -221,6 +224,8 @@
             // btnDatVe
             // 
             btnDatVe.Dock = DockStyle.Fill;
+            btnDatVe.FlatStyle = FlatStyle.Flat;
+            btnDatVe.ForeColor = SystemColors.ButtonHighlight;
             btnDatVe.Location = new Point(0, 0);
             btnDatVe.Name = "btnDatVe";
             btnDatVe.Size = new Size(210, 95);
@@ -239,25 +244,29 @@
             // 
             // btnTrangChu
             // 
+            btnTrangChu.BackColor = Color.FromArgb(80, 80, 80);
             btnTrangChu.Dock = DockStyle.Fill;
+            btnTrangChu.FlatStyle = FlatStyle.Flat;
+            btnTrangChu.ForeColor = SystemColors.ButtonHighlight;
             btnTrangChu.Location = new Point(0, 0);
             btnTrangChu.Name = "btnTrangChu";
             btnTrangChu.Size = new Size(210, 95);
             btnTrangChu.TabIndex = 0;
             btnTrangChu.Text = "Trang Chủ";
-            btnTrangChu.UseVisualStyleBackColor = true;
+            btnTrangChu.UseVisualStyleBackColor = false;
             btnTrangChu.Click += btnTrangChu_Click;
             // 
             // panel_Body
             // 
-            panel_Body.Location = new Point(226, 101);
+            panel_Body.BackColor = SystemColors.Control;
+            panel_Body.Location = new Point(221, 104);
             panel_Body.Name = "panel_Body";
-            panel_Body.Size = new Size(1253, 648);
+            panel_Body.Size = new Size(1258, 645);
             panel_Body.TabIndex = 1;
             // 
             // flơThanhDieuHuong
             // 
-            flơThanhDieuHuong.BackColor = SystemColors.Control;
+            flơThanhDieuHuong.BackColor = Color.FromArgb(80, 80, 80);
             flơThanhDieuHuong.Controls.Add(pnlTrangChu);
             flơThanhDieuHuong.Controls.Add(pnlQuanLyChung);
             flơThanhDieuHuong.Controls.Add(pnlDatVe);
@@ -267,7 +276,7 @@
             flơThanhDieuHuong.Location = new Point(6, 101);
             flơThanhDieuHuong.Margin = new Padding(3, 4, 3, 4);
             flơThanhDieuHuong.Name = "flơThanhDieuHuong";
-            flơThanhDieuHuong.Size = new Size(214, 648);
+            flơThanhDieuHuong.Size = new Size(217, 648);
             flơThanhDieuHuong.TabIndex = 1;
             // 
             // frmMain
@@ -278,13 +287,11 @@
             Controls.Add(flơThanhDieuHuong);
             Controls.Add(panel_Body);
             Controls.Add(panel2);
-            Controls.Add(panel1);
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chào mừng bạn đến với OGC";
             FormClosed += frmMain_FormClosed;
             Load += frmMain_Load;
-            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -301,8 +308,6 @@
         }
 
         #endregion
-
-        private Panel panel1;
         private Panel panel2;
         private Label label1;
         private Panel pnlQuanLyPhim;

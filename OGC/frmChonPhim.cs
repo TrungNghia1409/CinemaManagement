@@ -116,7 +116,6 @@ namespace OGC
                 Cursor = Cursors.Hand
             };
 
-            // Nối đường dẫn ảnh với thư mục chạy ứng dụng
             string fullPath = Path.Combine(Application.StartupPath, phim.Anh);
 
             if (!string.IsNullOrEmpty(phim.Anh) && File.Exists(fullPath))
@@ -129,10 +128,7 @@ namespace OGC
             else
             {
                 pictureBox.Image = null;
-                // hoặc pictureBox.Image = Properties.Resources.NoImage; // ảnh mặc định nếu có
             }
-
-            fplHienThiPhim.Controls.Add(phimPanel);
 
             Label lblTenPhim = new Label
             {
@@ -141,7 +137,8 @@ namespace OGC
                 Width = 160,
                 Height = 40,
                 TextAlign = ContentAlignment.MiddleCenter,
-                Font = new Font("Segoe UI", 10, FontStyle.Bold)
+                Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                ForeColor = Color.FromArgb(50, 50, 50)  // chữ xám đậm, dễ nhìn
             };
 
             Label lblThoiLuong = new Label
@@ -151,7 +148,8 @@ namespace OGC
                 Width = 160,
                 Height = 20,
                 TextAlign = ContentAlignment.MiddleCenter,
-                Font = new Font("Segoe UI", 9)
+                Font = new Font("Segoe UI", 9),
+                ForeColor = Color.FromArgb(90, 90, 90)  // chữ xám vừa phải
             };
 
             Label lblNgayKhoiChieu = new Label
@@ -164,19 +162,23 @@ namespace OGC
                 Height = 20,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Font = new Font("Arial", 9, FontStyle.Regular),
-                ForeColor = Color.FromArgb(30, 30, 30)
+                ForeColor = Color.FromArgb(110, 110, 110) // xám nhạt hơn
             };
 
+            // Tạo nút Chi tiết & Đặt vé giống nhau về kích thước, font, flatstyle, cursor
             Button btnChiTiet = new Button
             {
                 Text = "Chi tiết",
                 Width = 75,
                 Height = 30,
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.LightGray,
                 Cursor = Cursors.Hand,
-                Tag = phim
+                Tag = phim,
+                Font = new Font("Segoe UI", 9, FontStyle.Regular),
+                BackColor = Color.FromArgb(220, 220, 220), // xám sáng
+                ForeColor = Color.FromArgb(50, 50, 50)     // chữ xám đậm
             };
+            btnChiTiet.FlatAppearance.BorderSize = 0;
 
             Button btnDatVe = new Button
             {
@@ -184,19 +186,23 @@ namespace OGC
                 Width = 75,
                 Height = 30,
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.LightGreen,
                 Cursor = Cursors.Hand,
-                Tag = phim
+                Tag = phim,
+                Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                BackColor = Color.FromArgb(135, 196, 86), // xanh lá sáng hơn lightgreen
+                ForeColor = Color.White
             };
+            btnDatVe.FlatAppearance.BorderSize = 0;
+
+            // Hover effect giống nhau cho 2 nút
+            btnChiTiet.MouseEnter += (s, e) => btnChiTiet.BackColor = Color.FromArgb(200, 200, 200);
+            btnChiTiet.MouseLeave += (s, e) => btnChiTiet.BackColor = Color.FromArgb(220, 220, 220);
+
+            btnDatVe.MouseEnter += (s, e) => btnDatVe.BackColor = Color.FromArgb(110, 160, 50); // đậm hơn chút khi hover
+            btnDatVe.MouseLeave += (s, e) => btnDatVe.BackColor = Color.FromArgb(135, 196, 86);
 
             btnChiTiet.Click += btnChiTiet_Click;
             btnDatVe.Click += btnDatVe_Click;
-
-            btnChiTiet.MouseEnter += (s, e) => btnChiTiet.BackColor = Color.Gray;
-            btnChiTiet.MouseLeave += (s, e) => btnChiTiet.BackColor = Color.LightGray;
-
-            btnDatVe.MouseEnter += (s, e) => btnDatVe.BackColor = Color.Green;
-            btnDatVe.MouseLeave += (s, e) => btnDatVe.BackColor = Color.LightGreen;
 
             FlowLayoutPanel buttonPanel = new FlowLayoutPanel
             {
