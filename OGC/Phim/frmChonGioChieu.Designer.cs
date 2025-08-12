@@ -241,6 +241,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "frmChonGioChieu";
+            StartPosition = FormStartPosition.CenterScreen;
             panel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();

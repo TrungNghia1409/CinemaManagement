@@ -186,9 +186,9 @@
             label6.ForeColor = Color.Red;
             label6.Location = new Point(363, 668);
             label6.Name = "label6";
-            label6.Size = new Size(105, 20);
+            label6.Size = new Size(106, 20);
             label6.TabIndex = 0;
-            label6.Text = "[ ] Đặt rồi (đỏ)";
+            label6.Text = "[ ] Đã Đặt (đỏ)";
             // 
             // label1
             // 
@@ -232,16 +232,15 @@
             // 
             // FrmChonGhe
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(922, 747);
             Controls.Add(btnChonHinhThucThanhToan);
             Controls.Add(btnThoat);
             Controls.Add(btnXacNhan);
             Controls.Add(panel1);
             Name = "FrmChonGhe";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmChonGhe";
-            TopMost = true;
             Activated += FrmChonGhe_Activated;
             Load += FrmChonGhe_Load;
             panel1.ResumeLayout(false);

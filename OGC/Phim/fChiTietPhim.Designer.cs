@@ -325,6 +325,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "fChiTietPhim";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ChiTietPhim";
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)AnhPhim).EndInit();

@@ -457,6 +457,7 @@
             Controls.Add(lblTen);
             Controls.Add(ptbQRCode);
             Name = "FrmChiTietHoaDonVePhim";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmChiTietHoaDonVePhim";
             ((System.ComponentModel.ISupportInitialize)ptbQRCode).EndInit();
             panel1.ResumeLayout(false);
