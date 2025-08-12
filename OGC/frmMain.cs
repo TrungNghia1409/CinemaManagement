@@ -181,6 +181,11 @@ namespace OGC
 
         }
 
+        private void btnTrangChu_Click(object sender, EventArgs e)
+        {
+            
+        }
+
 
 
         #endregion

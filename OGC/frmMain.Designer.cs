@@ -246,6 +246,7 @@
             btnTrangChu.TabIndex = 0;
             btnTrangChu.Text = "Trang Chủ";
             btnTrangChu.UseVisualStyleBackColor = true;
+            btnTrangChu.Click += btnTrangChu_Click;
             // 
             // panel_Body
             // 

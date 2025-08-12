@@ -41,17 +41,17 @@
             lb1 = new Label();
             lbNgayChieu = new Label();
             label3 = new Label();
-            panel2 = new Panel();
-            ptbAnhPhim = new PictureBox();
             panel4 = new Panel();
             flpGioChieu = new FlowLayoutPanel();
             label4 = new Label();
             btnThoat = new Button();
+            panel2 = new Panel();
+            ptbAnhPhim = new PictureBox();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
+            panel4.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbAnhPhim).BeginInit();
-            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -180,22 +180,6 @@
             label3.TabIndex = 3;
             label3.Text = "Ngày Chiếu: ";
             // 
-            // panel2
-            // 
-            panel2.Controls.Add(ptbAnhPhim);
-            panel2.Location = new Point(3, 167);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(263, 412);
-            panel2.TabIndex = 1;
-            // 
-            // ptbAnhPhim
-            // 
-            ptbAnhPhim.Location = new Point(3, 3);
-            ptbAnhPhim.Name = "ptbAnhPhim";
-            ptbAnhPhim.Size = new Size(257, 400);
-            ptbAnhPhim.TabIndex = 0;
-            ptbAnhPhim.TabStop = false;
-            // 
             // panel4
             // 
             panel4.Controls.Add(flpGioChieu);
@@ -223,12 +207,29 @@
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(684, 585);
+            btnThoat.Location = new Point(617, 585);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(94, 29);
+            btnThoat.Size = new Size(161, 29);
             btnThoat.TabIndex = 2;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(ptbAnhPhim);
+            panel2.Location = new Point(3, 167);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(263, 412);
+            panel2.TabIndex = 1;
+            // 
+            // ptbAnhPhim
+            // 
+            ptbAnhPhim.Location = new Point(3, 3);
+            ptbAnhPhim.Name = "ptbAnhPhim";
+            ptbAnhPhim.Size = new Size(257, 406);
+            ptbAnhPhim.TabIndex = 0;
+            ptbAnhPhim.TabStop = false;
             // 
             // frmChonGioChieu
             // 
@@ -243,21 +244,19 @@
             panel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ptbAnhPhim).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ptbAnhPhim).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private Panel panel2;
         private Panel panel4;
         private FlowLayoutPanel flpGioChieu;
         private Button btnThoat;
-        private PictureBox ptbAnhPhim;
         private Panel panel5;
         private Label label3;
         private Label lbNgayChieu;
@@ -271,5 +270,7 @@
         private Label lbTenPhong;
         private Label label2;
         private Label label5;
+        private Panel panel2;
+        private PictureBox ptbAnhPhim;
     }
 }
