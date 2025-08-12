@@ -277,4 +277,16 @@ public class PhimDAO
             row["IDDoTuoi"] == DBNull.Value ? null : row["IDDoTuoi"].ToString()
         );
     }
+
+    public PhimDTO GetPhimTheoTen(string tenPhim)
+    {
+        string query = "SELECT * FROM PHIM WHERE TenPhim = @TenPhim ";
+        DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { tenPhim });
+
+        if (data.Rows.Count > 0)
+            return MapPhim(data.Rows[0]);
+
+        return null;
+    }
+
 }

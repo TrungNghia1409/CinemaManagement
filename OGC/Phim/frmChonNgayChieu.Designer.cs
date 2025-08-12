@@ -39,17 +39,18 @@
             label2 = new Label();
             label1 = new Label();
             lb1 = new Label();
-            panel2 = new Panel();
-            ptbAnhPhim = new PictureBox();
             panel4 = new Panel();
             flpNgayChieu = new FlowLayoutPanel();
             label4 = new Label();
             btnThoat = new Button();
+            panel2 = new Panel();
+            ptbAnhPhim = new PictureBox();
+            button1 = new Button();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
+            panel4.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbAnhPhim).BeginInit();
-            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -79,7 +80,7 @@
             // lbDoTuoi
             // 
             lbDoTuoi.AutoSize = true;
-            lbDoTuoi.Location = new Point(104, 112);
+            lbDoTuoi.Location = new Point(122, 112);
             lbDoTuoi.Name = "lbDoTuoi";
             lbDoTuoi.Size = new Size(91, 20);
             lbDoTuoi.TabIndex = 8;
@@ -88,7 +89,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 112);
+            label3.Location = new Point(24, 112);
             label3.Name = "label3";
             label3.Size = new Size(69, 20);
             label3.TabIndex = 7;
@@ -97,17 +98,17 @@
             // lbTenPhim
             // 
             lbTenPhim.AutoSize = true;
-            lbTenPhim.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 163);
-            lbTenPhim.Location = new Point(6, 9);
+            lbTenPhim.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lbTenPhim.Location = new Point(24, 9);
             lbTenPhim.Name = "lbTenPhim";
-            lbTenPhim.Size = new Size(139, 41);
+            lbTenPhim.Size = new Size(147, 41);
             lbTenPhim.TabIndex = 0;
             lbTenPhim.Text = "Tên Phim";
             // 
             // lbDinhDang
             // 
             lbDinhDang.AutoSize = true;
-            lbDinhDang.Location = new Point(576, 112);
+            lbDinhDang.Location = new Point(594, 112);
             lbDinhDang.Name = "lbDinhDang";
             lbDinhDang.Size = new Size(109, 20);
             lbDinhDang.TabIndex = 6;
@@ -116,7 +117,7 @@
             // lbTenPhong
             // 
             lbTenPhong.AutoSize = true;
-            lbTenPhong.Location = new Point(510, 70);
+            lbTenPhong.Location = new Point(528, 70);
             lbTenPhong.Name = "lbTenPhong";
             lbTenPhong.Size = new Size(94, 20);
             lbTenPhong.TabIndex = 6;
@@ -125,7 +126,7 @@
             // lbTheLoai
             // 
             lbTheLoai.AutoSize = true;
-            lbTheLoai.Location = new Point(101, 70);
+            lbTheLoai.Location = new Point(119, 70);
             lbTheLoai.Name = "lbTheLoai";
             lbTheLoai.Size = new Size(94, 20);
             lbTheLoai.TabIndex = 6;
@@ -134,7 +135,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(446, 112);
+            label2.Location = new Point(464, 112);
             label2.Name = "label2";
             label2.Size = new Size(124, 20);
             label2.TabIndex = 5;
@@ -143,7 +144,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(446, 70);
+            label1.Location = new Point(464, 70);
             label1.Name = "label1";
             label1.Size = new Size(58, 20);
             label1.TabIndex = 4;
@@ -152,27 +153,11 @@
             // lb1
             // 
             lb1.AutoSize = true;
-            lb1.Location = new Point(3, 70);
+            lb1.Location = new Point(21, 70);
             lb1.Name = "lb1";
             lb1.Size = new Size(72, 20);
             lb1.TabIndex = 4;
             lb1.Text = "Thể Loại: ";
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(ptbAnhPhim);
-            panel2.Location = new Point(3, 176);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(263, 412);
-            panel2.TabIndex = 4;
-            // 
-            // ptbAnhPhim
-            // 
-            ptbAnhPhim.Location = new Point(3, 3);
-            ptbAnhPhim.Name = "ptbAnhPhim";
-            ptbAnhPhim.Size = new Size(257, 400);
-            ptbAnhPhim.TabIndex = 0;
-            ptbAnhPhim.TabStop = false;
             // 
             // panel4
             // 
@@ -208,32 +193,56 @@
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(ptbAnhPhim);
+            panel2.Location = new Point(3, 176);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(263, 412);
+            panel2.TabIndex = 4;
+            // 
+            // ptbAnhPhim
+            // 
+            ptbAnhPhim.Location = new Point(3, 3);
+            ptbAnhPhim.Name = "ptbAnhPhim";
+            ptbAnhPhim.Size = new Size(257, 400);
+            ptbAnhPhim.TabIndex = 0;
+            ptbAnhPhim.TabStop = false;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(617, 594);
+            button1.Name = "button1";
+            button1.Size = new Size(161, 29);
+            button1.TabIndex = 7;
+            button1.Text = "Thoát";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // frmChonNgayChieu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(782, 670);
+            ClientSize = new Size(782, 631);
+            Controls.Add(button1);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Controls.Add(panel4);
             Controls.Add(btnThoat);
             Name = "frmChonNgayChieu";
-            Text = "frmChonNgayChieu";
             panel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ptbAnhPhim).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ptbAnhPhim).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private Panel panel2;
-        private PictureBox ptbAnhPhim;
         private Panel panel4;
         private FlowLayoutPanel flpNgayChieu;
         private Label label4;
@@ -248,5 +257,8 @@
         private Label lbDoTuoi;
         private Label label3;
         private Label label1;
+        private Panel panel2;
+        private PictureBox ptbAnhPhim;
+        private Button button1;
     }
 }

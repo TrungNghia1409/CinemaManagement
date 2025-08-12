@@ -18,18 +18,16 @@ namespace OGC
     public partial class frmChonPhim : Form
     {
         private string currentUser;
+
         public frmChonPhim(string currentUser)
         {
             InitializeComponent();
-
             this.currentUser = currentUser;
-
             LoadPhimList(); // Gọi hàm LoadPhimList để tải danh sách phim
             LoadPhimTheoNgayChieu(dtpChonNgayChieu.Value.Date);
             LoadDinhDangPhimToComboBox();
             LoadTheLoaiPhim();
-            LoadPhimTheoBoLoc();// Tải thể loại phim vào ComboBox
-
+            LoadPhimTheoBoLoc(); // Tải thể loại phim vào ComboBox
         }
 
         public void LoadPhimList()
@@ -37,29 +35,40 @@ namespace OGC
             fplHienThiPhim.Controls.Clear();
             List<PhimDTO> danhSachPhim = PhimDAO.Instance.GetAllPhim();
 
-            foreach (PhimDTO phim in danhSachPhim)
+            if (danhSachPhim == null || danhSachPhim.Count == 0)
             {
-                AddPhimToFlowLayout(phim);
+                AddNoShowMessage();
+            }
+            else
+            {
+                foreach (PhimDTO phim in danhSachPhim)
+                {
+                    AddPhimToFlowLayout(phim);
+                }
             }
         }
-
 
         private void LoadPhimTheoBoLoc()
         {
             fplHienThiPhim.Controls.Clear();
 
             DateTime ngayChieu = chbTatCaNgay.Checked ? DateTime.MinValue : dtpChonNgayChieu.Value.Date;
-
             int idTheLoai = (cbtheloaiphim.SelectedItem as DTO_THELOAIPHIM)?.ID ?? 0;
             int idDinhDang = (cbdinhdang.SelectedItem as DTO_DINHDANGPHIM)?.ID ?? 0;
-
             string tuKhoa = txbTimKiem.Text.Trim().ToLower();
 
             List<PhimDTO> danhSachPhim = PhimDAO.Instance.GetPhimTheoBoLoc(ngayChieu, idTheLoai, idDinhDang, tuKhoa);
 
-            foreach (PhimDTO phim in danhSachPhim)
+            if (danhSachPhim == null || danhSachPhim.Count == 0)
             {
-                AddPhimToFlowLayout(phim);
+                AddNoShowMessage();
+            }
+            else
+            {
+                foreach (PhimDTO phim in danhSachPhim)
+                {
+                    AddPhimToFlowLayout(phim);
+                }
             }
         }
 
@@ -73,7 +82,6 @@ namespace OGC
             cbtheloaiphim.DataSource = list;
             cbtheloaiphim.DisplayMember = "TenTheLoai";
             cbtheloaiphim.ValueMember = "ID";
-
         }
 
         private void LoadDinhDangPhimToComboBox()
@@ -87,10 +95,6 @@ namespace OGC
             cbdinhdang.DisplayMember = "TenDinhDang";
             cbdinhdang.ValueMember = "ID";
         }
-
-
-
-
 
         #region Hiện phim lên fplHienThiPhim
         public void AddPhimToFlowLayout(PhimDTO phim)
@@ -127,8 +131,6 @@ namespace OGC
                 pictureBox.Image = null;
                 // hoặc pictureBox.Image = Properties.Resources.NoImage; // ảnh mặc định nếu có
             }
-
-
 
             fplHienThiPhim.Controls.Add(phimPanel);
 
@@ -228,6 +230,32 @@ namespace OGC
             fplHienThiPhim.Controls.Add(phimPanel);
         }
 
+        private void AddNoShowMessage()
+        {
+            Label lblNoShow = new Label
+            {
+                Text = "Không có suất chiếu nào",
+                AutoSize = false,
+                Width = 300,
+                Height = 50,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                ForeColor = Color.FromArgb(128, 128, 128) 
+            };
+
+            // Tạo một panel để căn giữa thông báo trong FlowLayoutPanel
+            Panel messagePanel = new Panel
+            {
+                Width = fplHienThiPhim.Width,
+                Height = 100,
+                AutoSize = false
+            };
+            messagePanel.Controls.Add(lblNoShow);
+            lblNoShow.Location = new Point((messagePanel.Width - lblNoShow.Width) / 2, (messagePanel.Height - lblNoShow.Height) / 2);
+
+            fplHienThiPhim.Controls.Add(messagePanel);
+        }
+
         private void btnChiTiet_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -250,9 +278,17 @@ namespace OGC
             {
                 string tenPhim = phim.TenPhim;
                 frmChonNgayChieu frm = new frmChonNgayChieu(tenPhim, currentUser);
-                this.Hide();
-                frm.ShowDialog();
-                this.Show();
+
+                // Đưa frmChonPhim ra sau
+                this.SendToBack();
+
+                // Khi form mới đóng thì đưa frmChonPhim lên lại
+                frm.FormClosed += (s, ev) =>
+                {
+                    this.BringToFront();
+                };
+
+                frm.Show(); // Không set owner, không ShowDialog
             }
         }
 

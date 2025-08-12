@@ -157,11 +157,17 @@
   <data name="film2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\frmThuocTinh\film.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="film" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Image\frmThuocTinh\film.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="satff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\frmThuocTinh\satff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Xoa1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\frmNhanVien\Xoa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="film1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Image\frmQuanLyChung\film.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\frmQuanLyDichVu\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,17 +178,14 @@
   <data name="giohang" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\frmQuanLyDichVu\giohang.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="edit1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Image\frmNhanVien\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="cv" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\frmThuocTinh\cv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="filmsmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Image\frmThuocTinh\filmsmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cinema" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\frmThuocTinh\cinema.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="film1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Image\frmQuanLyChung\film.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Xoa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\frmQuanLyDichVu\Xoa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,10 +199,10 @@
   <data name="add - Copy1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\frmQuanLyDichVu\add - Copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="film" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Image\frmThuocTinh\film.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="edit1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Image\frmNhanVien\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="filmsmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Image\frmThuocTinh\filmsmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AnhManHinh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Image\AnhPhongChieu\AnhManHinh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

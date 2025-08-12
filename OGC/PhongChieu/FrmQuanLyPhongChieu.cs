@@ -15,6 +15,7 @@ namespace OGC.PhongChieu
 {
     public partial class FrmQuanLyPhongChieu : Form
     {
+        private string _duongDanAnhPhong = "";
         public FrmQuanLyPhongChieu()
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace OGC.PhongChieu
 
             string currentUsername = DAO_TKNHANVIEN.Instance.LayUsernameDangDangNhap();
             DAO_LogNhanVien.Instance.SetContext_Username(currentUsername);
+
 
         }
 
@@ -76,6 +78,30 @@ namespace OGC.PhongChieu
             }
         }
 
+        private string SaveImageToProjectFolder(string sourceFilePath)
+        {
+            string folder = Path.Combine(Application.StartupPath, "Images");
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
+            string fileName = Path.GetFileName(sourceFilePath);
+            string destPath = Path.Combine(folder, fileName);
+
+            int count = 1;
+            while (File.Exists(destPath))
+            {
+                string fileNameOnly = Path.GetFileNameWithoutExtension(fileName);
+                string extension = Path.GetExtension(fileName);
+                string newFileName = $"{fileNameOnly}({count}){extension}";
+                destPath = Path.Combine(folder, newFileName);
+                count++;
+            }
+
+            File.Copy(sourceFilePath, destPath);
+
+            return "Images\\" + Path.GetFileName(destPath); // trả về đường dẫn tương đối
+        }
+
 
 
 
@@ -96,16 +122,57 @@ namespace OGC.PhongChieu
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dtgPhongChieu.Rows[e.RowIndex];
-                tbID.Text = row.Cells["ID"].Value.ToString();
-                tbTenPhong.Text = row.Cells["TenPhong"].Value.ToString();
-                tbMaLoaiPhong.Text = row.Cells["MaLoaiPhong"].Value.ToString();
+
+                tbID.Text = row.Cells["ID"].Value?.ToString();
+                tbTenPhong.Text = row.Cells["TenPhong"].Value?.ToString();
+                tbMaLoaiPhong.Text = row.Cells["MaLoaiPhong"].Value?.ToString();
+
                 int trangThai = Convert.ToInt32(row.Cells["TrangThai"].Value);
                 cbTrangThai.SelectedIndex = cbTrangThai.Items.IndexOf(trangThai);
 
-                // Đặt cbLoaiPhong chọn đúng loại phòng dựa vào MaLoaiPhong
+                // Load combobox loại phòng
                 if (int.TryParse(tbMaLoaiPhong.Text, out int maLoaiPhong))
                 {
                     cbLoaiPhong.SelectedValue = maLoaiPhong;
+                }
+
+                // Lấy đường dẫn ảnh từ DB
+                _duongDanAnhPhong = row.Cells["AnhPhong"].Value?.ToString() ?? "";
+
+                if (!string.IsNullOrEmpty(_duongDanAnhPhong))
+                {
+                    try
+                    {
+                        string fullPath = _duongDanAnhPhong;
+
+                        // Nếu là đường dẫn tương đối -> nối với Application.StartupPath
+                        if (!Path.IsPathRooted(_duongDanAnhPhong))
+                        {
+                            fullPath = Path.Combine(Application.StartupPath, _duongDanAnhPhong);
+                        }
+
+                        if (File.Exists(fullPath))
+                        {
+                            // Load ảnh vào PictureBox mà không lock file
+                            using (var ms = new MemoryStream(File.ReadAllBytes(fullPath)))
+                            {
+                                picAnhPhong.Image = Image.FromStream(ms);
+                            }
+                            picAnhPhong.SizeMode = PictureBoxSizeMode.Zoom;
+                        }
+                        else
+                        {
+                            picAnhPhong.Image = null;
+                        }
+                    }
+                    catch
+                    {
+                        picAnhPhong.Image = null;
+                    }
+                }
+                else
+                {
+                    picAnhPhong.Image = null;
                 }
 
                 LoadSucChuaTheoMaLoaiPhong();
@@ -128,54 +195,45 @@ namespace OGC.PhongChieu
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Kiểm tra xem đã chọn phòng chiếu nào chưa (có ID chưa)
                 if (string.IsNullOrEmpty(tbID.Text))
-                {
-                    MessageBox.Show("Vui lòng chọn phòng chiếu để sửa.");
-                    return;
-                }
+ {
+     MessageBox.Show("Vui lòng chọn phòng chiếu để sửa.");
+     return;
+ }
 
-                // Lấy dữ liệu từ form
-                int id = int.Parse(tbID.Text);
-                string tenPhong = tbTenPhong.Text.Trim();
-                int trangThai = cbTrangThai.SelectedItem != null ? Convert.ToInt32(cbTrangThai.SelectedItem) : 0;
-                int maLoaiPhong = 0;
-                if (!int.TryParse(tbMaLoaiPhong.Text, out maLoaiPhong))
-                {
-                    MessageBox.Show("Mã loại phòng không hợp lệ.");
-                    return;
-                }
-                string anhPhong = ""; // Bạn có thể gán từ textbox ảnh nếu có
+ int id = int.Parse(tbID.Text);
+ string tenPhong = tbTenPhong.Text.Trim();
+ int trangThai = cbTrangThai.SelectedItem != null ? Convert.ToInt32(cbTrangThai.SelectedItem) : 0;
 
-                // Tạo đối tượng DTO_PHONGCHIEU để sửa
-                DTO_PHONGCHIEU phong = new DTO_PHONGCHIEU
-                {
-                    ID = id,
-                    TenPhong = tenPhong,
-                    TrangThai = trangThai,
-                    MaLoaiPhong = maLoaiPhong,
-                    AnhPhong = anhPhong
-                };
+ if (!int.TryParse(tbMaLoaiPhong.Text, out int maLoaiPhong))
+ {
+     MessageBox.Show("Mã loại phòng không hợp lệ.");
+     return;
+ }
 
-                // Gọi DAO để sửa
-                bool result = DAO_PHONGCHIEU.Instance.SuaPhongChieu(phong);
+ // Nếu có ảnh mới (Tag != null) thì lấy, ngược lại dùng ảnh cũ
+ string anhPhong = picAnhPhong.Tag != null ? picAnhPhong.Tag.ToString() : _duongDanAnhPhong;
 
-                if (result)
-                {
-                    MessageBox.Show("Sửa phòng chiếu thành công!");
-                    ReloadDataGridView(); // Load lại dữ liệu lên DataGridView
-                }
-                else
-                {
-                    MessageBox.Show("Sửa phòng chiếu thất bại!");
-                }
-            }
-             catch (Exception ex)
-            {
-                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+ DTO_PHONGCHIEU phong = new DTO_PHONGCHIEU
+ {
+     ID = id,
+     TenPhong = tenPhong,
+     TrangThai = trangThai,
+     MaLoaiPhong = maLoaiPhong,
+     AnhPhong = anhPhong
+ };
+
+ bool result = DAO_PHONGCHIEU.Instance.SuaPhongChieu(phong);
+
+ if (result)
+ {
+     MessageBox.Show("Sửa phòng chiếu thành công!");
+     ReloadDataGridView();
+ }
+ else
+ {
+     MessageBox.Show("Sửa phòng chiếu thất bại!");
+ }
         }
 
         private void ClearForm()
@@ -232,5 +290,36 @@ namespace OGC.PhongChieu
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+<<<<<<< HEAD
+=======
+
+        private void btnTaiAnh_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp|All Files|*.*";
+                openFileDialog.Title = "Chọn ảnh Phòng Chiếu";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string sourcePath = openFileDialog.FileName;
+
+                    // Lưu ảnh vào thư mục dự án (Images) và lấy đường dẫn tương đối
+                    string relativePath = SaveImageToProjectFolder(sourcePath);
+
+                    // Hiển thị ảnh lên PictureBox mà không khóa file
+                    string fullPath = Path.Combine(Application.StartupPath, relativePath);
+                    using (var ms = new MemoryStream(File.ReadAllBytes(fullPath)))
+                    {
+                        picAnhPhong.Image = Image.FromStream(ms);
+                    }
+                    picAnhPhong.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    // Gắn đường dẫn ảnh (tương đối) vào Tag để lưu vào DB
+                    picAnhPhong.Tag = relativePath;
+                }
+            }
+        }
+>>>>>>> b73eb3fd503d3731551a0284b386049cc58d2361
     }
 }
