@@ -290,6 +290,8 @@ namespace OGC.PhongChieu
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+<<<<<<< HEAD
+=======
 
         private void btnTaiAnh_Click(object sender, EventArgs e)
         {
@@ -318,5 +320,6 @@ namespace OGC.PhongChieu
                 }
             }
         }
+>>>>>>> b73eb3fd503d3731551a0284b386049cc58d2361
     }
 }

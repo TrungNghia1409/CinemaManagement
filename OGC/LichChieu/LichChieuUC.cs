@@ -88,14 +88,21 @@ namespace OGC.LichChieu
 
         private void tlpLichChieuUC_Click(object sender, EventArgs e)
         {
-            if (LichChieuData != null)
+            try
             {
-                frmThongTinLichChieu frm = new frmThongTinLichChieu(LichChieuData);
-                frm.ShowDialog();
+                if (LichChieuData != null)
+                {
+                    frmThongTinLichChieu frm = new frmThongTinLichChieu(LichChieuData);
+                    frm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Dữ liệu nhân viên chưa được gán.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Dữ liệu nhân viên chưa được gán.");
+                MessageBox.Show($"Đã xảy ra lỗi khi xem lịch chiếu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
