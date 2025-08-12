@@ -232,10 +232,5 @@ namespace OGC.PhongChieu
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnTaiAnh_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }
