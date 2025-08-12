@@ -188,68 +188,75 @@ namespace OGC.QuanLyDichVu
 
         private void btnSuaMonAn_Click(object sender, EventArgs e)
         {
-            if (dtgvMonAn.CurrentRow != null)
+            try
             {
-                string tenCu = dtgvMonAn.CurrentRow.Cells["Tên Món Ăn"].Value?.ToString().Trim();
-
-                string ten = tbTenMonAn.Text.Trim();
-                string giaText = tbGiaMonAn.Text.Trim();
-                string moTa = tbMoTaMonAn.Text.Trim();
-                string anh = AnhDoAn.Tag?.ToString() ?? "";
-
-                // Kiểm tra dữ liệu đầu vào
-                if (string.IsNullOrEmpty(ten))
+                if (dtgvMonAn.CurrentRow != null)
                 {
-                    MessageBox.Show("Vui lòng nhập tên món ăn.");
-                    return;
-                }
+                    string tenCu = dtgvMonAn.CurrentRow.Cells["Tên Món Ăn"].Value?.ToString().Trim();
 
-                if (string.IsNullOrEmpty(giaText))
-                {
-                    MessageBox.Show("Vui lòng nhập giá món ăn.");
-                    return;
-                }
+                    string ten = tbTenMonAn.Text.Trim();
+                    string giaText = tbGiaMonAn.Text.Trim();
+                    string moTa = tbMoTaMonAn.Text.Trim();
+                    string anh = AnhDoAn.Tag?.ToString() ?? "";
 
-                if (!decimal.TryParse(giaText, out decimal gia) || gia < 0)
-                {
-                    MessageBox.Show("Giá phải là số hợp lệ và lớn hơn hoặc bằng 0.");
-                    return;
-                }
+                    // Kiểm tra dữ liệu đầu vào
+                    if (string.IsNullOrEmpty(ten))
+                    {
+                        MessageBox.Show("Vui lòng nhập tên món ăn.");
+                        return;
+                    }
 
-                if (string.IsNullOrEmpty(moTa))
-                {
-                    MessageBox.Show("Vui lòng nhập mô tả món ăn.");
-                    return;
-                }
+                    if (string.IsNullOrEmpty(giaText))
+                    {
+                        MessageBox.Show("Vui lòng nhập giá món ăn.");
+                        return;
+                    }
 
-                // Kiểm tra có thay đổi dữ liệu không
-                if (ten == tenCu
-                    && decimal.TryParse(dtgvMonAn.CurrentRow.Cells["Giá"].Value?.ToString(), out decimal giaCu) && gia == giaCu
-                    && moTa == dtgvMonAn.CurrentRow.Cells["Mô Tả"].Value?.ToString().Trim()
-                    && anh == (dtgvMonAn.CurrentRow.Cells["Ảnh"].Value?.ToString() ?? ""))
-                {
-                    MessageBox.Show("Bạn chưa thay đổi gì!");
-                    return;
-                }
+                    if (!decimal.TryParse(giaText, out decimal gia) || gia < 0)
+                    {
+                        MessageBox.Show("Giá phải là số hợp lệ và lớn hơn hoặc bằng 0.");
+                        return;
+                    }
 
-                if (!string.IsNullOrEmpty(anh) && !File.Exists(Path.Combine(Application.StartupPath, anh)) && File.Exists(anh))
-                {
-                    anh = SaveImageToProjectFolder(anh);
-                }
+                    if (string.IsNullOrEmpty(moTa))
+                    {
+                        MessageBox.Show("Vui lòng nhập mô tả món ăn.");
+                        return;
+                    }
 
-                int id = (int)dtgvMonAn.CurrentRow.Cells["ID"].Value;
-                int idLoai = (int)cbLoaiMonAn.SelectedValue;
+                    // Kiểm tra có thay đổi dữ liệu không
+                    if (ten == tenCu
+                        && decimal.TryParse(dtgvMonAn.CurrentRow.Cells["Giá"].Value?.ToString(), out decimal giaCu) && gia == giaCu
+                        && moTa == dtgvMonAn.CurrentRow.Cells["Mô Tả"].Value?.ToString().Trim()
+                        && anh == (dtgvMonAn.CurrentRow.Cells["Ảnh"].Value?.ToString() ?? ""))
+                    {
+                        MessageBox.Show("Bạn chưa thay đổi gì!");
+                        return;
+                    }
 
-                if (DAO_MONAN.Instance.SuaMonAn(id, ten, idLoai, gia, moTa, anh))
-                {
-                    MessageBox.Show("Sửa món ăn thành công!");
-                    HienThiMonAn();
-                    LoadDanhSachMonAn();
+                    if (!string.IsNullOrEmpty(anh) && !File.Exists(Path.Combine(Application.StartupPath, anh)) && File.Exists(anh))
+                    {
+                        anh = SaveImageToProjectFolder(anh);
+                    }
+
+                    int id = (int)dtgvMonAn.CurrentRow.Cells["ID"].Value;
+                    int idLoai = (int)cbLoaiMonAn.SelectedValue;
+
+                    if (DAO_MONAN.Instance.SuaMonAn(id, ten, idLoai, gia, moTa, anh))
+                    {
+                        MessageBox.Show("Sửa món ăn thành công!");
+                        HienThiMonAn();
+                        LoadDanhSachMonAn();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sửa món ăn thất bại!");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Sửa món ăn thất bại!");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

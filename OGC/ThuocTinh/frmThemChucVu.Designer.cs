@@ -143,7 +143,7 @@
             btnSua.Location = new Point(0, 0);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(96, 32);
-            btnSua.TabIndex = 0;
+            btnSua.TabIndex = 4;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = false;
             btnSua.Click += btnSua_Click;
@@ -168,7 +168,7 @@
             btnXoa.Location = new Point(0, 0);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(96, 32);
-            btnXoa.TabIndex = 0;
+            btnXoa.TabIndex = 3;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = false;
             btnXoa.Click += btnXoa_Click;
@@ -193,7 +193,7 @@
             btnThem.Location = new Point(0, 0);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(96, 32);
-            btnThem.TabIndex = 0;
+            btnThem.TabIndex = 2;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = false;
             btnThem.Click += btnThem_Click;

@@ -45,6 +45,7 @@
             btnThoat = new Button();
             panel2 = new Panel();
             ptbAnhPhim = new PictureBox();
+            button1 = new Button();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
@@ -208,11 +209,22 @@
             ptbAnhPhim.TabIndex = 0;
             ptbAnhPhim.TabStop = false;
             // 
+            // button1
+            // 
+            button1.Location = new Point(617, 594);
+            button1.Name = "button1";
+            button1.Size = new Size(161, 29);
+            button1.TabIndex = 7;
+            button1.Text = "Thoát";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // frmChonNgayChieu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(782, 670);
+            ClientSize = new Size(782, 631);
+            Controls.Add(button1);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Controls.Add(panel4);
@@ -247,5 +259,6 @@
         private Label label1;
         private Panel panel2;
         private PictureBox ptbAnhPhim;
+        private Button button1;
     }
 }

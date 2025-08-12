@@ -44,7 +44,7 @@
             label6 = new Label();
             label1 = new Label();
             btnXacNhan = new Button();
-            button2 = new Button();
+            btnThoat = new Button();
             btnChonHinhThucThanhToan = new Button();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -210,14 +210,15 @@
             btnXacNhan.UseVisualStyleBackColor = true;
             btnXacNhan.Click += btnXacNhan_Click;
             // 
-            // button2
+            // btnThoat
             // 
-            button2.Location = new Point(757, 706);
-            button2.Name = "button2";
-            button2.Size = new Size(161, 29);
-            button2.TabIndex = 1;
-            button2.Text = "Thoát";
-            button2.UseVisualStyleBackColor = true;
+            btnThoat.Location = new Point(757, 706);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(161, 29);
+            btnThoat.TabIndex = 1;
+            btnThoat.Text = "Thoát";
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // btnChonHinhThucThanhToan
             // 
@@ -235,7 +236,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(922, 747);
             Controls.Add(btnChonHinhThucThanhToan);
-            Controls.Add(button2);
+            Controls.Add(btnThoat);
             Controls.Add(btnXacNhan);
             Controls.Add(panel1);
             Name = "FrmChonGhe";
@@ -266,7 +267,7 @@
         private Label label7;
         private Label label6;
         private Button btnXacNhan;
-        private Button button2;
+        private Button btnThoat;
         private Label lbGheDaChon;
         private Label lbGiaGhe;
         private Button btnChonHinhThucThanhToan;

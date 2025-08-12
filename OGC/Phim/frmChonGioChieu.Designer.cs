@@ -207,12 +207,13 @@
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(684, 585);
+            btnThoat.Location = new Point(617, 585);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(94, 29);
+            btnThoat.Size = new Size(161, 29);
             btnThoat.TabIndex = 2;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // panel2
             // 

@@ -119,17 +119,25 @@ namespace OGC.frmThuocTinh
             DialogResult result = MessageBox.Show($"Bạn có chắc muốn xóa chức vụ '{tenChucVuCanXoa}' không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                bool xoaThanhCong = DAO_CHUCVU.Instance.XoaChucVu(tenChucVuCanXoa);
-                if (xoaThanhCong)
+                try
                 {
-                    MessageBox.Show("Xóa chức vụ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Load lại danh sách chức vụ
-                    frmThemChucVu? f = Application.OpenForms["frmThemChucVu"] as frmThemChucVu;
-                    f?.LoadChucVu();
+                    bool xoaThanhCong = DAO_CHUCVU.Instance.XoaChucVu(tenChucVuCanXoa);
+                    if (xoaThanhCong)
+                    {
+                        MessageBox.Show("Xóa chức vụ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Load lại danh sách chức vụ
+                        frmThemChucVu? f = Application.OpenForms["frmThemChucVu"] as frmThemChucVu;
+                        f?.LoadChucVu();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xóa! Có thể chức vụ đang được sử dụng bởi nhân viên khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Không thể xóa! Có thể chức vụ đang được sử dụng bởi nhân viên khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

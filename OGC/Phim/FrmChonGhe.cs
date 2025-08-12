@@ -21,6 +21,7 @@ namespace OGC.Phim
         private Dictionary<string, GheDTO> dictGhe = new Dictionary<string, GheDTO>();
         private string currentUser;
 
+
         private decimal giaVe;
 
         private string tenPhim;
@@ -30,17 +31,19 @@ namespace OGC.Phim
         private int idPhong;
         private int idLichChieu = -1;
 
+        private frmChonGioChieu frmChonGioChieu;
 
 
-        public FrmChonGhe(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu, int idPhong, string currentUser)
+        public FrmChonGhe(string tenPhim, DateTime ngayChieu, TimeSpan gioChieu, int idPhong, string currentUser, frmChonGioChieu parentForm)
         {
             InitializeComponent();
 
             this.tenPhim = tenPhim;
             this.ngayChieu = ngayChieu.Date;
-            this.gioChieu = new TimeSpan(gioChieu.Hours, gioChieu.Minutes, 0); // chuẩn hóa ở đây, giữ nguyên về sau
+            this.gioChieu = new TimeSpan(gioChieu.Hours, gioChieu.Minutes, 0);
             this.idPhong = idPhong;
             this.currentUser = currentUser;
+            this.frmChonGioChieu = parentForm; // Lưu tham chiếu form cha
 
             this.idLichChieu = DAO_LICHCHIEU.Instance.GetIDLichChieu(tenPhim, this.ngayChieu, this.gioChieu, idPhong);
 
@@ -374,6 +377,21 @@ namespace OGC.Phim
                             this
                         );
             frm.ShowDialog();
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            if (frmChonGioChieu != null)
+            {
+                frmChonGioChieu.Show(); // Hiển thị lại form frmChonGioChieu
+            }
+            else
+            {
+                // Nếu không có tham chiếu, tạo instance mới với các tham số cần thiết
+                frmChonGioChieu frm = new frmChonGioChieu(tenPhim, ngayChieu, idPhong, currentUser);
+                frm.Show();
+            }
+            this.Close();
         }
     }
 }

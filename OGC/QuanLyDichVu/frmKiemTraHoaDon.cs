@@ -141,7 +141,7 @@ namespace OGC.QuanLyDichVu
                     waveOut.Play();
                     while (waveOut.PlaybackState == PlaybackState.Playing)
                     {
-                        Thread.Sleep(100); // Chờ phát xong
+                        Thread.Sleep(100); 
                     }
                 }
             }

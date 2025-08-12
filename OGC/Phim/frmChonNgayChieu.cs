@@ -13,24 +13,21 @@ namespace OGC.Phim
         private PhimDTO phim;
         private int idPhong;
         private string currentUser;
+       
 
-
-        public frmChonNgayChieu(string tenPhim, string currentUser)
+        // Thêm tham số parentForm vào constructor
+        public frmChonNgayChieu(string tenPhim, string currentUser, frmChonPhim parentForm = null)
         {
-
             InitializeComponent();
             this.tenPhim = tenPhim;
             this.currentUser = currentUser;
+           
             this.Load += frmChonNgayChieu_Load;
         }
 
         private void frmChonNgayChieu_Load(object sender, EventArgs e)
         {
-
             phim = PhimDAO.Instance.GetPhimTheoTen(tenPhim);
-
-
-
             LoadThongTinPhim();
             LoadNgayChieu();
             LoadAnhPhim();
@@ -40,33 +37,17 @@ namespace OGC.Phim
         {
             lbTenPhim.Text = tenPhim;
 
-            // Lấy idPhong dựa trên tenPhim
             idPhong = DAO_PHONGCHIEU.Instance.GetIDPhongTheoTenPhim(tenPhim) ?? 0;
 
-            // Gọi stored procedure lấy định dạng phim theo tên phim
             var dinhDang = DAO_DINHDANGPHIM.Instance.GetDinhDangPhimTheoTenPhim(tenPhim);
+            lbDinhDang.Text = dinhDang != null ? dinhDang.TenDinhDang : "Không rõ";
 
-            if (dinhDang != null)
-            {
-                lbDinhDang.Text = dinhDang.TenDinhDang;
-            }
-            else
-            {
-                lbDinhDang.Text = "Không rõ";
-            }
-
-
-            // Lấy độ tuổi phim
             var doTuoi = DAO_DoTuoi.Instance.GetDoTuoiTheoTenPhim(tenPhim);
             lbDoTuoi.Text = doTuoi != null ? doTuoi.TenDoTuoi : "Không rõ";
 
-
-            // Lấy thông tin thể loại phim
             var theLoai = DAO_THELOAIPHIM.Instance.GetTheLoaiPhimTheoTenPhim(tenPhim);
             lbTheLoai.Text = theLoai != null ? theLoai.TenTheLoai : "Không rõ";
 
-
-            // Lấy thông tin phòng chiếu
             if (idPhong != 0)
             {
                 var tenLoaiPhong = DAO_PHONGCHIEU.Instance.GetTenLoaiPhongByIDPhong(idPhong);
@@ -90,7 +71,7 @@ namespace OGC.Phim
                 }
                 else
                 {
-                    ptbAnhPhim.Image = null; 
+                    ptbAnhPhim.Image = null;
                 }
             }
             else
@@ -116,12 +97,11 @@ namespace OGC.Phim
             {
                 Button btn = new Button();
                 btn.Text = item.NgayChieu.ToString("dd/MM/yyyy") + " - " + item.TenPhong;
-                btn.Tag = item; // Gán DTO luôn
+                btn.Tag = item;
                 btn.Width = 160;
                 btn.Height = 40;
                 btn.BackColor = Color.LightSkyBlue;
 
-                // Đăng ký sự kiện click cho nút ngày chiếu
                 btn.Click += BtnGioChieu_Click;
 
                 flpNgayChieu.Controls.Add(btn);
@@ -136,12 +116,14 @@ namespace OGC.Phim
             DTO_NGAYCHIEUPHONG item = btn.Tag as DTO_NGAYCHIEUPHONG;
             if (item == null) return;
 
-            // Mở form chọn giờ chiếu truyền theo tên phim, ngày chiếu và phòng chiếu
-            frmChonGioChieu frm = new frmChonGioChieu(tenPhim, item.NgayChieu, item.IDPhong, currentUser);
+            frmChonGioChieu frm = new frmChonGioChieu(tenPhim, item.NgayChieu, item.IDPhong, currentUser, this);
+            frm.Show();
+            this.Hide(); // Ẩn frmChonNgayChieu
+        }
 
-            this.Close();
-            frm.ShowDialog();
-            this.Show();
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close(); // Đóng form frmChonNgayChieu
         }
     }
 }

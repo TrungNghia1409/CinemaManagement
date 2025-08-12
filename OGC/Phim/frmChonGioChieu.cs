@@ -12,19 +12,20 @@ namespace OGC.Phim
         private DateTime ngayChieu;
         private int idPhong;
         private string currentUser;
+        private frmChonNgayChieu frmChonNgayChieu; // Biến lưu tham chiếu form cha
 
-
-        public frmChonGioChieu(string tenPhim, DateTime ngayChieu, int idPhong, string currentUser)
+        // Thêm tham số parentForm vào constructor
+        public frmChonGioChieu(string tenPhim, DateTime ngayChieu, int idPhong, string currentUser, frmChonNgayChieu parentForm = null)
         {
             InitializeComponent();
             this.tenPhim = tenPhim;
             this.ngayChieu = ngayChieu.Date;
             this.idPhong = idPhong;
             this.currentUser = currentUser;
+            this.frmChonNgayChieu = parentForm; // Lưu tham chiếu form cha
 
             this.Load += FrmChonGioChieu_Load;
         }
-
 
         private void FrmChonGioChieu_Load(object sender, EventArgs e)
         {
@@ -49,12 +50,10 @@ namespace OGC.Phim
             var tenLoaiPhong = DAO_PHONGCHIEU.Instance.GetTenLoaiPhongByIDPhong(idPhong);
             lbTenPhong.Text = !string.IsNullOrEmpty(tenLoaiPhong) ? tenLoaiPhong : "Không rõ";
 
-            // --- Thêm phần load ảnh phim ---
-            var phim = PhimDAO.Instance.GetPhimTheoTen(tenPhim); 
+            var phim = PhimDAO.Instance.GetPhimTheoTen(tenPhim);
             if (phim != null && !string.IsNullOrEmpty(phim.Anh))
             {
                 string fullPath = System.IO.Path.Combine(Application.StartupPath, phim.Anh);
-
                 if (System.IO.File.Exists(fullPath))
                 {
                     ptbAnhPhim.Image = Image.FromFile(fullPath);
@@ -75,7 +74,6 @@ namespace OGC.Phim
         {
             flpGioChieu.Controls.Clear();
 
-            // Gọi stored procedure mới có thêm điều kiện IDPhong
             DataTable dt = DAO_LICHCHIEU.Instance.GetGioChieuTheoPhimVaNgay(tenPhim, ngayChieu, idPhong);
 
             if (dt == null || dt.Rows.Count == 0)
@@ -109,9 +107,24 @@ namespace OGC.Phim
 
             TimeSpan gioChon = (TimeSpan)btn.Tag;
 
-            // Truyền IDPhòng để lọc ghế theo đúng phòng
-            FrmChonGhe chonGheForm = new FrmChonGhe(tenPhim, ngayChieu, gioChon, idPhong, currentUser);
+            // Truyền tham chiếu this vào FrmChonGhe
+            FrmChonGhe chonGheForm = new FrmChonGhe(tenPhim, ngayChieu, gioChon, idPhong, currentUser, this);
             chonGheForm.Show();
+            this.Hide(); // Ẩn frmChonGioChieu
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            if (frmChonNgayChieu != null)
+            {
+                frmChonNgayChieu.Show(); // Hiển thị lại form frmChonNgayChieu
+            }
+            else
+            {
+                // Nếu không có tham chiếu, tạo instance mới với các tham số cần thiết
+                frmChonNgayChieu frm = new frmChonNgayChieu(tenPhim, currentUser);
+                frm.Show();
+            }
             this.Close();
         }
     }
