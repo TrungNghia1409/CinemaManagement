@@ -235,7 +235,7 @@ public class PhimDAO
     public List<PhimDTO> GetPhimByNgayChieu(DateTime ngayChieu)
     {
         List<PhimDTO> list = new List<PhimDTO>();
-        string query = "SELECT * FROM PHIM WHERE CAST(NgayKhoiChieu AS DATE) = @ngayChieu";
+        string query = "SELECT * FROM PHIM WHERE CAST(NgayKhoiChieu AS DATE) = @ngayChieu ";
 
         DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { ngayChieu.Date });
 

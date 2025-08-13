@@ -380,6 +380,20 @@ namespace OGC.DAO
             return (result != null && result != DBNull.Value) ? Convert.ToInt32(result) : -1;
         }
 
+        public int GetIDLichChieu(int idPhim, int idPhong, DateTime ngayChieu)
+        {
+            string query = @"
+                 SELECT ID
+                 FROM LICHCHIEU
+                 WHERE IDPhim = @idPhim AND IDPhong = @idPhong AND NgayGio >= @ngayGio ";
+
+            object result = DataProvider.Instance.ExecuteScalar(
+                query,
+                new object[] { idPhim, idPhong, ngayChieu }
+            );
+
+            return (result != null && result != DBNull.Value) ? Convert.ToInt32(result) : -1;
+        }
 
 
         public decimal GetGiaVeTheoID(int idLichChieu)

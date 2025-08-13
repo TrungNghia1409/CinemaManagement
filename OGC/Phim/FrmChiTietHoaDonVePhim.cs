@@ -20,7 +20,7 @@ namespace OGC.Phim
     public partial class FrmChiTietHoaDonVePhim : Form
     {
         public string tenPhim;
-  
+
         private int idNhanVien;
         private int idKhach;
         private int idHoaDon;
@@ -46,7 +46,7 @@ namespace OGC.Phim
             decimal tienKhachDua,
             decimal tienThoi,
             decimal tongTien
-    
+
         )
         {
             InitializeComponent();
@@ -100,48 +100,56 @@ namespace OGC.Phim
             // Thêm hóa đơn vào DB
             idHoaDon = DAO_HD_VE.Instance.ThemHoaDonVe(idNhanVien, idKhach, tongTien);
 
+            // Lấy ID từ các DAO
+            int idPhim = PhimDAO.Instance.LayIDPhimTheoTen(tenPhim);
+            int idPhong = DAO_PHONGCHIEU.Instance.GetIDPhongByTenPhong(phong);
+            int idDinhDang = DAO_DINHDANGPHIM.Instance.LayIdDinhDang(dinhDang);
+
+            if (idPhim == -1 || idPhong == -1 || idDinhDang == -1)
+                throw new Exception("Không tìm thấy phim, phòng chiếu hoặc định dạng phim.");
+
+            // Lấy ID lịch chiếu
+            int idLichChieu = DAO_LICHCHIEU.Instance.GetIDLichChieu(idPhim, idPhong, ngayChieu);
+
+
             // Thêm chi tiết hóa đơn vào DB
-            DAO_CTHD_VE.Instance.ThemChiTietHoaDonVe(
+            DAO_CTHD_VE.Instance.ThemChiTietHoaDonVeNew(
                 idHoaDon,
-                tenPhim,
-                dinhDang,
-                phong,
-                suatChieu,
-                DateTime.Now,
+                idPhim,
+                idPhong,
+                idLichChieu,
+                idDinhDang,
                 gheDaChon,
                 giaVe,
                 "Đã thanh toán"
             );
 
             // Sinh mã vạch
-            string noiDungMaVach = $"HDVE-{idHoaDon}";
+            string noiDungMaVach = $"{idHoaDon}";
             HienThiMaVach(noiDungMaVach);
 
-           
+
         }
-        
+
 
         private void HienThiMaVach(string noiDung)
         {
             if (string.IsNullOrEmpty(noiDung)) return;
 
-            if (noiDung.Length > 80)
-                noiDung = noiDung.Substring(0, 80);
-
-            var writer = new BarcodeWriter
+            var writer = new ZXing.BarcodeWriter
             {
-                Format = BarcodeFormat.CODE_128,
-                Options = new EncodingOptions
+                Format = ZXing.BarcodeFormat.QR_CODE,
+                Options = new ZXing.Common.EncodingOptions
                 {
-                    Width = 600,
-                    Height = 200,
-                    Margin = 10
+                    Width = 300,
+                    Height = 300,
+                    Margin = 1
                 }
             };
 
-            Bitmap barcodeBitmap = writer.Write(noiDung);
+            Bitmap qrCodeBitmap = writer.Write(noiDung);
             ptbQRCode.SizeMode = PictureBoxSizeMode.Zoom;
-            ptbQRCode.Image = barcodeBitmap;
+            ptbQRCode.Image = qrCodeBitmap;
         }
 
 
@@ -234,7 +242,7 @@ namespace OGC.Phim
             Process.Start("explorer", filePath);
         }
 
-        
+
         private void btnXuatHoaDon_Click(object sender, EventArgs e)
         {
             try
@@ -277,7 +285,7 @@ namespace OGC.Phim
                 );
 
                 // Lưu trạng thái ghế đã đặt 
-                 foreach (var gheItem in danhSachGhe)
+                foreach (var gheItem in danhSachGhe)
                 {
                     int idGhe = DAO_Ghe.Instance.GetIDGheByMaGhe(gheItem);
                     if (idGhe > 0)
@@ -321,7 +329,7 @@ namespace OGC.Phim
                     MessageBox.Show("Hóa đơn đã được hủy thành công!", "Thông báo",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.Close(); 
+                    this.Close();
                 }
                 else
                 {
@@ -330,9 +338,5 @@ namespace OGC.Phim
                 }
             }
         }
-
-
-
-
     }
 }

@@ -335,7 +335,7 @@ namespace OGC.Phim
                 Console.WriteLine("Nội dung mã vạch: " + noiDungQR);
 
                 string suatChieu = $"{ngayChieu:dd/MM/yyyy} - {gioChieu:hh\\:mm}";
-                string phong = "Phòng " + idPhong.ToString();
+                string phong = "OGC" + idPhong.ToString();
                 string ghe = string.Join(", ", danhSachGheDaDat);
                 decimal tongTien = danhSachGheDaDat.Count * giaVe;
 
@@ -361,7 +361,7 @@ namespace OGC.Phim
             List<string> danhSachGhe = gheDangChon.Select(btn => btn.Text).ToList();
             decimal tongTien = danhSachGhe.Count * giaVe;
             string suatChieu = $"{ngayChieu:dd/MM/yyyy} - {gioChieu:hh\\:mm}";
-            string phong = "Phòng " + idPhong.ToString();
+            string phong = "OGC" + idPhong.ToString();
 
             int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser);
 
