@@ -130,5 +130,14 @@ namespace OGC.DAO
         }
 
 
+        public int LayIdDinhDang(string tendinhdang)
+        {
+            string query = "SELECT ID FROM DINHDANGPHIM WHERE TenDinhDang = @TenDinhDang ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { tendinhdang });
+            return result != null ? Convert.ToInt32(result) : -1;
+        }
+
+
+
     }
 }
