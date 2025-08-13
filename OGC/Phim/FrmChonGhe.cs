@@ -55,7 +55,7 @@ namespace OGC.Phim
 
         private void FrmChonGhe_Load(object sender, EventArgs e)
         {
-            string imagePath = @"C:\DoAn\QuanLyRapPhimOGC3\OGC\Image\AnhPhongChieu\AnhManHinh.png";
+            string imagePath = @"C:\CinemaManagement\OGC\Image\AnhPhongChieu\AnhManHinh.png";
 
             if (System.IO.File.Exists(imagePath))
             {

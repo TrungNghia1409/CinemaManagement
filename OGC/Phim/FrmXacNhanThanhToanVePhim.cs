@@ -70,11 +70,11 @@ namespace OGC.Phim
             string sdt = txbSDT.Text.Trim();
             int idKhach = DAO_KHACHHANG.Instance.LayIDBySDT(sdt);
 
-            if (idKhach <= 0)
-            {
-                MessageBox.Show("Không tìm thấy khách hàng.");
-                return;
-            }
+            //if (idKhach <= 0)
+            //{
+            //    MessageBox.Show("Không tìm thấy khách hàng.");
+            //    return;
+            //}
 
             string cleaned = new string(tbTienKhachDua.Text.Where(char.IsDigit).ToArray());
             decimal.TryParse(cleaned, out decimal tienKhachDua);
