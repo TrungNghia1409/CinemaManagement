@@ -230,6 +230,7 @@
             Controls.Add(panel4);
             Controls.Add(btnThoat);
             Name = "frmChonNgayChieu";
+            StartPosition = FormStartPosition.CenterScreen;
             panel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();

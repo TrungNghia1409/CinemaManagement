@@ -383,9 +383,9 @@ namespace OGC.DAO
         public int GetIDLichChieu(int idPhim, int idPhong, DateTime ngayChieu)
         {
             string query = @"
-             SELECT ID
-             FROM LICHCHIEU
-             WHERE IDPhim = @idPhim AND IDPhong = @idPhong AND NgayGio >= @ngayGio ";
+                 SELECT ID
+                 FROM LICHCHIEU
+                 WHERE IDPhim = @idPhim AND IDPhong = @idPhong AND NgayGio >= @ngayGio ";
 
             object result = DataProvider.Instance.ExecuteScalar(
                 query,

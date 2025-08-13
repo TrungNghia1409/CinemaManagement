@@ -51,46 +51,44 @@ namespace OGC.DAO
             return result > 0;
         }
 
-
         public bool ThemChiTietHoaDonVeNew(
-        int idHoaDon,
-        int idPhim,
-        int idPhong,
-        int idLichchieu,
-        int idDinhdang,
-        string ghe,
-        decimal giaVe,
-        string trangThai)
-        {
-            
+                        int idHoaDon,
+                        int idPhim,
+                        int idPhong,
+                        int idLichchieu,
+                        int idDinhdang,
+                        string ghe,
+                        decimal giaVe,
+                        string trangThai)
+                                {
+                                    if (idLichchieu == -1)
+                                        throw new Exception("Không tìm thấy lịch chiếu phù hợp.");
 
-            if (idLichchieu == -1)
-                throw new Exception("Không tìm thấy lịch chiếu phù hợp.");
+                                    string query = @"EXEC ThemChiTietHoaDonVe_New 
+                                    @IDHoaDon , 
+                                    @IDPhim , 
+                                    @IDPhongChieu ,
+                                    @IDLichChieu , 
+                                    @IDDinhDang , 
+                                    @Ghe , 
+                                    @GiaVe , 
+                                    @TrangThai ";
 
-            string query = @"EXEC ThemChiTietHoaDonVe_New 
-                    @IDHoaDon , 
-                    @IDPhim , 
-                    @IDPhongChieu ,
-                    @IDLichChieu , 
-                    @IDDinhDang , 
-                    @Ghe , 
-                    @GiaVe , 
-                    @TrangThai ";
-
-            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
-            {
-        idHoaDon,
-        idPhim,
-        idPhong,
-        idLichchieu,
-        idDinhdang,
-        ghe,
-        giaVe,
-        trangThai
-            });
+                                    int result = DataProvider.Instance.ExecuteNonQuery(query, new object[]
+                                    {
+                        idHoaDon,
+                        idPhim,
+                        idPhong,
+                        idLichchieu,
+                        idDinhdang,
+                        ghe,
+                        giaVe,
+                        trangThai
+                                    });
 
             return result > 0;
         }
+
 
     }
 }

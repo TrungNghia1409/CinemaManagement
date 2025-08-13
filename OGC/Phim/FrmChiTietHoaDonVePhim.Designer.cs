@@ -73,9 +73,9 @@
             // 
             // ptbQRCode
             // 
-            ptbQRCode.Location = new Point(12, 756);
+            ptbQRCode.Location = new Point(157, 755);
             ptbQRCode.Name = "ptbQRCode";
-            ptbQRCode.Size = new Size(363, 79);
+            ptbQRCode.Size = new Size(80, 80);
             ptbQRCode.SizeMode = PictureBoxSizeMode.Zoom;
             ptbQRCode.TabIndex = 0;
             ptbQRCode.TabStop = false;
@@ -83,7 +83,7 @@
             // label4
             // 
             label4.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(112, 93);
+            label4.Location = new Point(97, 93);
             label4.Name = "label4";
             label4.Size = new Size(165, 31);
             label4.TabIndex = 6;
@@ -93,7 +93,7 @@
             // label3
             // 
             label3.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(112, 62);
+            label3.Location = new Point(97, 62);
             label3.Name = "label3";
             label3.Size = new Size(165, 31);
             label3.TabIndex = 7;
@@ -103,7 +103,7 @@
             // label1
             // 
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(66, 124);
+            label1.Location = new Point(58, 124);
             label1.Name = "label1";
             label1.Size = new Size(256, 31);
             label1.TabIndex = 8;
@@ -115,7 +115,7 @@
             lblTen.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTen.Image = Properties.Resources.filmsmall;
             lblTen.ImageAlign = ContentAlignment.MiddleLeft;
-            lblTen.Location = new Point(94, 9);
+            lblTen.Location = new Point(79, 9);
             lblTen.Name = "lblTen";
             lblTen.Size = new Size(210, 53);
             lblTen.TabIndex = 9;
@@ -317,7 +317,7 @@
             panel3.Controls.Add(label12);
             panel3.Location = new Point(12, 514);
             panel3.Name = "panel3";
-            panel3.Size = new Size(363, 236);
+            panel3.Size = new Size(363, 235);
             panel3.TabIndex = 17;
             // 
             // lbTienThoi
@@ -359,7 +359,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(124, 11);
+            label10.Location = new Point(145, 13);
             label10.Name = "label10";
             label10.Size = new Size(62, 20);
             label10.TabIndex = 0;
@@ -457,6 +457,7 @@
             Controls.Add(lblTen);
             Controls.Add(ptbQRCode);
             Name = "FrmChiTietHoaDonVePhim";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmChiTietHoaDonVePhim";
             ((System.ComponentModel.ISupportInitialize)ptbQRCode).EndInit();
             panel1.ResumeLayout(false);
