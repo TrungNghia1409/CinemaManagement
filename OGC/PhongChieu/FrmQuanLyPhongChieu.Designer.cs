@@ -98,17 +98,6 @@
             panel2.Size = new Size(556, 282);
             panel2.TabIndex = 0;
             // 
-<<<<<<< HEAD
-            // tbDuongDanAnh
-            // 
-            tbDuongDanAnh.Location = new Point(439, 172);
-            tbDuongDanAnh.Margin = new Padding(3, 2, 3, 2);
-            tbDuongDanAnh.Name = "tbDuongDanAnh";
-            tbDuongDanAnh.Size = new Size(110, 23);
-            tbDuongDanAnh.TabIndex = 5;
-            // 
-=======
->>>>>>> b73eb3fd503d3731551a0284b386049cc58d2361
             // picAnhPhong
             // 
             picAnhPhong.Location = new Point(333, 8);
@@ -120,17 +109,13 @@
             // 
             // btnTaiAnh
             // 
-<<<<<<< HEAD
-            btnTaiAnh.Location = new Point(401, 207);
-            btnTaiAnh.Margin = new Padding(3, 2, 3, 2);
-=======
             btnTaiAnh.Location = new Point(461, 238);
->>>>>>> b73eb3fd503d3731551a0284b386049cc58d2361
             btnTaiAnh.Name = "btnTaiAnh";
             btnTaiAnh.Size = new Size(82, 22);
             btnTaiAnh.TabIndex = 3;
             btnTaiAnh.Text = "Tải Ảnh";
             btnTaiAnh.UseVisualStyleBackColor = true;
+            btnTaiAnh.Click += btnTaiAnh_Click;
             // 
             // btnXoa
             // 
@@ -168,16 +153,10 @@
             // cbLoaiPhong
             // 
             cbLoaiPhong.FormattingEnabled = true;
-<<<<<<< HEAD
             cbLoaiPhong.Location = new Point(116, 152);
             cbLoaiPhong.Margin = new Padding(3, 2, 3, 2);
             cbLoaiPhong.Name = "cbLoaiPhong";
             cbLoaiPhong.Size = new Size(133, 23);
-=======
-            cbLoaiPhong.Location = new Point(132, 203);
-            cbLoaiPhong.Name = "cbLoaiPhong";
-            cbLoaiPhong.Size = new Size(151, 28);
->>>>>>> b73eb3fd503d3731551a0284b386049cc58d2361
             cbLoaiPhong.TabIndex = 2;
             // 
             // cbTrangThai
@@ -242,15 +221,9 @@
             // label6
             // 
             label6.AutoSize = true;
-<<<<<<< HEAD
             label6.Location = new Point(21, 152);
             label6.Name = "label6";
             label6.Size = new Size(67, 15);
-=======
-            label6.Location = new Point(24, 203);
-            label6.Name = "label6";
-            label6.Size = new Size(83, 20);
->>>>>>> b73eb3fd503d3731551a0284b386049cc58d2361
             label6.TabIndex = 0;
             label6.Text = "Loại Phòng";
             // 

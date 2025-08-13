@@ -109,9 +109,10 @@ namespace OGC.QuanLyDichVu
 
             if (trangThai == "Đã in")
             {
-                // Đọc thành tiếng với số tiền thực tế
-                string textToSpeak = $"Khứa này gian lận.";
-                PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động 
+                //// Đọc thành tiếng với số tiền thực tế
+                //string textToSpeak = $"Khứa này gian lận.";
+                //PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động
+                MessageBox.Show("Hóa đơn không hợp lệ!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else // NULL hoặc khác "Đã in"
             {
@@ -128,7 +129,7 @@ namespace OGC.QuanLyDichVu
             using (var webClient = new WebClient())
             {
                 string url = "https://translate.google.com/translate_tts?ie=UTF-8&q=" +
-                             Uri.EscapeDataString(noiDung) +
+                             Uri.EscapeDataString(noiDung) +  
                              "&tl=vi&client=tw-ob";
 
                 byte[] voiceData = webClient.DownloadData(url);

@@ -98,11 +98,11 @@ namespace OGC.QuanLyDichVu
                 string sdt = txbSDT.Text.Trim();
                 int idKhach = DAO_KHACHHANG.Instance.LayIDBySDT(sdt);
 
-                if (idKhach == -1)
-                {
-                    MessageBox.Show("Không tìm thấy khách hàng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                //if (idKhach == -1)
+                //{
+                //    MessageBox.Show("Không tìm thấy khách hàng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    return;
+                //}
                 
                 // Hiển thị bill (load từ CTHD_MONAN)
                 frmChiTietHoaDonMonAn frmChiTiet = new frmChiTietHoaDonMonAn(idNhanVien, idKhach, gioHang, tongTien, mucGiam.Value);

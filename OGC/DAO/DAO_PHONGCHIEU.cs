@@ -103,7 +103,7 @@ namespace OGC.DAO
         }
 
 
-        public int? GetIDPhongByTenPhong(string tenPhong)
+        public int GetIDPhongByTenPhong(string tenPhong)
         {
             string query = "SELECT ID FROM PHONGCHIEU WHERE TenPhong = @TenPhong ";
 
@@ -115,7 +115,7 @@ namespace OGC.DAO
             }
             else
             {
-                return null; // Không tìm thấy phòng
+                return -1; // Không tìm thấy phòng
             }
         }
 

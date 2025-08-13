@@ -100,14 +100,26 @@ namespace OGC.Phim
             // Thêm hóa đơn vào DB
             idHoaDon = DAO_HD_VE.Instance.ThemHoaDonVe(idNhanVien, idKhach, tongTien);
 
+
+            // Lấy ID từ các DAO
+            int idPhim = PhimDAO.Instance.LayIDPhimTheoTen(tenPhim);
+            int idPhong = DAO_PHONGCHIEU.Instance.GetIDPhongByTenPhong(phong);
+            int idDinhDang = DAO_DINHDANGPHIM.Instance.LayIdDinhDang(dinhDang);
+
+            if (idPhim == -1 || idPhong == -1 || idDinhDang == -1)
+                throw new Exception("Không tìm thấy phim, phòng chiếu hoặc định dạng phim.");
+
+            // Lấy ID lịch chiếu
+            int idLichChieu = DAO_LICHCHIEU.Instance.GetIDLichChieu(idPhim, idPhong, ngayChieu);
+
+
             // Thêm chi tiết hóa đơn vào DB
-            DAO_CTHD_VE.Instance.ThemChiTietHoaDonVe(
+            DAO_CTHD_VE.Instance.ThemChiTietHoaDonVeNew(
                 idHoaDon,
-                tenPhim,
-                dinhDang,
-                phong,
-                suatChieu,
-                DateTime.Now,
+                idPhim,
+                idPhong,
+                idLichChieu,
+                idDinhDang,
                 gheDaChon,
                 giaVe,
                 "Đã thanh toán"

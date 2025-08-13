@@ -55,7 +55,7 @@ namespace OGC.Phim
 
         private void FrmChonGhe_Load(object sender, EventArgs e)
         {
-            string imagePath = @"C:\DoAn\QuanLyRapPhimOGC3\OGC\Image\AnhPhongChieu\AnhManHinh.png";
+            string imagePath = @"C:\CinemaManagement\OGC\Image\AnhPhongChieu\AnhManHinh.png";
 
             if (System.IO.File.Exists(imagePath))
             {
@@ -361,7 +361,7 @@ namespace OGC.Phim
             List<string> danhSachGhe = gheDangChon.Select(btn => btn.Text).ToList();
             decimal tongTien = danhSachGhe.Count * giaVe;
             string suatChieu = $"{ngayChieu:dd/MM/yyyy} - {gioChieu:hh\\:mm}";
-            string phong = "Phòng " + idPhong.ToString();
+            string phong = "OGC" + idPhong.ToString();
 
             int idNhanVien = DAO_NHANVIEN.Instance.GetIDByUsername(currentUser);
 
