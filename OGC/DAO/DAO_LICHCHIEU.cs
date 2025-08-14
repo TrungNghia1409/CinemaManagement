@@ -95,7 +95,7 @@ namespace OGC.DAO
         public bool XoaLichChieu(int iD)
         {
             //chuỗi thực thi proc xóa lịch chiếu
-            string query = @" EXEC usp_suaLICHCHIEU @ID ";
+            string query = @" EXEC usp_xoaLICHCHIEU @ID ";
 
 
             try
@@ -126,7 +126,7 @@ namespace OGC.DAO
         //--------- lấy thông tin lịch chiếu dựa trên ID
         public DTO_LICHCHIEU GetLichChieuByID(int id)
         {
-            string query = "SELECT * FROM LICHCHIEU WHERE ID = @ID ";
+            string query = "SELECT *FROM LICHCHIEU WHERE ID = @ID ";
             DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { id });
 
             if (data.Rows.Count > 0)

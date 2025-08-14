@@ -287,6 +287,7 @@ namespace OGC.Phim
                 // Lưu trạng thái ghế đã đặt 
                 foreach (var gheItem in danhSachGhe)
                 {
+                    int idphong = DAO_PHONGCHIEU.Instance.GetIDPhongByTenPhong(phong);
                     int idGhe = DAO_Ghe.Instance.GetIDGheByMaGhe(gheItem);
                     if (idGhe > 0)
                     {
