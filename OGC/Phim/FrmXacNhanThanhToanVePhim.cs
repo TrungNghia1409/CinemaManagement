@@ -70,16 +70,18 @@ namespace OGC.Phim
             string sdt = txbSDT.Text.Trim();
             int idKhach = DAO_KHACHHANG.Instance.LayIDBySDT(sdt);
 
-            //if (idKhach <= 0)
-            //{
-            //    MessageBox.Show("Không tìm thấy khách hàng.");
-            //    return;
-            //}
-
+            // Xử lý số tiền khách đưa
             string cleaned = new string(tbTienKhachDua.Text.Where(char.IsDigit).ToArray());
             decimal.TryParse(cleaned, out decimal tienKhachDua);
+
+            // Kiểm tra nếu tiền khách đưa không đủ
+            if (tienKhachDua < tongTien)
+            {
+                MessageBox.Show("Tiền khách đưa không đủ để thanh toán!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             decimal tienThoi = tienKhachDua - tongTien;
-            if (tienThoi < 0) tienThoi = 0;
 
             FrmChiTietHoaDonVePhim frm = new FrmChiTietHoaDonVePhim(
                 idNhanVien,
@@ -93,7 +95,6 @@ namespace OGC.Phim
                 tienKhachDua,
                 tienThoi,
                 tongTien
-
             );
 
             frm.ShowDialog();

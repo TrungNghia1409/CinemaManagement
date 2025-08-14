@@ -55,9 +55,12 @@ namespace OGC.Phim
 
         private void FrmChonGhe_Load(object sender, EventArgs e)
         {
-            string imagePath = @"C:\CinemaManagement\OGC\Image\AnhPhongChieu\AnhManHinh.png";
+            string projectPath = Directory.GetParent(Application.StartupPath).Parent.Parent.Parent.FullName;
 
-            if (System.IO.File.Exists(imagePath))
+            // Ghép đường dẫn tới ảnh
+            string imagePath = Path.Combine(projectPath, "Image", "AnhPhongChieu", "AnhManHinh.png");
+
+            if (File.Exists(imagePath))
             {
                 ptrbManHinh.Image = Image.FromFile(imagePath);
                 ptrbManHinh.SizeMode = PictureBoxSizeMode.StretchImage;

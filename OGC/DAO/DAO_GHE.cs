@@ -271,10 +271,10 @@ namespace OGC.DAO
         }
 
         // Lấy ID ghế theo mã ghế
-        public int GetIDGheByMaGhe(string maGhe)
+        public int GetIDGheByMaGhe(string maGhe, int idPhong)
         {
-            string query = "SELECT ID FROM GHE WHERE MaGhe = @MaGhe ";
-            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { maGhe });
+            string query = "SELECT ID FROM GHE WHERE MaGhe = @MaGhe AND IDPhong = @IDPhong ";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { maGhe, idPhong });
             return result != null ? Convert.ToInt32(result) : -1;
         }
 
