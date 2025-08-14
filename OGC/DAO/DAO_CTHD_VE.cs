@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -89,6 +90,20 @@ namespace OGC.DAO
             return result > 0;
         }
 
+        public string LayTrangThaiTheoID(int id)
+        {
+            string query = "SELECT TrangThai FROM VE_NEW WHERE ID = @id";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { id });
+            return result != null ? result.ToString() : null;
+        }
+        
+
+        public bool KiemTraTonTaiID(int id)
+        {
+            string query = "SELECT COUNT(*) FROM VE_NEW WHERE ID = @id";
+            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { id });
+            return Convert.ToInt32(result) > 0;
+        }
 
     }
 }

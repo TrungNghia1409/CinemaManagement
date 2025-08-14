@@ -288,7 +288,7 @@ namespace OGC.Phim
                 foreach (var gheItem in danhSachGhe)
                 {
                     int idphong = DAO_PHONGCHIEU.Instance.GetIDPhongByTenPhong(phong);
-                    int idGhe = DAO_Ghe.Instance.GetIDGheByMaGhe(gheItem);
+                    int idGhe = DAO_Ghe.Instance.GetIDGheByMaGhe(gheItem, idphong);
                     if (idGhe > 0)
                     {
                         DAO_Ghe.Instance.DatGhe_New(

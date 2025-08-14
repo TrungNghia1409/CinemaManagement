@@ -107,7 +107,7 @@ namespace OGC.QuanLyDichVu
 
             string trangThai = DAO_CTHD_MONAN.Instance.LayTrangThaiTheoID(id);
 
-            if (trangThai == "Đã in")
+            if (trangThai == "Đã thanh toán")
             {
                 //// Đọc thành tiếng với số tiền thực tế
                 //string textToSpeak = $"Khứa này gian lận.";
@@ -118,9 +118,9 @@ namespace OGC.QuanLyDichVu
             {
                 // Đọc thành tiếng với số tiền thực tế
                 string textToSpeak = $"Hóa đơn chính xác.";
-                PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động 
-                frmChiTietHoaDonMonAn_TrucTuyen f = new frmChiTietHoaDonMonAn_TrucTuyen(id);
-                f.ShowDialog();
+                //PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động 
+                //frmChiTietHoaDonMonAn_TrucTuyen f = new frmChiTietHoaDonMonAn_TrucTuyen(id);
+                //f.ShowDialog();
             }
         }
 
