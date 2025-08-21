@@ -107,20 +107,17 @@ namespace OGC.QuanLyDichVu
 
             string trangThai = DAO_CTHD_MONAN.Instance.LayTrangThaiTheoID(id);
 
-            if (trangThai == "Đã thanh toán")
+            if (trangThai == "Đã in")
             {
-                //// Đọc thành tiếng với số tiền thực tế
-                //string textToSpeak = $"Khứa này gian lận.";
-                //PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động
                 MessageBox.Show("Hóa đơn không hợp lệ!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else // NULL hoặc khác "Đã in"
             {
                 // Đọc thành tiếng với số tiền thực tế
                 string textToSpeak = $"Hóa đơn chính xác.";
-                //PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động 
-                //frmChiTietHoaDonMonAn_TrucTuyen f = new frmChiTietHoaDonMonAn_TrucTuyen(id);
-                //f.ShowDialog();
+                PhatTiengNoiTuGoogle(textToSpeak); // 👈 Phát tiếng Việt động 
+                frmChiTietHoaDonMonAn_TrucTuyen f = new frmChiTietHoaDonMonAn_TrucTuyen(id);
+                f.ShowDialog();
             }
         }
 

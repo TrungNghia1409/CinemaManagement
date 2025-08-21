@@ -42,10 +42,9 @@
             // 
             // btnKiemTra
             // 
-            btnKiemTra.Location = new Point(475, 647);
-            btnKiemTra.Margin = new Padding(3, 4, 3, 4);
+            btnKiemTra.Location = new Point(416, 485);
             btnKiemTra.Name = "btnKiemTra";
-            btnKiemTra.Size = new Size(101, 32);
+            btnKiemTra.Size = new Size(88, 24);
             btnKiemTra.TabIndex = 14;
             btnKiemTra.Text = "Kiểm tra";
             btnKiemTra.UseVisualStyleBackColor = true;
@@ -53,10 +52,9 @@
             // 
             // btnKetThuc
             // 
-            btnKetThuc.Location = new Point(27, 380);
-            btnKetThuc.Margin = new Padding(3, 4, 3, 4);
+            btnKetThuc.Location = new Point(24, 285);
             btnKetThuc.Name = "btnKetThuc";
-            btnKetThuc.Size = new Size(101, 64);
+            btnKetThuc.Size = new Size(88, 48);
             btnKetThuc.TabIndex = 12;
             btnKetThuc.Text = "Dừng";
             btnKetThuc.UseVisualStyleBackColor = true;
@@ -64,10 +62,9 @@
             // 
             // btnBatDau
             // 
-            btnBatDau.Location = new Point(27, 273);
-            btnBatDau.Margin = new Padding(3, 4, 3, 4);
+            btnBatDau.Location = new Point(24, 205);
             btnBatDau.Name = "btnBatDau";
-            btnBatDau.Size = new Size(101, 64);
+            btnBatDau.Size = new Size(88, 48);
             btnBatDau.TabIndex = 13;
             btnBatDau.Text = "Bắt đầu";
             btnBatDau.UseVisualStyleBackColor = true;
@@ -76,37 +73,32 @@
             // cbCamera
             // 
             cbCamera.FormattingEnabled = true;
-            cbCamera.Location = new Point(256, 113);
-            cbCamera.Margin = new Padding(3, 4, 3, 4);
+            cbCamera.Location = new Point(224, 85);
             cbCamera.Name = "cbCamera";
-            cbCamera.Size = new Size(511, 28);
+            cbCamera.Size = new Size(448, 23);
             cbCamera.TabIndex = 11;
-         
             // 
             // txbID
             // 
-            txbID.Location = new Point(256, 604);
-            txbID.Margin = new Padding(3, 4, 3, 4);
+            txbID.Location = new Point(224, 453);
             txbID.Name = "txbID";
-            txbID.Size = new Size(511, 27);
+            txbID.Size = new Size(448, 23);
             txbID.TabIndex = 10;
-           
             // 
             // ptbCamera
             // 
-            ptbCamera.Location = new Point(155, 167);
-            ptbCamera.Margin = new Padding(3, 4, 3, 4);
+            ptbCamera.Location = new Point(136, 125);
             ptbCamera.Name = "ptbCamera";
-            ptbCamera.Size = new Size(613, 395);
+            ptbCamera.Size = new Size(536, 296);
             ptbCamera.TabIndex = 9;
             ptbCamera.TabStop = false;
             // 
             // label2
             // 
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(110, 593);
+            label2.Location = new Point(96, 445);
             label2.Name = "label2";
-            label2.Size = new Size(137, 53);
+            label2.Size = new Size(120, 40);
             label2.TabIndex = 6;
             label2.Text = "Mã đọc được";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -114,9 +106,9 @@
             // label3
             // 
             label3.Font = new Font("Segoe UI", 12F);
-            label3.Location = new Point(9, 103);
+            label3.Location = new Point(8, 77);
             label3.Name = "label3";
-            label3.Size = new Size(238, 43);
+            label3.Size = new Size(208, 32);
             label3.TabIndex = 7;
             label3.Text = "Lựa chọn camera đầu vào";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -124,18 +116,18 @@
             // label1
             // 
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(192, 17);
+            label1.Location = new Point(168, 13);
             label1.Name = "label1";
-            label1.Size = new Size(421, 53);
+            label1.Size = new Size(368, 40);
             label1.TabIndex = 8;
             label1.Text = "Kiểm tra hóa đơn vé";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // KiemTraHoaDonVe
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(777, 696);
+            ClientSize = new Size(680, 522);
             Controls.Add(btnKiemTra);
             Controls.Add(btnKetThuc);
             Controls.Add(btnBatDau);
@@ -145,9 +137,11 @@
             Controls.Add(label2);
             Controls.Add(label3);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "KiemTraHoaDonVe";
             Text = "KiemTraHoaDonVe";
             FormClosing += KiemTraHoaDonVe_FormClosing;
+            Load += KiemTraHoaDonVe_Load;
             ((System.ComponentModel.ISupportInitialize)ptbCamera).EndInit();
             ResumeLayout(false);
             PerformLayout();

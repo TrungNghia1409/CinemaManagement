@@ -46,6 +46,7 @@
             btnXacNhan = new Button();
             btnThoat = new Button();
             btnChonHinhThucThanhToan = new Button();
+            btnKiemTra = new Button();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptrbManHinh).BeginInit();
@@ -74,7 +75,7 @@
             lbGheDaChon.Location = new Point(41, 626);
             lbGheDaChon.MaximumSize = new Size(300, 0);
             lbGheDaChon.Name = "lbGheDaChon";
-            lbGheDaChon.Size = new Size(100, 20);
+            lbGheDaChon.Size = new Size(79, 15);
             lbGheDaChon.TabIndex = 1;
             lbGheDaChon.Text = "Ghế Đã Chọn";
             // 
@@ -83,7 +84,7 @@
             lbGiaGhe.AutoSize = true;
             lbGiaGhe.Location = new Point(41, 668);
             lbGiaGhe.Name = "lbGiaGhe";
-            lbGiaGhe.Size = new Size(61, 20);
+            lbGiaGhe.Size = new Size(48, 15);
             lbGiaGhe.TabIndex = 1;
             lbGiaGhe.Text = "Giá Ghế";
             // 
@@ -128,7 +129,7 @@
             lbDinhDang.AutoSize = true;
             lbDinhDang.Location = new Point(24, 52);
             lbDinhDang.Name = "lbDinhDang";
-            lbDinhDang.Size = new Size(80, 20);
+            lbDinhDang.Size = new Size(63, 15);
             lbDinhDang.TabIndex = 1;
             lbDinhDang.Text = "Định Dạng";
             // 
@@ -137,7 +138,7 @@
             lbNgayChieu.AutoSize = true;
             lbNgayChieu.Location = new Point(654, 14);
             lbNgayChieu.Name = "lbNgayChieu";
-            lbNgayChieu.Size = new Size(85, 20);
+            lbNgayChieu.Size = new Size(69, 15);
             lbNgayChieu.TabIndex = 1;
             lbNgayChieu.Text = "Ngày Chiếu";
             // 
@@ -146,7 +147,7 @@
             lbGioChieu.AutoSize = true;
             lbGioChieu.Location = new Point(654, 52);
             lbGioChieu.Name = "lbGioChieu";
-            lbGioChieu.Size = new Size(73, 20);
+            lbGioChieu.Size = new Size(59, 15);
             lbGioChieu.TabIndex = 1;
             lbGioChieu.Text = "Giờ Chiếu";
             // 
@@ -156,7 +157,7 @@
             lbTenPhim.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lbTenPhim.Location = new Point(24, 5);
             lbTenPhim.Name = "lbTenPhim";
-            lbTenPhim.Size = new Size(113, 31);
+            lbTenPhim.Size = new Size(93, 25);
             lbTenPhim.TabIndex = 1;
             lbTenPhim.Text = "Tên Phim";
             // 
@@ -166,7 +167,7 @@
             label8.ForeColor = Color.Goldenrod;
             label8.Location = new Point(747, 668);
             label8.Name = "label8";
-            label8.Size = new Size(145, 20);
+            label8.Size = new Size(116, 15);
             label8.TabIndex = 0;
             label8.Text = "[ ] Đang chọn (vàng)";
             // 
@@ -176,7 +177,7 @@
             label7.ForeColor = Color.LimeGreen;
             label7.Location = new Point(541, 668);
             label7.Name = "label7";
-            label7.Size = new Size(126, 20);
+            label7.Size = new Size(100, 15);
             label7.TabIndex = 0;
             label7.Text = "[ ] Trống (xanh lá)";
             // 
@@ -186,7 +187,7 @@
             label6.ForeColor = Color.Red;
             label6.Location = new Point(363, 668);
             label6.Name = "label6";
-            label6.Size = new Size(106, 20);
+            label6.Size = new Size(81, 15);
             label6.TabIndex = 0;
             label6.Text = "[ ] Đã Đặt (đỏ)";
             // 
@@ -196,7 +197,7 @@
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
             label1.Location = new Point(363, 626);
             label1.Name = "label1";
-            label1.Size = new Size(64, 20);
+            label1.Size = new Size(50, 15);
             label1.TabIndex = 0;
             label1.Text = "Ghi Chú";
             // 
@@ -230,10 +231,20 @@
             btnChonHinhThucThanhToan.UseVisualStyleBackColor = true;
             btnChonHinhThucThanhToan.Click += btnChonHinhThucThanhToan_Click;
             // 
+            // btnKiemTra
+            // 
+            btnKiemTra.Location = new Point(252, 706);
+            btnKiemTra.Name = "btnKiemTra";
+            btnKiemTra.Size = new Size(161, 29);
+            btnKiemTra.TabIndex = 3;
+            btnKiemTra.Text = "Kiểm tra hóa đơn";
+            btnKiemTra.UseVisualStyleBackColor = true;
+            // 
             // FrmChonGhe
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(922, 747);
+            Controls.Add(btnKiemTra);
             Controls.Add(btnChonHinhThucThanhToan);
             Controls.Add(btnThoat);
             Controls.Add(btnXacNhan);
@@ -272,5 +283,6 @@
         private Label lbGiaGhe;
         private Button btnChonHinhThucThanhToan;
         private PictureBox ptrbManHinh;
+        private Button btnKiemTra;
     }
 }

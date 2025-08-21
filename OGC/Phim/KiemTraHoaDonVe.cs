@@ -108,7 +108,7 @@ namespace OGC.Phim
 
             string trangThai = DAO_CTHD_VE.Instance.LayTrangThaiTheoID(id);
 
-            if (trangThai == "Đã in")
+            if (trangThai == "Đã thanh toán")
             {
                 MessageBox.Show("Vé phim không hợp lệ!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 // Có thể phát tiếng nếu muốn
@@ -116,8 +116,8 @@ namespace OGC.Phim
             }
             else
             {
-                //PhatTiengNoiTuGoogle("Vé phim chính xác.");
-                //frmChiTietHoaDonVePhim f = new frmChiTietHoaDonVePhim(id);
+                PhatTiengNoiTuGoogle("Vé phim chính xác.");
+                //FrmChiTietHoaDonVePhim f = new FrmChiTietHoaDonVePhim(id);
                 //f.ShowDialog();
             }
         }
@@ -145,5 +145,7 @@ namespace OGC.Phim
                 }
             }
         }
+
+        
     }
 }
