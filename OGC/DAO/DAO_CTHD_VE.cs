@@ -92,7 +92,7 @@ namespace OGC.DAO
 
         public string LayTrangThaiTheoID(int id)
         {
-            string query = "SELECT TrangThai FROM VE_NEW WHERE ID = @id";
+            string query = "SELECT TrangThai FROM VE_NEW WHERE ID = @id ";
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { id });
             return result != null ? result.ToString() : null;
         }
@@ -100,7 +100,7 @@ namespace OGC.DAO
 
         public bool KiemTraTonTaiID(int id)
         {
-            string query = "SELECT COUNT(*) FROM VE_NEW WHERE ID = @id";
+            string query = "SELECT COUNT(*) FROM VE_NEW WHERE ID = @id ";
             object result = DataProvider.Instance.ExecuteScalar(query, new object[] { id });
             return Convert.ToInt32(result) > 0;
         }

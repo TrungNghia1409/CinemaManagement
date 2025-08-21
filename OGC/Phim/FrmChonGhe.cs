@@ -396,5 +396,7 @@ namespace OGC.Phim
             }
             this.Close();
         }
+
+
     }
 }

@@ -126,7 +126,7 @@ namespace OGC.DAO
         //--------- lấy thông tin lịch chiếu dựa trên ID
         public DTO_LICHCHIEU GetLichChieuByID(int id)
         {
-            string query = "SELECT *FROM LICHCHIEU WHERE ID = @ID ";
+            string query = "SELECT * FROM LICHCHIEU WHERE ID = @ID ";
             DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { id });
 
             if (data.Rows.Count > 0)

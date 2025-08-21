@@ -246,7 +246,7 @@ namespace OGC
                 Height = 50,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                ForeColor = Color.FromArgb(128, 128, 128) 
+                ForeColor = Color.FromArgb(128, 128, 128)
             };
 
             // Tạo một panel để căn giữa thông báo trong FlowLayoutPanel
@@ -338,6 +338,12 @@ namespace OGC
         private void chbTatCaNgay_CheckedChanged(object sender, EventArgs e)
         {
             LoadPhimTheoBoLoc();
+        }
+
+        private void btnKiemTra_Click(object sender, EventArgs e)
+        {
+            KiemTraHoaDonVe kthdv = new KiemTraHoaDonVe();
+            kthdv.ShowDialog();
         }
     }
 }
